@@ -1,0 +1,76 @@
+/* Optionally override Bootstrap's bg-danger for a darker red */
+.bg-danger {
+  background-color: #7f1d1d !important;
+}
+
+body, .main-bg {
+  background: #9f2b10 !important;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.gold {
+  color: #d4af37;
+}
+
+.navbar-custom {
+  background: #9f2b10 !important;
+  border-bottom: none;
+}
+
+.btn-pink {
+  background: #fbeaea;
+  color: #9f2b10;
+  border-radius: 16px;
+  font-weight: 600;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  margin-left: 0.5rem;
+}
+.btn-pink:hover {
+  background: #f5c6cb;
+  color: #9f2b10;
+}
+
+.hero-section {
+  background: #9f2b10;
+  padding: 0;
+  margin: 0;
+}
+.hero-logo {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+.hero-divider {
+  border-bottom: 3px solid #d4af37;
+  width: 120px;
+  margin: 0.5rem auto 1.5rem auto;
+}
+.hero-main {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+.hero-sub {
+  font-size: 2.0rem;
+  font-weight: 500;
+  margin-bottom: 1 rem;
+}
+.hero-desc {
+  font-size: 1rem;
+  font-weight: 400;
+  max-width: 650px;
+  margin: 0 auto 2rem auto;
+}
+.intro-video {
+  background: #b85b3b;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
