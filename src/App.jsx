@@ -1,99 +1,540 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import './index.css';
 
-const logoUrl = "https://via.placeholder.com/180x40?text=Logo";
+import img1 from "./assets/Facebook/Terengganu My Hometown.jpg";
+import img2 from "./assets/Facebook/Selangor My Hometown.jpg";
+import img3 from "./assets/Facebook/Sarawak My Hometown.jpg";
+import img4 from "./assets/Facebook/Sabah My Hometown.jpg";
+import img5 from "./assets/Facebook/Perlis My Hometown.jpg";
+import img6 from "./assets/Facebook/Perak My Hometown.jpg";
+import img7 from "./assets/Facebook/Penang 槟城.jpg";
+import section5 from "./assets/section5.png";
+
+const brandImages = [img1, img2, img3, img4, img5, img6, img7];
 const introVideoUrl = "https://drive.google.com/file/d/1rHcq8E0sREDm9YiBDp1uuoHs1tpNB50B/preview";
-import logoImg from "./assets/logo.png";
-import section2Img from "./assets/section2.png";
-import section3Img from "./assets/section3.png";
-import section4Img from "./assets/section4.png";
-import section5Img from "./assets/section5.png";
-import section6Img from "./assets/section6.png";
-import section7Img from "./assets/section7.png";
-import section8Img from "./assets/section8.png";
-import section9Img from "./assets/section9.png";
-import section10Img from "./assets/section10.png";
-import section11Img from "./assets/section11.png";
-import section12Img from "./assets/section12.png";
-import section13Img from "./assets/section13.png";
-import section14Img from "./assets/section14.png";
-import section15Img from "./assets/section15.png";
-
-
-
-const sectionImages = [
-  section2Img,
-  section3Img,
-  section4Img,
-  section5Img,
-  section6Img,
-  section7Img,
-  section8Img,
-  section9Img,
-  section10Img,
-  section11Img,
-  section12Img,
-  section13Img,
-  section14Img,
-  section15Img,
-
-];
 
 export default function App() {
+  const videoRef = useRef(null);
+  const redBannerRef = useRef(null);
+
+  // Duplicate images for seamless scroll
+  const scrollingImages = [...brandImages, ...brandImages];
+
+  // Scroll to red banner on page load
+  useEffect(() => {
+    if (redBannerRef.current) {
+      redBannerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
-    <div className="main-bg text-white" style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9f2b10' }}>
+    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#000' }}>
+      {/* Inline CSS for marquee animation */}
+      <style>{`
+        .marquee-container {
+          width: 100vw;
+          overflow: hidden;
+          position: relative;
+          margin: 10px 0 10px 0;
+        }
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marquee-scroll 18s linear infinite;
+        }
+        @keyframes marquee-scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-circle {
+          width: 170px;
+          height: 170px;
+          border-radius: 50%;
+          overflow: hidden;
+          box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+          background: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 36px;
+          flex-shrink: 0;
+        }
+        .marquee-circle img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+          display: block;
+        }
+        .video-hero {
+          width: 100vw;
+          height: calc(100vh - 100px);
+          background: #000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          margin-top: 50px;
+        }
+        .video-hero video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .video-overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 24px;
+          font-weight: bold;
+        }
+      `}</style>
+
       {/* Navbar */}
-      <nav className="navbar navbar-custom d-flex justify-content-between align-items-center px-4 py-2">
-        <div className="d-flex align-items-center">
-        
-          <img src={logoImg} alt="My Hometown Logo" style={{ height: 40, marginBottom: 12 }} />
-        </div>
-        <div>
-        
+      <nav style={{
+        background: '#9E2B10',
+        color: '#fff',
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        zIndex: 100,
+        height: 50,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0 20px',
+        boxSizing: 'border-box',
+        fontFamily: 'Georgia, serif',
+      }}>
+        {/* Navigation Links */}
+        <div style={{
+          display: 'flex',
+          gap: 40,
+          alignItems: 'center',
+          fontSize: 16,
+          fontWeight: 400,
+          letterSpacing: 1,
+        }}>
+          {[
+            'MY STORY',
+            'MY PLATFORMS', 
+            'MY SERVICES',
+            'MY CLIENTS',
+            'MY CASE STUDIES',
+            'MY REVIEWS',
+            'MY TEAM',
+            'MY CONTACT'
+          ].map((link) => (
+            <a
+              key={link}
+              href="#"
+              style={{
+                color: '#fff',
+                textDecoration: 'none',
+                cursor: 'pointer',
+                transition: 'opacity 0.2s',
+              }}
+              onMouseEnter={(e) => e.target.style.opacity = '0.8'}
+              onMouseLeave={(e) => e.target.style.opacity = '1'}
+            >
+              {link}
+            </a>
+          ))}
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section
-        className="hero-section py-0"
-        style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}
-      >
-        <div
-          style={{
-            position: 'relative',
-            width: '100vw',
-            height: '70vh',
-            overflow: 'hidden',
-            margin: 0,
-            padding: 0,
-          }}
-        >
+      {/* Video Hero Section - Always there, positioned above red banner */}
+      <div className="video-hero">
         <iframe
-        src="https://drive.google.com/file/d/1rHcq8E0sREDm9YiBDp1uuoHs1tpNB50B/preview"
-        width="100%"
-        height="100%"
+          src={introVideoUrl}
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          allowFullScreen
+          title="Intro Video"
+          style={{ border: 'none' }}
+        />
+      </div>
 
-     
-        title="Intro Video"
-      />
+      {/* Red Hero Section - Positioned below video, this is where page starts */}
+      <section
+        ref={redBannerRef}
+        style={{
+          background: '#9E2B10',
+          minHeight: '100vh',
+          paddingTop: 80,
+          paddingBottom: 40,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'flex-start',
+          borderTopLeftRadius: '30px',
+          borderTopRightRadius: '30px',
+        }}
+      >
+        <div style={{
+          maxWidth: 900,
+          marginLeft: 60,
+          marginTop: 20,
+        }}>
+          <div style={{
+            fontSize: 64,
+            fontWeight: 800,
+            lineHeight: 0.9,
+            color: '#fff',
+            letterSpacing: -2,
+            marginBottom: 30,
+            textAlign: 'left',
+          }}>
+            HI !<br />
+            THIS IS<br />
+            MY HOMETOWN MEDIA
+            <div style={{
+              fontSize: 22,
+              fontWeight: 300,
+              color: '#fff',
+              marginTop: 15,
+              textAlign: 'left',
+              maxWidth: 800,
+              lineHeight: 1.3,
+            }}>
+              We help boost your brand with impactful content and delivered across our wide-reaching media platforms.
+            </div>
+          </div>
         </div>
-        <div className="container text-center pt-4 pb-5">
-          <img src={logoImg} alt="My Hometown Logo" style={{ height: 60, marginBottom: 12 }} />
-          <div className="hero-sub">Malaysia’s Leading Force in</div>
-          <div className="hero-main">SOCIAL MEDIA MARKETING</div>
-          <div className="hero-desc">
-            Founded in 2014, MLBS International Marketing Sdn. Bhd. has grown into a strategic force in digital marketing. Operating under the banner of My Hometown Media, we specialize in social media marketing, online reputation management, and digital engagement solutions.<br/>
-            Our passion lies in empowering businesses to build lasting brand value through innovative, data-driven strategies. We offer holistic advertising, marketing, and communications services designed to resonate with audiences from the inside-out.
+        
+        {/* Platforms Section */}
+        <div style={{
+          marginLeft: 60,
+          marginBottom: 40,
+          marginTop: 60,
+        }}>
+          <div style={{
+            fontSize: 48,
+            fontWeight: 800,
+            color: '#fff',
+            marginBottom: 15,
+            textAlign: 'left',
+            lineHeight: 1.1,
+          }}>
+            MY PLATFORMS
+          </div>
+          <div style={{
+            fontSize: 18,
+            fontWeight: 300,
+            color: '#fff',
+            marginBottom: 25,
+            textAlign: 'left',
+            maxWidth: 600,
+            lineHeight: 1.3,
+          }}>
+            As seen on major media and content channels
+          </div>
+          
+          {/* Platform Logos */}
+          <div style={{
+            display: 'flex',
+            gap: 30,
+            alignItems: 'center',
+            flexWrap: 'wrap',
+          }}>
+            {/* Facebook */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              background: 'rgba(255,255,255,0.1)',
+              padding: '12px 20px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255,255,255,0.2)',
+            }}>
+              <div style={{
+                width: 24,
+                height: 24,
+                background: '#1877F2',
+                borderRadius: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}>
+                f
+              </div>
+              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>Facebook</span>
+            </div>
+            
+            {/* Xiao Hong Shu */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              background: 'rgba(255,255,255,0.1)',
+              padding: '12px 20px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255,255,255,0.2)',
+            }}>
+              <div style={{
+                width: 24,
+                height: 24,
+                background: '#FF2442',
+                borderRadius: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}>
+               
+              </div>
+              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>Xiao Hong Shu</span>
+            </div>
+            
+            {/* TikTok */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              background: 'rgba(255,255,255,0.1)',
+              padding: '12px 20px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255,255,255,0.2)',
+            }}>
+              <div style={{
+                width: 24,
+                height: 24,
+                background: '#000',
+                borderRadius: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}>
+                🎵
+              </div>
+              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>TikTok</span>
+            </div>
+            
+            {/* YouTube */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              background: 'rgba(255,255,255,0.1)',
+              padding: '12px 20px',
+              borderRadius: '8px',
+              border: '1px solid rgba(255,255,255,0.2)',
+            }}>
+              <div style={{
+                width: 24,
+                height: 24,
+                background: '#FF0000',
+                borderRadius: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontSize: 14,
+                fontWeight: 'bold',
+              }}>
+                ▶
+              </div>
+              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>YouTube</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Brand Logos Row with Marquee Effect */}
+        <div className="marquee-container">
+          <div className="marquee-track">
+            {scrollingImages.map((img, idx) => (
+              <div className="marquee-circle" key={idx}>
+                <img src={img} alt={`Brand ${idx % brandImages.length + 1}`} />
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Single Large Image Section */}
+        <div style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '60px',
+        }}>
+          <img 
+            src={section5}
+            alt="Business and Media"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              borderRadius: '20px',
+            }}
+          />
+        </div>
+      </section>
+
+      {/* WHO WE ARE Section */}
+      <section style={{
+        background: '#9E2B10',
+        padding: '80px 60px',
+        color: '#fff',
+      }}>
+        <div style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+        }}>
+          {/* Main Heading */}
+          <div style={{
+            fontSize: 64,
+            fontWeight: 800,
+            lineHeight: 0.9,
+            color: '#fff',
+            letterSpacing: -2,
+            marginBottom: 40,
+            textAlign: 'left',
+          }}>
+            WHO<br />
+            WE ARE
+          </div>
+          
+          {/* Main Content */}
+          <div style={{
+            fontSize: 18,
+            fontWeight: 300,
+            color: '#fff',
+            lineHeight: 1.6,
+            marginBottom: 60,
+            maxWidth: 800,
+          }}>
+            <p style={{ marginBottom: 20 }}>
+              My Hometown Media working its magic for all its clients since 2014 and delivering its clients powerful marketing solutions.
+            </p>
+            <p style={{ marginBottom: 20 }}>
+              We are different from other social media marketing services based in Malaysia, we own more than 30 high engagement Facebook pages, which attract followers from different geographical regions and who have different interests and behaviour. In these Facebook pages, we have a total of over 8 million followers. Our social media marketers will leverage those Facebook pages to benefit your business!
+            </p>
+            <p style={{ marginBottom: 20 }}>
+              Our main focus is you, your business and your marketing.
+            </p>
+            <p>
+              My Hometown Media dedicated to formulating innovative strategies that will enhance your digital reach, maximize your conversion rates and grow your business.
+            </p>
+          </div>
+          
+          {/* Statistics Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 40,
+            marginTop: 60,
+          }}>
+            {/* 10+ Years */}
+            <div style={{
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontSize: 48,
+                fontWeight: 800,
+                color: '#fff',
+                marginBottom: 10,
+              }}>
+                10+
+              </div>
+              <div style={{
+                fontSize: 16,
+                fontWeight: 400,
+                color: '#fff',
+                opacity: 0.9,
+              }}>
+                Years of Experience
+              </div>
+            </div>
+            
+            {/* 10,000+ Campaigns */}
+            <div style={{
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontSize: 48,
+                fontWeight: 800,
+                color: '#fff',
+                marginBottom: 10,
+              }}>
+                10,000+
+              </div>
+              <div style={{
+                fontSize: 16,
+                fontWeight: 400,
+                color: '#fff',
+                opacity: 0.9,
+              }}>
+                Successful Campaign
+              </div>
+            </div>
+            
+            {/* 8 million Followers */}
+            <div style={{
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontSize: 48,
+                fontWeight: 800,
+                color: '#fff',
+                marginBottom: 10,
+              }}>
+                8 million
+              </div>
+              <div style={{
+                fontSize: 16,
+                fontWeight: 400,
+                color: '#fff',
+                opacity: 0.9,
+              }}>
+                Active Followers
+              </div>
+            </div>
+            
+            {/* 50 million Traffic */}
+            <div style={{
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontSize: 48,
+                fontWeight: 800,
+                color: '#fff',
+                marginBottom: 10,
+              }}>
+                50 million
+              </div>
+              <div style={{
+                fontSize: 16,
+                fontWeight: 400,
+                color: '#fff',
+                opacity: 0.9,
+              }}>
+                Traffic Monthly
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      {/* Render all section images */}
-      {sectionImages.map((img, idx) => (
-        <section key={idx} style={{ width: '100vw', background: '#fff', margin: 0, padding: 0 }}>
-          <img src={img} alt={`Section ${idx + 2}`} style={{ width: '100%', height: 'auto', display: 'block' }} />
-        </section>
-      ))}
 
+      {/* Keep the rest of the page as is for now */}
     </div>
   );
 }
+
