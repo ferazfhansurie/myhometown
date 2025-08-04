@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './index.css';
+import Header from "./Header.jsx";
+import instagramLogo from "./assets/instagram.png";
+import uniformImage from "./assets/uniform copy.avif";
 
 export default function MyTeam() {
   const teamMembers = [
@@ -98,60 +101,8 @@ export default function MyTeam() {
 
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
-      {/* Navbar */}
-      <nav style={{
-        background: '#9E2B10',
-        color: '#fff',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        zIndex: 100,
-        height: 50,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0 20px',
-        boxSizing: 'border-box',
-        fontFamily: 'Georgia, serif',
-      }}>
-        {/* Navigation Links */}
-        <div style={{
-          display: 'flex',
-          gap: 40,
-          alignItems: 'center',
-          fontSize: 16,
-          fontWeight: 400,
-          letterSpacing: 1,
-        }}>
-          {[
-            { name: 'MY STORY', path: '/my-story' },
-            { name: 'MY PLATFORMS', path: '/my-platforms' },
-            { name: 'MY SERVICES', path: '/my-services' },
-            { name: 'MY CLIENTS', path: '/my-clients' },
-            { name: 'MY CASE STUDIES', path: '/case-studies' },
-            { name: 'MY REVIEWS', path: '/my-reviews' },
-            { name: 'MY TEAM', path: '/my-team' },
-            { name: 'MY CONTACT', path: '/my-contact' }
-          ].map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              style={{
-                color: '#fff',
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'opacity 0.2s',
-                fontWeight: link.path === '/my-team' ? 'bold' : 'normal',
-              }}
-              onMouseEnter={(e) => e.target.style.opacity = '0.8'}
-              onMouseLeave={(e) => e.target.style.opacity = '1'}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      {/* Header */}
+      <Header />
 
       {/* Hero Section */}
       <section style={{
@@ -266,6 +217,23 @@ export default function MyTeam() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Uniform Image */}
+          <div style={{
+            marginTop: '60px',
+            textAlign: 'center',
+          }}>
+            <img
+              src={uniformImage}
+              alt="Our Team"
+              style={{
+                maxWidth: '800px',
+                height: 'auto',
+                borderRadius: '20px',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+              }}
+            />
           </div>
         </div>
       </section>
@@ -558,8 +526,17 @@ export default function MyTeam() {
                 justifyContent: 'center',
                 textDecoration: 'none',
                 transition: 'transform 0.2s ease',
+                overflow: 'hidden',
               }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
-                <span style={{ color: '#E4405F', fontSize: '18px', fontWeight: 'bold' }}>📷</span>
+                <img 
+                  src={instagramLogo} 
+                  alt="Instagram" 
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    objectFit: 'contain',
+                  }}
+                />
               </a>
               
               {/* LinkedIn */}
