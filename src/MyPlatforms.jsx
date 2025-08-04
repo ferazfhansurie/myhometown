@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import './index.css';
+import Header from "./Header.jsx";
+import instagramLogo from "./assets/instagram.png";
+import tiktokLogo from "./assets/tiktoklogo.png";
+import xiaohongshuLogo from "./assets/xiaohongshu.png";
 
 import img1 from "./assets/Facebook/Terengganu My Hometown.jpg";
 import img2 from "./assets/Facebook/Selangor My Hometown.jpg";
@@ -211,60 +215,8 @@ export default function MyPlatforms() {
 
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
-      {/* Navbar */}
-      <nav style={{
-        background: '#9E2B10',
-        color: '#fff',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        zIndex: 100,
-        height: 50,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0 20px',
-        boxSizing: 'border-box',
-        fontFamily: 'Georgia, serif',
-      }}>
-        {/* Navigation Links */}
-        <div style={{
-          display: 'flex',
-          gap: 40,
-          alignItems: 'center',
-          fontSize: 16,
-          fontWeight: 400,
-          letterSpacing: 1,
-        }}>
-          {[
-            { name: 'HOME', path: '/' },
-            { name: 'MY STORY', path: '/story' },
-            { name: 'MY PLATFORMS', path: '/platforms' },
-            { name: 'MY SERVICES', path: '/' },
-            { name: 'MY CLIENTS', path: '/' },
-            { name: 'MY CASE STUDIES', path: '/case-studies' },
-            { name: 'MY REVIEWS', path: '/' },
-            { name: 'MY TEAM', path: '/' },
-            { name: 'MY CONTACT', path: '/' }
-          ].map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              style={{
-                color: '#fff',
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'opacity 0.2s',
-              }}
-              onMouseEnter={(e) => e.target.style.opacity = '0.8'}
-              onMouseLeave={(e) => e.target.style.opacity = '1'}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>  
-      </nav>
+      {/* Header */}
+      <Header />
 
       {/* Hero Section */}
       <section style={{
@@ -503,11 +455,17 @@ export default function MyPlatforms() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'white',
-                      fontSize: '20px',
-                      fontWeight: 'bold',
+                      overflow: 'hidden',
                     }}>
-                      📷
+                      <img 
+                        src={instagramLogo} 
+                        alt="Instagram" 
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          padding: '0px',                        }}
+                      />
                     </div>
                   )}
                   {platformGroup.platform === 'Xiao Hong Shu' && (
@@ -519,11 +477,18 @@ export default function MyPlatforms() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'white',
-                      fontSize: '20px',
-                      fontWeight: 'bold',
+                      overflow: 'hidden',
                     }}>
-                      小红书
+                      <img 
+                        src={xiaohongshuLogo} 
+                        alt="Xiao Hong Shu" 
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          padding: '0px',
+                        }}
+                      />
                     </div>
                   )}
                   {platformGroup.platform === 'TikTok' && (
@@ -535,11 +500,18 @@ export default function MyPlatforms() {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      color: 'white',
-                      fontSize: '20px',
-                      fontWeight: 'bold',
+                      overflow: 'hidden',
                     }}>
-                      🎵
+                      <img 
+                        src={tiktokLogo} 
+                        alt="TikTok" 
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'contain',
+                          padding: '0px',
+                        }}
+                      />
                     </div>
                   )}
                   {platformGroup.platform}
@@ -729,8 +701,17 @@ export default function MyPlatforms() {
                 justifyContent: 'center',
                 textDecoration: 'none',
                 transition: 'transform 0.2s ease',
+                overflow: 'hidden',
               }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
-                <span style={{ color: '#E4405F', fontSize: '18px', fontWeight: 'bold' }}>📷</span>
+                <img 
+                  src={instagramLogo} 
+                  alt="Instagram" 
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    objectFit: 'contain',
+                  }}
+                />
               </a>
               
               {/* LinkedIn */}

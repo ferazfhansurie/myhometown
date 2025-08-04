@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import './index.css';
+import Header from "./Header.jsx";
 
 import img1 from "./assets/Facebook/Terengganu My Hometown.jpg";
 import img2 from "./assets/Facebook/Selangor My Hometown.jpg";
@@ -9,8 +10,30 @@ import img4 from "./assets/Facebook/Sabah My Hometown.jpg";
 import img5 from "./assets/Facebook/Perlis My Hometown.jpg";
 import img6 from "./assets/Facebook/Perak My Hometown.jpg";
 import img7 from "./assets/Facebook/Penang 槟城.jpg";
+import img8 from "./assets/Facebook/Penang My Hometown.jpg";
+import img9 from "./assets/Facebook/Pahang My Hometown.jpg";
+import img10 from "./assets/Facebook/N.Sembilan My Hometown.jpg";
+import img11 from "./assets/Facebook/Melaka My Hometown.jpg";
+import img12 from "./assets/Facebook/Malaysia Foodie.jpg";
+import img13 from "./assets/Facebook/Kelantan My Hometown.jpg";
+import img14 from "./assets/Facebook/Kedah My Hometown.jpg";
+import img15 from "./assets/Facebook/KL My Hometown.jpg";
+import img16 from "./assets/Facebook/Johor My Hometown.jpg";
+import img17 from "./assets/Facebook/I_m Malaysian.jpg";
+import xiao1 from "./assets/Facebook/xiao1.jpg";
+import xiao2 from "./assets/Facebook/xiao2.png";
+import xiao3 from "./assets/Facebook/xiao3.jpg";
+import tiktok1 from "./assets/Facebook/tiktok1.jpeg";
+import tiktok2 from "./assets/Facebook/tiktok2.jpeg";
+import tiktok3 from "./assets/Facebook/tiktok3.jpg";
 import section5 from "./assets/section5.png";
 import section3 from "./assets/section3.png";
+import malaysiaMap from "./assets/malaysia-map.png";
+import uniformImage from "./assets/uniform copy.avif";
+import tiktokLogo from "./assets/tiktoklogo.png";
+import xiaohongshuLogo from "./assets/xiaohongshu.png";
+import instagramLogo from "./assets/instagram.png";
+import introVideo from "./assets/Videos/MLBS INTRODUCTION VIDEO.mp4";
 import CaseStudies from "./CaseStudies.jsx";
 import MyPlatforms from "./MyPlatforms.jsx";
 import MyServices from "./MyServices.jsx";
@@ -32,7 +55,72 @@ const facebookPages = [
 ];
 
 const brandImages = [img1, img2, img3, img4, img5, img6, img7];
-const introVideoUrl = "https://drive.google.com/file/d/1rHcq8E0sREDm9YiBDp1uuoHs1tpNB50B/preview";
+
+// Platform-specific data
+const platformData = {
+  Facebook: {
+    images: [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16, img17],
+    urls: [
+      "https://www.facebook.com/TerengganuMyHometown",
+      "https://www.facebook.com/SelangorMyHometown", 
+      "https://www.facebook.com/SarawakMyHometown",
+      "https://www.facebook.com/SabahMyHometown",
+      "https://www.facebook.com/PerlisMyHometown",
+      "https://www.facebook.com/PerakMyHometown",
+      "https://www.facebook.com/PenangMyHometown",
+      "https://www.facebook.com/PenangMyHometown",
+      "https://www.facebook.com/PahangMyHometown",
+      "https://www.facebook.com/NSembilanMyHometown",
+      "https://www.facebook.com/MelakaMyHometown",
+      "https://www.facebook.com/MalaysiaFoodieMedia",
+      "https://www.facebook.com/KelantanMyHometown",
+      "https://www.facebook.com/KedahMyHometown",
+      "https://www.facebook.com/KLMyHometown",
+      "https://www.facebook.com/JohorMyHometown",
+      "https://www.facebook.com/ImMalaysianOnline"
+    ]
+  },
+  'Xiao Hong Shu': {
+    images: [xiao1, xiao2, xiao3],
+    urls: [
+      "https://www.xiaohongshu.com/user/profile/6392bfa4000000001f015596?xhsshare=CopyLink&appuid=5e98b93000000000010073f1&apptime=1731472287&share_id=25a7cd1403a74cecb212f2219af65cc8",
+      "https://www.xiaohongshu.com/user/profile/63482ba9000000001901de6e?xhsshare=CopyLink&appuid=5e98b93000000000010073f1&apptime=1677139945",
+      "https://www.xiaohongshu.com/user/profile/6392bfa4000000001f015596?xhsshare=CopyLink&appuid=5e98b93000000000010073f1&apptime=1692279354"
+    ]
+  },
+  TikTok: {
+    images: [tiktok1, tiktok2, tiktok3],
+    urls: [
+      "https://www.tiktok.com/@myhometown_media?_t=8a72d4zHHkI&_r=1",
+      "https://www.tiktok.com/@myhometownmediaofficial?_t=ZS-8sApCTw2Uo3&_r=1",
+      "https://www.tiktok.com/@myhometownmedia?_t=8g5CSfgR1t4&_r=1"
+    ]
+  },
+  YouTube: {
+    images: [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16, img17], // Using Facebook images for now
+    urls: [
+      "https://www.youtube.com/@MyHometownMedia",
+      "https://www.youtube.com/@MyHometownMedia2",
+      "https://www.youtube.com/@MyHometownMedia3",
+      "https://www.youtube.com/@MyHometownMedia4",
+      "https://www.youtube.com/@MyHometownMedia5",
+      "https://www.youtube.com/@MyHometownMedia6",
+      "https://www.youtube.com/@MyHometownMedia7",
+      "https://www.youtube.com/@MyHometownMedia8",
+      "https://www.youtube.com/@MyHometownMedia9",
+      "https://www.youtube.com/@MyHometownMedia10",
+      "https://www.youtube.com/@MyHometownMedia11",
+      "https://www.youtube.com/@MyHometownMedia12",
+      "https://www.youtube.com/@MyHometownMedia13",
+      "https://www.youtube.com/@MyHometownMedia14",
+      "https://www.youtube.com/@MyHometownMedia15",
+      "https://www.youtube.com/@MyHometownMedia16",
+      "https://www.youtube.com/@MyHometownMedia17"
+    ]
+  }
+};
+
+const introVideoUrl = introVideo;
 
 export default function App() {
   const videoRef = useRef(null);
@@ -43,9 +131,18 @@ export default function App() {
     followers: 0,
     traffic: 0
   });
+  const [scrollY, setScrollY] = useState(0);
+  const [scrollDirection, setScrollDirection] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [selectedPlatform, setSelectedPlatform] = useState('Facebook');
 
-  // Duplicate images for seamless scroll
-  const scrollingImages = [...brandImages, ...brandImages];
+  // Get current platform data
+  const currentPlatformData = platformData[selectedPlatform];
+  const currentImages = currentPlatformData.images;
+  const currentUrls = currentPlatformData.urls;
+  
+  // Create infinite loop by duplicating images multiple times to ensure seamless loop
+  const scrollingImages = [...currentImages, ...currentImages, ...currentImages, ...currentImages];
 
   // Scroll to red banner on page load
   useEffect(() => {
@@ -53,6 +150,25 @@ export default function App() {
       redBannerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
+
+  // Scroll effect for floating text
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrollY(currentScrollY);
+      
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection(1); // scrolling down
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection(-1); // scrolling up
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   // Animated counter effect
   useEffect(() => {
@@ -111,7 +227,7 @@ export default function App() {
         <Route path="/my-team" element={<MyTeam />} />
         <Route path="/my-contact" element={<MyContact />} />
         <Route path="/" element={
-          <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#000' }}>
+          <div style={{ minHeight: '100vh', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', background: '#000', overflow: 'hidden' }}>
       {/* Inline CSS for marquee animation */}
       <style>{`
         .marquee-container {
@@ -123,11 +239,11 @@ export default function App() {
         .marquee-track {
           display: flex;
           width: max-content;
-          animation: marquee-scroll 18s linear infinite;
+          animation: marquee-scroll 30s linear infinite;
         }
         @keyframes marquee-scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-25%); }
         }
         .marquee-circle {
           width: 170px;
@@ -161,13 +277,13 @@ export default function App() {
         }
         .video-hero {
           width: 100vw;
-          height: calc(100vh - 100px);
+          height: 100vh;
           background: #000;
           display: flex;
           align-items: center;
           justify-content: center;
           position: relative;
-          margin-top: 50px;
+          margin-top: 0;
         }
         .video-hero video {
           width: 100%;
@@ -190,81 +306,31 @@ export default function App() {
         }
       `}</style>
 
-      {/* Navbar */}
-      <nav style={{
-        background: '#9E2B10',
-        color: '#fff',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        zIndex: 100,
-        height: 50,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '0 20px',
-        boxSizing: 'border-box',
-        fontFamily: 'Georgia, serif',
-      }}>
-        {/* Navigation Links */}
-        <div style={{
-          display: 'flex',
-          gap: 40,
-          alignItems: 'center',
-          fontSize: 16,
-          fontWeight: 400,
-          letterSpacing: 1,
-        }}>
-          {[
-            { name: 'HOME', path: '/' },
-            { name: 'MY STORY', path: '/my-story' },
-            { name: 'MY PLATFORMS', path: '/my-platforms' },
-            { name: 'MY SERVICES', path: '/my-services' },
-            { name: 'MY CLIENTS', path: '/my-clients' },
-            { name: 'MY CASE STUDIES', path: '/my-case-studies' },
-            { name: 'MY REVIEWS', path: '/my-reviews' },
-            { name: 'MY TEAM', path: '/my-team' },
-            { name: 'MY CONTACT', path: '/my-contact' }
-          ].map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              style={{
-                color: '#fff',
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'opacity 0.2s',
-              }}
-              onMouseEnter={(e) => e.target.style.opacity = '0.8'}
-              onMouseLeave={(e) => e.target.style.opacity = '1'}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
-      </nav>
+      {/* Header */}
+      <Header />
 
       {/* Video Hero Section - Always there, positioned above red banner */}
       <div className="video-hero">
-        <iframe
+        <video
           src={introVideoUrl}
           width="100%"
           height="100%"
-          frameBorder="0"
-          allowFullScreen
+          autoPlay
+          muted
+          loop
+          playsInline
           title="Intro Video"
-          style={{ border: 'none' }}
+          style={{ border: 'none', objectFit: 'cover' }}
         />
       </div>
 
       {/* Red Hero Section - Positioned below video, this is where page starts */}
-      <section
+              <section
         ref={redBannerRef}
         style={{
           background: '#9E2B10',
           minHeight: '100vh',
-          paddingTop: 80,
+          paddingTop: 110,
           paddingBottom: 40,
           display: 'flex',
           flexDirection: 'column',
@@ -272,36 +338,74 @@ export default function App() {
           justifyContent: 'flex-start',
           borderTopLeftRadius: '30px',
           borderTopRightRadius: '30px',
+          position: 'relative',
+          zIndex: 10,
+          marginTop: '-5vh',
         }}
       >
         <div style={{
-          maxWidth: 900,
-          marginLeft: 60,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          maxWidth: '100%',
+          margin: '0 60px 0 60px',
           marginTop: 20,
         }}>
           <div style={{
-            fontSize: 64,
-            fontWeight: 800,
-            lineHeight: 0.9,
-            color: '#fff',
-            letterSpacing: -2,
-            marginBottom: 30,
-            textAlign: 'left',
+            flex: '1',
+            marginRight: 60,
           }}>
-            HI !<br />
-            THIS IS<br />
-            MY HOMETOWN MEDIA
             <div style={{
-              fontSize: 22,
-              fontWeight: 300,
+              fontSize: 64,
+              fontWeight: 800,
+              lineHeight: 0.9,
               color: '#fff',
-              marginTop: 15,
+              letterSpacing: -2,
+              marginBottom: 30,
               textAlign: 'left',
-              maxWidth: 800,
-              lineHeight: 1.3,
+              transform: `translateY(${scrollY * 0.05}px) translateX(${scrollDirection * 0.5}px)`,
+              transition: 'transform 0.1s ease-out',
+              filter: `blur(${Math.abs(scrollDirection) * 0.05}px)`,
             }}>
-              We help boost your brand with impactful content and delivered across our wide-reaching media platforms.
+              HI !<br />
+              THIS IS<br />
+              <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span> HOMETOWN MEDIA
+              <div style={{
+                fontSize: 22,
+                fontWeight: 300,
+                color: '#fff',
+                marginTop: 25,
+                textAlign: 'left',
+                maxWidth: 800,
+                lineHeight: 1.6,
+                letterSpacing: '0.5px',
+              }}>
+                We help boost your brand with impactful content and delivered across our wide-reaching media platforms.
+              </div>
             </div>
+          </div>
+          
+          {/* Uniform Image on the right */}
+          <div style={{
+            flex: '1',
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            marginRight: '-60px',
+          }}>
+            <img 
+              src={uniformImage}
+              alt="My Hometown Media Team"
+              style={{
+                maxWidth: '600px',
+                width: '100%',
+                height: 'auto',
+                borderRadius: '12px 0 0 12px',
+                border: '4px solid #fff',
+                borderRight: 'none',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+              }}
+            />
           </div>
         </div>
         
@@ -315,20 +419,25 @@ export default function App() {
             fontSize: 48,
             fontWeight: 800,
             color: '#fff',
-            marginBottom: 15,
+            marginBottom: 50,
             textAlign: 'left',
             lineHeight: 1.1,
+            transform: `translateY(${scrollY * 0.03}px) translateX(${scrollDirection * 0.3}px)`,
+            transition: 'transform 0.1s ease-out',
+            filter: `blur(${Math.abs(scrollDirection) * 0.03}px)`,
           }}>
-            MY PLATFORMS
+            <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
+            <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}> PLATFORMS</span>
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: 22,
             fontWeight: 300,
             color: '#fff',
-            marginBottom: 25,
+            marginBottom: 35,
             textAlign: 'left',
             maxWidth: 600,
-            lineHeight: 1.3,
+            lineHeight: 1.6,
+            letterSpacing: '0.5px',
           }}>
             As seen on major media and content channels
           </div>
@@ -341,15 +450,20 @@ export default function App() {
             flexWrap: 'wrap',
           }}>
             {/* Facebook */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              background: 'rgba(255,255,255,0.1)',
-              padding: '12px 20px',
-              borderRadius: '8px',
-              border: '1px solid rgba(255,255,255,0.2)',
-            }}>
+            <div 
+              onClick={() => setSelectedPlatform('Facebook')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                background: selectedPlatform === 'Facebook' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
+                padding: '12px 20px',
+                borderRadius: '8px',
+                border: selectedPlatform === 'Facebook' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+            >
               <div style={{
                 width: 24,
                 height: 24,
@@ -368,69 +482,94 @@ export default function App() {
             </div>
             
             {/* Xiao Hong Shu */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              background: 'rgba(255,255,255,0.1)',
-              padding: '12px 20px',
-              borderRadius: '8px',
-              border: '1px solid rgba(255,255,255,0.2)',
-            }}>
+            <div 
+              onClick={() => setSelectedPlatform('Xiao Hong Shu')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                background: selectedPlatform === 'Xiao Hong Shu' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
+                padding: '12px 20px',
+                borderRadius: '8px',
+                border: selectedPlatform === 'Xiao Hong Shu' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+            >
               <div style={{
                 width: 24,
                 height: 24,
-                background: '#FF2442',
                 borderRadius: '4px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'white',
-                fontSize: 14,
-                fontWeight: 'bold',
+                overflow: 'hidden',
               }}>
-               
+                <img 
+                  src={xiaohongshuLogo} 
+                  alt="Xiao Hong Shu" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                  }}
+                />
               </div>
               <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>Xiao Hong Shu</span>
             </div>
             
             {/* TikTok */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              background: 'rgba(255,255,255,0.1)',
-              padding: '12px 20px',
-              borderRadius: '8px',
-              border: '1px solid rgba(255,255,255,0.2)',
-            }}>
+            <div 
+              onClick={() => setSelectedPlatform('TikTok')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                background: selectedPlatform === 'TikTok' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
+                padding: '12px 20px',
+                borderRadius: '8px',
+                border: selectedPlatform === 'TikTok' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+            >
               <div style={{
                 width: 24,
                 height: 24,
-                background: '#000',
                 borderRadius: '4px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'white',
-                fontSize: 14,
-                fontWeight: 'bold',
+                overflow: 'hidden',
               }}>
-                🎵
+                <img 
+                  src={tiktokLogo} 
+                  alt="TikTok" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                  }}
+                />
               </div>
               <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>TikTok</span>
             </div>
             
             {/* YouTube */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              background: 'rgba(255,255,255,0.1)',
-              padding: '12px 20px',
-              borderRadius: '8px',
-              border: '1px solid rgba(255,255,255,0.2)',
-            }}>
+            <div 
+              onClick={() => setSelectedPlatform('YouTube')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                background: selectedPlatform === 'YouTube' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
+                padding: '12px 20px',
+                borderRadius: '8px',
+                border: selectedPlatform === 'YouTube' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+            >
               <div style={{
                 width: 24,
                 height: 24,
@@ -453,18 +592,36 @@ export default function App() {
         {/* Brand Logos Row with Marquee Effect */}
         <div className="marquee-container">
           <div className="marquee-track">
-            {scrollingImages.map((img, idx) => (
-              <a
-                key={idx}
-                href={facebookPages[idx % brandImages.length]}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="marquee-circle">
-                  <img src={img} alt={`Brand ${idx % brandImages.length + 1}`} />
-                </div>
-              </a>
-            ))}
+            {scrollingImages.map((img, idx) => {
+              const url = currentUrls[idx % currentImages.length];
+              const isInternalLink = url.startsWith('/');
+              
+              if (isInternalLink) {
+                return (
+                  <Link
+                    key={idx}
+                    to={url}
+                  >
+                    <div className="marquee-circle">
+                      <img src={img} alt={`${selectedPlatform} Brand ${idx % currentImages.length + 1}`} />
+                    </div>
+                  </Link>
+                );
+              } else {
+                return (
+                  <a
+                    key={idx}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <div className="marquee-circle">
+                      <img src={img} alt={`${selectedPlatform} Brand ${idx % currentImages.length + 1}`} />
+                    </div>
+                  </a>
+                );
+              }
+            })}
           </div>
         </div>
         
@@ -474,7 +631,7 @@ export default function App() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '60px',
+          padding: '0px 0px',
         }}>
           <img 
             src={section5}
@@ -514,8 +671,8 @@ export default function App() {
           
           {/* Main Content */}
           <div style={{
-            fontSize: 16,
-            fontWeight: 400,
+            fontSize: 22,
+            fontWeight: 500,
             color: '#333',
             lineHeight: 1.6,
             marginBottom: 40,
@@ -633,6 +790,45 @@ export default function App() {
               </div>
             </div>
           </div>
+          
+          {/* See MY Case Studies Button */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginTop: 50,
+          }}>
+            <Link
+              to="/my-case-studies"
+              style={{
+                background: '#9E2B10',
+                color: '#fff',
+                padding: '16px 32px',
+                borderRadius: '30px',
+                textDecoration: 'none',
+                fontSize: '18px',
+                fontWeight: '600',
+                letterSpacing: '1px',
+                border: '2px solid #9E2B10',
+                transition: 'all 0.3s ease',
+                display: 'inline-block',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = '#fff';
+                e.target.style.color = '#9E2B10';
+                e.target.style.border = '2px solid #9E2B10';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = '#9E2B10';
+                e.target.style.color = '#fff';
+                e.target.style.border = '2px solid #9E2B10';
+              }}
+            >
+              SEE <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span> CASE STUDIES
+            </Link>
+          </div>
+          
+
         </div>
         
       </section>
@@ -641,92 +837,109 @@ export default function App() {
         style={{
           background: '#9E2B10',
           minHeight: '100vh',
-          paddingTop: 80,
+          paddingTop: 60,
           paddingBottom: 40,
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
+          alignItems: 'center',
+          justifyContent: 'center',
   
         }}
       >
         
         
-        {/* Single Large Image Section */}
+        {/* Audience Reach & Influence Section */}
         <div style={{
-          minHeight: '100vh',
+          width: '100%',
+          maxWidth: '1200px',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '60px',
           position: 'relative',
         }}>
-          <img 
-            src={section3}
-            alt="Business and Media"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              borderRadius: '20px',
-            }}
-          />
-          
-          {/* Animated Numbers Overlay */}
+          {/* Main Heading */}
           <div style={{
-            position: 'absolute',
-            top: '35%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            fontSize: 48,
+            fontWeight: 800,
+            color: '#fff',
+            marginBottom: 60,
+            textAlign: 'center',
+            letterSpacing: '1px',
+          }}>
+            AUDIENCE REACH & INFLUENCE
+          </div>
+          
+          {/* Statistics Display */}
+          <div style={{
             display: 'flex',
-            gap: '300px',
-            zIndex: 10,
-            background: '#9E2B10',
-            padding: '30px 300px',
-            borderRadius: '12px',
+            gap: '200px',
+            marginBottom: 80,
+            background: 'rgba(255,255,255,0.1)',
+            padding: '40px 60px',
+            borderRadius: '16px',
+            border: '1px solid rgba(255,255,255,0.2)',
           }}>
             {/* 8,000,000 Fans & Followers */}
             <div style={{
               textAlign: 'center',
               color: '#fff',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
             }}>
               <div style={{
-                fontSize: 60,
+                fontSize: 55,
                 fontWeight: 800,
-                marginBottom: 8,
+                marginBottom: 12,
               }}>
                 {counts.followers.toLocaleString()}
               </div>
               <div style={{
                 fontSize: 20,
                 fontWeight: 500,
+                letterSpacing: '1px',
               }}>
                 FANS & FOLLOWERS
               </div>
             </div>
             
-            {/* 100,000,000 Monthly Online Traffic */}
+            {/* 50,000,000 Monthly Online Traffic */}
             <div style={{
               textAlign: 'center',
               color: '#fff',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
             }}>
               <div style={{
                 fontSize: 60,
                 fontWeight: 800,
-                marginBottom: 8,
+                marginBottom: 12,
               }}>
                 {counts.traffic.toLocaleString()}
               </div>
               <div style={{
                 fontSize: 20,
                 fontWeight: 500,
+                letterSpacing: '1px',
                 whiteSpace: 'nowrap',
               }}>
                 MONTHLY ONLINE TRAFFIC
               </div>
             </div>
+          </div>
+          
+          {/* Map Image */}
+          <div style={{
+            width: '100%',
+            maxWidth: '1200px',
+            borderRadius: '20px',
+            overflow: 'hidden',
+          }}>
+            <img 
+              src={malaysiaMap}
+              alt="Malaysia Map with Social Media Channels"
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+              }}
+            />
           </div>
         </div>
       </section>
@@ -736,7 +949,7 @@ export default function App() {
         background: '#1a1a1a',
         color: '#fff',
         padding: '60px 60px 40px 60px',
-        fontFamily: 'Montserrat, Arial, sans-serif',
+        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       }}>
         <div style={{
           display: 'grid',
@@ -754,7 +967,8 @@ export default function App() {
               marginBottom: '8px',
               letterSpacing: '1px',
             }}>
-              MYHOMETOWN MEDIA
+              <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
+              <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
               fontSize: '14px',
@@ -797,8 +1011,17 @@ export default function App() {
                 justifyContent: 'center',
                 textDecoration: 'none',
                 transition: 'transform 0.2s ease',
+                overflow: 'hidden',
               }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
-                <span style={{ color: '#E4405F', fontSize: '18px', fontWeight: 'bold' }}>📷</span>
+                <img 
+                  src={instagramLogo} 
+                  alt="Instagram" 
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    objectFit: 'contain',
+                  }}
+                />
               </a>
               
               {/* LinkedIn */}
@@ -857,7 +1080,14 @@ export default function App() {
                   onMouseEnter={(e) => e.target.style.opacity = '1'}
                   onMouseLeave={(e) => e.target.style.opacity = '0.9'}
                 >
-                  {item.name}
+                  {item.name.startsWith('MY') ? (
+                    <>
+                      <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
+                      <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>{item.name.substring(2)}</span>
+                    </>
+                  ) : (
+                    item.name
+                  )}
                 </Link>
               ))}
             </div>
@@ -900,7 +1130,7 @@ export default function App() {
           opacity: '0.7',
           letterSpacing: '0.5px',
         }}>
-          © 2024 MYHOMETOWN MEDIA. ALL RIGHTS RESERVED.
+          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
         </div>
       </footer>
         </div>
