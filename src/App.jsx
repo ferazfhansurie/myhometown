@@ -228,7 +228,7 @@ export default function App() {
         <Route path="/my-contact" element={<MyContact />} />
         <Route path="/" element={
           <div style={{ minHeight: '100vh', fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif', background: '#000', overflow: 'hidden' }}>
-      {/* Inline CSS for marquee animation and responsive design */}
+      {/* Inline CSS for marquee animation */}
       <style>{`
         .marquee-container {
           width: 100vw;
@@ -304,31 +304,6 @@ export default function App() {
           font-size: 24px;
           font-weight: bold;
         }
-        
-        /* Mobile Responsive Styles */
-        @media (max-width: 768px) {
-          .marquee-circle {
-            width: 120px;
-            height: 120px;
-            margin-right: 20px;
-          }
-          
-          .video-hero {
-            height: 60vh;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .marquee-circle {
-            width: 100px;
-            height: 100px;
-            margin-right: 15px;
-          }
-          
-          .video-hero {
-            height: 50vh;
-          }
-        }
       `}</style>
 
       {/* Header */}
@@ -375,22 +350,19 @@ export default function App() {
           maxWidth: '100%',
           margin: '0 60px 0 60px',
           marginTop: 20,
-          flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
-          gap: window.innerWidth <= 768 ? '40px' : '0',
         }}>
           <div style={{
             flex: '1',
-            marginRight: window.innerWidth <= 768 ? '0' : '60px',
-            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+            marginRight: 60,
           }}>
             <div style={{
-              fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '48px' : '64px',
+              fontSize: 64,
               fontWeight: 800,
               lineHeight: 0.9,
               color: '#fff',
               letterSpacing: -2,
               marginBottom: 30,
-              textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+              textAlign: 'left',
               transform: `translateY(${scrollY * 0.05}px) translateX(${scrollDirection * 0.5}px)`,
               transition: 'transform 0.1s ease-out',
               filter: `blur(${Math.abs(scrollDirection) * 0.05}px)`,
@@ -399,11 +371,11 @@ export default function App() {
               THIS IS<br />
               <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span> HOMETOWN MEDIA
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '22px',
+                fontSize: 22,
                 fontWeight: 300,
                 color: '#fff',
                 marginTop: 25,
-                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+                textAlign: 'left',
                 maxWidth: 800,
                 lineHeight: 1.6,
                 letterSpacing: '0.5px',
@@ -417,20 +389,20 @@ export default function App() {
           <div style={{
             flex: '1',
             display: 'flex',
-            justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-end',
+            justifyContent: 'flex-end',
             alignItems: 'center',
-            marginRight: window.innerWidth <= 768 ? '0' : '-60px',
+            marginRight: '-60px',
           }}>
             <img 
               src={uniformImage}
               alt="My Hometown Media Team"
               style={{
-                maxWidth: window.innerWidth <= 480 ? '300px' : window.innerWidth <= 768 ? '400px' : '600px',
+                maxWidth: '600px',
                 width: '100%',
                 height: 'auto',
-                borderRadius: window.innerWidth <= 768 ? '12px' : '12px 0 0 12px',
+                borderRadius: '12px 0 0 12px',
                 border: '4px solid #fff',
-                borderRight: window.innerWidth <= 768 ? '4px solid #fff' : 'none',
+                borderRight: 'none',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
               }}
             />
@@ -439,17 +411,16 @@ export default function App() {
         
         {/* Platforms Section */}
         <div style={{
-          marginLeft: window.innerWidth <= 768 ? '20px' : '60px',
-          marginRight: window.innerWidth <= 768 ? '20px' : '60px',
+          marginLeft: 60,
           marginBottom: 40,
           marginTop: 60,
         }}>
           <div style={{
-            fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+            fontSize: 48,
             fontWeight: 800,
             color: '#fff',
             marginBottom: 50,
-            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+            textAlign: 'left',
             lineHeight: 1.1,
             transform: `translateY(${scrollY * 0.03}px) translateX(${scrollDirection * 0.3}px)`,
             transition: 'transform 0.1s ease-out',
@@ -459,11 +430,11 @@ export default function App() {
             <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}> PLATFORMS</span>
           </div>
           <div style={{
-            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '22px',
+            fontSize: 22,
             fontWeight: 300,
             color: '#fff',
             marginBottom: 35,
-            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+            textAlign: 'left',
             maxWidth: 600,
             lineHeight: 1.6,
             letterSpacing: '0.5px',
@@ -474,10 +445,9 @@ export default function App() {
           {/* Platform Logos */}
           <div style={{
             display: 'flex',
-            gap: window.innerWidth <= 480 ? '15px' : window.innerWidth <= 768 ? '20px' : '30px',
+            gap: 30,
             alignItems: 'center',
             flexWrap: 'wrap',
-            justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start',
           }}>
             {/* Facebook */}
             <div 
@@ -487,7 +457,7 @@ export default function App() {
                 alignItems: 'center',
                 gap: 10,
                 background: selectedPlatform === 'Facebook' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                padding: window.innerWidth <= 480 ? '8px 12px' : '12px 20px',
+                padding: '12px 20px',
                 borderRadius: '8px',
                 border: selectedPlatform === 'Facebook' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
                 cursor: 'pointer',
@@ -495,24 +465,20 @@ export default function App() {
               }}
             >
               <div style={{
-                width: window.innerWidth <= 480 ? '20px' : '24px',
-                height: window.innerWidth <= 480 ? '20px' : '24px',
+                width: 24,
+                height: 24,
                 background: '#1877F2',
                 borderRadius: '4px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'white',
-                fontSize: window.innerWidth <= 480 ? '12px' : '14px',
+                fontSize: 14,
                 fontWeight: 'bold',
               }}>
                 f
               </div>
-              <span style={{ 
-                color: '#fff', 
-                fontSize: window.innerWidth <= 480 ? '12px' : '16px', 
-                fontWeight: 500 
-              }}>Facebook</span>
+              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>Facebook</span>
             </div>
             
             {/* Xiao Hong Shu */}
@@ -523,7 +489,7 @@ export default function App() {
                 alignItems: 'center',
                 gap: 10,
                 background: selectedPlatform === 'Xiao Hong Shu' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                padding: window.innerWidth <= 480 ? '8px 12px' : '12px 20px',
+                padding: '12px 20px',
                 borderRadius: '8px',
                 border: selectedPlatform === 'Xiao Hong Shu' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
                 cursor: 'pointer',
@@ -531,8 +497,8 @@ export default function App() {
               }}
             >
               <div style={{
-                width: window.innerWidth <= 480 ? '20px' : '24px',
-                height: window.innerWidth <= 480 ? '20px' : '24px',
+                width: 24,
+                height: 24,
                 borderRadius: '4px',
                 display: 'flex',
                 alignItems: 'center',
@@ -549,11 +515,7 @@ export default function App() {
                   }}
                 />
               </div>
-              <span style={{ 
-                color: '#fff', 
-                fontSize: window.innerWidth <= 480 ? '12px' : '16px', 
-                fontWeight: 500 
-              }}>Xiao Hong Shu</span>
+              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>Xiao Hong Shu</span>
             </div>
             
             {/* TikTok */}
@@ -564,7 +526,7 @@ export default function App() {
                 alignItems: 'center',
                 gap: 10,
                 background: selectedPlatform === 'TikTok' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                padding: window.innerWidth <= 480 ? '8px 12px' : '12px 20px',
+                padding: '12px 20px',
                 borderRadius: '8px',
                 border: selectedPlatform === 'TikTok' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
                 cursor: 'pointer',
@@ -572,8 +534,8 @@ export default function App() {
               }}
             >
               <div style={{
-                width: window.innerWidth <= 480 ? '20px' : '24px',
-                height: window.innerWidth <= 480 ? '20px' : '24px',
+                width: 24,
+                height: 24,
                 borderRadius: '4px',
                 display: 'flex',
                 alignItems: 'center',
@@ -590,11 +552,7 @@ export default function App() {
                   }}
                 />
               </div>
-              <span style={{ 
-                color: '#fff', 
-                fontSize: window.innerWidth <= 480 ? '12px' : '16px', 
-                fontWeight: 500 
-              }}>TikTok</span>
+              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>TikTok</span>
             </div>
             
             {/* YouTube */}
@@ -605,7 +563,7 @@ export default function App() {
                 alignItems: 'center',
                 gap: 10,
                 background: selectedPlatform === 'YouTube' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                padding: window.innerWidth <= 480 ? '8px 12px' : '12px 20px',
+                padding: '12px 20px',
                 borderRadius: '8px',
                 border: selectedPlatform === 'YouTube' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
                 cursor: 'pointer',
@@ -613,24 +571,20 @@ export default function App() {
               }}
             >
               <div style={{
-                width: window.innerWidth <= 480 ? '20px' : '24px',
-                height: window.innerWidth <= 480 ? '20px' : '24px',
+                width: 24,
+                height: 24,
                 background: '#FF0000',
                 borderRadius: '4px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'white',
-                fontSize: window.innerWidth <= 480 ? '12px' : '14px',
+                fontSize: 14,
                 fontWeight: 'bold',
               }}>
                 ▶
               </div>
-              <span style={{ 
-                color: '#fff', 
-                fontSize: window.innerWidth <= 480 ? '12px' : '16px', 
-                fontWeight: 500 
-              }}>YouTube</span>
+              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>YouTube</span>
             </div>
           </div>
         </div>
@@ -673,7 +627,7 @@ export default function App() {
         
         {/* Single Large Image Section */}
         <div style={{
-          minHeight: window.innerWidth <= 768 ? '60vh' : '100vh',
+          minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -695,7 +649,7 @@ export default function App() {
       {/* WHO WE ARE Section */}
       <section style={{
         background: '#FEEBE7',
-        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '50px 40px' : '60px 60px',
+        padding: '60px 60px',
         color: '#333',
       }}>
         <div style={{
@@ -703,7 +657,7 @@ export default function App() {
         }}>
           {/* Main Heading */}
           <div style={{
-            fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '44px' : '55px',
+            fontSize: 55,
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#9E2B10',
@@ -717,7 +671,7 @@ export default function App() {
           
           {/* Main Content */}
           <div style={{
-            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '22px',
+            fontSize: 22,
             fontWeight: 500,
             color: '#333',
             lineHeight: 1.6,
@@ -735,8 +689,8 @@ export default function App() {
           {/* Statistics Grid */}
           <div className="stats-section" style={{
             display: 'grid',
-            gridTemplateColumns: window.innerWidth <= 768 ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)',
-            gap: window.innerWidth <= 480 ? '20px' : window.innerWidth <= 768 ? '30px' : '40px',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gap: 40,
             marginTop: 40,
             width: '100%',
           }}>
@@ -744,11 +698,11 @@ export default function App() {
             <div style={{
               textAlign: 'center',
               background: 'rgba(158, 43, 16, 0.1)',
-              padding: window.innerWidth <= 480 ? '30px 15px' : '40px 20px',
+              padding: '40px 20px',
               borderRadius: '16px',
             }}>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '42px' : '48px',
+                fontSize: 48,
                 fontWeight: 800,
                 color: '#9E2B10',
                 marginBottom: 12,
@@ -756,7 +710,7 @@ export default function App() {
                 {counts.years}+
               </div>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '14px' : '16px',
+                fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
               }}>
@@ -768,11 +722,11 @@ export default function App() {
             <div style={{
               textAlign: 'center',
               background: 'rgba(158, 43, 16, 0.1)',
-              padding: window.innerWidth <= 480 ? '30px 15px' : '40px 20px',
+              padding: '40px 20px',
               borderRadius: '16px',
             }}>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '42px' : '48px',
+                fontSize: 48,
                 fontWeight: 800,
                 color: '#9E2B10',
                 marginBottom: 12,
@@ -780,7 +734,7 @@ export default function App() {
                 {counts.campaigns.toLocaleString()}+
               </div>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '14px' : '16px',
+                fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
               }}>
@@ -792,11 +746,11 @@ export default function App() {
             <div style={{
               textAlign: 'center',
               background: 'rgba(158, 43, 16, 0.1)',
-              padding: window.innerWidth <= 480 ? '30px 15px' : '40px 20px',
+              padding: '40px 20px',
               borderRadius: '16px',
             }}>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '42px' : '48px',
+                fontSize: 48,
                 fontWeight: 800,
                 color: '#9E2B10',
                 marginBottom: 12,
@@ -804,7 +758,7 @@ export default function App() {
                 {(counts.followers / 1000000).toFixed(1)} million
               </div>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '14px' : '16px',
+                fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
               }}>
@@ -816,11 +770,11 @@ export default function App() {
             <div style={{
               textAlign: 'center',
               background: 'rgba(158, 43, 16, 0.1)',
-              padding: window.innerWidth <= 480 ? '30px 15px' : '40px 20px',
+              padding: '40px 20px',
               borderRadius: '16px',
             }}>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '42px' : '48px',
+                fontSize: 48,
                 fontWeight: 800,
                 color: '#9E2B10',
                 marginBottom: 12,
@@ -828,7 +782,7 @@ export default function App() {
                 {(counts.traffic / 1000000).toFixed(0)} million
               </div>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '14px' : '16px',
+                fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
               }}>
@@ -848,10 +802,10 @@ export default function App() {
               style={{
                 background: '#9E2B10',
                 color: '#fff',
-                padding: window.innerWidth <= 480 ? '14px 24px' : '16px 32px',
+                padding: '16px 32px',
                 borderRadius: '30px',
                 textDecoration: 'none',
-                fontSize: window.innerWidth <= 480 ? '16px' : '18px',
+                fontSize: '18px',
                 fontWeight: '600',
                 letterSpacing: '1px',
                 border: '2px solid #9E2B10',
@@ -882,8 +836,8 @@ export default function App() {
 
         style={{
           background: '#9E2B10',
-          minHeight: window.innerWidth <= 768 ? '80vh' : '100vh',
-          paddingTop: window.innerWidth <= 768 ? '40px' : '60px',
+          minHeight: '100vh',
+          paddingTop: 60,
           paddingBottom: 40,
           display: 'flex',
           flexDirection: 'column',
@@ -903,14 +857,13 @@ export default function App() {
           alignItems: 'center',
           justifyContent: 'center',
           position: 'relative',
-          padding: window.innerWidth <= 768 ? '0 20px' : '0',
         }}>
           {/* Main Heading */}
           <div style={{
-            fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+            fontSize: 48,
             fontWeight: 800,
             color: '#fff',
-            marginBottom: window.innerWidth <= 768 ? '40px' : '60px',
+            marginBottom: 60,
             textAlign: 'center',
             letterSpacing: '1px',
           }}>
@@ -920,14 +873,12 @@ export default function App() {
           {/* Statistics Display */}
           <div style={{
             display: 'flex',
-            flexDirection: window.innerWidth <= 768 ? 'column' : 'row',
-            gap: window.innerWidth <= 768 ? '30px' : '200px',
-            marginBottom: window.innerWidth <= 768 ? '50px' : '80px',
+            gap: '200px',
+            marginBottom: 80,
             background: 'rgba(255,255,255,0.1)',
-            padding: window.innerWidth <= 480 ? '30px 20px' : window.innerWidth <= 768 ? '30px 40px' : '40px 60px',
+            padding: '40px 60px',
             borderRadius: '16px',
             border: '1px solid rgba(255,255,255,0.2)',
-            width: '100%',
           }}>
             {/* 8,000,000 Fans & Followers */}
             <div style={{
@@ -935,14 +886,14 @@ export default function App() {
               color: '#fff',
             }}>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '40px' : window.innerWidth <= 768 ? '48px' : '55px',
+                fontSize: 55,
                 fontWeight: 800,
                 marginBottom: 12,
               }}>
                 {counts.followers.toLocaleString()}
               </div>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '20px',
+                fontSize: 20,
                 fontWeight: 500,
                 letterSpacing: '1px',
               }}>
@@ -956,17 +907,17 @@ export default function App() {
               color: '#fff',
             }}>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '44px' : window.innerWidth <= 768 ? '52px' : '60px',
+                fontSize: 60,
                 fontWeight: 800,
                 marginBottom: 12,
               }}>
                 {counts.traffic.toLocaleString()}
               </div>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '20px',
+                fontSize: 20,
                 fontWeight: 500,
                 letterSpacing: '1px',
-                whiteSpace: window.innerWidth <= 768 ? 'normal' : 'nowrap',
+                whiteSpace: 'nowrap',
               }}>
                 MONTHLY ONLINE TRAFFIC
               </div>
@@ -997,13 +948,13 @@ export default function App() {
       <footer style={{
         background: '#1a1a1a',
         color: '#fff',
-        padding: window.innerWidth <= 480 ? '40px 20px 30px 20px' : window.innerWidth <= 768 ? '50px 40px 30px 40px' : '60px 60px 40px 60px',
+        padding: '60px 60px 40px 60px',
         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr 1fr',
-          gap: window.innerWidth <= 768 ? '40px' : '60px',
+          gridTemplateColumns: '1fr 1fr 1fr',
+          gap: '60px',
           maxWidth: '1200px',
           margin: '0 auto',
         }}>
@@ -1011,7 +962,7 @@ export default function App() {
           {/* MYHOMETOWN MEDIA Section */}
           <div>
             <div style={{
-              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
+              fontSize: '28px',
               fontWeight: '800',
               marginBottom: '8px',
               letterSpacing: '1px',
@@ -1093,7 +1044,7 @@ export default function App() {
           {/* EXPLORE Section */}
           <div>
             <div style={{
-              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
+              fontSize: '28px',
               fontWeight: '800',
               marginBottom: '30px',
               letterSpacing: '1px',
@@ -1145,7 +1096,7 @@ export default function App() {
           {/* OFFICE Section */}
           <div>
             <div style={{
-              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
+              fontSize: '28px',
               fontWeight: '800',
               marginBottom: '30px',
               letterSpacing: '1px',
@@ -1188,5 +1139,4 @@ export default function App() {
     </Router>
   );
 }
-
 
