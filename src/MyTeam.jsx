@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import './index.css';
 import Header from "./Header.jsx";
 import instagramLogo from "./assets/instagram.png";
-import uniformImage from "./assets/uniform copy.avif";
+import uniformImage from "./assets/uniform copy.jpg";
 
 export default function MyTeam() {
   const teamMembers = [
@@ -129,7 +129,7 @@ export default function MyTeam() {
             marginBottom: 30,
             textAlign: 'left',
           }}>
-            MY TEAM
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>TEAM
           </div>
           <div style={{
             fontSize: 22,
@@ -238,114 +238,7 @@ export default function MyTeam() {
         </div>
       </section>
 
-      {/* Team Members Section */}
-      <section style={{
-        background: '#9E2B10',
-        padding: '60px 60px',
-        color: '#fff',
-      }}>
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-        }}>
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '60px',
-          }}>
-            <div style={{
-              fontSize: 48,
-              fontWeight: 800,
-              marginBottom: '20px',
-            }}>
-              MEET OUR LEADERSHIP
-            </div>
-            <div style={{
-              fontSize: 18,
-              opacity: '0.9',
-              maxWidth: '700px',
-              margin: '0 auto',
-            }}>
-              Experienced professionals who drive innovation and deliver results
-            </div>
-          </div>
 
-          {/* Team Members Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-            gap: '40px',
-          }}>
-            {teamMembers.map((member, index) => (
-              <div key={index} style={{
-                background: 'rgba(255,255,255,0.1)',
-                borderRadius: '20px',
-                padding: '40px',
-                border: '1px solid rgba(255,255,255,0.2)',
-                transition: 'transform 0.3s ease',
-                cursor: 'pointer',
-              }}
-              onMouseEnter={(e) => e.target.style.transform = 'translateY(-10px)'}
-              onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
-              >
-                {/* Member Avatar */}
-                <div style={{
-                  fontSize: '60px',
-                  textAlign: 'center',
-                  marginBottom: '25px',
-                }}>
-                  {member.image}
-                </div>
-                
-                {/* Member Info */}
-                <div style={{
-                  textAlign: 'center',
-                  marginBottom: '25px',
-                }}>
-                  <div style={{
-                    fontSize: '24px',
-                    fontWeight: '700',
-                    marginBottom: '8px',
-                  }}>
-                    {member.name}
-                  </div>
-                  <div style={{
-                    fontSize: '18px',
-                    fontWeight: '600',
-                    color: '#FEEBE7',
-                    marginBottom: '8px',
-                  }}>
-                    {member.position}
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    opacity: '0.8',
-                    marginBottom: '15px',
-                  }}>
-                    {member.expertise}
-                  </div>
-                  <div style={{
-                    fontSize: '12px',
-                    opacity: '0.7',
-                    fontStyle: 'italic',
-                  }}>
-                    {member.experience}
-                  </div>
-                </div>
-                
-                {/* Member Description */}
-                <div style={{
-                  fontSize: '16px',
-                  lineHeight: '1.6',
-                  opacity: '0.9',
-                  textAlign: 'center',
-                }}>
-                  {member.description}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Values Section */}
       <section style={{
@@ -483,7 +376,7 @@ export default function MyTeam() {
               marginBottom: '8px',
               letterSpacing: '1px',
             }}>
-              MYHOMETOWN MEDIA
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
               fontSize: '14px',
@@ -575,7 +468,7 @@ export default function MyTeam() {
                 { name: 'MY STORY', path: '/my-story' },
                 { name: 'MY PLATFORMS', path: '/my-platforms' },
                 { name: 'MY SERVICES', path: '/my-services' },
-                { name: 'MY CLIENTS', path: '/my-clients' },
+
                 { name: 'MY CASE STUDIES', path: '/case-studies' },
                 { name: 'MY CONTACT', path: '/my-contact' }
               ].map((item) => (
@@ -625,6 +518,30 @@ export default function MyTeam() {
               57100 KUALA LUMPUR,<br />
               MALAYSIA.
             </div>
+            <div style={{
+              marginTop: '20px',
+              fontSize: '14px',
+              fontWeight: '400',
+              lineHeight: '1.6',
+              letterSpacing: '0.5px',
+              opacity: '0.9',
+            }}>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60392246636" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +603-9224 6636
+                </a>
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60136688181" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +6013-6688181
+                </a>
+              </div>
+              <div>
+                <a href="mailto:marketing@mlbs.com.my" style={{ color: '#fff', textDecoration: 'none' }}>
+                  marketing@mlbs.com.my
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -638,7 +555,7 @@ export default function MyTeam() {
           opacity: '0.7',
           letterSpacing: '0.5px',
         }}>
-          © 2024 MYHOMETOWN MEDIA. ALL RIGHTS RESERVED.
+          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
         </div>
       </footer>
     </div>

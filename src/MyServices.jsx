@@ -123,7 +123,7 @@ export default function MyServices() {
             marginBottom: 30,
             textAlign: 'left',
           }}>
-            MY SERVICES
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>SERVICES
           </div>
           <div style={{
             fontSize: 22,
@@ -428,7 +428,7 @@ export default function MyServices() {
               marginBottom: '8px',
               letterSpacing: '1px',
             }}>
-              MYHOMETOWN MEDIA
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
               fontSize: '14px',
@@ -520,7 +520,7 @@ export default function MyServices() {
                 { name: 'MY STORY', path: '/my-story' },
                 { name: 'MY PLATFORMS', path: '/my-platforms' },
                 { name: 'MY SERVICES', path: '/my-services' },
-                { name: 'MY CLIENTS', path: '/my-clients' },
+
                 { name: 'MY CASE STUDIES', path: '/case-studies' },
                 { name: 'MY CONTACT', path: '/my-contact' }
               ].map((item) => (
@@ -570,6 +570,30 @@ export default function MyServices() {
               57100 KUALA LUMPUR,<br />
               MALAYSIA.
             </div>
+            <div style={{
+              marginTop: '20px',
+              fontSize: '14px',
+              fontWeight: '400',
+              lineHeight: '1.6',
+              letterSpacing: '0.5px',
+              opacity: '0.9',
+            }}>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60392246636" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +603-9224 6636
+                </a>
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60136688181" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +6013-6688181
+                </a>
+              </div>
+              <div>
+                <a href="mailto:marketing@mlbs.com.my" style={{ color: '#fff', textDecoration: 'none' }}>
+                  marketing@mlbs.com.my
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -583,7 +607,7 @@ export default function MyServices() {
           opacity: '0.7',
           letterSpacing: '0.5px',
         }}>
-          © 2024 MYHOMETOWN MEDIA. ALL RIGHTS RESERVED.
+          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
         </div>
       </footer>
     </div>

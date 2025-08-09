@@ -26,10 +26,10 @@ import xiao3 from "./assets/Facebook/xiao3.jpg";
 import tiktok1 from "./assets/Facebook/tiktok1.jpeg";
 import tiktok2 from "./assets/Facebook/tiktok2.jpeg";
 import tiktok3 from "./assets/Facebook/tiktok3.jpg";
-import section5 from "./assets/section5.png";
+
 import section3 from "./assets/section3.png";
 import malaysiaMap from "./assets/malaysia-map.png";
-import uniformImage from "./assets/uniform copy.avif";
+import uniformImage from "./assets/uniform copy.jpg";
 import tiktokLogo from "./assets/tiktoklogo.png";
 import xiaohongshuLogo from "./assets/xiaohongshu.png";
 import instagramLogo from "./assets/instagram.png";
@@ -38,7 +38,7 @@ import CaseStudies from "./CaseStudies.jsx";
 import MyPlatforms from "./MyPlatforms.jsx";
 import MyServices from "./MyServices.jsx";
 import MyStory from "./MyStory.jsx";
-import MyClients from "./MyClients.jsx";
+
 import MyReviews from "./MyReviews.jsx";
 import MyTeam from "./MyTeam.jsx";
 import MyContact from "./MyContact.jsx";
@@ -135,6 +135,20 @@ export default function App() {
   const [scrollDirection, setScrollDirection] = useState(0);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [selectedPlatform, setSelectedPlatform] = useState('Facebook');
+  const [isThreeColumnVisible, setIsThreeColumnVisible] = useState(false);
+  const [audienceReachVisible, setAudienceReachVisible] = useState(false);
+  const [audienceCounts, setAudienceCounts] = useState({
+    followers: 8000000,
+    traffic: 100000000
+  });
+  const [audienceCounting, setAudienceCounting] = useState(false);
+  const [statsCounts, setStatsCounts] = useState({
+    years: 12,
+    platforms: 30,
+    clients: 3000,
+    campaigns: 10000
+  });
+  const [statsCounting, setStatsCounting] = useState(false);
 
   // Get current platform data
   const currentPlatformData = platformData[selectedPlatform];
@@ -142,7 +156,7 @@ export default function App() {
   const currentUrls = currentPlatformData.urls;
   
   // Create infinite loop by duplicating images multiple times to ensure seamless loop
-  const scrollingImages = [...currentImages, ...currentImages, ...currentImages, ...currentImages];
+  const scrollingImages = [...currentImages, ...currentImages, ...currentImages, ...currentImages, ...currentImages];
 
   // Scroll to red banner on page load
   useEffect(() => {
@@ -170,14 +184,24 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  // Animated counter effect
+  // Animated counter effect for WHO WE ARE section
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          // Reset to 0 first
+          setStatsCounts({
+            years: 0,
+            platforms: 0,
+            clients: 0,
+            campaigns: 0
+          });
+          
+          setStatsCounting(true);
+          
           // Start counting animation
-          const duration = 2000; // 2 seconds
-          const steps = 60;
+          const duration = 4000; // 4 seconds
+          const steps = 80;
           const stepDuration = duration / steps;
           
           let currentStep = 0;
@@ -185,24 +209,27 @@ export default function App() {
             currentStep++;
             const progress = currentStep / steps;
             
-            setCounts({
-              years: Math.floor(10 * progress),
-              campaigns: Math.floor(10000 * progress),
-              followers: Math.floor(8000000 * progress),
-              traffic: Math.floor(50000000 * progress)
+            setStatsCounts({
+              years: Math.floor(12 * progress),
+              platforms: Math.floor(30 * progress),
+              clients: Math.floor(3000 * progress),
+              campaigns: Math.floor(10000 * progress)
             });
             
             if (currentStep >= steps) {
               clearInterval(interval);
+              setStatsCounting(false);
               // Set final values
-              setCounts({
-                years: 10,
-                campaigns: 10000,
-                followers: 8000000,
-                traffic: 50000000
+              setStatsCounts({
+                years: 12,
+                platforms: 30,
+                clients: 3000,
+                campaigns: 10000
               });
             }
           }, stepDuration);
+        } else {
+          setStatsCounting(false);
         }
       });
     }, { threshold: 0.5 });
@@ -215,6 +242,96 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
+  // Three column section animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsThreeColumnVisible(true);
+        } else {
+          setIsThreeColumnVisible(false);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const threeColumnSection = document.querySelector('.three-column-section');
+    if (threeColumnSection) {
+      observer.observe(threeColumnSection);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Audience reach section animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setAudienceReachVisible(true);
+          
+          // Reset to 0 first
+          setAudienceCounts({
+            followers: 0,
+            traffic: 0
+          });
+          
+          setAudienceCounting(true);
+          
+          // Start counting animation
+          const duration = 4000; // 4 seconds
+          const steps = 80;
+          const stepDuration = duration / steps;
+          
+          let currentStep = 0;
+          const interval = setInterval(() => {
+            currentStep++;
+            const progress = currentStep / steps;
+            
+            setAudienceCounts({
+              followers: Math.floor(8000000 * progress),
+              traffic: Math.floor(100000000 * progress)
+            });
+            
+            if (currentStep >= steps) {
+              clearInterval(interval);
+              setAudienceCounting(false);
+              // Set final values
+              setAudienceCounts({
+                followers: 8000000,
+                traffic: 100000000
+              });
+            }
+          }, stepDuration);
+        } else {
+          setAudienceReachVisible(false);
+          setAudienceCounting(false);
+          setAudienceCounts({
+            followers: 8000000,
+            traffic: 100000000
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const audienceReachSection = document.querySelector('.audience-reach-section');
+    if (audienceReachSection) {
+      observer.observe(audienceReachSection);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Initialize with final values if not animating
+  useEffect(() => {
+    if (!audienceReachVisible) {
+      setAudienceCounts({
+        followers: 8000000,
+        traffic: 100000000
+      });
+      setAudienceCounting(false);
+    }
+  }, [audienceReachVisible]);
+
   return (
     <Router>
       <Routes>
@@ -222,7 +339,7 @@ export default function App() {
         <Route path="/my-story" element={<MyStory />} />
         <Route path="/my-platforms" element={<MyPlatforms />} />
         <Route path="/my-services" element={<MyServices />} />
-        <Route path="/my-clients" element={<MyClients />} />
+
         <Route path="/my-reviews" element={<MyReviews />} />
         <Route path="/my-team" element={<MyTeam />} />
         <Route path="/my-contact" element={<MyContact />} />
@@ -243,11 +360,11 @@ export default function App() {
         }
         @keyframes marquee-scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-25%); }
+          100% { transform: translateX(-33.33%); }
         }
         .marquee-circle {
-          width: 170px;
-          height: 170px;
+          width: 220px;
+          height: 220px;
           border-radius: 50%;
           overflow: hidden;
           box-shadow: 0 2px 12px rgba(0,0,0,0.08);
@@ -255,7 +372,7 @@ export default function App() {
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-right: 36px;
+          margin-right: 50px;
           flex-shrink: 0;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           cursor: pointer;
@@ -274,6 +391,15 @@ export default function App() {
         .marquee-track a {
           text-decoration: none;
           color: inherit;
+        }
+        .rotation-break {
+          width: 4px;
+          height: 220px;
+          background: #ffffff;
+          margin-right: 20px;
+          flex-shrink: 0;
+          border-radius: 2px;
+          box-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
         .video-hero {
           width: 100vw;
@@ -369,7 +495,7 @@ export default function App() {
             }}>
               HI !<br />
               THIS IS<br />
-              <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span> HOMETOWN MEDIA
+              <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span> <span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
               <div style={{
                 fontSize: 22,
                 fontWeight: 300,
@@ -380,7 +506,8 @@ export default function App() {
                 lineHeight: 1.6,
                 letterSpacing: '0.5px',
               }}>
-                We help boost your brand with impactful content and delivered across our wide-reaching media platforms.
+                We help boost your brand with impactful content and delivered<br />
+                across our wide-reaching media platforms.
               </div>
             </div>
           </div>
@@ -400,9 +527,8 @@ export default function App() {
                 maxWidth: '600px',
                 width: '100%',
                 height: 'auto',
-                borderRadius: '12px 0 0 12px',
+                borderRadius: '20px',
                 border: '4px solid #fff',
-                borderRight: 'none',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
               }}
             />
@@ -450,20 +576,11 @@ export default function App() {
             flexWrap: 'wrap',
           }}>
             {/* Facebook */}
-            <div 
-              onClick={() => setSelectedPlatform('Facebook')}
-              style={{
+            <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: 10,
-                background: selectedPlatform === 'Facebook' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                padding: '12px 20px',
-                borderRadius: '8px',
-                border: selectedPlatform === 'Facebook' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-            >
+            }}>
               <div style={{
                 width: 24,
                 height: 24,
@@ -478,24 +595,27 @@ export default function App() {
               }}>
                 f
               </div>
-              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>Facebook</span>
-            </div>
-            
-            {/* Xiao Hong Shu */}
-            <div 
-              onClick={() => setSelectedPlatform('Xiao Hong Shu')}
+              <span 
+                onClick={() => setSelectedPlatform('Facebook')}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-                background: selectedPlatform === 'Xiao Hong Shu' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                padding: '12px 20px',
-                borderRadius: '8px',
-                border: selectedPlatform === 'Xiao Hong Shu' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
+                  color: selectedPlatform === 'Facebook' ? '#fff' : 'rgba(255,255,255,0.7)', 
+                  fontSize: 16, 
+                  fontWeight: selectedPlatform === 'Facebook' ? 600 : 500,
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-              }}
-            >
+                  textDecoration: selectedPlatform === 'Facebook' ? 'underline' : 'none',
+                }}
+              >
+                Facebook
+              </span>
+            </div>
+            
+            {/* Instagram */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+            }}>
               <div style={{
                 width: 24,
                 height: 24,
@@ -506,8 +626,8 @@ export default function App() {
                 overflow: 'hidden',
               }}>
                 <img 
-                  src={xiaohongshuLogo} 
-                  alt="Xiao Hong Shu" 
+                  src={instagramLogo} 
+                  alt="Instagram" 
                   style={{
                     width: '100%',
                     height: '100%',
@@ -515,24 +635,27 @@ export default function App() {
                   }}
                 />
               </div>
-              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>Xiao Hong Shu</span>
+              <span 
+                onClick={() => setSelectedPlatform('Instagram')}
+                style={{ 
+                  color: selectedPlatform === 'Instagram' ? '#fff' : 'rgba(255,255,255,0.7)', 
+                  fontSize: 16, 
+                  fontWeight: selectedPlatform === 'Instagram' ? 600 : 500,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textDecoration: selectedPlatform === 'Instagram' ? 'underline' : 'none',
+                }}
+              >
+                Instagram
+              </span>
             </div>
             
             {/* TikTok */}
-            <div 
-              onClick={() => setSelectedPlatform('TikTok')}
-              style={{
+            <div style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: 10,
-                background: selectedPlatform === 'TikTok' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                padding: '12px 20px',
-                borderRadius: '8px',
-                border: selectedPlatform === 'TikTok' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-            >
+            }}>
               <div style={{
                 width: 24,
                 height: 24,
@@ -552,39 +675,59 @@ export default function App() {
                   }}
                 />
               </div>
-              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>TikTok</span>
-            </div>
-            
-            {/* YouTube */}
-            <div 
-              onClick={() => setSelectedPlatform('YouTube')}
+              <span 
+                onClick={() => setSelectedPlatform('TikTok')}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-                background: selectedPlatform === 'YouTube' ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                padding: '12px 20px',
-                borderRadius: '8px',
-                border: selectedPlatform === 'YouTube' ? '2px solid rgba(255,255,255,0.5)' : '1px solid rgba(255,255,255,0.2)',
+                  color: selectedPlatform === 'TikTok' ? '#fff' : 'rgba(255,255,255,0.7)', 
+                  fontSize: 16, 
+                  fontWeight: selectedPlatform === 'TikTok' ? 600 : 500,
                 cursor: 'pointer',
                 transition: 'all 0.3s ease',
-              }}
-            >
+                  textDecoration: selectedPlatform === 'TikTok' ? 'underline' : 'none',
+                }}
+              >
+                TikTok
+              </span>
+            </div>
+            
+            {/* Xiao Hong Shu */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+            }}>
               <div style={{
                 width: 24,
                 height: 24,
-                background: '#FF0000',
                 borderRadius: '4px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'white',
-                fontSize: 14,
-                fontWeight: 'bold',
+                overflow: 'hidden',
               }}>
-                ▶
+                <img 
+                  src={xiaohongshuLogo} 
+                  alt="Xiao Hong Shu" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                  }}
+                />
               </div>
-              <span style={{ color: '#fff', fontSize: 16, fontWeight: 500 }}>YouTube</span>
+              <span 
+                onClick={() => setSelectedPlatform('Xiao Hong Shu')}
+                style={{ 
+                  color: selectedPlatform === 'Xiao Hong Shu' ? '#fff' : 'rgba(255,255,255,0.7)', 
+                  fontSize: 16, 
+                  fontWeight: selectedPlatform === 'Xiao Hong Shu' ? 600 : 500,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  textDecoration: selectedPlatform === 'Xiao Hong Shu' ? 'underline' : 'none',
+                }}
+              >
+                Xiao Hong Shu
+              </span>
             </div>
           </div>
         </div>
@@ -596,8 +739,11 @@ export default function App() {
               const url = currentUrls[idx % currentImages.length];
               const isInternalLink = url.startsWith('/');
               
+              const elements = [];
+              
+              // Add the circle
               if (isInternalLink) {
-                return (
+                elements.push(
                   <Link
                     key={idx}
                     to={url}
@@ -608,7 +754,7 @@ export default function App() {
                   </Link>
                 );
               } else {
-                return (
+                elements.push(
                   <a
                     key={idx}
                     href={url}
@@ -621,28 +767,156 @@ export default function App() {
                   </a>
                 );
               }
+              
+              // Add break line at the end of each complete rotation cycle
+              if ((idx + 1) % currentImages.length === 0) {
+                elements.push(
+                  <div key={`break-${idx}`} className="rotation-break"></div>
+                );
+              }
+              
+              return elements;
             })}
           </div>
         </div>
-        
-        {/* Single Large Image Section */}
-        <div style={{
-          minHeight: '100vh',
+      </section>
+
+      {/* Three Column Process Section */}
+      <section className="three-column-section" style={{
+        background: '#9E2B10',
+        padding: '60px 80px',
+        color: '#fff',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '0px 0px',
         }}>
-          <img 
-            src={section5}
-            alt="Business and Media"
-            style={{
+        <div style={{
               width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              borderRadius: '20px',
-            }}
-          />
+          maxWidth: '1400px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: '100px',
+          alignItems: 'flex-start',
+        }}>
+          {/* Column 1 - We create CONTENT */}
+          <div style={{
+            textAlign: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+          }}>
+            <div style={{
+              fontSize: '28px',
+              fontWeight: '400',
+              fontStyle: 'italic',
+              fontFamily: 'Times New Roman, serif',
+              marginBottom: '25px',
+              opacity: '0.9',
+            }}>
+              We create
+            </div>
+            <div style={{
+              fontSize: '96px',
+              fontWeight: '800',
+              marginBottom: '30px',
+              lineHeight: '0.9',
+              transform: isThreeColumnVisible ? 'translateY(0) scale(1) rotateY(0deg)' : 'translateY(60px) scale(0.7) rotateY(-15deg)',
+              opacity: isThreeColumnVisible ? 1 : 0.3,
+              filter: isThreeColumnVisible ? 'blur(0px) brightness(1)' : 'blur(2px) brightness(0.8)',
+              transition: 'all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+              textShadow: isThreeColumnVisible ? '0 0 20px rgba(255,255,255,0.3)' : '0 0 0px rgba(255,255,255,0)',
+            }}>
+              CONTENT
+            </div>
+            <div style={{
+              fontSize: '32px',
+              fontWeight: '700',
+              lineHeight: '1.2',
+            }}>
+              BUILDS<br />
+              INTEREST
+            </div>
+          </div>
+
+          {/* Column 2 - We have TRAFFIC */}
+          <div style={{
+            textAlign: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+          }}>
+            <div style={{
+              fontSize: '28px',
+              fontWeight: '400',
+              fontStyle: 'italic',
+              fontFamily: 'Times New Roman, serif',
+              marginBottom: '25px',
+              opacity: '0.9',
+            }}>
+              We have
+            </div>
+            <div style={{
+              fontSize: '96px',
+              fontWeight: '800',
+              marginBottom: '30px',
+              lineHeight: '0.9',
+              transform: isThreeColumnVisible ? 'translateY(0) scale(1) rotateY(0deg)' : 'translateY(60px) scale(0.7) rotateY(-15deg)',
+              opacity: isThreeColumnVisible ? 1 : 0.3,
+              filter: isThreeColumnVisible ? 'blur(0px) brightness(1)' : 'blur(2px) brightness(0.8)',
+              transition: 'all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s',
+              textShadow: isThreeColumnVisible ? '0 0 20px rgba(255,255,255,0.3)' : '0 0 0px rgba(255,255,255,0)',
+            }}>
+              TRAFFIC
+            </div>
+            <div style={{
+              fontSize: '32px',
+              fontWeight: '700',
+              lineHeight: '1.2',
+            }}>
+              BUILDS<br />
+              IMPACT
+            </div>
+          </div>
+
+          {/* Column 3 - We prove RESULT */}
+          <div style={{
+            textAlign: 'left',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+          }}>
+            <div style={{
+              fontSize: '28px',
+              fontWeight: '400',
+              fontStyle: 'italic',
+              fontFamily: 'Times New Roman, serif',
+              marginBottom: '25px',
+              opacity: '0.9',
+            }}>
+              We prove
+            </div>
+            <div style={{
+              fontSize: '96px',
+              fontWeight: '800',
+              marginBottom: '30px',
+              lineHeight: '0.9',
+              transform: isThreeColumnVisible ? 'translateY(0) scale(1) rotateY(0deg)' : 'translateY(60px) scale(0.7) rotateY(-15deg)',
+              opacity: isThreeColumnVisible ? 1 : 0.3,
+              filter: isThreeColumnVisible ? 'blur(0px) brightness(1)' : 'blur(2px) brightness(0.8)',
+              transition: 'all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.6s',
+              textShadow: isThreeColumnVisible ? '0 0 20px rgba(255,255,255,0.3)' : '0 0 0px rgba(255,255,255,0)',
+            }}>
+              RESULT
+            </div>
+            <div style={{
+              fontSize: '32px',
+              fontWeight: '700',
+              lineHeight: '1.2',
+            }}>
+              BUILDS<br />
+              GROWTH
+            </div>
+          </div>
         </div>
       </section>
 
@@ -665,8 +939,7 @@ export default function App() {
             marginBottom: 30,
             textAlign: 'center',
           }}>
-            WHO<br />
-            WE ARE
+            WHO WE ARE
           </div>
           
           {/* Main Content */}
@@ -694,7 +967,7 @@ export default function App() {
             marginTop: 40,
             width: '100%',
           }}>
-            {/* 10+ Years */}
+            {/* 12+ Years */}
             <div style={{
               textAlign: 'center',
               background: 'rgba(158, 43, 16, 0.1)',
@@ -704,17 +977,68 @@ export default function App() {
               <div style={{
                 fontSize: 48,
                 fontWeight: 800,
-                color: '#9E2B10',
+                color: statsCounting ? '#22C55E' : '#9E2B10',
                 marginBottom: 12,
+                transition: 'color 0.3s ease',
               }}>
-                {counts.years}+
+                {statsCounts.years}+
               </div>
               <div style={{
                 fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
               }}>
-                Years of Experience
+                Years of Proven Expertise
+              </div>
+            </div>
+            
+            {/* 30+ Platforms */}
+            <div style={{
+              textAlign: 'center',
+              background: 'rgba(158, 43, 16, 0.1)',
+              padding: '40px 20px',
+              borderRadius: '16px',
+            }}>
+              <div style={{
+                fontSize: 48,
+                fontWeight: 800,
+                color: statsCounting ? '#22C55E' : '#9E2B10',
+                marginBottom: 12,
+                transition: 'color 0.3s ease',
+              }}>
+                {statsCounts.platforms}+
+              </div>
+              <div style={{
+                fontSize: 16,
+                fontWeight: 500,
+                color: '#333',
+              }}>
+                Social Media Platforms Mastered
+              </div>
+            </div>
+            
+            {/* 3,000+ Clients */}
+            <div style={{
+              textAlign: 'center',
+              background: 'rgba(158, 43, 16, 0.1)',
+              padding: '40px 20px',
+              borderRadius: '16px',
+            }}>
+              <div style={{
+                fontSize: 48,
+                fontWeight: 800,
+                color: statsCounting ? '#22C55E' : '#9E2B10',
+                marginBottom: 12,
+                transition: 'color 0.3s ease',
+              }}>
+                {statsCounts.clients.toLocaleString()}+
+              </div>
+              <div style={{
+                fontSize: 16,
+                fontWeight: 500,
+                color: '#333',
+              }}>
+                Satisfied Clients
               </div>
             </div>
             
@@ -728,65 +1052,18 @@ export default function App() {
               <div style={{
                 fontSize: 48,
                 fontWeight: 800,
-                color: '#9E2B10',
+                color: statsCounting ? '#22C55E' : '#9E2B10',
                 marginBottom: 12,
+                transition: 'color 0.3s ease',
               }}>
-                {counts.campaigns.toLocaleString()}+
+                {statsCounts.campaigns.toLocaleString()}+
               </div>
               <div style={{
                 fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
               }}>
-                Successful Campaign
-              </div>
-            </div>
-            
-            {/* 8 million Followers */}
-            <div style={{
-              textAlign: 'center',
-              background: 'rgba(158, 43, 16, 0.1)',
-              padding: '40px 20px',
-              borderRadius: '16px',
-            }}>
-              <div style={{
-                fontSize: 48,
-                fontWeight: 800,
-                color: '#9E2B10',
-                marginBottom: 12,
-              }}>
-                {(counts.followers / 1000000).toFixed(1)} million
-              </div>
-              <div style={{
-                fontSize: 16,
-                fontWeight: 500,
-                color: '#333',
-              }}>
-                Active Followers
-              </div>
-            </div>
-            
-            {/* 50 million Traffic */}
-            <div style={{
-              textAlign: 'center',
-              background: 'rgba(158, 43, 16, 0.1)',
-              padding: '40px 20px',
-              borderRadius: '16px',
-            }}>
-              <div style={{
-                fontSize: 48,
-                fontWeight: 800,
-                color: '#9E2B10',
-                marginBottom: 12,
-              }}>
-                {(counts.traffic / 1000000).toFixed(0)} million
-              </div>
-              <div style={{
-                fontSize: 16,
-                fontWeight: 500,
-                color: '#333',
-              }}>
-                Traffic Monthly
+                High-Impact Campaigns Delivered
               </div>
             </div>
           </div>
@@ -832,8 +1109,10 @@ export default function App() {
         </div>
         
       </section>
-      <section
 
+
+
+      <section className="audience-reach-section"
         style={{
           background: '#9E2B10',
           minHeight: '100vh',
@@ -886,14 +1165,16 @@ export default function App() {
               color: '#fff',
             }}>
               <div style={{
-                fontSize: 55,
+                fontSize: 88,
                 fontWeight: 800,
-                marginBottom: 12,
+                marginBottom: 4,
+                color: audienceCounting ? '#22C55E' : '#fff',
+                transition: 'color 0.3s ease',
               }}>
-                {counts.followers.toLocaleString()}
+                {audienceCounts.followers.toLocaleString()}
               </div>
               <div style={{
-                fontSize: 20,
+                fontSize: 28,
                 fontWeight: 500,
                 letterSpacing: '1px',
               }}>
@@ -901,20 +1182,22 @@ export default function App() {
               </div>
             </div>
             
-            {/* 50,000,000 Monthly Online Traffic */}
+            {/* 100,000,000 Monthly Online Traffic */}
             <div style={{
               textAlign: 'center',
               color: '#fff',
             }}>
               <div style={{
-                fontSize: 60,
+                fontSize: 88,
                 fontWeight: 800,
-                marginBottom: 12,
+                marginBottom: 4,
+                color: audienceCounting ? '#22C55E' : '#fff',
+                transition: 'color 0.3s ease',
               }}>
-                {counts.traffic.toLocaleString()}
+                {audienceCounts.traffic.toLocaleString()}
               </div>
               <div style={{
-                fontSize: 20,
+                fontSize: 28,
                 fontWeight: 500,
                 letterSpacing: '1px',
                 whiteSpace: 'nowrap',
@@ -927,7 +1210,7 @@ export default function App() {
           {/* Map Image */}
           <div style={{
             width: '100%',
-            maxWidth: '1200px',
+            maxWidth: '1600px',
             borderRadius: '20px',
             overflow: 'hidden',
           }}>
@@ -968,7 +1251,7 @@ export default function App() {
               letterSpacing: '1px',
             }}>
               <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
-              <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>HOMETOWN MEDIA</span>
+              <span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
               fontSize: '14px',
@@ -1060,7 +1343,6 @@ export default function App() {
                 { name: 'MY STORY', path: '/' },
                 { name: 'MY PLATFORMS', path: '/' },
                 { name: 'MY SERVICES', path: '/' },
-                { name: 'MY CLIENTS', path: '/' },
                 { name: 'MY CASE STUDIES', path: '/case-studies' },
                 { name: 'MY CONTACT', path: '/' }
               ].map((item) => (
@@ -1083,7 +1365,7 @@ export default function App() {
                   {item.name.startsWith('MY') ? (
                     <>
                       <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
-                      <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>{item.name.substring(2)}</span>
+                      <span style={{ fontFamily: 'Times New Roman, serif' }}>{item.name.substring(2)}</span>
                     </>
                   ) : (
                     item.name
@@ -1117,6 +1399,30 @@ export default function App() {
               57100 KUALA LUMPUR,<br />
               MALAYSIA.
             </div>
+            <div style={{
+              marginTop: '20px',
+              fontSize: '14px',
+              fontWeight: '400',
+              lineHeight: '1.6',
+              letterSpacing: '0.5px',
+              opacity: '0.9',
+            }}>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60392246636" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +603-9224 6636
+                </a>
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60136688181" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +6013-6688181
+                </a>
+              </div>
+              <div>
+                <a href="mailto:marketing@mlbs.com.my" style={{ color: '#fff', textDecoration: 'none' }}>
+                  marketing@mlbs.com.my
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -1130,7 +1436,7 @@ export default function App() {
           opacity: '0.7',
           letterSpacing: '0.5px',
         }}>
-          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
+          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
         </div>
       </footer>
         </div>

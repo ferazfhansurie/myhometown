@@ -304,56 +304,79 @@ export default function MyReviews() {
         </div>
       </section>
 
-      {/* Statistics Section */}
+      {/* Why Clients Choose Us Section */}
       <section style={{
-        background: '#9E2B10',
-        padding: '60px 60px',
-        color: '#fff',
+        background: '#FEEBE7',
+        padding: '80px 60px',
+        color: '#333',
       }}>
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          textAlign: 'center',
         }}>
           <div style={{
-            fontSize: 48,
-            fontWeight: 800,
-            marginBottom: '40px',
+            textAlign: 'center',
+            marginBottom: '60px',
           }}>
-            REVIEW STATISTICS
+            <div style={{
+              fontSize: 48,
+              fontWeight: 800,
+              color: '#9E2B10',
+              marginBottom: '20px',
+            }}>
+              WHY CLIENTS CHOOSE US
+            </div>
+            <div style={{
+              fontSize: 18,
+              color: '#666',
+              maxWidth: '700px',
+              margin: '0 auto',
+            }}>
+              Our unique approach and proven track record make us the preferred choice for social media marketing in Malaysia
+            </div>
           </div>
-          
+
+          {/* Benefits Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '40px',
           }}>
             {[
-              { number: '98%', label: 'Client Satisfaction Rate', color: '#FEEBE7' },
-              { number: '4.9/5', label: 'Average Rating', color: '#FFD700' },
-              { number: '500+', label: 'Happy Clients', color: '#FEEBE7' },
-              { number: '10+', label: 'Years of Trust', color: '#FEEBE7' }
-            ].map((stat, index) => (
+              {
+                title: "EXTENSIVE REACH",
+                description: "Access to over 8 million followers across our network of 30+ Facebook pages covering all Malaysian states and territories."
+              },
+              {
+                title: "PROVEN RESULTS",
+                description: "10+ years of experience with 10,000+ successful campaigns delivering measurable ROI for our clients."
+              },
+              {
+                title: "LOCAL EXPERTISE",
+                description: "Deep understanding of Malaysian culture, market trends, and audience behavior across different regions."
+              }
+            ].map((benefit, index) => (
               <div key={index} style={{
-                background: 'rgba(255,255,255,0.1)',
-                padding: '40px 20px',
+                background: '#fff',
+                padding: '40px 30px',
                 borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.2)',
+                textAlign: 'center',
+                boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
               }}>
                 <div style={{
-                  fontSize: 48,
+                  fontSize: '24px',
                   fontWeight: '800',
-                  color: stat.color,
-                  marginBottom: '15px',
+                  color: '#9E2B10',
+                  marginBottom: '20px',
                 }}>
-                  {stat.number}
+                  {benefit.title}
                 </div>
                 <div style={{
-                  fontSize: 16,
-                  fontWeight: '500',
-                  opacity: '0.9',
+                  fontSize: '16px',
+                  lineHeight: '1.6',
+                  color: '#666',
                 }}>
-                  {stat.label}
+                  {benefit.description}
                 </div>
               </div>
             ))}
@@ -432,7 +455,7 @@ export default function MyReviews() {
               marginBottom: '8px',
               letterSpacing: '1px',
             }}>
-              MYHOMETOWN MEDIA
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
               fontSize: '14px',
@@ -524,7 +547,7 @@ export default function MyReviews() {
                 { name: 'MY STORY', path: '/my-story' },
                 { name: 'MY PLATFORMS', path: '/my-platforms' },
                 { name: 'MY SERVICES', path: '/my-services' },
-                { name: 'MY CLIENTS', path: '/my-clients' },
+
                 { name: 'MY CASE STUDIES', path: '/case-studies' },
                 { name: 'MY CONTACT', path: '/my-contact' }
               ].map((item) => (
@@ -574,6 +597,30 @@ export default function MyReviews() {
               57100 KUALA LUMPUR,<br />
               MALAYSIA.
             </div>
+            <div style={{
+              marginTop: '20px',
+              fontSize: '14px',
+              fontWeight: '400',
+              lineHeight: '1.6',
+              letterSpacing: '0.5px',
+              opacity: '0.9',
+            }}>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60392246636" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +603-9224 6636
+                </a>
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60136688181" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +6013-6688181
+                </a>
+              </div>
+              <div>
+                <a href="mailto:marketing@mlbs.com.my" style={{ color: '#fff', textDecoration: 'none' }}>
+                  marketing@mlbs.com.my
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -587,7 +634,7 @@ export default function MyReviews() {
           opacity: '0.7',
           letterSpacing: '0.5px',
         }}>
-          © 2024 MYHOMETOWN MEDIA. ALL RIGHTS RESERVED.
+          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
         </div>
       </footer>
     </div>

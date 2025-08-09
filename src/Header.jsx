@@ -52,7 +52,7 @@ export default function Header() {
           { name: 'MY STORY', path: '/my-story' },
           { name: 'MY PLATFORMS', path: '/my-platforms' },
           { name: 'MY SERVICES', path: '/my-services' },
-          { name: 'MY CLIENTS', path: '/my-clients' },
+
           { name: 'MY CASE STUDIES', path: '/my-case-studies' },
           { name: 'MY REVIEWS', path: '/my-reviews' },
           { name: 'MY TEAM', path: '/my-team' },
@@ -165,7 +165,7 @@ export default function Header() {
             { name: 'MY STORY', path: '/my-story' },
             { name: 'MY PLATFORMS', path: '/my-platforms' },
             { name: 'MY SERVICES', path: '/my-services' },
-            { name: 'MY CLIENTS', path: '/my-clients' },
+
             { name: 'MY CASE STUDIES', path: '/my-case-studies' },
             { name: 'MY REVIEWS', path: '/my-reviews' },
             { name: 'MY TEAM', path: '/my-team' },

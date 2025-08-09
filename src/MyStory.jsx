@@ -4,9 +4,7 @@ import './index.css';
 import Header from "./Header.jsx";
 import instagramLogo from "./assets/instagram.png";
 
-import section2 from "./assets/section2.png";
-import section4 from "./assets/section4.png";
-import section6 from "./assets/section6.png";
+
 
 export default function MyStory() {
   return (
@@ -40,7 +38,7 @@ export default function MyStory() {
             marginBottom: 30,
             textAlign: window.innerWidth <= 768 ? 'center' : 'left',
           }}>
-            MY STORY
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>STORY
           </div>
           <div style={{
             fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '22px',
@@ -63,34 +61,49 @@ export default function MyStory() {
         color: '#333',
       }}>
         <div style={{
-          maxWidth: '1200px',
+          maxWidth: '1400px',
           margin: '0 auto',
         }}>
-          {/* Timeline Section */}
+          {/* Three Column Layout */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr',
-            gap: window.innerWidth <= 768 ? '40px' : '60px',
+            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr 1fr',
+            gap: window.innerWidth <= 768 ? '40px' : '80px',
             marginBottom: '60px',
+            position: 'relative',
           }}>
-            {/* Left Column - Text */}
-            <div>
+            
+            {/* THE BEGINNING */}
+            <div style={{
+              textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+              padding: '40px 30px',
+              background: 'rgba(255, 255, 255, 0.7)',
+              borderRadius: '20px',
+              boxShadow: '0 8px 32px rgba(158, 43, 16, 0.1)',
+              border: '1px solid rgba(158, 43, 16, 0.1)',
+              position: 'relative',
+            }}>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+                fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
                 fontWeight: 800,
                 color: '#9E2B10',
                 marginBottom: 30,
                 lineHeight: 1.1,
-                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+                position: 'relative',
               }}>
                 THE BEGINNING
+                <div style={{
+                  width: '60px',
+                  height: '4px',
+                  background: '#9E2B10',
+                  marginTop: '15px',
+                  borderRadius: '2px',
+                }}></div>
               </div>
               <div style={{
                 fontSize: window.innerWidth <= 480 ? '14px' : window.innerWidth <= 768 ? '15px' : '16px',
                 lineHeight: 1.8,
                 color: '#333',
-                marginBottom: 30,
-                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
               }}>
                 <p style={{ marginBottom: 20 }}>
                   Founded in 2014, My Hometown Media started as a small team with a big vision - to connect Malaysian communities through authentic, engaging content that celebrates our diverse culture and heritage.
@@ -104,76 +117,53 @@ export default function MyStory() {
               </div>
             </div>
 
-            {/* Right Column - Image */}
-            <div style={{
-              display: 'flex',
-              justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-end',
-              alignItems: 'center',
-            }}>
-              <img 
-                src={section2}
-                alt="My Hometown Media Beginning"
-                style={{
-                  maxWidth: window.innerWidth <= 480 ? '300px' : window.innerWidth <= 768 ? '400px' : '500px',
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '15px',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-                }}
-              />
-            </div>
-          </div>
+            {/* Vertical Separator Line */}
+            {window.innerWidth > 768 && (
+              <div style={{
+                position: 'absolute',
+                left: '33.33%',
+                top: '20px',
+                bottom: '20px',
+                width: '2px',
+                background: 'linear-gradient(to bottom, transparent, #9E2B10, transparent)',
+                transform: 'translateX(-50%)',
+              }}></div>
+            )}
 
-          {/* Growth Section */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr',
-            gap: window.innerWidth <= 768 ? '40px' : '60px',
-            marginBottom: '60px',
-          }}>
-            {/* Left Column - Image */}
+            {/* RAPID GROWTH */}
             <div style={{
-              display: 'flex',
-              justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start',
-              alignItems: 'center',
-              order: window.innerWidth <= 768 ? '2' : '1',
-            }}>
-              <img 
-                src={section4}
-                alt="My Hometown Media Growth"
-                style={{
-                  maxWidth: window.innerWidth <= 480 ? '300px' : window.innerWidth <= 768 ? '400px' : '500px',
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '15px',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-                }}
-              />
-            </div>
-
-            {/* Right Column - Text */}
-            <div style={{
-              order: window.innerWidth <= 768 ? '1' : '2',
+              textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+              padding: '40px 30px',
+              background: 'rgba(255, 255, 255, 0.7)',
+              borderRadius: '20px',
+              boxShadow: '0 8px 32px rgba(158, 43, 16, 0.1)',
+              border: '1px solid rgba(158, 43, 16, 0.1)',
+              position: 'relative',
             }}>
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+                fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
                 fontWeight: 800,
                 color: '#9E2B10',
                 marginBottom: 30,
                 lineHeight: 1.1,
-                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+                position: 'relative',
               }}>
                 RAPID GROWTH
+                <div style={{
+                  width: '60px',
+                  height: '4px',
+                  background: '#9E2B10',
+                  marginTop: '15px',
+                  borderRadius: '2px',
+                }}></div>
               </div>
               <div style={{
                 fontSize: window.innerWidth <= 480 ? '14px' : window.innerWidth <= 768 ? '15px' : '16px',
                 lineHeight: 1.8,
                 color: '#333',
-                marginBottom: 30,
-                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
               }}>
                 <p style={{ marginBottom: 20 }}>
-                  By 2018, we had established ourselves as a key player in Malaysia's digital marketing landscape, managing over 50 Facebook pages and reaching millions of Malaysians daily.
+                  By 2018, we had established ourselves as a key player in Malaysia's digital marketing landscape, managing over 50 social media pages and reaching millions of Malaysians daily.
                 </p>
                 <p style={{ marginBottom: 20 }}>
                   Our innovative approach to content creation and community management has earned us the trust of major brands and local businesses alike, making us the go-to partner for social media success.
@@ -183,33 +173,51 @@ export default function MyStory() {
                 </p>
               </div>
             </div>
-          </div>
 
-          {/* Present Day Section */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr',
-            gap: window.innerWidth <= 768 ? '40px' : '60px',
-            marginBottom: '60px',
-          }}>
-            {/* Left Column - Text */}
-            <div>
+            {/* Vertical Separator Line */}
+            {window.innerWidth > 768 && (
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+                position: 'absolute',
+                left: '66.66%',
+                top: '20px',
+                bottom: '20px',
+                width: '2px',
+                background: 'linear-gradient(to bottom, transparent, #9E2B10, transparent)',
+                transform: 'translateX(-50%)',
+              }}></div>
+            )}
+
+            {/* TODAY & BEYOND */}
+            <div style={{
+              textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+              padding: '40px 30px',
+              background: 'rgba(255, 255, 255, 0.7)',
+              borderRadius: '20px',
+              boxShadow: '0 8px 32px rgba(158, 43, 16, 0.1)',
+              border: '1px solid rgba(158, 43, 16, 0.1)',
+              position: 'relative',
+            }}>
+              <div style={{
+                fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
                 fontWeight: 800,
                 color: '#9E2B10',
                 marginBottom: 30,
                 lineHeight: 1.1,
-                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
+                position: 'relative',
               }}>
                 TODAY & BEYOND
+                <div style={{
+                  width: '60px',
+                  height: '4px',
+                  background: '#9E2B10',
+                  marginTop: '15px',
+                  borderRadius: '2px',
+                }}></div>
               </div>
               <div style={{
                 fontSize: window.innerWidth <= 480 ? '14px' : window.innerWidth <= 768 ? '15px' : '16px',
                 lineHeight: 1.8,
                 color: '#333',
-                marginBottom: 30,
-                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
               }}>
                 <p style={{ marginBottom: 20 }}>
                   With over 8 million followers across our platforms and a team of dedicated professionals, My Hometown Media stands as Malaysia's premier social media marketing agency.
@@ -221,25 +229,6 @@ export default function MyStory() {
                   Our commitment to excellence, creativity, and measurable results continues to drive our success and shape the future of digital marketing in Malaysia.
                 </p>
               </div>
-            </div>
-
-            {/* Right Column - Image */}
-            <div style={{
-              display: 'flex',
-              justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-end',
-              alignItems: 'center',
-            }}>
-              <img 
-                src={section6}
-                alt="My Hometown Media Present Day"
-                style={{
-                  maxWidth: window.innerWidth <= 480 ? '300px' : window.innerWidth <= 768 ? '400px' : '500px',
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '15px',
-                  boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
-                }}
-              />
             </div>
           </div>
 
@@ -323,7 +312,7 @@ export default function MyStory() {
               letterSpacing: '1px',
             }}>
               <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
-              <span style={{ fontFamily: 'Montserrat, Arial, sans-serif' }}>HOMETOWN MEDIA</span>
+              <span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
               fontSize: '14px',
@@ -438,7 +427,7 @@ export default function MyStory() {
                   {item.name.startsWith('MY') ? (
                     <>
                       <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
-                      <span style={{ fontFamily: 'Montserrat, Arial, sans-serif' }}>{item.name.substring(2)}</span>
+                      <span style={{ fontFamily: 'Times New Roman, serif' }}>{item.name.substring(2)}</span>
                     </>
                   ) : (
                     item.name
@@ -472,6 +461,30 @@ export default function MyStory() {
               57100 KUALA LUMPUR,<br />
               MALAYSIA.
             </div>
+            <div style={{
+              marginTop: '20px',
+              fontSize: '14px',
+              fontWeight: '400',
+              lineHeight: '1.6',
+              letterSpacing: '0.5px',
+              opacity: '0.9',
+            }}>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60392246636" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +603-9224 6636
+                </a>
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60136688181" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +6013-6688181
+                </a>
+              </div>
+              <div>
+                <a href="mailto:marketing@mlbs.com.my" style={{ color: '#fff', textDecoration: 'none' }}>
+                  marketing@mlbs.com.my
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -485,7 +498,7 @@ export default function MyStory() {
           opacity: '0.7',
           letterSpacing: '0.5px',
         }}>
-          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Montserrat, Arial, sans-serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
+          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
         </div>
       </footer>
     </div>
