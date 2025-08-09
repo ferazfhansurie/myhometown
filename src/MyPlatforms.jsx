@@ -23,6 +23,7 @@ import img14 from "./assets/Facebook/Kedah My Hometown.jpg";
 import img15 from "./assets/Facebook/KL My Hometown.jpg";
 import img16 from "./assets/Facebook/Johor My Hometown.jpg";
 import img17 from "./assets/Facebook/I_m Malaysian.jpg";
+import tiktok3 from "./assets/Facebook/tiktok3.jpg";
 
 export default function MyPlatforms() {
   const facebookPlatforms = [
@@ -120,7 +121,7 @@ export default function MyPlatforms() {
       name: "My Hometown Media",
       followers: "114k",
       url: "https://www.facebook.com/MyHometownMediaMLBS",
-      image: img17
+      image: tiktok3
     },
     {
       name: "Negeri Sembilan My Hometown 我来自森美兰",
@@ -140,12 +141,7 @@ export default function MyPlatforms() {
       url: "https://www.facebook.com/TerengganuMyHometown",
       image: img1
     },
-    {
-      name: "Let's fight Covid19",
-      followers: "25k",
-      url: "https://www.facebook.com/LetsFightCovid19/",
-      image: img17
-    },
+
     {
       name: "Kelantan My Hometown 我来自吉兰丹",
       followers: "21k",
@@ -243,7 +239,7 @@ export default function MyPlatforms() {
             marginBottom: 30,
             textAlign: 'left',
           }}>
-            MY PLATFORMS
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>PLATFORMS
           </div>
           <div style={{
             fontSize: 22,
@@ -577,63 +573,7 @@ export default function MyPlatforms() {
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <section style={{
-        background: '#FEEBE7',
-        padding: '60px 60px',
-        color: '#333',
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          textAlign: 'center',
-        }}>
-          <div style={{
-            fontSize: 48,
-            fontWeight: 800,
-            color: '#9E2B10',
-            marginBottom: '40px',
-          }}>
-            PLATFORM STATISTICS
-          </div>
-          
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '40px',
-          }}>
-            {[
-              { number: '22', label: 'Facebook Pages', color: '#1877F2' },
-              { number: '4M+', label: 'Facebook Followers', color: '#1877F2' },
-              { number: '3', label: 'TikTok Accounts', color: '#000' },
-              { number: '8M+', label: 'Total Reach', color: '#9E2B10' }
-            ].map((stat, index) => (
-              <div key={index} style={{
-                background: '#fff',
-                padding: '40px 20px',
-                borderRadius: '16px',
-                boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
-              }}>
-                <div style={{
-                  fontSize: 48,
-                  fontWeight: 800,
-                  color: stat.color,
-                  marginBottom: '15px',
-                }}>
-                  {stat.number}
-                </div>
-                <div style={{
-                  fontSize: 16,
-                  fontWeight: 500,
-                  color: '#333',
-                }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Footer Section */}
       <footer style={{
@@ -658,7 +598,7 @@ export default function MyPlatforms() {
               marginBottom: '8px',
               letterSpacing: '1px',
             }}>
-              MYHOMETOWN MEDIA
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
               fontSize: '14px',
@@ -750,7 +690,7 @@ export default function MyPlatforms() {
                 { name: 'MY STORY', path: '/my-story' },
                 { name: 'MY PLATFORMS', path: '/my-platforms' },
                 { name: 'MY SERVICES', path: '/my-services' },
-                { name: 'MY CLIENTS', path: '/my-clients' },
+
                 { name: 'MY CASE STUDIES', path: '/case-studies' },
                 { name: 'MY CONTACT', path: '/my-contact' }
               ].map((item) => (
@@ -800,6 +740,30 @@ export default function MyPlatforms() {
               57100 KUALA LUMPUR,<br />
               MALAYSIA.
             </div>
+            <div style={{
+              marginTop: '20px',
+              fontSize: '14px',
+              fontWeight: '400',
+              lineHeight: '1.6',
+              letterSpacing: '0.5px',
+              opacity: '0.9',
+            }}>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60392246636" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +603-9224 6636
+                </a>
+              </div>
+              <div style={{ marginBottom: '8px' }}>
+                <a href="tel:+60136688181" style={{ color: '#fff', textDecoration: 'none' }}>
+                  +6013-6688181
+                </a>
+              </div>
+              <div>
+                <a href="mailto:marketing@mlbs.com.my" style={{ color: '#fff', textDecoration: 'none' }}>
+                  marketing@mlbs.com.my
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -813,7 +777,7 @@ export default function MyPlatforms() {
           opacity: '0.7',
           letterSpacing: '0.5px',
         }}>
-          © 2024 MYHOMETOWN MEDIA. ALL RIGHTS RESERVED.
+          © 2024 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>. ALL RIGHTS RESERVED.
         </div>
       </footer>
     </div>
