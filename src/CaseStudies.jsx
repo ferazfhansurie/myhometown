@@ -9,6 +9,153 @@ export default function CaseStudies() {
   const [videoContentOpen, setVideoContentOpen] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
+
+  // Add responsive styles
+  const responsiveStyles = `
+    /* Mobile Responsive Styles for Case Studies */
+    @media (max-width: 768px) {
+      .case-studies-hero {
+        padding-top: 60px !important;
+        padding-bottom: 30px !important;
+      }
+      
+      .case-studies-title {
+        font-size: 36px !important;
+        margin-left: 20px !important;
+        margin-top: 10px !important;
+      }
+      
+      .filter-section {
+        padding: 20px 15px !important;
+      }
+      
+      .filter-navigation {
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: stretch !important;
+      }
+      
+      .filter-button {
+        text-align: center !important;
+        width: 100% !important;
+        max-width: 200px !important;
+        margin: 0 auto !important;
+      }
+      
+      .dropdown-container {
+        width: 100% !important;
+        max-width: 200px !important;
+        margin: 0 auto !important;
+      }
+      
+      .dropdown-menu {
+        width: 100% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+      }
+      
+      .other-filters {
+        flex-direction: column !important;
+        gap: 15px !important;
+        align-items: center !important;
+      }
+      
+      .case-studies-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        padding: 0 15px !important;
+      }
+      
+      .case-study-card {
+        min-height: 400px !important;
+        padding: 15px !important;
+      }
+      
+      .case-study-title {
+        font-size: 12px !important;
+        padding: 3px 0 !important;
+      }
+      
+      .case-study-category {
+        font-size: 12px !important;
+        padding: 4px 8px !important;
+      }
+      
+      .case-studies-footer {
+        padding: 40px 20px 20px 20px !important;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+      
+      .footer-grid > div {
+        text-align: center !important;
+      }
+      
+      .social-media-icons {
+        justify-content: center !important;
+      }
+      
+      /* Mobile iframe optimizations */
+      .case-study-card iframe {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 300px !important;
+        max-height: 400px !important;
+      }
+      
+      /* Mobile content preview optimizations */
+      .content-preview-container {
+        min-height: 150px !important;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .case-studies-title {
+        font-size: 28px !important;
+        margin-left: 15px !important;
+      }
+      
+      .filter-section {
+        padding: 15px 10px !important;
+      }
+      
+      .case-studies-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 0 10px !important;
+      }
+      
+      .case-study-card {
+        min-height: 350px !important;
+        padding: 12px !important;
+      }
+      
+      .case-studies-footer {
+        padding: 30px 15px 20px 15px !important;
+      }
+      
+      /* Mobile modal optimizations */
+      .content-modal {
+        padding: 10px !important;
+      }
+      
+      .modal-content {
+        width: 95% !important;
+        max-height: 80% !important;
+      }
+      
+      /* Mobile iframe optimizations for modal */
+      .modal-content iframe {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 400px !important;
+      }
+    }
+  `;
 
   // Function to get Facebook video embed URL
   const getFacebookVideoEmbed = (url) => {
@@ -354,11 +501,14 @@ export default function CaseStudies() {
 
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
+      {/* Inject responsive styles */}
+      <style>{responsiveStyles}</style>
+      
       {/* Header */}
       <Header />
 
       {/* Hero Section */}
-      <section style={{
+      <section className="case-studies-hero" style={{
         background: '#9E2B10',
         minHeight: '10vh',
         paddingTop: 80,
@@ -373,7 +523,7 @@ export default function CaseStudies() {
           marginLeft: 60,
           marginTop: 20,
         }}>
-          <div style={{
+          <div className="case-studies-title" style={{
             fontSize: 64,
             fontWeight: 800,
             lineHeight: 0.9,
@@ -389,7 +539,7 @@ export default function CaseStudies() {
       </section>
 
       {/* Filter Section */}
-      <section style={{
+      <section className="filter-section" style={{
         background: 'linear-gradient(135deg, #9E2B10 0%, #B84A2A 100%)',
         padding: '30px 20px',
         color: '#fff',
@@ -399,17 +549,58 @@ export default function CaseStudies() {
           width: '100%',
           margin: '0',
         }}>
-          {/* Filter Navigation */}
+          {/* Filter Navigation Button for Mobile */}
           <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '20px',
+          }}>
+            <button
+              className="filter-menu-toggle"
+              onClick={() => setFilterMenuOpen(!filterMenuOpen)}
+              style={{
+                background: 'rgba(254, 235, 231, 0.2)',
+                color: '#fff',
+                border: '2px solid rgba(254, 235, 231, 0.3)',
+                borderRadius: '25px',
+                padding: '12px 24px',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.background = 'rgba(254, 235, 231, 0.3)';
+                e.target.style.border = '2px solid rgba(254, 235, 231, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.background = 'rgba(254, 235, 231, 0.2)';
+                e.target.style.border = '2px solid rgba(254, 235, 231, 0.3)';
+              }}
+            >
+              {filterMenuOpen ? '▼ Hide Filters' : '▲ Show Filters'}
+            </button>
+          </div>
+          
+          {/* Filter Navigation */}
+          <div className={`filter-navigation ${filterMenuOpen ? 'filter-menu-open' : ''}`} style={{
             display: 'flex',
             gap: 30,
             alignItems: 'center',
             marginBottom: 25,
             flexWrap: 'wrap',
             justifyContent: 'center',
+            transition: 'all 0.3s ease',
+            overflow: 'hidden',
+            maxHeight: filterMenuOpen ? '500px' : '0',
+            opacity: filterMenuOpen ? 1 : 0,
           }}>
             {/* All Filter */}
             <div
+              className="filter-button"
               style={{
                 cursor: 'pointer',
                 padding: '10px 20px',
@@ -440,8 +631,9 @@ export default function CaseStudies() {
             </div>
 
             {/* Visual Content Dropdown */}
-            <div style={{ position: 'relative' }}>
+            <div className="dropdown-container" style={{ position: 'relative' }}>
               <div
+                className="filter-button"
                 style={{
                   cursor: 'pointer',
                   display: 'flex',
@@ -468,7 +660,7 @@ export default function CaseStudies() {
               </div>
               
               {visualContentOpen && (
-                <div style={{
+                <div className="dropdown-menu" style={{
                   position: 'absolute',
                   top: '100%',
                   left: 0,
@@ -530,8 +722,9 @@ export default function CaseStudies() {
             </div>
 
             {/* Video Content Dropdown */}
-            <div style={{ position: 'relative' }}>
+            <div className="dropdown-container" style={{ position: 'relative' }}>
               <div
+                className="filter-button"
                 style={{
                   cursor: 'pointer',
                   display: 'flex',
@@ -558,7 +751,7 @@ export default function CaseStudies() {
               </div>
               
               {videoContentOpen && (
-                <div style={{
+                <div className="dropdown-menu" style={{
                   position: 'absolute',
                   top: '100%',
                   left: 0,
@@ -618,25 +811,32 @@ export default function CaseStudies() {
             </div>
 
             {/* Other Filter Options */}
-            {['Street Interview', 'Brand Story', 'Livestreams'].map((filter) => (
-              <div
-                key={filter}
-                style={{
-                  cursor: 'pointer',
-                  fontSize: 16,
-                  transition: 'opacity 0.2s',
-                }}
-                onClick={() => setActiveFilter(filter)}
-                onMouseEnter={(e) => e.target.style.opacity = '0.8'}
-                onMouseLeave={(e) => e.target.style.opacity = '1'}
-              >
-                {filter}
-              </div>
-            ))}
+            <div className="other-filters">
+              {['Street Interview', 'Brand Story', 'Livestreams'].map((filter) => (
+                <div
+                  key={filter}
+                  className="filter-button"
+                  style={{
+                    cursor: 'pointer',
+                    fontSize: 16,
+                    transition: 'opacity 0.2s',
+                    padding: '10px 20px',
+                    borderRadius: '25px',
+                    background: 'rgba(254, 235, 231, 0.1)',
+                    border: '2px solid transparent',
+                  }}
+                  onClick={() => setActiveFilter(filter)}
+                  onMouseEnter={(e) => e.target.style.opacity = '0.8'}
+                  onMouseLeave={(e) => e.target.style.opacity = '1'}
+                >
+                  {filter}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Case Studies Grid */}
-          <div style={{
+          <div className="case-studies-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
             gap: '12px',
@@ -648,6 +848,7 @@ export default function CaseStudies() {
             {filteredVideos.map((video, index) => (
               <div
                 key={index}
+                className="case-study-card"
                 style={{
                   background: '#ffffff',
                   border: '1px solid #e9ecef',
@@ -674,7 +875,7 @@ export default function CaseStudies() {
                 }}
                 onClick={() => (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') && openContentModal(video)}
               >
-                <div style={{
+                <div className="case-study-title" style={{
                   color: '#2c3e50',
                   fontSize: '14px',
                   fontWeight: '700',
@@ -690,7 +891,7 @@ export default function CaseStudies() {
                 </div>
                 
                 {/* Content Preview Container */}
-                <div style={{
+                <div className="content-preview-container" style={{
                   flex: 1,
                   marginBottom: '15px',
                   borderRadius: '8px',
@@ -1057,7 +1258,7 @@ export default function CaseStudies() {
                   )}
                 </div>
                 
-                <div style={{
+                <div className="case-study-category" style={{
                   color: '#9E2B10',
                   fontSize: '14px',
                   fontWeight: '700',
@@ -1080,13 +1281,13 @@ export default function CaseStudies() {
       </section>
 
       {/* Footer Section */}
-      <footer style={{
+      <footer className="case-studies-footer" style={{
         background: '#1a1a1a',
         color: '#fff',
         padding: '60px 60px 40px 60px',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
-        <div style={{
+        <div className="footer-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
           gap: '60px',
@@ -1115,7 +1316,7 @@ export default function CaseStudies() {
             </div>
             
             {/* Social Media Icons */}
-            <div style={{
+            <div className="social-media-icons" style={{
               display: 'flex',
               gap: '15px',
             }}>
@@ -1287,7 +1488,7 @@ export default function CaseStudies() {
 
       {/* Content Modal */}
       {isModalOpen && selectedContent && (
-        <div style={{
+        <div className="content-modal" style={{
           position: 'fixed',
           top: 0,
           left: 0,
@@ -1300,7 +1501,7 @@ export default function CaseStudies() {
           zIndex: 1000,
           padding: '20px',
         }}>
-          <div style={{
+          <div className="modal-content" style={{
             background: '#fff',
             borderRadius: '12px',
             maxWidth: '90%',

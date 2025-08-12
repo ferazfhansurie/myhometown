@@ -29,12 +29,124 @@ export default function Header() {
       overflow: 'hidden',
       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
     }}>
+      {/* Enhanced CSS Animations */}
+      <style>{`
+        @keyframes slideDown {
+          from { 
+            transform: translateY(-100%); 
+            opacity: 0;
+          }
+          to { 
+            transform: translateY(0); 
+            opacity: 1;
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes pulse {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+          100% { transform: scale(1); }
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        
+        .nav-item {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .nav-item::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s;
+        }
+        
+        .nav-item:hover::before {
+          left: 100%;
+        }
+        
+        .nav-item:hover {
+          transform: translateY(-2px) scale(1.05);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .logo-text {
+          animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .mobile-menu-item {
+          animation: fadeInUp 0.5s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .hamburger-line {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hamburger-line:nth-child(1) {
+          transform-origin: center;
+        }
+        
+        .hamburger-line:nth-child(2) {
+          transform-origin: center;
+        }
+        
+        .hamburger-line:nth-child(3) {
+          transform-origin: center;
+        }
+      `}</style>
+
       {/* Logo/Brand */}
-      <div style={{
-        fontSize: window.innerWidth <= 768 ? '18px' : '24px',
-        fontWeight: '800',
-        letterSpacing: '1px',
-      }}>
+      <div 
+        className="logo-text"
+        style={{
+          fontSize: window.innerWidth <= 768 ? '18px' : '24px',
+          fontWeight: '800',
+          letterSpacing: '1px',
+        }}
+      >
         <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
         <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>HOMETOWN</span>
       </div>
@@ -52,34 +164,28 @@ export default function Header() {
           { name: 'MY STORY', path: '/my-story' },
           { name: 'MY PLATFORMS', path: '/my-platforms' },
           { name: 'MY SERVICES', path: '/my-services' },
-
+          { name: 'MY CLIENTS', path: '/my-clients' },
           { name: 'MY CASE STUDIES', path: '/my-case-studies' },
           { name: 'MY REVIEWS', path: '/my-reviews' },
           { name: 'MY TEAM', path: '/my-team' },
           { name: 'MY CONTACT', path: '/my-contact' }
-        ].map((link) => (
-          <div key={link.name} style={{
-            width: '130px',
-            height: '40px',
-            borderRadius: '20px',
-            background: 'rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'all 0.3s ease',
-            cursor: 'pointer',
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-            e.target.style.transform = 'scale(1.05)';
-            e.target.style.borderRadius = '20px';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-            e.target.style.transform = 'scale(1)';
-            e.target.style.borderRadius = '20px';
-          }}
+        ].map((link, index) => (
+          <div 
+            key={link.name} 
+            className="nav-item"
+            style={{
+              width: '130px',
+              height: '40px',
+              borderRadius: '20px',
+              background: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              animation: `slideInRight 0.6s ease-out ${index * 0.1}s forwards`,
+              opacity: 0,
+            }}
           >
             <Link
               to={link.path}
@@ -106,35 +212,44 @@ export default function Header() {
       </div>
 
       {/* Mobile Hamburger Menu */}
-      <div style={{
-        display: window.innerWidth <= 768 ? 'block' : 'none',
-        cursor: 'pointer',
-        padding: '10px',
-      }} onClick={toggleMenu}>
-        <div style={{
-          width: '25px',
-          height: '3px',
-          background: '#fff',
-          margin: '5px 0',
-          transition: '0.3s',
-          transform: isMenuOpen ? 'rotate(-45deg) translate(-5px, 6px)' : 'none',
-        }}></div>
-        <div style={{
-          width: '25px',
-          height: '3px',
-          background: '#fff',
-          margin: '5px 0',
-          transition: '0.3s',
-          opacity: isMenuOpen ? '0' : '1',
-        }}></div>
-        <div style={{
-          width: '25px',
-          height: '3px',
-          background: '#fff',
-          margin: '5px 0',
-          transition: '0.3s',
-          transform: isMenuOpen ? 'rotate(45deg) translate(-5px, -6px)' : 'none',
-        }}></div>
+      <div 
+        style={{
+          display: window.innerWidth <= 768 ? 'block' : 'none',
+          cursor: 'pointer',
+          padding: '10px',
+        }} 
+        onClick={toggleMenu}
+      >
+        <div 
+          className="hamburger-line"
+          style={{
+            width: '25px',
+            height: '3px',
+            background: '#fff',
+            margin: '5px 0',
+            transform: isMenuOpen ? 'rotate(-45deg) translate(-5px, 6px)' : 'none',
+          }}
+        ></div>
+        <div 
+          className="hamburger-line"
+          style={{
+            width: '25px',
+            height: '3px',
+            background: '#fff',
+            margin: '5px 0',
+            opacity: isMenuOpen ? '0' : '1',
+          }}
+        ></div>
+        <div 
+          className="hamburger-line"
+          style={{
+            width: '25px',
+            height: '3px',
+            background: '#fff',
+            margin: '5px 0',
+            transform: isMenuOpen ? 'rotate(45deg) translate(-5px, -6px)' : 'none',
+          }}
+        ></div>
       </div>
 
       {/* Mobile Menu Overlay */}
@@ -152,28 +267,23 @@ export default function Header() {
           alignItems: 'center',
           justifyContent: 'flex-start',
           paddingTop: '40px',
-          animation: 'slideDown 0.3s ease-out',
+          animation: 'slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
         }}>
-          <style>{`
-            @keyframes slideDown {
-              from { transform: translateY(-100%); }
-              to { transform: translateY(0); }
-            }
-          `}</style>
           {[
             { name: 'HOME', path: '/' },
             { name: 'MY STORY', path: '/my-story' },
             { name: 'MY PLATFORMS', path: '/my-platforms' },
             { name: 'MY SERVICES', path: '/my-services' },
-
+            { name: 'MY CLIENTS', path: '/my-clients' },
             { name: 'MY CASE STUDIES', path: '/my-case-studies' },
             { name: 'MY REVIEWS', path: '/my-reviews' },
             { name: 'MY TEAM', path: '/my-team' },
             { name: 'MY CONTACT', path: '/my-contact' }
-          ].map((link) => (
+          ].map((link, index) => (
             <Link
               key={link.name}
               to={link.path}
+              className="mobile-menu-item nav-item"
               style={{
                 color: '#fff',
                 textDecoration: 'none',
@@ -181,22 +291,13 @@ export default function Header() {
                 fontWeight: '600',
                 padding: '15px 20px',
                 margin: '5px 0',
-                borderRadius: '10px',
                 background: 'rgba(255, 255, 255, 0.1)',
                 border: '1px solid rgba(255, 255, 255, 0.2)',
                 width: '80%',
                 textAlign: 'center',
-                transition: 'all 0.3s ease',
+                animationDelay: `${index * 0.1}s`,
               }}
               onClick={() => setIsMenuOpen(false)}
-              onMouseEnter={(e) => {
-                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                e.target.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                e.target.style.transform = 'scale(1)';
-              }}
             >
               {link.name}
             </Link>
