@@ -161,9 +161,14 @@ export default function MyPlatforms() {
       platform: "Instagram",
       accounts: [
         {
-          name: "My Hometown Media",
-          url: "https://instagram.com/my.hometown.media?igshid=YmMyMTA2M2Y=",
+          name: "my_hometown_media",
+          url: "https://www.instagram.com/my_hometown_media/",
           followers: "50k+"
+        },
+        {
+          name: "penang_my_hometown",
+          url: "https://www.instagram.com/penang_my_hometown/",
+          followers: "45k+"
         }
       ]
     },

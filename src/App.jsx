@@ -35,6 +35,7 @@ import xiaohongshuLogo from "./assets/xiaohongshu.png";
 import instagramLogo from "./assets/instagram.png";
 import introVideo from "./assets/Videos/MLBS INTRODUCTION VIDEO.mp4";
 import CaseStudies from "./CaseStudies.jsx";
+import MyClients from "./MyClients.jsx";
 import MyPlatforms from "./MyPlatforms.jsx";
 import MyServices from "./MyServices.jsx";
 import MyStory from "./MyStory.jsx";
@@ -78,6 +79,13 @@ const platformData = {
       "https://www.facebook.com/KLMyHometown",
       "https://www.facebook.com/JohorMyHometown",
       "https://www.facebook.com/ImMalaysianOnline"
+    ]
+  },
+  Instagram: {
+    images: [tiktok3, img8], // Using tiktok3.jpg and Penang My Hometown.jpg
+    urls: [
+      "https://www.instagram.com/my_hometown_media/",
+      "https://www.instagram.com/penang_my_hometown/"
     ]
   },
   'Xiao Hong Shu': {
@@ -200,8 +208,8 @@ export default function App() {
           setStatsCounting(true);
           
           // Start counting animation
-          const duration = 4000; // 4 seconds
-          const steps = 80;
+          const duration = 3000; // 3 seconds for mobile
+          const steps = 60;
           const stepDuration = duration / steps;
           
           let currentStep = 0;
@@ -232,7 +240,7 @@ export default function App() {
           setStatsCounting(false);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
     const statsSection = document.querySelector('.stats-section');
     if (statsSection) {
@@ -252,7 +260,7 @@ export default function App() {
           setIsThreeColumnVisible(false);
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     const threeColumnSection = document.querySelector('.three-column-section');
     if (threeColumnSection) {
@@ -278,8 +286,8 @@ export default function App() {
           setAudienceCounting(true);
           
           // Start counting animation
-          const duration = 4000; // 4 seconds
-          const steps = 80;
+          const duration = 3000; // 3 seconds for mobile
+          const steps = 60;
           const stepDuration = duration / steps;
           
           let currentStep = 0;
@@ -308,10 +316,10 @@ export default function App() {
           setAudienceCounts({
             followers: 8000000,
             traffic: 100000000
-          });
+            });
         }
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
     const audienceReachSection = document.querySelector('.audience-reach-section');
     if (audienceReachSection) {
@@ -332,10 +340,67 @@ export default function App() {
     }
   }, [audienceReachVisible]);
 
+  // Force animations to work on mobile by checking screen size
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+      // On mobile, trigger animations immediately when component mounts
+      const timer = setTimeout(() => {
+        setIsThreeColumnVisible(true);
+        setStatsCounting(true);
+        setAudienceCounting(true);
+        
+                 // Start counting animations
+         const duration = 1500; // 1.5 seconds for faster mobile counting
+         const steps = 40;
+         const stepDuration = duration / steps;
+        
+        let currentStep = 0;
+        const interval = setInterval(() => {
+          currentStep++;
+          const progress = currentStep / steps;
+          
+          setStatsCounts({
+            years: Math.floor(12 * progress),
+            platforms: Math.floor(30 * progress),
+            clients: Math.floor(3000 * progress),
+            campaigns: Math.floor(10000 * progress)
+          });
+          
+          setAudienceCounts({
+            followers: Math.floor(8000000 * progress),
+            traffic: Math.floor(100000000 * progress)
+          });
+          
+          if (currentStep >= steps) {
+            clearInterval(interval);
+            setStatsCounting(false);
+            setAudienceCounting(false);
+            // Set final values
+            setStatsCounts({
+              years: 12,
+              platforms: 30,
+              clients: 3000,
+              campaigns: 10000
+            });
+            setAudienceCounts({
+              followers: 8000000,
+              traffic: 100000000
+            });
+          }
+        }, stepDuration);
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <Router>
       <Routes>
         <Route path="/my-case-studies" element={<CaseStudies />} />
+        <Route path="/my-clients" element={<MyClients />} />
         <Route path="/my-story" element={<MyStory />} />
         <Route path="/my-platforms" element={<MyPlatforms />} />
         <Route path="/my-services" element={<MyServices />} />
@@ -394,7 +459,7 @@ export default function App() {
         }
         .rotation-break {
           width: 4px;
-          height: 220px;
+          height: 120px;
           background: #ffffff;
           margin-right: 20px;
           flex-shrink: 0;
@@ -429,6 +494,581 @@ export default function App() {
           color: white;
           font-size: 24px;
           font-weight: bold;
+        }
+        
+        /* Text animation keyframes */
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes fadeInRight {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes bounceIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.3);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.05);
+          }
+          70% {
+            transform: scale(0.9);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes slideInFromTop {
+          from {
+            opacity: 0;
+            transform: translateY(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes pulse {
+          0% {
+            transform: scale(1);
+          }
+          50% {
+            transform: scale(1.05);
+          }
+          100% {
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes shimmer {
+          0% {
+            background-position: -200% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
+        }
+        
+        /* Animated text classes */
+        .animated-text {
+          animation: fadeInUp 1s ease-out forwards;
+        }
+        
+        .animated-text-left {
+          animation: fadeInLeft 1s ease-out forwards;
+        }
+        
+        .animated-text-right {
+          animation: fadeInRight 1s ease-out forwards;
+        }
+        
+        .animated-scale {
+          animation: scaleIn 1s ease-out forwards;
+        }
+        
+        .animated-bounce {
+          animation: bounceIn 1s ease-out forwards;
+        }
+        
+        .animated-slide-top {
+          animation: slideInFromTop 1s ease-out forwards;
+        }
+        
+        /* Hover animations */
+        .hover-lift {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .hover-glow {
+          transition: all 0.3s ease;
+        }
+        
+        .hover-glow:hover {
+          box-shadow: 0 0 20px rgba(255,255,255,0.3);
+          transform: scale(1.02);
+        }
+        
+        /* Button animations */
+        .animated-button {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+        
+        .animated-button::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s;
+        }
+        
+        .animated-button:hover::before {
+          left: 100%;
+        }
+        
+        .animated-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        /* Platform selector animations */
+        .platform-selector {
+          transition: all 0.3s ease;
+          position: relative;
+        }
+        
+        .platform-selector::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: #fff;
+          transition: width 0.3s ease;
+        }
+        
+        .platform-selector:hover::after {
+          width: 100%;
+        }
+        
+        /* Stats card animations */
+        .stats-card {
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .stats-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(158, 43, 16, 0.1), transparent);
+          transition: left 0.6s;
+        }
+        
+        .stats-card:hover::before {
+          left: 100%;
+        }
+        
+        .stats-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(158, 43, 16, 0.2);
+        }
+        
+        /* Floating animation for main title */
+        .floating-title {
+          animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        
+        /* Gradient text animation */
+        .gradient-text {
+          background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
+          background-size: 200% 200%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+          /* Ensure animations work on mobile */
+          .animated-text,
+          .animated-text-left,
+          .animated-text-right,
+          .animated-scale,
+          .animated-bounce,
+          .animated-slide-top {
+            animation-fill-mode: both;
+            animation-play-state: running;
+          }
+          
+          /* Optimize three column animations for mobile */
+          .three-column-item {
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
+          }
+          
+          .three-column-big-text {
+            opacity: 1 !important;
+            transform: none !important;
+            filter: none !important;
+          }
+          .marquee-container {
+            margin: 5px 0;
+          }
+          
+          .marquee-track {
+            animation-duration: 20s;
+          }
+          
+          .marquee-circle {
+            width: 120px;
+            height: 120px;
+            margin-right: 25px;
+          }
+          
+          .marquee-circle {
+            width: 120px;
+            height: 120px;
+            margin-right: 25px;
+          }
+          
+          .video-hero {
+            height: 60vh;
+          }
+          
+          .video-hero video {
+            object-fit: cover;
+          }
+          
+          .floating-title {
+            font-size: 36px !important;
+            line-height: 1.1 !important;
+            margin-bottom: 20px !important;
+          }
+          
+          .hero-subtitle {
+            font-size: 16px !important;
+            line-height: 1.4 !important;
+            margin-top: 15px !important;
+          }
+          
+          .hero-content {
+            flex-direction: column !important;
+            margin: 0 20px !important;
+            margin-top: 10px !important;
+          }
+          
+          .hero-text {
+            margin-right: 0 !important;
+            margin-bottom: 30px !important;
+            text-align: center !important;
+          }
+          
+          .hero-image {
+            max-width: 100% !important;
+            margin-right: 0 !important;
+          }
+          
+          .platforms-section {
+            margin-left: 20px !important;
+            margin-bottom: 30px !important;
+            margin-top: 40px !important;
+          }
+          
+          .platforms-title {
+            font-size: 32px !important;
+            margin-bottom: 30px !important;
+          }
+          
+          .platforms-subtitle {
+            font-size: 18px !important;
+            margin-bottom: 25px !important;
+          }
+          
+          .platform-logos {
+            gap: 20px !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+          }
+          
+          .platform-logos > div {
+            margin-bottom: 15px !important;
+          }
+          
+          .three-column-section {
+            padding: 40px 20px !important;
+          }
+          
+          .three-column-grid {
+            grid-template-columns: 1fr !important;
+            gap: 60px !important;
+          }
+          
+          .three-column-item {
+            text-align: center !important;
+            align-items: center !important;
+          }
+          
+          .three-column-big-text {
+            font-size: 64px !important;
+            /* Keep the same jumpy animation as desktop */
+            transform: translateY(0) scale(1) rotateY(0deg) !important;
+            opacity: 1 !important;
+            filter: blur(0px) brightness(1) !important;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3) !important;
+          }
+          
+          .who-we-are-section {
+            padding: 40px 20px !important;
+          }
+          
+          .who-we-are-title {
+            font-size: 40px !important;
+          }
+          
+          .who-we-are-content {
+            font-size: 18px !important;
+            max-width: 100% !important;
+          }
+          
+          .stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+          }
+          
+          .stats-card {
+            padding: 30px 15px !important;
+          }
+          
+          .stats-number {
+            font-size: 36px !important;
+          }
+          
+          .stats-label {
+            font-size: 14px !important;
+          }
+          
+          .case-studies-button {
+            padding: 14px 28px !important;
+            font-size: 16px !important;
+          }
+          
+          /* Ensure counting animations work on mobile */
+          .stats-number,
+          .audience-number {
+            transition: color 0.3s ease !important;
+          }
+          
+          /* Force animations to work on mobile */
+          .stats-section,
+          .audience-reach-section {
+            opacity: 1 !important;
+            visibility: visible !important;
+          }
+          
+          /* Ensure smooth animations on mobile */
+          .stats-card,
+          .audience-stats {
+            will-change: auto !important;
+            transform: translateZ(0) !important;
+          }
+          
+          .audience-reach-section {
+            padding: 40px 20px !important;
+            min-height: auto !important;
+          }
+          
+          .audience-reach-title {
+            font-size: 36px !important;
+            margin-bottom: 40px !important;
+          }
+          
+          .audience-stats {
+            flex-direction: column !important;
+            gap: 40px !important;
+            padding: 30px 20px !important;
+          }
+          
+          .audience-stat {
+            text-align: center !important;
+          }
+          
+          .audience-number {
+            font-size: 56px !important;
+          }
+          
+          .audience-label {
+            font-size: 20px !important;
+          }
+          
+          .footer {
+            padding: 40px 20px 20px 20px !important;
+          }
+          
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          
+          .footer-grid > div {
+            text-align: center !important;
+          }
+          
+          .footer .social-media-icons {
+            justify-content: center !important;
+          }
+          
+          /* Footer mobile optimizations */
+          .footer {
+            padding: 40px 20px 20px 20px !important;
+          }
+          
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          
+          .footer-grid > div {
+            text-align: center !important;
+          }
+          
+          .footer .social-media-icons {
+            justify-content: center !important;
+          }
+          
+          .platform-logos .platform-selector {
+            font-size: 14px !important;
+          }
+          
+          .audience-label {
+            white-space: normal !important;
+          }
+          
+          .malaysia-map-container {
+            max-width: 100% !important;
+            padding: 0 20px !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .marquee-circle {
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+          }
+          
+          .floating-title {
+            font-size: 28px !important;
+          }
+          
+          .hero-subtitle {
+            font-size: 14px !important;
+          }
+          
+          .platforms-title {
+            font-size: 28px !important;
+          }
+          
+          .three-column-big-text {
+            font-size: 48px !important;
+          }
+          
+          .stats-grid {
+            grid-template-columns: 1fr !important;
+          }
+          
+          .audience-number {
+            font-size: 48px !important;
+          }
+          
+          .hero-content {
+            margin: 0 15px !important;
+          }
+          
+          .platforms-section {
+            margin-left: 15px !important;
+          }
+          
+          .three-column-section {
+            padding: 30px 15px !important;
+          }
+          
+          .who-we-are-section {
+            padding: 30px 15px !important;
+          }
+          
+          .audience-reach-section {
+            padding: 30px 15px !important;
+          }
+          
+          .footer {
+            padding: 30px 15px 20px 15px !important;
+          }
+          
+          .marquee-track {
+            animation-duration: 15s;
+          }
+          
+          .platform-logos .platform-selector {
+            font-size: 12px !important;
+          }
+          
+          /* Additional mobile optimizations */
+          .animated-text,
+          .animated-text-left,
+          .animated-text-right,
+          .animated-scale,
+          .animated-bounce,
+          .animated-slide-top {
+            animation-duration: 0.8s !important;
+          }
         }
       `}</style>
 
@@ -469,7 +1109,7 @@ export default function App() {
           marginTop: '-5vh',
         }}
       >
-        <div style={{
+        <div className="hero-content" style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -477,35 +1117,44 @@ export default function App() {
           margin: '0 60px 0 60px',
           marginTop: 20,
         }}>
-          <div style={{
+          <div className="hero-text" style={{
             flex: '1',
             marginRight: 60,
           }}>
-            <div style={{
-              fontSize: 64,
-              fontWeight: 800,
-              lineHeight: 0.9,
-              color: '#fff',
-              letterSpacing: -2,
-              marginBottom: 30,
-              textAlign: 'left',
-              transform: `translateY(${scrollY * 0.05}px) translateX(${scrollDirection * 0.5}px)`,
-              transition: 'transform 0.1s ease-out',
-              filter: `blur(${Math.abs(scrollDirection) * 0.05}px)`,
-            }}>
-              HI !<br />
-              THIS IS<br />
-              <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span> <span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
-              <div style={{
-                fontSize: 22,
-                fontWeight: 300,
+            <div 
+              className="floating-title"
+              style={{
+                fontSize: 64,
+                fontWeight: 800,
+                lineHeight: 0.9,
                 color: '#fff',
-                marginTop: 25,
+                letterSpacing: -2,
+                marginBottom: 30,
                 textAlign: 'left',
-                maxWidth: 800,
-                lineHeight: 1.6,
-                letterSpacing: '0.5px',
-              }}>
+                transform: `translateY(${scrollY * 0.05}px) translateX(${scrollDirection * 0.5}px)`,
+                transition: 'transform 0.1s ease-out',
+                filter: `blur(${Math.abs(scrollDirection) * 0.05}px)`,
+              }}
+            >
+              <span className="animated-text" style={{ display: 'inline-block', animationDelay: '0.2s' }}>HI !</span><br />
+              <span className="animated-text" style={{ display: 'inline-block', animationDelay: '0.4s' }}>THIS IS</span><br />
+              <span className="animated-text" style={{ display: 'inline-block', animationDelay: '0.6s' }}>
+                <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span> <span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
+              </span>
+              <div 
+                className="animated-text hero-subtitle"
+                style={{
+                  fontSize: 22,
+                  fontWeight: 300,
+                  color: '#fff',
+                  marginTop: 25,
+                  textAlign: 'left',
+                  maxWidth: 800,
+                  lineHeight: 1.6,
+                  letterSpacing: '0.5px',
+                  animationDelay: '0.8s',
+                }}
+              >
                 We help boost your brand with impactful content and delivered<br />
                 across our wide-reaching media platforms.
               </div>
@@ -513,7 +1162,7 @@ export default function App() {
           </div>
           
           {/* Uniform Image on the right */}
-          <div style={{
+          <div className="hero-image" style={{
             flex: '1',
             display: 'flex',
             justifyContent: 'flex-end',
@@ -521,6 +1170,7 @@ export default function App() {
             marginRight: '-60px',
           }}>
             <img 
+              className="animated-scale hover-lift"
               src={uniformImage}
               alt="My Hometown Media Team"
               style={{
@@ -530,46 +1180,55 @@ export default function App() {
                 borderRadius: '20px',
                 border: '4px solid #fff',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                animationDelay: '1s',
               }}
             />
           </div>
         </div>
         
         {/* Platforms Section */}
-        <div style={{
+        <div className="platforms-section" style={{
           marginLeft: 60,
           marginBottom: 40,
           marginTop: 60,
         }}>
-          <div style={{
-            fontSize: 48,
-            fontWeight: 800,
-            color: '#fff',
-            marginBottom: 50,
-            textAlign: 'left',
-            lineHeight: 1.1,
-            transform: `translateY(${scrollY * 0.03}px) translateX(${scrollDirection * 0.3}px)`,
-            transition: 'transform 0.1s ease-out',
-            filter: `blur(${Math.abs(scrollDirection) * 0.03}px)`,
-          }}>
+          <div 
+            className="animated-text-left platforms-title"
+            style={{
+              fontSize: 48,
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 50,
+              textAlign: 'left',
+              lineHeight: 1.1,
+              transform: `translateY(${scrollY * 0.03}px) translateX(${scrollDirection * 0.3}px)`,
+              transition: 'transform 0.1s ease-out',
+              filter: `blur(${Math.abs(scrollDirection) * 0.03}px)`,
+              animationDelay: '1.2s',
+            }}
+          >
             <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
             <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}> PLATFORMS</span>
           </div>
-          <div style={{
-            fontSize: 22,
-            fontWeight: 300,
-            color: '#fff',
-            marginBottom: 35,
-            textAlign: 'left',
-            maxWidth: 600,
-            lineHeight: 1.6,
-            letterSpacing: '0.5px',
-          }}>
+          <div 
+            className="animated-text-left platforms-subtitle"
+            style={{
+              fontSize: 22,
+              fontWeight: 300,
+              color: '#fff',
+              marginBottom: 35,
+              textAlign: 'left',
+              maxWidth: 600,
+              lineHeight: 1.6,
+              letterSpacing: '0.5px',
+              animationDelay: '1.4s',
+            }}
+          >
             As seen on major media and content channels
           </div>
           
           {/* Platform Logos */}
-          <div style={{
+          <div className="platform-logos" style={{
             display: 'flex',
             gap: 30,
             alignItems: 'center',
@@ -596,13 +1255,13 @@ export default function App() {
                 f
               </div>
               <span 
+                className="platform-selector"
                 onClick={() => setSelectedPlatform('Facebook')}
-              style={{
+                style={{
                   color: selectedPlatform === 'Facebook' ? '#fff' : 'rgba(255,255,255,0.7)', 
                   fontSize: 16, 
                   fontWeight: selectedPlatform === 'Facebook' ? 600 : 500,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
+                  cursor: 'pointer',
                   textDecoration: selectedPlatform === 'Facebook' ? 'underline' : 'none',
                 }}
               >
@@ -636,13 +1295,13 @@ export default function App() {
                 />
               </div>
               <span 
+                className="platform-selector"
                 onClick={() => setSelectedPlatform('Instagram')}
                 style={{ 
                   color: selectedPlatform === 'Instagram' ? '#fff' : 'rgba(255,255,255,0.7)', 
                   fontSize: 16, 
                   fontWeight: selectedPlatform === 'Instagram' ? 600 : 500,
                   cursor: 'pointer',
-                  transition: 'all 0.3s ease',
                   textDecoration: selectedPlatform === 'Instagram' ? 'underline' : 'none',
                 }}
               >
@@ -676,13 +1335,13 @@ export default function App() {
                 />
               </div>
               <span 
+                className="platform-selector"
                 onClick={() => setSelectedPlatform('TikTok')}
-              style={{
+                style={{
                   color: selectedPlatform === 'TikTok' ? '#fff' : 'rgba(255,255,255,0.7)', 
                   fontSize: 16, 
                   fontWeight: selectedPlatform === 'TikTok' ? 600 : 500,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
+                  cursor: 'pointer',
                   textDecoration: selectedPlatform === 'TikTok' ? 'underline' : 'none',
                 }}
               >
@@ -716,13 +1375,13 @@ export default function App() {
                 />
               </div>
               <span 
+                className="platform-selector"
                 onClick={() => setSelectedPlatform('Xiao Hong Shu')}
                 style={{ 
                   color: selectedPlatform === 'Xiao Hong Shu' ? '#fff' : 'rgba(255,255,255,0.7)', 
                   fontSize: 16, 
                   fontWeight: selectedPlatform === 'Xiao Hong Shu' ? 600 : 500,
                   cursor: 'pointer',
-                  transition: 'all 0.3s ease',
                   textDecoration: selectedPlatform === 'Xiao Hong Shu' ? 'underline' : 'none',
                 }}
               >
@@ -790,7 +1449,7 @@ export default function App() {
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <div style={{
+        <div className="three-column-grid" style={{
               width: '100%',
           maxWidth: '1400px',
           display: 'grid',
@@ -799,7 +1458,7 @@ export default function App() {
           alignItems: 'flex-start',
         }}>
           {/* Column 1 - We create CONTENT */}
-          <div style={{
+          <div className="three-column-item" style={{
             textAlign: 'left',
             display: 'flex',
             flexDirection: 'column',
@@ -815,7 +1474,7 @@ export default function App() {
             }}>
               We create
             </div>
-            <div style={{
+            <div className="three-column-big-text" style={{
               fontSize: '96px',
               fontWeight: '800',
               marginBottom: '30px',
@@ -839,7 +1498,7 @@ export default function App() {
           </div>
 
           {/* Column 2 - We have TRAFFIC */}
-          <div style={{
+          <div className="three-column-item" style={{
             textAlign: 'left',
             display: 'flex',
             flexDirection: 'column',
@@ -855,7 +1514,7 @@ export default function App() {
             }}>
               We have
             </div>
-            <div style={{
+            <div className="three-column-big-text" style={{
               fontSize: '96px',
               fontWeight: '800',
               marginBottom: '30px',
@@ -879,7 +1538,7 @@ export default function App() {
           </div>
 
           {/* Column 3 - We prove RESULT */}
-          <div style={{
+          <div className="three-column-item" style={{
             textAlign: 'left',
             display: 'flex',
             flexDirection: 'column',
@@ -895,7 +1554,7 @@ export default function App() {
             }}>
               We prove
             </div>
-            <div style={{
+            <div className="three-column-big-text" style={{
               fontSize: '96px',
               fontWeight: '800',
               marginBottom: '30px',
@@ -921,7 +1580,7 @@ export default function App() {
       </section>
 
       {/* WHO WE ARE Section */}
-      <section style={{
+      <section className="who-we-are-section" style={{
         background: '#FEEBE7',
         padding: '60px 60px',
         color: '#333',
@@ -930,29 +1589,36 @@ export default function App() {
           width: '100%',
         }}>
           {/* Main Heading */}
-          <div style={{
-            fontSize: 55,
-            fontWeight: 800,
-            lineHeight: 0.9,
-            color: '#9E2B10',
-            letterSpacing: -2,
-            marginBottom: 30,
-            textAlign: 'center',
-          }}>
+          <div 
+            className="animated-slide-top who-we-are-title"
+            style={{
+              fontSize: 55,
+              fontWeight: 800,
+              lineHeight: 0.9,
+              color: '#9E2B10',
+              letterSpacing: -2,
+              marginBottom: 30,
+              textAlign: 'center',
+            }}
+          >
             WHO WE ARE
           </div>
           
           {/* Main Content */}
-          <div style={{
-            fontSize: 22,
-            fontWeight: 500,
-            color: '#333',
-            lineHeight: 1.6,
-            marginBottom: 40,
-            maxWidth: 700,
-            textAlign: 'left',
-            margin: '0 auto 40px auto',
-          }}>
+          <div 
+            className="animated-text who-we-are-content"
+            style={{
+              fontSize: 22,
+              fontWeight: 500,
+              color: '#333',
+              lineHeight: 1.6,
+              marginBottom: 40,
+              maxWidth: 700,
+              textAlign: 'left',
+              margin: '0 auto 40px auto',
+              animationDelay: '0.3s',
+            }}
+          >
             <p style={{ marginBottom: 15 }}>
               My Hometown Media working its magic for all its clients since 2014 and delivering its clients powerful marketing solutions.
             </p>
@@ -960,7 +1626,7 @@ export default function App() {
           </div>
           
           {/* Statistics Grid */}
-          <div className="stats-section" style={{
+          <div className="stats-section stats-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
             gap: 40,
@@ -968,22 +1634,26 @@ export default function App() {
             width: '100%',
           }}>
             {/* 12+ Years */}
-            <div style={{
-              textAlign: 'center',
-              background: 'rgba(158, 43, 16, 0.1)',
-              padding: '40px 20px',
-              borderRadius: '16px',
-            }}>
-              <div style={{
+            <div 
+              className="stats-card animated-scale"
+              style={{
+                textAlign: 'center',
+                background: 'rgba(158, 43, 16, 0.1)',
+                padding: '40px 20px',
+                borderRadius: '16px',
+                animationDelay: '0.5s',
+              }}
+            >
+              <div className="stats-number" style={{
                 fontSize: 48,
                 fontWeight: 800,
-                color: statsCounting ? '#22C55E' : '#9E2B10',
+                color: '#9E2B10',
                 marginBottom: 12,
                 transition: 'color 0.3s ease',
               }}>
                 {statsCounts.years}+
               </div>
-              <div style={{
+              <div className="stats-label" style={{
                 fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
@@ -993,22 +1663,26 @@ export default function App() {
             </div>
             
             {/* 30+ Platforms */}
-            <div style={{
-              textAlign: 'center',
-              background: 'rgba(158, 43, 16, 0.1)',
-              padding: '40px 20px',
-              borderRadius: '16px',
-            }}>
-              <div style={{
+            <div 
+              className="stats-card animated-scale"
+              style={{
+                textAlign: 'center',
+                background: 'rgba(158, 43, 16, 0.1)',
+                padding: '40px 20px',
+                borderRadius: '16px',
+                animationDelay: '0.7s',
+              }}
+            >
+              <div className="stats-number" style={{
                 fontSize: 48,
                 fontWeight: 800,
-                color: statsCounting ? '#22C55E' : '#9E2B10',
+                color: '#9E2B10',
                 marginBottom: 12,
                 transition: 'color 0.3s ease',
               }}>
                 {statsCounts.platforms}+
               </div>
-              <div style={{
+              <div className="stats-label" style={{
                 fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
@@ -1018,22 +1692,26 @@ export default function App() {
             </div>
             
             {/* 3,000+ Clients */}
-            <div style={{
-              textAlign: 'center',
-              background: 'rgba(158, 43, 16, 0.1)',
-              padding: '40px 20px',
-              borderRadius: '16px',
-            }}>
-              <div style={{
+            <div 
+              className="stats-card animated-scale"
+              style={{
+                textAlign: 'center',
+                background: 'rgba(158, 43, 16, 0.1)',
+                padding: '40px 20px',
+                borderRadius: '16px',
+                animationDelay: '0.9s',
+              }}
+            >
+              <div className="stats-number" style={{
                 fontSize: 48,
                 fontWeight: 800,
-                color: statsCounting ? '#22C55E' : '#9E2B10',
+                color: '#9E2B10',
                 marginBottom: 12,
                 transition: 'color 0.3s ease',
               }}>
                 {statsCounts.clients.toLocaleString()}+
               </div>
-              <div style={{
+              <div className="stats-label" style={{
                 fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
@@ -1043,22 +1721,26 @@ export default function App() {
             </div>
             
             {/* 10,000+ Campaigns */}
-            <div style={{
-              textAlign: 'center',
-              background: 'rgba(158, 43, 16, 0.1)',
-              padding: '40px 20px',
-              borderRadius: '16px',
-            }}>
-              <div style={{
+            <div 
+              className="stats-card animated-scale"
+              style={{
+                textAlign: 'center',
+                background: 'rgba(158, 43, 16, 0.1)',
+                padding: '40px 20px',
+                borderRadius: '16px',
+                animationDelay: '1.1s',
+              }}
+            >
+              <div className="stats-number" style={{
                 fontSize: 48,
                 fontWeight: 800,
-                color: statsCounting ? '#22C55E' : '#9E2B10',
+                color: '#9E2B10',
                 marginBottom: 12,
                 transition: 'color 0.3s ease',
               }}>
                 {statsCounts.campaigns.toLocaleString()}+
               </div>
-              <div style={{
+              <div className="stats-label" style={{
                 fontSize: 16,
                 fontWeight: 500,
                 color: '#333',
@@ -1075,6 +1757,7 @@ export default function App() {
             marginTop: 50,
           }}>
             <Link
+              className="animated-button animated-scale case-studies-button"
               to="/my-case-studies"
               style={{
                 background: '#9E2B10',
@@ -1086,9 +1769,9 @@ export default function App() {
                 fontWeight: '600',
                 letterSpacing: '1px',
                 border: '2px solid #9E2B10',
-                transition: 'all 0.3s ease',
                 display: 'inline-block',
                 cursor: 'pointer',
+                animationDelay: '1.3s',
               }}
               onMouseEnter={(e) => {
                 e.target.style.background = '#fff';
@@ -1138,42 +1821,49 @@ export default function App() {
           position: 'relative',
         }}>
           {/* Main Heading */}
-          <div style={{
-            fontSize: 48,
-            fontWeight: 800,
-            color: '#fff',
-            marginBottom: 60,
-            textAlign: 'center',
-            letterSpacing: '1px',
-          }}>
+          <div 
+            className="animated-slide-top audience-reach-title"
+            style={{
+              fontSize: 48,
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 60,
+              textAlign: 'center',
+              letterSpacing: '1px',
+            }}
+          >
             AUDIENCE REACH & INFLUENCE
           </div>
           
           {/* Statistics Display */}
-          <div style={{
-            display: 'flex',
-            gap: '200px',
-            marginBottom: 80,
-            background: 'rgba(255,255,255,0.1)',
-            padding: '40px 60px',
-            borderRadius: '16px',
-            border: '1px solid rgba(255,255,255,0.2)',
-          }}>
+          <div 
+            className="animated-scale hover-lift audience-stats"
+            style={{
+              display: 'flex',
+              gap: '200px',
+              marginBottom: 80,
+              background: 'rgba(255,255,255,0.1)',
+              padding: '40px 60px',
+              borderRadius: '16px',
+              border: '1px solid rgba(255,255,255,0.2)',
+              animationDelay: '0.5s',
+            }}
+          >
             {/* 8,000,000 Fans & Followers */}
-            <div style={{
+            <div className="audience-stat" style={{
               textAlign: 'center',
               color: '#fff',
             }}>
-              <div style={{
+              <div className="audience-number" style={{
                 fontSize: 88,
                 fontWeight: 800,
                 marginBottom: 4,
-                color: audienceCounting ? '#22C55E' : '#fff',
+                color: audienceCounting ? '#fff' : '#fff',
                 transition: 'color 0.3s ease',
               }}>
                 {audienceCounts.followers.toLocaleString()}
               </div>
-              <div style={{
+              <div className="audience-label" style={{
                 fontSize: 28,
                 fontWeight: 500,
                 letterSpacing: '1px',
@@ -1183,20 +1873,20 @@ export default function App() {
             </div>
             
             {/* 100,000,000 Monthly Online Traffic */}
-            <div style={{
+            <div className="audience-stat" style={{
               textAlign: 'center',
               color: '#fff',
             }}>
-              <div style={{
+              <div className="audience-number" style={{
                 fontSize: 88,
                 fontWeight: 800,
                 marginBottom: 4,
-                color: audienceCounting ? '#22C55E' : '#fff',
+                color: audienceCounting ? '#fff' : '#fff',
                 transition: 'color 0.3s ease',
               }}>
                 {audienceCounts.traffic.toLocaleString()}
               </div>
-              <div style={{
+              <div className="audience-label" style={{
                 fontSize: 28,
                 fontWeight: 500,
                 letterSpacing: '1px',
@@ -1208,12 +1898,16 @@ export default function App() {
           </div>
           
           {/* Map Image */}
-          <div style={{
-            width: '100%',
-            maxWidth: '1600px',
-            borderRadius: '20px',
-            overflow: 'hidden',
-          }}>
+          <div 
+            className="animated-scale hover-glow malaysia-map-container"
+            style={{
+              width: '100%',
+              maxWidth: '1600px',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              animationDelay: '1s',
+            }}
+          >
             <img 
               src={malaysiaMap}
               alt="Malaysia Map with Social Media Channels"
@@ -1228,13 +1922,13 @@ export default function App() {
       </section>
 
       {/* Footer Section */}
-      <footer style={{
+      <footer className="footer" style={{
         background: '#1a1a1a',
         color: '#fff',
         padding: '60px 60px 40px 60px',
         fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       }}>
-        <div style={{
+        <div className="footer-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
           gap: '60px',
@@ -1244,12 +1938,15 @@ export default function App() {
           
           {/* MYHOMETOWN MEDIA Section */}
           <div>
-            <div style={{
-              fontSize: '28px',
-              fontWeight: '800',
-              marginBottom: '8px',
-              letterSpacing: '1px',
-            }}>
+            <div 
+              className="animated-text"
+              style={{
+                fontSize: '28px',
+                fontWeight: '800',
+                marginBottom: '8px',
+                letterSpacing: '1px',
+              }}
+            >
               <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
               <span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
@@ -1264,7 +1961,7 @@ export default function App() {
             </div>
             
             {/* Social Media Icons */}
-            <div style={{
+            <div className="social-media-icons" style={{
               display: 'flex',
               gap: '15px',
             }}>
@@ -1326,12 +2023,16 @@ export default function App() {
           
           {/* EXPLORE Section */}
           <div>
-            <div style={{
-              fontSize: '28px',
-              fontWeight: '800',
-              marginBottom: '30px',
-              letterSpacing: '1px',
-            }}>
+            <div 
+              className="animated-text"
+              style={{
+                fontSize: '28px',
+                fontWeight: '800',
+                marginBottom: '30px',
+                letterSpacing: '1px',
+                animationDelay: '0.2s',
+              }}
+            >
               EXPLORE
             </div>
             <div style={{
@@ -1343,7 +2044,8 @@ export default function App() {
                 { name: 'MY STORY', path: '/' },
                 { name: 'MY PLATFORMS', path: '/' },
                 { name: 'MY SERVICES', path: '/' },
-                { name: 'MY CASE STUDIES', path: '/case-studies' },
+                { name: 'MY CLIENTS', path: '/my-clients' },
+                { name: 'MY CASE STUDIES', path: '/my-case-studies' },
                 { name: 'MY CONTACT', path: '/' }
               ].map((item) => (
                 <Link
@@ -1377,12 +2079,16 @@ export default function App() {
           
           {/* OFFICE Section */}
           <div>
-            <div style={{
-              fontSize: '28px',
-              fontWeight: '800',
-              marginBottom: '30px',
-              letterSpacing: '1px',
-            }}>
+            <div 
+              className="animated-text"
+              style={{
+                fontSize: '28px',
+                fontWeight: '800',
+                marginBottom: '30px',
+                letterSpacing: '1px',
+                animationDelay: '0.4s',
+              }}
+            >
               OFFICE
             </div>
             <div style={{

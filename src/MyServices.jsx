@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './index.css';
 import Header from "./Header.jsx";
@@ -12,6 +12,12 @@ import section11 from "./assets/section11.png";
 import section12 from "./assets/section12.png";
 
 export default function MyServices() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   const services = [
     {
       title: "SOCIAL MEDIA MANAGEMENT",
@@ -95,6 +101,196 @@ export default function MyServices() {
 
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
+      {/* Enhanced CSS Animations */}
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes fadeInRight {
+          from {
+            opacity: 0;
+            transform: translateX(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes slideInFromTop {
+          from {
+            opacity: 0;
+            transform: translateY(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes bounceIn {
+          0% {
+            opacity: 0;
+            transform: scale(0.3);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.05);
+          }
+          70% {
+            transform: scale(0.9);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        .animated-text {
+          animation: fadeInUp 1s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .animated-text-left {
+          animation: fadeInLeft 1s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .animated-text-right {
+          animation: fadeInRight 1s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .animated-scale {
+          animation: scaleIn 1s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .animated-slide-top {
+          animation: slideInFromTop 1s ease-out forwards;
+          opacity: 0;
+        }
+        
+        .service-card {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .service-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+          transition: left 0.6s;
+        }
+        
+        .service-card:hover::before {
+          left: 100%;
+        }
+        
+        .service-card:hover {
+          transform: translateY(-10px) scale(1.02);
+          box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .hover-lift {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .floating-title {
+          animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        
+        .gradient-text {
+          background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
+          background-size: 200% 200%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        
+        .feature-item {
+          transition: all 0.3s ease;
+          position: relative;
+          padding-left: 20px;
+        }
+        
+        .feature-item::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: #22C55E;
+          font-weight: bold;
+          opacity: 0;
+          transform: scale(0);
+          transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .feature-item::before {
+          opacity: 1;
+          transform: scale(1);
+        }
+        
+        .service-card:hover .feature-item {
+          padding-left: 25px;
+          color: #333;
+        }
+      `}</style>
+
       {/* Header */}
       <Header />
 
