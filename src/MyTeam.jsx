@@ -351,7 +351,7 @@ export default function MyTeam() {
           marginTop: 20,
         }}>
           <div style={{
-            fontSize: 64,
+            fontSize: 48,
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
@@ -362,7 +362,7 @@ export default function MyTeam() {
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>TEAM
           </div>
           <div style={{
-            fontSize: 22,
+            fontSize: 18,
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,

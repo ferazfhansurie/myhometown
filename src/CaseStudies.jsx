@@ -524,7 +524,7 @@ export default function CaseStudies() {
           marginTop: 20,
         }}>
           <div className="case-studies-title" style={{
-            fontSize: 64,
+            fontSize: 48,
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',

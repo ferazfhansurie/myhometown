@@ -747,17 +747,13 @@ export default function App() {
             animation-play-state: running;
           }
           
-          /* Optimize three column animations for mobile */
+          /* Allow three column animations to work on mobile */
           .three-column-item {
-            opacity: 1 !important;
-            transform: none !important;
-            filter: none !important;
+            /* Remove forced overrides to allow JavaScript animations */
           }
           
           .three-column-big-text {
-            opacity: 1 !important;
-            transform: none !important;
-            filter: none !important;
+            /* Remove forced overrides to allow JavaScript animations */
           }
           .marquee-container {
             margin: 5px 0;
@@ -788,15 +784,20 @@ export default function App() {
           }
           
           .floating-title {
-            font-size: 36px !important;
+            font-size: 56px !important;
             line-height: 1.1 !important;
             margin-bottom: 20px !important;
           }
           
           .hero-subtitle {
-            font-size: 16px !important;
+            font-size: 18px !important;
             line-height: 1.4 !important;
             margin-top: 15px !important;
+          }
+          
+          .platforms-subtitle {
+            font-size: 18px !important;
+            margin-bottom: 25px !important;
           }
           
           .hero-content {
@@ -823,7 +824,7 @@ export default function App() {
           }
           
           .platforms-title {
-            font-size: 32px !important;
+            font-size: 56px !important;
             margin-bottom: 30px !important;
           }
           
@@ -860,12 +861,7 @@ export default function App() {
           
           .three-column-big-text {
             font-size: 64px !important;
-            /* Enable the same jumpy animation as desktop on mobile */
-            transform: translateY(0) scale(1) rotateY(0deg) !important;
-            opacity: 1 !important;
-            filter: blur(0px) brightness(1) !important;
-            text-shadow: 0 0 20px rgba(255,255,255,0.3) !important;
-            /* Ensure animations work on mobile */
+            /* Allow JavaScript animations to work on mobile */
             transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
             will-change: transform, opacity, filter !important;
           }
@@ -886,7 +882,7 @@ export default function App() {
           }
           
           .who-we-are-title {
-            font-size: 40px !important;
+            font-size: 48px !important;
           }
           
           .who-we-are-content {
@@ -942,7 +938,7 @@ export default function App() {
           }
           
           .audience-reach-title {
-            font-size: 36px !important;
+            font-size: 48px !important;
             margin-bottom: 40px !important;
           }
           
@@ -1021,20 +1017,20 @@ export default function App() {
           }
           
           .floating-title {
-            font-size: 28px !important;
+            font-size: 48px !important;
           }
           
           .hero-subtitle {
-            font-size: 14px !important;
+            font-size: 16px !important;
           }
           
           .platforms-title {
-            font-size: 28px !important;
+            font-size: 48px !important;
           }
           
           .three-column-big-text {
             font-size: 48px !important;
-            /* Ensure animations work on very small screens */
+            /* Allow JavaScript animations to work on very small screens */
             transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
             will-change: transform, opacity, filter !important;
           }
@@ -1143,7 +1139,7 @@ export default function App() {
             <div 
               className="floating-title"
               style={{
-                fontSize: 64,
+                fontSize: '80px',
                 fontWeight: 800,
                 lineHeight: 0.9,
                 color: '#fff',
@@ -1174,8 +1170,7 @@ export default function App() {
                   animationDelay: '0.8s',
                 }}
               >
-                We help boost your brand with impactful content and delivered<br />
-                across our wide-reaching media platforms.
+                We help boost your brand with impactful content and delivered across our wide-reaching media platforms.
               </div>
             </div>
           </div>
@@ -1214,7 +1209,7 @@ export default function App() {
           <div 
             className="animated-text-left platforms-title"
             style={{
-              fontSize: 48,
+              fontSize: '80px',
               fontWeight: 800,
               color: '#fff',
               marginBottom: 50,
@@ -1611,11 +1606,11 @@ export default function App() {
           <div 
             className="animated-slide-top who-we-are-title"
             style={{
-              fontSize: 55,
+              fontSize: '64px',
               fontWeight: 800,
               lineHeight: 0.9,
               color: '#9E2B10',
-              letterSpacing: -2,
+              letterSpacing: 0.9,
               marginBottom: 30,
               textAlign: 'center',
             }}
@@ -1843,7 +1838,7 @@ export default function App() {
           <div 
             className="animated-slide-top audience-reach-title"
             style={{
-              fontSize: 48,
+              fontSize: '64px',
               fontWeight: 800,
               color: '#fff',
               marginBottom: 60,

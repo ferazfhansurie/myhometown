@@ -30,7 +30,7 @@ export default function MyStory() {
           marginTop: 20,
         }}>
           <div style={{
-            fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '48px' : '64px',
+            fontSize: '64px',
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
