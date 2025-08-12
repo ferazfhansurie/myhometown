@@ -25,6 +25,11 @@ export default function MyClients() {
       }
       
       .case-studies-subtitle {
+        font-size: 16px !important;
+        margin-left: 20px !important;
+      }
+      
+      .case-studies-subtitle {
         font-size: 18px !important;
         margin-left: 20px !important;
       }
@@ -163,7 +168,7 @@ export default function MyClients() {
           marginTop: 20,
         }}>
           <div className="case-studies-title" style={{
-            fontSize: 64,
+            fontSize: 48,
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
@@ -174,7 +179,7 @@ export default function MyClients() {
             MY CLIENTS
           </div>
           <div className="case-studies-subtitle" style={{
-            fontSize: 22,
+            fontSize: 18,
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,

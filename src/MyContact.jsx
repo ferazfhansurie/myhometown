@@ -84,7 +84,7 @@ export default function MyContact() {
           marginTop: 20,
         }}>
           <div style={{
-            fontSize: 64,
+            fontSize: 48,
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
@@ -95,7 +95,7 @@ export default function MyContact() {
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>CONTACT
           </div>
           <div style={{
-            fontSize: 22,
+            fontSize: 18,
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,
