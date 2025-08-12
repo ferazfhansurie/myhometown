@@ -240,7 +240,7 @@ export default function App() {
           setStatsCounting(false);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px -300px 0px' });
 
     const statsSection = document.querySelector('.stats-section');
     if (statsSection) {
@@ -260,7 +260,7 @@ export default function App() {
           setIsThreeColumnVisible(false);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px -200px 0px' });
 
     const threeColumnSection = document.querySelector('.three-column-section');
     if (threeColumnSection) {
@@ -319,7 +319,7 @@ export default function App() {
             });
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px -300px 0px' });
 
     const audienceReachSection = document.querySelector('.audience-reach-section');
     if (audienceReachSection) {
@@ -834,12 +834,14 @@ export default function App() {
           
           .platform-logos {
             gap: 20px !important;
-            flex-wrap: wrap !important;
-            justify-content: center !important;
+            flex-wrap: nowrap !important;
+            justify-content: flex-start !important;
+            overflow-x: auto !important;
           }
           
           .platform-logos > div {
-            margin-bottom: 15px !important;
+            margin-bottom: 0 !important;
+            flex-shrink: 0 !important;
           }
           
           .three-column-section {
@@ -858,11 +860,25 @@ export default function App() {
           
           .three-column-big-text {
             font-size: 64px !important;
-            /* Keep the same jumpy animation as desktop */
+            /* Enable the same jumpy animation as desktop on mobile */
             transform: translateY(0) scale(1) rotateY(0deg) !important;
             opacity: 1 !important;
             filter: blur(0px) brightness(1) !important;
             text-shadow: 0 0 20px rgba(255,255,255,0.3) !important;
+            /* Ensure animations work on mobile */
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+            will-change: transform, opacity, filter !important;
+          }
+          
+          /* Force three column animations to work on mobile */
+          .three-column-section {
+            opacity: 1 !important;
+            visibility: visible !important;
+          }
+          
+          .three-column-item {
+            opacity: 1 !important;
+            visibility: visible !important;
           }
           
           .who-we-are-section {
@@ -1018,6 +1034,9 @@ export default function App() {
           
           .three-column-big-text {
             font-size: 48px !important;
+            /* Ensure animations work on very small screens */
+            transition: all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+            will-change: transform, opacity, filter !important;
           }
           
           .stats-grid {
@@ -1479,7 +1498,7 @@ export default function App() {
               fontWeight: '800',
               marginBottom: '30px',
               lineHeight: '0.9',
-              transform: isThreeColumnVisible ? 'translateY(0) scale(1) rotateY(0deg)' : 'translateY(60px) scale(0.7) rotateY(-15deg)',
+              transform: isThreeColumnVisible ? 'translateX(0) scale(1) rotateY(0deg)' : 'translateX(-100px) scale(0.8) rotateY(-15deg)',
               opacity: isThreeColumnVisible ? 1 : 0.3,
               filter: isThreeColumnVisible ? 'blur(0px) brightness(1)' : 'blur(2px) brightness(0.8)',
               transition: 'all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
@@ -1519,7 +1538,7 @@ export default function App() {
               fontWeight: '800',
               marginBottom: '30px',
               lineHeight: '0.9',
-              transform: isThreeColumnVisible ? 'translateY(0) scale(1) rotateY(0deg)' : 'translateY(60px) scale(0.7) rotateY(-15deg)',
+              transform: isThreeColumnVisible ? 'translateY(0) scale(1) rotateY(0deg)' : 'translateY(0) scale(0.3) rotateY(0deg)',
               opacity: isThreeColumnVisible ? 1 : 0.3,
               filter: isThreeColumnVisible ? 'blur(0px) brightness(1)' : 'blur(2px) brightness(0.8)',
               transition: 'all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s',
@@ -1559,7 +1578,7 @@ export default function App() {
               fontWeight: '800',
               marginBottom: '30px',
               lineHeight: '0.9',
-              transform: isThreeColumnVisible ? 'translateY(0) scale(1) rotateY(0deg)' : 'translateY(60px) scale(0.7) rotateY(-15deg)',
+              transform: isThreeColumnVisible ? 'translateX(0) scale(1) rotateY(0deg)' : 'translateX(100px) scale(0.8) rotateY(15deg)',
               opacity: isThreeColumnVisible ? 1 : 0.3,
               filter: isThreeColumnVisible ? 'blur(0px) brightness(1)' : 'blur(2px) brightness(0.8)',
               transition: 'all 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.6s',
