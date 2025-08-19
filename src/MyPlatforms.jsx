@@ -179,16 +179,6 @@ export default function MyPlatforms() {
           name: "My hometown media",
           url: "https://www.xiaohongshu.com/user/profile/6392bfa4000000001f015596?xhsshare=CopyLink&appuid=5e98b93000000000010073f1&apptime=1731472287&share_id=25a7cd1403a74cecb212f2219af65cc8",
           followers: "30k+"
-        },
-        {
-          name: "Xiao Hong Shu",
-          url: "https://www.xiaohongshu.com/user/profile/63482ba9000000001901de6e?xhsshare=CopyLink&appuid=5e98b93000000000010073f1&apptime=1677139945",
-          followers: "25k+"
-        },
-        {
-          name: "XHS 2",
-          url: "https://www.xiaohongshu.com/user/profile/6392bfa4000000001f015596?xhsshare=CopyLink&appuid=5e98b93000000000010073f1&apptime=1692279354",
-          followers: "20k+"
         }
       ]
     },
@@ -204,11 +194,6 @@ export default function MyPlatforms() {
           name: "Official",
           url: "https://www.tiktok.com/@myhometownmediaofficial?_t=ZS-8sApCTw2Uo3&_r=1",
           followers: "80k+"
-        },
-        {
-          name: "TikTok Malay",
-          url: "https://www.tiktok.com/@myhometownmedia?_t=8g5CSfgR1t4&_r=1",
-          followers: "60k+"
         }
       ]
     }
@@ -696,7 +681,7 @@ export default function MyPlatforms() {
                 { name: 'MY PLATFORMS', path: '/my-platforms' },
                 { name: 'MY SERVICES', path: '/my-services' },
 
-                { name: 'MY CASE STUDIES', path: '/case-studies' },
+                { name: 'MY CASE STUDIES', path: '/my-case-studies' },
                 { name: 'MY CONTACT', path: '/my-contact' }
               ].map((item) => (
                 <Link

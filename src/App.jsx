@@ -1175,7 +1175,7 @@ export default function App() {
             </div>
           </div>
           
-          {/* Uniform Image on the right */}
+          {/* Map Image on the right - Bigger than numbers */}
           <div className="hero-image" style={{
             flex: '1',
             display: 'flex',
@@ -1185,10 +1185,10 @@ export default function App() {
           }}>
             <img 
               className="animated-scale hover-lift"
-              src={uniformImage}
-              alt="My Hometown Media Team"
+              src={malaysiaMap}
+              alt="Malaysia Map with Social Media Channels"
               style={{
-                maxWidth: '600px',
+                maxWidth: '700px',
                 width: '100%',
                 height: 'auto',
                 borderRadius: '20px',
@@ -1652,7 +1652,6 @@ export default function App() {
               className="stats-card animated-scale"
               style={{
                 textAlign: 'center',
-                background: 'rgba(158, 43, 16, 0.1)',
                 padding: '40px 20px',
                 borderRadius: '16px',
                 animationDelay: '0.5s',
@@ -1681,7 +1680,6 @@ export default function App() {
               className="stats-card animated-scale"
               style={{
                 textAlign: 'center',
-                background: 'rgba(158, 43, 16, 0.1)',
                 padding: '40px 20px',
                 borderRadius: '16px',
                 animationDelay: '0.7s',
@@ -1710,7 +1708,6 @@ export default function App() {
               className="stats-card animated-scale"
               style={{
                 textAlign: 'center',
-                background: 'rgba(158, 43, 16, 0.1)',
                 padding: '40px 20px',
                 borderRadius: '16px',
                 animationDelay: '0.9s',
@@ -1739,7 +1736,6 @@ export default function App() {
               className="stats-card animated-scale"
               style={{
                 textAlign: 'center',
-                background: 'rgba(158, 43, 16, 0.1)',
                 padding: '40px 20px',
                 borderRadius: '16px',
                 animationDelay: '1.1s',
@@ -1931,6 +1927,190 @@ export default function App() {
                 display: 'block',
               }}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Share & Be Creative Section */}
+      <section style={{
+        background: '#FEEBE7',
+        padding: '80px 60px',
+        color: '#333',
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          textAlign: 'center',
+        }}>
+          <div style={{
+            fontSize: '64px',
+            fontWeight: '800',
+            color: '#9E2B10',
+            marginBottom: '30px',
+            lineHeight: '1.1',
+          }}>
+            SHARE & BE CREATIVE
+          </div>
+          <div style={{
+            fontSize: '22px',
+            color: '#666',
+            marginBottom: '50px',
+            maxWidth: '800px',
+            margin: '0 auto 50px auto',
+            lineHeight: '1.6',
+          }}>
+            Join our creative community and discover how we transform ideas into engaging social media content that connects with Malaysian audiences.
+          </div>
+          
+          {/* Creative Grid */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '40px',
+            marginBottom: '50px',
+          }}>
+            <div style={{
+              background: '#fff',
+              padding: '40px 30px',
+              borderRadius: '20px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+              transition: 'transform 0.3s ease',
+            }}
+            onMouseEnter={(e) => e.target.style.transform = 'translateY(-10px)'}
+            onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+            >
+              <div style={{
+                fontSize: '48px',
+                marginBottom: '20px',
+              }}>
+                🎨
+              </div>
+              <div style={{
+                fontSize: '24px',
+                fontWeight: '700',
+                color: '#9E2B10',
+                marginBottom: '15px',
+              }}>
+                Creative Design
+              </div>
+              <div style={{
+                fontSize: '16px',
+                color: '#666',
+                lineHeight: '1.6',
+              }}>
+                Eye-catching visuals and innovative designs that make your brand stand out in the crowded social media landscape.
+              </div>
+            </div>
+            
+            <div style={{
+              background: '#fff',
+              padding: '40px 30px',
+              borderRadius: '20px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+              transition: 'transform 0.3s ease',
+            }}
+            onMouseEnter={(e) => e.target.style.transform = 'translateY(-10px)'}
+            onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+            >
+              <div style={{
+                fontSize: '48px',
+                marginBottom: '20px',
+              }}>
+                📱
+              </div>
+              <div style={{
+                fontSize: '24px',
+                fontWeight: '700',
+                color: '#9E2B10',
+                marginBottom: '15px',
+              }}>
+                Social Strategy
+              </div>
+              <div style={{
+                fontSize: '16px',
+                color: '#666',
+                lineHeight: '1.6',
+              }}>
+                Data-driven strategies that maximize engagement and reach across all major social media platforms.
+              </div>
+            </div>
+            
+            <div style={{
+              background: '#fff',
+              padding: '40px 30px',
+              borderRadius: '20px',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+              transition: 'transform 0.3s ease',
+            }}
+            onMouseEnter={(e) => e.target.style.transform = 'translateY(-10px)'}
+            onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
+            >
+              <div style={{
+                fontSize: '48px',
+                marginBottom: '20px',
+              }}>
+                🌟
+              </div>
+              <div style={{
+                fontSize: '24px',
+                fontWeight: '700',
+                color: '#9E2B10',
+                marginBottom: '15px',
+              }}>
+                Brand Storytelling
+              </div>
+              <div style={{
+                fontSize: '16px',
+                color: '#666',
+                lineHeight: '1.6',
+              }}>
+                Compelling narratives that connect your brand with Malaysian culture and values, building authentic relationships.
+              </div>
+            </div>
+          </div>
+          
+          {/* Call to Action */}
+          <div style={{
+            background: '#9E2B10',
+            color: '#fff',
+            padding: '40px',
+            borderRadius: '20px',
+            maxWidth: '600px',
+            margin: '0 auto',
+          }}>
+            <div style={{
+              fontSize: '28px',
+              fontWeight: '700',
+              marginBottom: '20px',
+            }}>
+              Ready to Get Creative?
+            </div>
+            <div style={{
+              fontSize: '18px',
+              marginBottom: '30px',
+              opacity: '0.9',
+              lineHeight: '1.6',
+            }}>
+              Let's work together to create social media magic that drives real results for your business.
+            </div>
+            <Link
+              to="/my-contact"
+              style={{
+                background: '#FEEBE7',
+                color: '#9E2B10',
+                padding: '15px 30px',
+                borderRadius: '25px',
+                textDecoration: 'none',
+                fontSize: '18px',
+                fontWeight: '600',
+                display: 'inline-block',
+                transition: 'transform 0.2s ease',
+              }}
+              onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+              onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            >
+              START YOUR JOURNEY
+            </Link>
           </div>
         </div>
       </section>

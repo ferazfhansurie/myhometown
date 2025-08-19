@@ -20,6 +20,19 @@ export default function MyServices() {
 
   const services = [
     {
+      title: "SOCIAL MEDIA MARKETING",
+      description: "Strategic social media marketing solutions that drive engagement, build brand awareness, and deliver measurable results across all platforms.",
+      features: [
+        "Platform strategy development",
+        "Content marketing campaigns",
+        "Community engagement",
+        "Performance optimization",
+        "ROI measurement"
+      ],
+      image: section9,
+      color: "#FF2442"
+    },
+    {
       title: "SOCIAL MEDIA MANAGEMENT",
       description: "Complete management of your social media presence across all platforms including Facebook, Instagram, TikTok, and Xiao Hong Shu.",
       features: [
@@ -46,21 +59,8 @@ export default function MyServices() {
       color: "#E4405F"
     },
     {
-      title: "INFLUENCER MARKETING",
-      description: "Strategic influencer partnerships and campaigns to amplify your brand message and reach targeted audiences.",
-      features: [
-        "Influencer identification",
-        "Campaign strategy",
-        "Partnership management",
-        "Performance tracking",
-        "ROI measurement"
-      ],
-      image: section9,
-      color: "#FF2442"
-    },
-    {
-      title: "BRAND STORYTELLING",
-      description: "Compelling brand narratives that connect with Malaysian audiences and build lasting relationships with your customers.",
+      title: "BRAND AWARENESS",
+      description: "Compelling brand narratives and campaigns that connect with Malaysian audiences and build lasting relationships with your customers.",
       features: [
         "Brand story development",
         "Cultural integration",
@@ -72,8 +72,8 @@ export default function MyServices() {
       color: "#9E2B10"
     },
     {
-      title: "ADVERTISING CAMPAIGNS",
-      description: "Targeted advertising campaigns across social media platforms to drive conversions and achieve your business objectives.",
+      title: "MARKETING CAMPAIGN",
+      description: "Targeted marketing campaigns across social media platforms to drive conversions and achieve your business objectives.",
       features: [
         "Campaign strategy",
         "Audience targeting",
@@ -356,7 +356,7 @@ export default function MyServices() {
               color: '#9E2B10',
               marginBottom: '20px',
             }}>
-              OUR SERVICES
+              COMPREHENSIVE SOCIAL MEDIA SOLUTIONS
             </div>
             <div style={{
               fontSize: 18,
@@ -365,7 +365,7 @@ export default function MyServices() {
               margin: '0 auto',
               lineHeight: '1.6',
             }}>
-              From content creation to campaign management, we provide end-to-end social media solutions that drive real results for your business.
+              We don't just create content — we create impact. From stunning visuals to real-time engagement, our services are designed to make your brand impossible to scroll past.
             </div>
           </div>
 
@@ -455,6 +455,230 @@ export default function MyServices() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Services Section */}
+      <section style={{
+        background: '#fff',
+        padding: '80px 60px',
+        color: '#333',
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+        }}>
+          <div style={{
+            textAlign: 'center',
+            marginBottom: '60px',
+          }}>
+            <div style={{
+              fontSize: '48px',
+              fontWeight: '800',
+              color: '#9E2B10',
+              marginBottom: '20px',
+            }}>
+              OUR SOCIAL MEDIA MARKETING SERVICES
+            </div>
+            <div style={{
+              fontSize: '18px',
+              color: '#666',
+              maxWidth: '800px',
+              margin: '0 auto',
+              lineHeight: '1.6',
+            }}>
+              We don't just create content — we create impact. From stunning visuals to real-time engagement, our services are designed to make your brand impossible to scroll past.
+            </div>
+          </div>
+
+          {/* Service Details */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '40px',
+          }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '40px',
+              alignItems: 'center',
+            }}>
+              <div>
+                <h3 style={{
+                  fontSize: '28px',
+                  fontWeight: '700',
+                  color: '#9E2B10',
+                  marginBottom: '20px',
+                }}>
+                  Social Media Photo Content
+                </h3>
+                <p style={{
+                  fontSize: '16px',
+                  lineHeight: '1.6',
+                  color: '#666',
+                }}>
+                  Eye-catching, scroll-stopping images tailored for Facebook, Instagram, and more.
+                </p>
+              </div>
+              <div style={{
+                background: '#FEEBE7',
+                height: '200px',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '48px',
+              }}>
+                📸
+              </div>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '40px',
+              alignItems: 'center',
+            }}>
+              <div style={{
+                background: '#FEEBE7',
+                height: '200px',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '48px',
+                order: 2,
+              }}>
+                🎬
+              </div>
+              <div style={{ order: 1 }}>
+                <h3 style={{
+                  fontSize: '28px',
+                  fontWeight: '700',
+                  color: '#9E2B10',
+                  marginBottom: '20px',
+                }}>
+                  Social Media Video Reels
+                </h3>
+                <p style={{
+                  fontSize: '16px',
+                  lineHeight: '1.6',
+                  color: '#666',
+                }}>
+                  High-energy, trending videos crafted to boost views, shares, and engagement.
+                </p>
+              </div>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '40px',
+              alignItems: 'center',
+            }}>
+              <div>
+                <h3 style={{
+                  fontSize: '28px',
+                  fontWeight: '700',
+                  color: '#9E2B10',
+                  marginBottom: '20px',
+                }}>
+                  Social Media Brand Storytelling
+                </h3>
+                <p style={{
+                  fontSize: '16px',
+                  lineHeight: '1.6',
+                  color: '#666',
+                }}>
+                  We tell the story that makes your audience feel connected, loyal, and ready to choose you.
+                </p>
+              </div>
+              <div style={{
+                background: '#FEEBE7',
+                height: '200px',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '48px',
+              }}>
+                📖
+              </div>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '40px',
+              alignItems: 'center',
+            }}>
+              <div style={{
+                background: '#FEEBE7',
+                height: '200px',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '48px',
+                order: 2,
+              }}>
+                📺
+              </div>
+              <div style={{ order: 1 }}>
+                <h3 style={{
+                  fontSize: '28px',
+                  fontWeight: '700',
+                  color: '#9E2B10',
+                  marginBottom: '20px',
+                }}>
+                  Social Media Live Streaming
+                </h3>
+                <p style={{
+                  fontSize: '16px',
+                  lineHeight: '1.6',
+                  color: '#666',
+                }}>
+                  Real-time, interactive broadcasts that put your brand in the spotlight.
+                </p>
+              </div>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '40px',
+              alignItems: 'center',
+            }}>
+              <div>
+                <h3 style={{
+                  fontSize: '28px',
+                  fontWeight: '700',
+                  color: '#9E2B10',
+                  marginBottom: '20px',
+                }}>
+                  Social Media Page Management
+                </h3>
+                <p style={{
+                  fontSize: '16px',
+                  lineHeight: '1.6',
+                  color: '#666',
+                }}>
+                  From posting schedules to audience engagement, we manage your pages so you can focus on running your business.
+                </p>
+              </div>
+              <div style={{
+                background: '#FEEBE7',
+                height: '200px',
+                borderRadius: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '48px',
+              }}>
+                ⚙️
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -717,7 +941,7 @@ export default function MyServices() {
                 { name: 'MY PLATFORMS', path: '/my-platforms' },
                 { name: 'MY SERVICES', path: '/my-services' },
 
-                { name: 'MY CASE STUDIES', path: '/case-studies' },
+                { name: 'MY CASE STUDIES', path: '/my-case-studies' },
                 { name: 'MY CONTACT', path: '/my-contact' }
               ].map((item) => (
                 <Link

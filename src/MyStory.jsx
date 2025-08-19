@@ -405,7 +405,7 @@ export default function MyStory() {
                 { name: 'MY PLATFORMS', path: '/' },
                 { name: 'MY SERVICES', path: '/' },
                 { name: 'MY CLIENTS', path: '/' },
-                { name: 'MY CASE STUDIES', path: '/case-studies' },
+                { name: 'MY CASE STUDIES', path: '/my-case-studies' },
                 { name: 'MY CONTACT', path: '/' }
               ].map((item) => (
                 <Link

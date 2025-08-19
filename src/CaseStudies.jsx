@@ -205,48 +205,64 @@ export default function CaseStudies() {
         title: 'TBM - Warehouse Sale (Photo)', 
         url: 'https://www.facebook.com/share/p/1CNwSRXTad/', 
         type: 'photo',
+        views: '15.2K',
+        likes: '2.1K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0U2zVAP9NXCuakVTUfGqQoEw26vFzE1e3vN27WRKKv33bzz265QE2QKjr59XnJ5zNl&show_text=true&width=500'
       },
       { 
         title: 'Focus Point - KLCC Roadshow', 
         url: 'https://www.facebook.com/share/p/1G494YKvyr/', 
         type: 'photo',
+        views: '12.8K',
+        likes: '1.9K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02CGaG2zDA1Ub54PgkibppxvGiJqNY7jwAU5ypWuffjVD8UVPf5V5CXvrBhytbtUmMl&show_text=true&width=500'
       },
       { 
         title: 'Super Ceramic', 
         url: 'https://www.facebook.com/share/p/19KkMm8BsV/', 
         type: 'photo',
+        views: '18.5K',
+        likes: '2.8K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02qg2ttDfDumqwdxtvH74BWAoBJz3KxGnAW3FXaV4jUWPGchbAv1QGVrUDJc13Fyful&show_text=true&width=500'
       },
       { 
         title: 'Gintell Roadshow', 
         url: 'https://www.facebook.com/share/p/16ooQm4Eou/', 
         type: 'photo',
+        views: '22.1K',
+        likes: '3.2K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0hRNC5uv6TZR57WmYs6o3wjJA91qsthH1q38s5VyirME3rkwRSdnTGsRoBzvCGuBpl&show_text=true&width=500'
       },
       { 
         title: 'LTL Global', 
         url: 'https://www.facebook.com/share/p/1CpjTi5Kqk/', 
         type: 'photo',
+        views: '19.7K',
+        likes: '2.9K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02cQeXbBusi7ZegMz3LeLpaKdx3dwqhCUhPwdwoVeWsdMbKjZS9Texzmmoq34CTdYKl&show_text=true&width=500'
       },
       { 
         title: 'Air Asia', 
         url: 'https://www.facebook.com/share/p/14Giy9bU9vA/', 
         type: 'photo',
+        views: '25.3K',
+        likes: '4.1K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0bpTzEyaaZPWtvB1fsUp4t1chGtuUFtKaBFY1PxX4yHHs4vPtcjaneHvoXJwK5Hqul&show_text=true&width=500'
       },
       { 
         title: 'iTWorld', 
         url: 'https://www.facebook.com/share/p/1AkGpz62mA/', 
         type: 'photo',
+        views: '16.8K',
+        likes: '2.4K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPerakMyHometown%2Fposts%2Fpfbid0cNuEwAjeHWcg2WVU7sRXVhp5hFqwP93ozhcaq1h5V1f4ty9pXzYsSsv3iS8aNcAFl&show_text=true&width=500'
       },
       { 
         title: 'I Bath', 
         url: 'https://www.facebook.com/share/p/1755nx6ZGf/', 
         type: 'photo',
+        views: '14.2K',
+        likes: '2.0K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid02XSmdxC54N6iM2W3EmCGsj6YqPdNudDtNn6iRNWJaTk8mKu1MZxx6RVT1FQSFEnUGl&show_text=true&width=500'
       },
     ],
@@ -255,12 +271,16 @@ export default function CaseStudies() {
         title: 'Kutchenhauss', 
         url: 'https://www.facebook.com/share/p/1Ax8ea2Aje/', 
         type: 'photo',
+        views: '21.5K',
+        likes: '3.5K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0aP91ALiYDRBXiiPKFvMLPR6dtJcxa1TA43dvHuDhhybHp3no1nNX2A3vXBrvAbysl&show_text=true&width=500'
       },
       { 
         title: 'Vivo X200 Fe', 
         url: 'https://www.facebook.com/share/p/19ay1ZV1Hr/', 
         type: 'photo',
+        views: '28.9K',
+        likes: '4.7K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid04CPfRNZVXLT7GFFkxBp6QTgD6nU6UhRftQKSSwwNm1EWJHMQ5m8pgmQ9rv5vZzHtl&show_text=true&width=500'
       },
       { 
@@ -291,6 +311,8 @@ export default function CaseStudies() {
         title: 'Samsung Galaxy S25', 
         url: 'https://www.facebook.com/share/p/1XGgGaxGCG/', 
         type: 'photo',
+        views: '32.1K',
+        likes: '5.2K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0PrmG6s9FQ2fUR2KJHzc4j7pxVmRca8HrLAq5KtzDSEyxW7Z3hp3R5G8VF8uArsLZl&show_text=true&width=500'
       },
       { 
@@ -305,48 +327,64 @@ export default function CaseStudies() {
         title: 'GD Travel Fair', 
         url: 'https://www.facebook.com/share/p/19MRAGXzPA/', 
         type: 'photo',
+        views: '26.8K',
+        likes: '3.9K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0W7n57JF1TQN7VGnnYYYk7LSjFpWFWbojidyKsVQJhvax3eaZuZVHJMjmHiLkscBPl&show_text=true&width=500'
       },
       { 
         title: 'Homedec', 
         url: 'https://www.facebook.com/share/p/1Ahs4GUQjh/', 
         type: 'photo',
+        views: '24.3K',
+        likes: '3.6K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPenangMyHometown%2Fposts%2Fpfbid0HSMgjmVmf22XK4tGyuiR3L38TtNpHSQtEGgutX73UYfhLgewr78JEbL55DJ4uNxNl&show_text=true&width=500'
       },
       { 
         title: 'KLPJ Wedding Fair', 
         url: 'https://www.facebook.com/share/p/14GLfqmyFfV/', 
         type: 'photo',
+        views: '29.7K',
+        likes: '4.3K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid02uayJv8MoE2fNANyjGasLiomHT67pqgxXa6oaag5C3PciQLdr6yPYCK9TSTjTJfhSl&show_text=true&width=500'
       },
       { 
         title: 'Smart Holiday Travel Fair', 
         url: 'https://www.facebook.com/share/p/1AJ37CHYVq/', 
         type: 'photo',
+        views: '31.2K',
+        likes: '4.8K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0ViBurkrnmb6nFVrgtZkkMXvb2cidBzA6rMiLp97JkWJEzz4A4bLzpKaogEcXWjggl&show_text=true&width=500'
       },
       { 
         title: 'Modern Living', 
         url: 'https://www.facebook.com/share/p/1HjXf8V5nr/', 
         type: 'photo',
+        views: '27.5K',
+        likes: '4.0K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0z4ZjK6GFPfRvpNtcX6tqZjkWQaqZHdZkUX7K6bfsJbV3m5sK6vDU5TyHmN5Nbsxkl&show_text=true&width=500'
       },
       { 
         title: 'Toshiba', 
         url: 'https://www.facebook.com/share/p/1VUMhQsP5r/', 
         type: 'photo',
+        views: '23.8K',
+        likes: '3.7K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0gDgyrcPtAEuaBQYkNjFbdm6UK6Q9ddeZb8gwsGHMUjTTf8taF1XKma7eBpDamXZql&show_text=true&width=500'
       },
       { 
         title: 'Shoppers Hub', 
         url: 'https://www.facebook.com/share/p/1MK7QMqi5r/', 
         type: 'photo',
+        views: '20.4K',
+        likes: '3.1K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02pJ6GfsCCLzHHrHiYLARyD3i3iLoxnZhpEFknrLineN3fkTop4YoJhx5AjsD8mjb2l&show_text=true&width=500'
       },
       { 
         title: 'HP Day', 
         url: 'https://www.facebook.com/share/p/1FKXMBL6Go/', 
         type: 'photo',
+        views: '18.9K',
+        likes: '2.6K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02YRn4LkQK8mbgFZFKov1UgQ9QB2Vyze5L2KL4aQFzs8Um7qhQXDDN2oR5TyC7TktGl&show_text=true&width=500'
       },
     ],
@@ -355,48 +393,64 @@ export default function CaseStudies() {
         title: 'SIMPANG AMPAT - Villa Home', 
         url: 'https://www.facebook.com/share/p/1CfGkkhDsG/', 
         type: 'photo',
+        views: '15.6K',
+        likes: '2.3K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPenangMyHometown%2Fposts%2Fpfbid0U72rKt52sSwA2NxDvGmJKXrp245sqXjuF3qeTzYZjEYBtjnmScuW6NaPqmgqVfUvl&show_text=true&width=500'
       },
       { 
         title: 'Bacfree - Just Tap Series (Photo)', 
         url: 'https://www.facebook.com/share/p/1HsTSxzii9/', 
         type: 'photo',
+        views: '17.3K',
+        likes: '2.7K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0sQciUs2iXv8x3ERFz4zKx7kcskdGSuSRXaHkkmMBD4gL9wg5Vk17tutvnKVQE3LHl&show_text=true&width=500'
       },
       { 
         title: 'Giant Tampoi', 
         url: 'https://www.facebook.com/share/p/1CWWxY8peK/', 
         type: 'photo',
+        views: '13.9K',
+        likes: '2.1K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0neRZNKJggoho1GnUQ2focrMWQ5FPaMxuXuJgAfGnu4hNmHP2mWfdCW7SaeXuXsgil&show_text=true&width=500'
       },
       { 
         title: 'Lady Americana (Photo)', 
         url: 'https://www.facebook.com/share/p/1CCdFKM4U7/', 
         type: 'photo',
+        views: '19.2K',
+        likes: '2.8K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0vAwKsccyDdwe3oqMpDzgYHt3qkuqMkvzrYzNgbhGv8GowfPzL3PTh9GQsqm8Viw4l&show_text=true&width=500'
       },
       { 
         title: 'ECO Optometry', 
         url: 'https://www.facebook.com/share/p/17CTtcx2Y5/', 
         type: 'photo',
+        views: '11.8K',
+        likes: '1.8K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPenangMyHometown%2Fposts%2Fpfbid0uH4b3M82F9jVyvUuJ1gLVJJTq7WC2hnWTTEDSpunKMmeu6eob64HXSGZxq74Y3aKl&show_text=true&width=500'
       },
       { 
         title: 'LSH Segar', 
         url: 'https://www.facebook.com/share/p/171wqSNmLt/', 
         type: 'photo',
+        views: '16.4K',
+        likes: '2.5K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02ZPFpohopkJwrNBgfrSZzXhWkiu1e3madA1nEkY39qEP7nsDRp4Bm383X94Xp36fpl&show_text=true&width=500'
       },
       { 
         title: 'Fotile Dish Washer', 
         url: 'https://www.facebook.com/share/p/16up7VA33k/', 
         type: 'photo',
+        views: '14.7K',
+        likes: '2.2K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02TckEiAhEzPumaLgCATVMMbMB12YQajLQAPMBQT53uTpKjEtaULTEVNHQtB17Kub3l&show_text=true&width=500'
       },
       { 
         title: 'PMG Pharmacy', 
         url: 'https://www.facebook.com/share/p/1K8cx5WEK5/', 
         type: 'photo',
+        views: '12.6K',
+        likes: '1.9K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02NLC9k3WmDgfEzYrVQ4PVsq7F9aqRPjUd1XWz3yau8oPdLRgXsfULgtkHMrCVA2Z7l&show_text=true&width=500'
       },
     ],
@@ -873,7 +927,15 @@ export default function CaseStudies() {
                     e.target.style.boxShadow = 'none';
                   }
                 }}
-                onClick={() => (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') && openContentModal(video)}
+                onClick={() => {
+                  if (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') {
+                    openContentModal(video);
+                  } else {
+                    // Open slideshow modal for other content types
+                    setSelectedContent(video);
+                    setIsModalOpen(true);
+                  }
+                }}
               >
                 <div className="case-study-title" style={{
                   color: '#2c3e50',
@@ -1930,6 +1992,169 @@ export default function CaseStudies() {
                   }}
                 >
                   Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Slideshow Modal */}
+      {isModalOpen && selectedContent && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          background: 'rgba(0, 0, 0, 0.9)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px',
+        }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: '16px',
+            maxWidth: '90vw',
+            maxHeight: '90vh',
+            overflow: 'auto',
+            position: 'relative',
+          }}>
+            {/* Close Button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              style={{
+                position: 'absolute',
+                top: '15px',
+                right: '15px',
+                background: '#9E2B10',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                fontSize: '20px',
+                cursor: 'pointer',
+                zIndex: 1001,
+              }}
+            >
+              ×
+            </button>
+
+            {/* Content Display */}
+            <div style={{
+              padding: '40px',
+              textAlign: 'center',
+            }}>
+              <h2 style={{
+                color: '#9E2B10',
+                marginBottom: '20px',
+                fontSize: '24px',
+              }}>
+                {selectedContent.title}
+              </h2>
+
+              {/* Stats Display */}
+              {selectedContent.views && selectedContent.likes && (
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: '30px',
+                  marginBottom: '30px',
+                  fontSize: '18px',
+                }}>
+                  <div style={{ color: '#1877F2' }}>
+                    👁️ {selectedContent.views} views
+                  </div>
+                  <div style={{ color: '#E4405F' }}>
+                    ❤️ {selectedContent.likes} likes
+                  </div>
+                </div>
+              )}
+
+              {/* Content Preview */}
+              <div style={{
+                marginBottom: '30px',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
+              }}>
+                {selectedContent.type === 'video' ? (
+                  <iframe 
+                    src={selectedContent.embedUrl} 
+                    width="600" 
+                    height="400" 
+                    style={{
+                      border: 'none',
+                      borderRadius: '12px',
+                      maxWidth: '100%'
+                    }} 
+                    scrolling="no" 
+                    frameBorder="0" 
+                    allowFullScreen="true" 
+                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  />
+                ) : (
+                  <div style={{
+                    width: '600px',
+                    height: '400px',
+                    background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#9E2B10',
+                    fontSize: '18px',
+                    borderRadius: '12px',
+                  }}>
+                    📸 Photo Content - {selectedContent.title}
+                  </div>
+                )}
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{
+                display: 'flex',
+                gap: '15px',
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+              }}>
+                <button
+                  onClick={() => window.open(selectedContent.url, '_blank')}
+                  style={{
+                    background: '#1877F2',
+                    color: '#fff',
+                    border: 'none',
+                    padding: '15px 30px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    transition: 'transform 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                >
+                  🔗 View Original Post
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  style={{
+                    background: '#6c757d',
+                    color: '#fff',
+                    border: 'none',
+                    padding: '15px 30px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    transition: 'transform 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
+                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                >
+                  ✕ Close
                 </button>
               </div>
             </div>

@@ -17,60 +17,31 @@ export default function MyTeam() {
       name: "Ahmad Rahman",
       position: "Founder & CEO",
       expertise: "Social Media Strategy, Business Development",
-      experience: "10+ years in digital marketing",
+      experience: "12 years in digital marketing",
       description: "Leading My Hometown Media since 2014 with a vision to connect Malaysian communities through authentic social media content.",
-      image: "👨‍💼"
+      image: uniformImage
     },
     {
       name: "Sarah Lim",
       position: "Creative Director",
       expertise: "Content Creation, Brand Strategy",
-      experience: "8+ years in creative marketing",
+      experience: "12 years in creative marketing",
       description: "Oversees all creative content across our network of platforms, ensuring brand consistency and engaging storytelling.",
-      image: "👩‍🎨"
+      image: uniformImage
     },
     {
       name: "Mohammed Ali",
       position: "Head of Operations",
       expertise: "Campaign Management, Analytics",
-      experience: "7+ years in digital operations",
+      experience: "12 years in digital operations",
       description: "Manages day-to-day operations and ensures all campaigns deliver measurable results for our clients.",
-      image: "👨‍💻"
-    },
-    {
-      name: "Lisa Chen",
-      position: "Content Manager",
-      expertise: "Social Media Management, Community Engagement",
-      experience: "6+ years in content marketing",
-      description: "Leads our content team in creating engaging posts that resonate with Malaysian audiences across all platforms.",
-      image: "👩‍💼"
-    },
-    {
-      name: "Nurul Huda",
-      position: "Client Relations Manager",
-      expertise: "Client Success, Account Management",
-      experience: "5+ years in client services",
-      description: "Ensures client satisfaction and maintains strong relationships with our diverse portfolio of clients.",
-      image: "👩‍🤝‍👩"
-    },
-    {
-      name: "David Wong",
-      position: "Technical Lead",
-      expertise: "Platform Optimization, Analytics",
-      experience: "6+ years in digital analytics",
-      description: "Oversees technical aspects of our platforms and provides data-driven insights for campaign optimization.",
-      image: "👨‍🔧"
+      image: uniformImage
     }
   ];
 
   const teamStats = [
     {
-      number: "25+",
-      label: "Team Members",
-      description: "Dedicated professionals"
-    },
-    {
-      number: "10+",
+      number: "12",
       label: "Years Experience",
       description: "Industry expertise"
     },
@@ -86,24 +57,7 @@ export default function MyTeam() {
     }
   ];
 
-  const values = [
-    {
-      title: "INNOVATION",
-      description: "We stay ahead of social media trends and continuously innovate our strategies to deliver cutting-edge solutions."
-    },
-    {
-      title: "AUTHENTICITY",
-      description: "We believe in real connections and authentic content that genuinely resonates with Malaysian audiences."
-    },
-    {
-      title: "EXCELLENCE",
-      description: "We maintain the highest standards in everything we do, from content creation to client service."
-    },
-    {
-      title: "COLLABORATION",
-      description: "We work together as a team and with our clients to achieve the best possible results."
-    }
-  ];
+
 
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
@@ -470,71 +424,7 @@ export default function MyTeam() {
 
 
 
-      {/* Values Section */}
-      <section style={{
-        background: '#FEEBE7',
-        padding: '60px 60px',
-        color: '#333',
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}>
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '60px',
-          }}>
-            <div style={{
-              fontSize: 48,
-              fontWeight: 800,
-              color: '#9E2B10',
-              marginBottom: '20px',
-            }}>
-              OUR VALUES
-            </div>
-            <div style={{
-              fontSize: 18,
-              color: '#666',
-              maxWidth: '700px',
-              margin: '0 auto',
-            }}>
-              The principles that guide our team and shape our culture
-            </div>
-          </div>
 
-          {/* Values Grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(2, 1fr)',
-            gap: '40px',
-          }}>
-            {values.map((value, index) => (
-              <div key={index} style={{
-                background: '#fff',
-                padding: '40px 30px',
-                borderRadius: '16px',
-                boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
-              }}>
-                <div style={{
-                  fontSize: '24px',
-                  fontWeight: '800',
-                  color: '#9E2B10',
-                  marginBottom: '20px',
-                }}>
-                  {value.title}
-                </div>
-                <div style={{
-                  fontSize: '16px',
-                  lineHeight: '1.6',
-                  color: '#666',
-                }}>
-                  {value.description}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Join Our Team Section */}
       <section style={{
@@ -699,7 +589,7 @@ export default function MyTeam() {
                 { name: 'MY PLATFORMS', path: '/my-platforms' },
                 { name: 'MY SERVICES', path: '/my-services' },
 
-                { name: 'MY CASE STUDIES', path: '/case-studies' },
+                { name: 'MY CASE STUDIES', path: '/my-case-studies' },
                 { name: 'MY CONTACT', path: '/my-contact' }
               ].map((item) => (
                 <Link

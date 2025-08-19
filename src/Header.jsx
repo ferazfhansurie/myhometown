@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import mhtLogo from "./assets/mht logo gold 1 copy.png";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,14 +11,14 @@ export default function Header() {
 
   return (
     <nav style={{
-      background: '#9E2B10',
+      background: 'linear-gradient(180deg, #9E2B10 0%, #7A1F0C 100%)',
       color: '#fff',
       position: 'fixed',
       top: 0,
       left: 0,
       width: '100vw',
       zIndex: 100,
-      height: 60,
+      height: 70,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
@@ -27,7 +28,7 @@ export default function Header() {
       borderBottomLeftRadius: '30px',
       borderBottomRightRadius: '30px',
       overflow: 'hidden',
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
     }}>
       {/* Enhanced CSS Animations */}
       <style>{`
@@ -112,7 +113,7 @@ export default function Header() {
           box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
         
-        .logo-text {
+        .logo-container {
           animation: slideInLeft 0.8s ease-out forwards;
         }
         
@@ -140,15 +141,21 @@ export default function Header() {
 
       {/* Logo/Brand */}
       <div 
-        className="logo-text"
+        className="logo-container"
         style={{
-          fontSize: window.innerWidth <= 768 ? '18px' : '24px',
-          fontWeight: '800',
-          letterSpacing: '1px',
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
-        <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span>
-        <span style={{ fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>HOMETOWN</span>
+        <img 
+          src={mhtLogo}
+          alt="My Hometown Media Logo"
+          style={{
+            height: '50px',
+            width: 'auto',
+            filter: 'brightness(0) invert(1)',
+          }}
+        />
       </div>
 
       {/* Desktop Navigation */}
@@ -156,7 +163,7 @@ export default function Header() {
         display: window.innerWidth <= 768 ? 'none' : 'flex',
         gap: 15,
         alignItems: 'center',
-        flexWrap: 'wrap',
+        flexWrap: 'nowrap',
         justifyContent: 'center',
       }}>
         {[
@@ -177,14 +184,15 @@ export default function Header() {
               width: '130px',
               height: '40px',
               borderRadius: '20px',
-              background: 'rgba(255, 255, 255, 0.1)',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
+              background: 'rgba(255, 255, 255, 0.15)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               cursor: 'pointer',
               animation: `slideInRight 0.6s ease-out ${index * 0.1}s forwards`,
               opacity: 0,
+              backdropFilter: 'blur(10px)',
             }}
           >
             <Link
@@ -194,7 +202,7 @@ export default function Header() {
                 textDecoration: 'none',
                 cursor: 'pointer',
                 fontSize: '12px',
-                fontWeight: '500',
+                fontWeight: '600',
                 letterSpacing: '0.3px',
                 textAlign: 'center',
                 width: '100%',
@@ -256,11 +264,11 @@ export default function Header() {
       {isMenuOpen && (
         <div style={{
           position: 'fixed',
-          top: '60px',
+          top: '70px',
           left: 0,
           width: '100vw',
-          height: 'calc(100vh - 60px)',
-          background: '#9E2B10',
+          height: 'calc(100vh - 70px)',
+          background: 'linear-gradient(180deg, #9E2B10 0%, #7A1F0C 100%)',
           zIndex: 99,
           display: 'flex',
           flexDirection: 'column',
@@ -291,11 +299,13 @@ export default function Header() {
                 fontWeight: '600',
                 padding: '15px 20px',
                 margin: '5px 0',
-                background: 'rgba(255, 255, 255, 0.1)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
+                background: 'rgba(255, 255, 255, 0.15)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
                 width: '80%',
                 textAlign: 'center',
                 animationDelay: `${index * 0.1}s`,
+                borderRadius: '25px',
+                backdropFilter: 'blur(10px)',
               }}
               onClick={() => setIsMenuOpen(false)}
             >

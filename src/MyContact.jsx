@@ -43,9 +43,9 @@ export default function MyContact() {
       link: "mailto:marketing@mlbs.com.my"
     },
     {
-      title: "PHONE",
+      title: "MOBILE",
       content: "+603-9224 6636",
-      icon: "📞",
+      icon: "📱",
       link: "tel:+60392246636"
     },
     {
@@ -162,7 +162,7 @@ export default function MyContact() {
                     fontSize: '16px',
                     opacity: '0.9',
                   }}>
-                    We've received your inquiry and will get back to you within 24 hours.
+                    We've received your inquiry and will respond to you promptly with a personalized solution.
                   </div>
                 </div>
               ) : (
@@ -623,7 +623,7 @@ export default function MyContact() {
                 { name: 'MY PLATFORMS', path: '/my-platforms' },
                 { name: 'MY SERVICES', path: '/my-services' },
 
-                { name: 'MY CASE STUDIES', path: '/case-studies' },
+                { name: 'MY CASE STUDIES', path: '/my-case-studies' },
                 { name: 'MY CONTACT', path: '/my-contact' }
               ].map((item) => (
                 <Link

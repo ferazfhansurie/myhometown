@@ -5,7 +5,6 @@ import Header from "./Header.jsx";
 import instagramLogo from "./assets/instagram.png";
 
 export default function MyReviews() {
-  const [activeFilter, setActiveFilter] = useState('All');
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -19,7 +18,6 @@ export default function MyReviews() {
       company: "R1WYYC",
       rating: 5,
       testimonial: "One of my favourite community social partner to work together, the collaboration has been going on for 4 years. Our company brand has been strengthen throughout all their distribution channels.",
-      category: "Long-term Client",
       date: "2024"
     },
     {
@@ -28,7 +26,6 @@ export default function MyReviews() {
       company: "Foodie Delights",
       rating: 5,
       testimonial: "My Hometown Media transformed our social media presence completely. Their understanding of Malaysian food culture and their extensive network helped us reach our target audience effectively.",
-      category: "F&B Industry",
       date: "2024"
     },
     {
@@ -37,7 +34,6 @@ export default function MyReviews() {
       company: "TechStart Malaysia",
       rating: 5,
       testimonial: "The team at My Hometown Media delivered exceptional results for our tech startup. Their strategic approach and local market insights were invaluable to our growth.",
-      category: "Technology",
       date: "2023"
     },
     {
@@ -46,7 +42,6 @@ export default function MyReviews() {
       company: "Fashion Forward",
       rating: 5,
       testimonial: "Working with My Hometown Media has been a game-changer for our fashion brand. Their creative content and multi-platform strategy helped us connect with Malaysian fashion enthusiasts.",
-      category: "Retail",
       date: "2023"
     },
     {
@@ -55,7 +50,6 @@ export default function MyReviews() {
       company: "HealthCare Plus",
       rating: 5,
       testimonial: "My Hometown Media helped us build trust and credibility in the healthcare sector. Their professional approach and understanding of sensitive content was impressive.",
-      category: "Healthcare",
       date: "2023"
     },
     {
@@ -64,16 +58,43 @@ export default function MyReviews() {
       company: "EduSmart Malaysia",
       rating: 5,
       testimonial: "The team's expertise in educational content marketing helped us reach parents and students across Malaysia. Their results exceeded our expectations.",
-      category: "Education",
       date: "2023"
+    },
+    {
+      name: "David Wong",
+      position: "Marketing Manager",
+      company: "Property Plus",
+      rating: 5,
+      testimonial: "My Hometown Media's local market expertise helped us reach property buyers across Malaysia. Their targeted campaigns delivered exceptional ROI for our real estate projects.",
+      date: "2024"
+    },
+    {
+      name: "Mei Ling",
+      position: "Brand Director",
+      company: "Beauty Malaysia",
+      rating: 5,
+      testimonial: "The team's understanding of Malaysian beauty trends and their creative content strategy helped us build a strong brand presence across all social platforms.",
+      date: "2024"
+    },
+    {
+      name: "Rajesh Patel",
+      position: "CEO",
+      company: "Digital Solutions",
+      rating: 5,
+      testimonial: "Working with My Hometown Media has been transformative. Their data-driven approach and local market insights helped us achieve 300% growth in social media engagement.",
+      date: "2023"
+    },
+    {
+      name: "Aisha Binti",
+      position: "Marketing Head",
+      company: "Halal Foods",
+      rating: 5,
+      testimonial: "My Hometown Media's cultural sensitivity and understanding of halal markets helped us connect authentically with Malaysian Muslim consumers.",
+      date: "2024"
     }
   ];
 
-  const categories = ['All', 'Long-term Client', 'F&B Industry', 'Technology', 'Retail', 'Healthcare', 'Education'];
-
-  const filteredReviews = activeFilter === 'All' 
-    ? reviews 
-    : reviews.filter(review => review.category === activeFilter);
+  const filteredReviews = reviews;
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -345,57 +366,7 @@ export default function MyReviews() {
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section style={{
-        background: '#9E2B10',
-        padding: '40px 60px',
-        color: '#fff',
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}>
-          {/* Filter Navigation */}
-          <div style={{
-            display: 'flex',
-            gap: 30,
-            alignItems: 'center',
-            marginBottom: 30,
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}>
-            {categories.map((category) => (
-              <div
-                key={category}
-                style={{
-                  cursor: 'pointer',
-                  padding: '12px 24px',
-                  borderRadius: '25px',
-                  fontSize: 16,
-                  fontWeight: activeFilter === category ? '600' : '400',
-                  background: activeFilter === category ? '#FEEBE7' : 'rgba(255,255,255,0.1)',
-                  color: activeFilter === category ? '#9E2B10' : '#fff',
-                  border: activeFilter === category ? 'none' : '1px solid rgba(255,255,255,0.3)',
-                  transition: 'all 0.3s ease',
-                }}
-                onClick={() => setActiveFilter(category)}
-                onMouseEnter={(e) => {
-                  if (activeFilter !== category) {
-                    e.target.style.background = 'rgba(255,255,255,0.2)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeFilter !== category) {
-                    e.target.style.background = 'rgba(255,255,255,0.1)';
-                  }
-                }}
-              >
-                {category}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Reviews Grid Section */}
       <section style={{
