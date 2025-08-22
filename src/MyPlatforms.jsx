@@ -176,7 +176,7 @@ export default function MyPlatforms() {
       platform: "Xiao Hong Shu",
       accounts: [
         {
-          name: "My hometown media",
+          name: "My Hometown Media",
           url: "https://www.xiaohongshu.com/user/profile/6392bfa4000000001f015596?xhsshare=CopyLink&appuid=5e98b93000000000010073f1&apptime=1731472287&share_id=25a7cd1403a74cecb212f2219af65cc8",
           followers: "30k+"
         }
@@ -200,13 +200,13 @@ export default function MyPlatforms() {
   ];
 
   return (
-    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
+    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Header */}
       <Header />
 
       {/* Hero Section */}
       <section style={{
-        background: '#9E2B10',
+        background: '#AB2A25',
         minHeight: '20vh',
         paddingTop: 80,
         paddingBottom: 40,
@@ -247,18 +247,51 @@ export default function MyPlatforms() {
 
       {/* Facebook Platforms Section */}
       <section style={{
-        background: '#FEEBE7',
-        padding: '60px 60px',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
+        padding: '80px 60px',
         color: '#333',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '150px',
+          height: '150px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
         <div style={{
           maxWidth: '1400px',
           margin: '0 auto',
+          position: 'relative',
+          zIndex: 2,
         }}>
           {/* Facebook Header */}
           <div style={{
             textAlign: 'center',
-            marginBottom: '60px',
+            marginBottom: '80px',
+            background: 'rgba(255, 255, 255, 0.8)',
+            padding: '50px 40px',
+            borderRadius: '24px',
+            boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(171, 42, 37, 0.1)',
+
+            backdropFilter: 'blur(10px)',
           }}>
             <div style={{
               display: 'flex',
@@ -268,34 +301,37 @@ export default function MyPlatforms() {
               marginBottom: '20px',
             }}>
               <div style={{
-                width: '50px',
-                height: '50px',
-                background: '#1877F2',
+                width: '45px',
+                height: '45px',
+                background: 'linear-gradient(135deg, #1877F2, #0D6EFD)',
                 borderRadius: '12px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'white',
-                fontSize: '24px',
+                fontSize: '20px',
                 fontWeight: 'bold',
+                boxShadow: '0 4px 15px rgba(24, 119, 242, 0.2)',
               }}>
                 f
               </div>
               <div style={{
-                fontSize: 48,
-                fontWeight: 800,
-                color: '#9E2B10',
+                fontSize: '32px',
+                fontWeight: '700',
+                color: '#AB2A25',
+                lineHeight: '1.1',
               }}>
-                FACEBOOK NETWORK
+                Facebook Network
               </div>
             </div>
             <div style={{
-              fontSize: 18,
+              fontSize: '16px',
               color: '#666',
-              maxWidth: '600px',
+              maxWidth: '500px',
               margin: '0 auto',
+              lineHeight: '1.4',
             }}>
-              22 Facebook pages covering every state in Malaysia with a combined reach of over 4 million followers
+              22 pages across Malaysia • 4M+ followers
             </div>
           </div>
 
@@ -318,58 +354,86 @@ export default function MyPlatforms() {
                 }}
               >
                 <div style={{
-                  background: '#fff',
-                  borderRadius: '16px',
-                  padding: '25px',
-                  boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+                  borderRadius: '20px',
+                  padding: '30px',
+                  boxShadow: '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '20px',
+                  gap: '25px',
+                  border: '2px solid rgba(171, 42, 37, 0.08)',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.transform = 'translateY(-5px)';
-                  e.target.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+                  e.target.style.transform = 'translateY(-8px) scale(1.02)';
+                  e.target.style.boxShadow = '0 25px 60px rgba(171, 42, 37, 0.15), 0 15px 35px rgba(0, 0, 0, 0.15)';
+                  e.target.style.border = '2px solid rgba(171, 42, 37, 0.2)';
                 }}
                 onMouseLeave={(e) => {
-                  e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                  e.target.style.transform = 'translateY(0) scale(1)';
+                  e.target.style.boxShadow = '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)';
+                  e.target.style.border = '2px solid rgba(171, 42, 37, 0.08)';
                 }}
                 >
+                  {/* Decorative background element */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '-20px',
+                    right: '-20px',
+                    width: '80px',
+                    height: '80px',
+                    background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+                    borderRadius: '50%',
+                    filter: 'blur(15px)',
+                  }}></div>
+                  
                   <img 
                     src={platform.image}
                     alt={platform.name}
                     style={{
-                      width: '80px',
-                      height: '80px',
-                      borderRadius: '50%',
+                      width: '90px',
+                      height: '90px',
+                      borderRadius: '20px',
                       objectFit: 'cover',
                       flexShrink: 0,
+                      boxShadow: '0 8px 25px rgba(0, 0, 0, 0.15)',
+                      border: '3px solid rgba(171, 42, 37, 0.1)',
+                      transition: 'all 0.3s ease',
                     }}
                   />
                   <div style={{ flex: 1 }}>
                     <div style={{
-                      fontSize: '16px',
-                      fontWeight: '600',
+                      fontSize: '18px',
+                      fontWeight: '700',
                       color: '#333',
-                      marginBottom: '8px',
+                      marginBottom: '10px',
                       lineHeight: '1.3',
                     }}>
                       {platform.name}
                     </div>
                     <div style={{
                       fontSize: '14px',
-                      color: '#1877F2',
-                      fontWeight: '600',
+                      color: '#666',
+                      lineHeight: '1.4',
                     }}>
-                      {platform.followers} followers
+                      Click to visit page
                     </div>
                   </div>
                   <div style={{
-                    color: '#9E2B10',
-                    fontSize: '20px',
+                    color: '#AB2A25',
+                    fontSize: '24px',
                     fontWeight: 'bold',
+                    background: 'rgba(171, 42, 37, 0.1)',
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'all 0.3s ease',
                   }}>
                     →
                   </div>
@@ -382,30 +446,58 @@ export default function MyPlatforms() {
 
       {/* Other Platforms Section */}
       <section style={{
-        background: '#9E2B10',
-        padding: '60px 60px',
+        background: 'linear-gradient(135deg, #AB2A25 0%, #8B1A1A 100%)',
+        padding: '80px 60px',
         color: '#fff',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '20%',
+          right: '15%',
+          width: '100px',
+          height: '100px',
+          background: 'rgba(255, 255, 255, 0.08)',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
         <div style={{
           maxWidth: '1400px',
           margin: '0 auto',
+          position: 'relative',
+          zIndex: 2,
         }}>
           <div style={{
             textAlign: 'center',
-            marginBottom: '60px',
+            marginBottom: '80px',
           }}>
             <div style={{
-              fontSize: 48,
-              fontWeight: 800,
+              fontSize: '36px',
+              fontWeight: '700',
               marginBottom: '20px',
+              lineHeight: '1.2',
             }}>
-              OTHER PLATFORMS
+              Other Platforms
             </div>
             <div style={{
-              fontSize: 18,
+              fontSize: '18px',
               opacity: '0.9',
               maxWidth: '600px',
               margin: '0 auto',
+              lineHeight: '1.5',
             }}>
               Expanding our reach across Instagram, Xiao Hong Shu, and TikTok
             </div>
@@ -419,18 +511,46 @@ export default function MyPlatforms() {
           }}>
             {otherPlatforms.map((platformGroup, index) => (
               <div key={index} style={{
-                background: 'rgba(255,255,255,0.1)',
-                borderRadius: '20px',
-                padding: '40px',
-                border: '1px solid rgba(255,255,255,0.2)',
+                background: 'rgba(255,255,255,0.15)',
+                borderRadius: '24px',
+                padding: '50px 40px',
+                border: '2px solid rgba(255,255,255,0.2)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)',
+                transition: 'all 0.3s ease',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.background = 'rgba(255,255,255,0.2)';
+                e.currentTarget.style.boxShadow = '0 25px 80px rgba(0, 0, 0, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.background = 'rgba(255,255,255,0.15)';
+                e.currentTarget.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.2)';
               }}>
+                {/* Decorative background element */}
                 <div style={{
-                  fontSize: '32px',
-                  fontWeight: '800',
-                  marginBottom: '30px',
+                  position: 'absolute',
+                  top: '-30px',
+                  right: '-30px',
+                  width: '100px',
+                  height: '100px',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  borderRadius: '50%',
+                  filter: 'blur(20px)',
+                }}></div>
+                <div style={{
+                  fontSize: '28px',
+                  fontWeight: '700',
+                  marginBottom: '35px',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '15px',
+                  gap: '18px',
+                  position: 'relative',
+                  zIndex: 2,
                 }}>
                   {platformGroup.platform === 'Instagram' && (
                     <div style={{
@@ -520,18 +640,40 @@ export default function MyPlatforms() {
                       }}
                     >
                       <div style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        borderRadius: '12px',
-                        padding: '20px',
-                        transition: 'background 0.2s ease',
+                        background: 'rgba(255,255,255,0.12)',
+                        borderRadius: '16px',
+                        padding: '22px 20px',
+                        transition: 'all 0.3s ease',
                         cursor: 'pointer',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
+                        border: '1px solid rgba(255,255,255,0.15)',
+                        position: 'relative',
+                        overflow: 'hidden',
                       }}
-                      onMouseEnter={(e) => e.target.style.background = 'rgba(255,255,255,0.2)'}
-                      onMouseLeave={(e) => e.target.style.background = 'rgba(255,255,255,0.1)'}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = 'rgba(255,255,255,0.2)';
+                        e.currentTarget.style.transform = 'translateX(5px)';
+                        e.currentTarget.style.border = '1px solid rgba(255,255,255,0.3)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = 'rgba(255,255,255,0.12)';
+                        e.currentTarget.style.transform = 'translateX(0)';
+                        e.currentTarget.style.border = '1px solid rgba(255,255,255,0.15)';
+                      }}
                       >
+                        {/* Subtle background element */}
+                        <div style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%)',
+                          transform: 'translateX(-100%)',
+                          transition: 'transform 0.6s ease',
+                        }}></div>
                         <div>
                           <div style={{
                             fontSize: '18px',
@@ -540,12 +682,7 @@ export default function MyPlatforms() {
                           }}>
                             {account.name}
                           </div>
-                          <div style={{
-                            fontSize: '14px',
-                            opacity: '0.8',
-                          }}>
-                            {account.followers} followers
-                          </div>
+                       
                         </div>
                         <div style={{
                           fontSize: '20px',

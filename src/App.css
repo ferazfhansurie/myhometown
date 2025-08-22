@@ -27,6 +27,17 @@
   }
 }
 
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-150%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;

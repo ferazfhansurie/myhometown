@@ -8,13 +8,13 @@ import instagramLogo from "./assets/instagram.png";
 
 export default function MyStory() {
   return (
-    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
+    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Header */}
       <Header />
 
       {/* Hero Section */}
       <section style={{
-        background: '#9E2B10',
+        background: '#AB2A25',
         minHeight: '20vh',
         paddingTop: 80,
         paddingBottom: 40,
@@ -56,7 +56,7 @@ export default function MyStory() {
 
       {/* Story Content Section */}
       <section style={{
-        background: '#FEEBE7',
+        background: '#ffffff',
         padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '50px 40px' : '60px 60px',
         color: '#333',
       }}>
@@ -79,25 +79,25 @@ export default function MyStory() {
               padding: '40px 30px',
               background: 'rgba(255, 255, 255, 0.7)',
               borderRadius: '20px',
-              boxShadow: '0 8px 32px rgba(158, 43, 16, 0.1)',
-              border: '1px solid rgba(158, 43, 16, 0.1)',
+              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.1)',
+              border: '1px solid rgba(171, 42, 37, 0.1)',
               position: 'relative',
             }}>
+                          <div style={{
+              fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
+              fontWeight: 800,
+              color: '#AB2A25',
+              marginBottom: 30,
+              lineHeight: 1.1,
+              position: 'relative',
+            }}>
+              THE BEGINNING
               <div style={{
-                fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
-                fontWeight: 800,
-                color: '#9E2B10',
-                marginBottom: 30,
-                lineHeight: 1.1,
-                position: 'relative',
-              }}>
-                THE BEGINNING
-                <div style={{
-                  width: '60px',
-                  height: '4px',
-                  background: '#9E2B10',
-                  marginTop: '15px',
-                  borderRadius: '2px',
+                width: '60px',
+                height: '4px',
+                background: '#AB2A25',
+                marginTop: '15px',
+                borderRadius: '2px',
                 }}></div>
               </div>
               <div style={{
@@ -125,7 +125,7 @@ export default function MyStory() {
                 top: '20px',
                 bottom: '20px',
                 width: '2px',
-                background: 'linear-gradient(to bottom, transparent, #9E2B10, transparent)',
+                background: 'linear-gradient(to bottom, transparent, #AB2A25, transparent)',
                 transform: 'translateX(-50%)',
               }}></div>
             )}
@@ -136,14 +136,14 @@ export default function MyStory() {
               padding: '40px 30px',
               background: 'rgba(255, 255, 255, 0.7)',
               borderRadius: '20px',
-              boxShadow: '0 8px 32px rgba(158, 43, 16, 0.1)',
-              border: '1px solid rgba(158, 43, 16, 0.1)',
+              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.1)',
+              border: '1px solid rgba(171, 42, 37, 0.1)',
               position: 'relative',
             }}>
               <div style={{
                 fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
                 fontWeight: 800,
-                color: '#9E2B10',
+                color: '#AB2A25',
                 marginBottom: 30,
                 lineHeight: 1.1,
                 position: 'relative',
@@ -152,7 +152,7 @@ export default function MyStory() {
                 <div style={{
                   width: '60px',
                   height: '4px',
-                  background: '#9E2B10',
+                  background: '#AB2A25',
                   marginTop: '15px',
                   borderRadius: '2px',
                 }}></div>
@@ -182,7 +182,7 @@ export default function MyStory() {
                 top: '20px',
                 bottom: '20px',
                 width: '2px',
-                background: 'linear-gradient(to bottom, transparent, #9E2B10, transparent)',
+                background: 'linear-gradient(to bottom, transparent, #AB2A25, transparent)',
                 transform: 'translateX(-50%)',
               }}></div>
             )}
@@ -193,14 +193,14 @@ export default function MyStory() {
               padding: '40px 30px',
               background: 'rgba(255, 255, 255, 0.7)',
               borderRadius: '20px',
-              boxShadow: '0 8px 32px rgba(158, 43, 16, 0.1)',
-              border: '1px solid rgba(158, 43, 16, 0.1)',
+              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.1)',
+              border: '1px solid rgba(171, 42, 37, 0.1)',
               position: 'relative',
             }}>
               <div style={{
                 fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
                 fontWeight: 800,
-                color: '#9E2B10',
+                color: '#AB2A25',
                 marginBottom: 30,
                 lineHeight: 1.1,
                 position: 'relative',
@@ -209,7 +209,7 @@ export default function MyStory() {
                 <div style={{
                   width: '60px',
                   height: '4px',
-                  background: '#9E2B10',
+                  background: '#AB2A25',
                   marginTop: '15px',
                   borderRadius: '2px',
                 }}></div>
@@ -237,13 +237,13 @@ export default function MyStory() {
             textAlign: 'center',
             marginTop: '60px',
             padding: window.innerWidth <= 768 ? '40px 20px' : '60px 40px',
-            background: 'rgba(158, 43, 16, 0.1)',
+            background: 'rgba(171, 42, 37, 0.1)',
             borderRadius: '20px',
           }}>
             <div style={{
               fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '32px' : '40px',
               fontWeight: 800,
-              color: '#9E2B10',
+              color: '#AB2A25',
               marginBottom: 20,
             }}>
               READY TO WORK WITH US?
@@ -262,24 +262,24 @@ export default function MyStory() {
               style={{
                 display: 'inline-block',
                 padding: window.innerWidth <= 480 ? '14px 28px' : '16px 32px',
-                background: '#9E2B10',
+                background: '#AB2A25',
                 color: '#fff',
                 textDecoration: 'none',
                 borderRadius: '30px',
                 fontSize: window.innerWidth <= 480 ? '16px' : '18px',
                 fontWeight: '600',
                 transition: 'all 0.3s ease',
-                border: '2px solid #9E2B10',
+                border: '2px solid #AB2A25',
               }}
               onMouseEnter={(e) => {
                 e.target.style.background = '#fff';
-                e.target.style.color = '#9E2B10';
-                e.target.style.border = '2px solid #9E2B10';
+                e.target.style.color = '#AB2A25';
+                e.target.style.border = '2px solid #AB2A25';
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = '#9E2B10';
+                e.target.style.background = '#AB2A25';
                 e.target.style.color = '#fff';
-                e.target.style.border = '2px solid #9E2B10';
+                e.target.style.border = '2px solid #AB2A25';
               }}
             >
               GET STARTED TODAY

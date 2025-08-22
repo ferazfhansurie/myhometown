@@ -43,17 +43,12 @@ export default function MyContact() {
       link: "mailto:marketing@mlbs.com.my"
     },
     {
-      title: "MOBILE",
-      content: "+603-9224 6636",
-      icon: "📱",
-      link: "tel:+60392246636"
-    },
-    {
-      title: "MOBILE",
+      title: "PHONE",
       content: "+6013-6688181",
       icon: "📱",
       link: "tel:+60136688181"
     }
+ 
   ];
 
   const additionalPhones = [
@@ -63,13 +58,13 @@ export default function MyContact() {
   ];
 
   return (
-    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
+    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Header */}
       <Header />
 
       {/* Hero Section */}
       <section style={{
-        background: '#9E2B10',
+        background: '#AB2A25',
         minHeight: '20vh',
         paddingTop: 80,
         paddingBottom: 40,
@@ -110,13 +105,39 @@ export default function MyContact() {
 
       {/* Contact Content Section */}
       <section style={{
-        background: '#FEEBE7',
-        padding: '60px 60px',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
+        padding: '80px 60px',
         color: '#333',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '150px',
+          height: '150px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
         <div style={{
           maxWidth: '1400px',
           margin: '0 auto',
+          position: 'relative',
+          zIndex: 2,
         }}>
           <div style={{
             display: 'grid',
@@ -125,14 +146,29 @@ export default function MyContact() {
             alignItems: 'start',
           }}>
             {/* Contact Form */}
-            <div>
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.8)',
+              padding: '40px 30px',
+              borderRadius: '24px',
+              boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
+              border: '1px solid rgba(171, 42, 37, 0.1)',
+              backdropFilter: 'blur(10px)',
+            }}>
               <div style={{
-                fontSize: 48,
-                fontWeight: 800,
-                color: '#9E2B10',
-                marginBottom: '30px',
+                fontSize: '36px',
+                fontWeight: '800',
+                color: '#AB2A25',
+                marginBottom: '20px',
+                lineHeight: '1.2',
               }}>
-                GET IN TOUCH
+                Get in Touch
+                <div style={{
+                  width: '80px',
+                  height: '4px',
+                  background: 'linear-gradient(90deg, #AB2A25, #AB2A25, #D32F2F)',
+                  margin: '20px 0',
+                  borderRadius: '2px',
+                }}></div>
               </div>
               <div style={{
                 fontSize: 18,
@@ -145,11 +181,13 @@ export default function MyContact() {
 
               {isSubmitted ? (
                 <div style={{
-                  background: '#9E2B10',
+                  background: 'linear-gradient(135deg, #AB2A25, #8B1A1A)',
                   color: '#fff',
                   padding: '30px',
                   borderRadius: '16px',
                   textAlign: 'center',
+                  boxShadow: '0 15px 40px rgba(171, 42, 37, 0.2)',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
                 }}>
                   <div style={{
                     fontSize: '24px',
@@ -291,7 +329,7 @@ export default function MyContact() {
                   <button
                     type="submit"
                     style={{
-                      background: '#9E2B10',
+                      background: '#AB2A25',
                       color: '#fff',
                       padding: '18px 40px',
                       border: 'none',
@@ -316,7 +354,7 @@ export default function MyContact() {
               <div style={{
                 fontSize: 48,
                 fontWeight: 800,
-                color: '#9E2B10',
+                color: '#AB2A25',
                 marginBottom: '30px',
               }}>
                 CONTACT INFO
@@ -354,7 +392,7 @@ export default function MyContact() {
                       <div style={{
                         fontSize: '18px',
                         fontWeight: '600',
-                        color: '#9E2B10',
+                        color: '#AB2A25',
                         marginBottom: '8px',
                       }}>
                         {info.title}
@@ -368,7 +406,7 @@ export default function MyContact() {
                             textDecoration: 'none',
                             lineHeight: '1.5',
                           }}
-                          onMouseEnter={(e) => e.target.style.color = '#9E2B10'}
+                          onMouseEnter={(e) => e.target.style.color = '#AB2A25'}
                           onMouseLeave={(e) => e.target.style.color = '#666'}
                         >
                           {info.content}
@@ -435,21 +473,75 @@ export default function MyContact() {
 
       {/* Business Hours Section */}
       <section style={{
-        background: '#9E2B10',
-        padding: '60px 60px',
-        color: '#fff',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
+        padding: '80px 60px',
+        color: '#333',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '150px',
+          height: '150px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
           textAlign: 'center',
+          position: 'relative',
+          zIndex: 2,
         }}>
           <div style={{
-            fontSize: 48,
-            fontWeight: 800,
-            marginBottom: '40px',
+            background: 'rgba(255, 255, 255, 0.8)',
+            padding: '40px 30px',
+            borderRadius: '24px',
+            boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(171, 42, 37, 0.1)',
+            backdropFilter: 'blur(10px)',
+            marginBottom: '60px',
           }}>
-            BUSINESS HOURS
+            <div style={{
+              fontSize: '36px',
+              fontWeight: '800',
+              color: '#AB2A25',
+              marginBottom: '20px',
+              lineHeight: '1.2',
+            }}>
+              Business Hours
+              <div style={{
+                width: '80px',
+                height: '4px',
+                background: 'linear-gradient(90deg, #AB2A25, #AB2A25, #D32F2F)',
+                margin: '20px auto',
+                borderRadius: '2px',
+              }}></div>
+            </div>
+            <div style={{
+              fontSize: '18px',
+              color: '#555',
+              maxWidth: '600px',
+              margin: '0 auto',
+              lineHeight: '1.5',
+            }}>
+              We're here to serve you during these hours. Feel free to reach out anytime!
+            </div>
           </div>
           
           <div style={{
@@ -475,34 +567,172 @@ export default function MyContact() {
               }
             ].map((schedule, index) => (
               <div key={index} style={{
-                background: 'rgba(255,255,255,0.1)',
+                background: 'rgba(255, 255, 255, 0.9)',
                 padding: '30px',
-                borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.2)',
+                borderRadius: '20px',
+                border: '2px solid rgba(171, 42, 37, 0.1)',
+                boxShadow: '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                position: 'relative',
+                overflow: 'hidden',
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.boxShadow = '0 25px 60px rgba(171, 42, 37, 0.2), 0 15px 35px rgba(0, 0, 0, 0.15)';
+                e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)';
+                e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.1)';
               }}>
                 <div style={{
                   fontSize: '20px',
-                  fontWeight: '600',
+                  fontWeight: '700',
                   marginBottom: '15px',
+                  color: '#AB2A25',
                 }}>
                   {schedule.day}
                 </div>
                 <div style={{
                   fontSize: '18px',
-                  marginBottom: '10px',
-                  opacity: '0.9',
+                  marginBottom: '15px',
+                  color: '#555',
+                  fontWeight: '500',
                 }}>
                   {schedule.hours}
                 </div>
                 <div style={{
                   fontSize: '14px',
-                  fontWeight: '600',
+                  fontWeight: '700',
                   color: schedule.status === 'Open' ? '#4CAF50' : '#f44336',
+                  padding: '8px 16px',
+                  background: schedule.status === 'Open' ? 'rgba(76, 175, 80, 0.1)' : 'rgba(244, 67, 54, 0.1)',
+                  borderRadius: '20px',
+                  display: 'inline-block',
+                  border: `1px solid ${schedule.status === 'Open' ? '#4CAF50' : '#f44336'}`,
                 }}>
                   {schedule.status}
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section style={{
+        background: 'linear-gradient(135deg, #AB2A25 0%, #8B1A1A 100%)',
+        padding: '80px 60px',
+        color: '#fff',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '150px',
+          height: '150px',
+          background: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'rgba(255, 255, 255, 0.08)',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          textAlign: 'center',
+          position: 'relative',
+          zIndex: 2,
+        }}>
+          <div style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            padding: '50px 40px',
+            borderRadius: '24px',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backdropFilter: 'blur(10px)',
+          }}>
+            <div style={{
+              fontSize: '36px',
+              fontWeight: '800',
+              marginBottom: '20px',
+              lineHeight: '1.2',
+            }}>
+              Ready to Get Started?
+              <div style={{
+                width: '80px',
+                height: '4px',
+                background: 'linear-gradient(90deg, #ffffff, #ffffff, #f0f0f0)',
+                margin: '20px auto',
+                borderRadius: '2px',
+              }}></div>
+            </div>
+            <div style={{
+              fontSize: '18px',
+              marginBottom: '40px',
+              opacity: '0.9',
+              maxWidth: '600px',
+              margin: '0 auto 40px auto',
+              lineHeight: '1.5',
+            }}>
+              Let's discuss how we can help transform your social media presence and grow your brand across Malaysia.
+            </div>
+            <div style={{
+              display: 'flex',
+              gap: '20px',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+            }}>
+              <Link to="/my-services" style={{
+                background: 'linear-gradient(135deg, #ffffff, #f8f9fa)',
+                color: '#AB2A25',
+                padding: '16px 32px',
+                borderRadius: '30px',
+                textDecoration: 'none',
+                fontSize: '16px',
+                fontWeight: '700',
+                border: '2px solid #ffffff',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: '0 8px 25px rgba(255, 255, 255, 0.2)',
+              }} onMouseEnter={(e) => {
+                e.target.style.transform = 'translateY(-3px)';
+                e.target.style.boxShadow = '0 15px 35px rgba(255, 255, 255, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.target.style.transform = 'translateY(0)';
+                e.target.style.boxShadow = '0 8px 25px rgba(255, 255, 255, 0.2)';
+              }}>
+                View Our Services
+              </Link>
+              <Link to="/my-case-studies" style={{
+                background: 'transparent',
+                color: '#ffffff',
+                padding: '16px 32px',
+                borderRadius: '30px',
+                textDecoration: 'none',
+                fontSize: '16px',
+                fontWeight: '700',
+                border: '2px solid #ffffff',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              }} onMouseEnter={(e) => {
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.transform = 'translateY(-3px)';
+              }} onMouseLeave={(e) => {
+                e.target.style.background = 'transparent';
+                e.target.style.transform = 'translateY(0)';
+              }}>
+                See Our Work
+              </Link>
+            </div>
           </div>
         </div>
       </section>

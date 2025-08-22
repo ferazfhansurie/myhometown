@@ -60,7 +60,7 @@ export default function MyTeam() {
 
 
   return (
-    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
+    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Enhanced CSS Animations */}
       <style>{`
         @keyframes fadeInUp {
@@ -290,7 +290,7 @@ export default function MyTeam() {
 
       {/* Hero Section */}
       <section style={{
-        background: '#9E2B10',
+        background: '#AB2A25',
         minHeight: '20vh',
         paddingTop: 80,
         paddingBottom: 40,
@@ -331,29 +331,69 @@ export default function MyTeam() {
 
       {/* Team Stats Section */}
       <section style={{
-        background: '#FEEBE7',
-        padding: '60px 60px',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
+        padding: '80px 60px',
         color: '#333',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '150px',
+          height: '150px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
+          position: 'relative',
+          zIndex: 2,
         }}>
           <div style={{
             textAlign: 'center',
-            marginBottom: '60px',
+            marginBottom: '80px',
+            background: 'rgba(255, 255, 255, 0.8)',
+            padding: '50px 40px',
+            borderRadius: '24px',
+            boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(171, 42, 37, 0.1)',
+            backdropFilter: 'blur(10px)',
           }}>
             <div style={{
-              fontSize: 48,
-              fontWeight: 800,
-              color: '#9E2B10',
-              marginBottom: '20px',
+              fontSize: '42px',
+              fontWeight: '800',
+              color: '#AB2A25',
+              marginBottom: '25px',
+              lineHeight: '1.2',
             }}>
-              OUR TEAM AT A GLANCE
+              Our Team at a Glance
+              <div style={{
+                width: '100px',
+                height: '4px',
+                background: 'linear-gradient(90deg, #AB2A25, #D32F2F)',
+                margin: '20px auto',
+                borderRadius: '2px',
+              }}></div>
             </div>
             <div style={{
-              fontSize: 18,
-              color: '#666',
+              fontSize: '18px',
+              color: '#555',
               maxWidth: '700px',
               margin: '0 auto',
               lineHeight: '1.6',
@@ -365,37 +405,55 @@ export default function MyTeam() {
           {/* Stats Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '40px',
             marginBottom: '60px',
+            maxWidth: '900px',
+            margin: '0 auto 60px auto',
           }}>
             {teamStats.map((stat, index) => (
               <div key={index} style={{
-                background: '#fff',
-                padding: '40px 20px',
-                borderRadius: '16px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                padding: '40px 30px',
+                borderRadius: '20px',
                 textAlign: 'center',
-                boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
+                boxShadow: '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)',
+                border: '2px solid rgba(171, 42, 37, 0.1)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                position: 'relative',
+                overflow: 'hidden',
+              }} onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.boxShadow = '0 25px 60px rgba(171, 42, 37, 0.2), 0 15px 35px rgba(0, 0, 0, 0.15)';
+                e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)';
+                e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.1)';
               }}>
                 <div style={{
-                  fontSize: 48,
+                  fontSize: '48px',
                   fontWeight: '800',
-                  color: '#9E2B10',
+                  color: '#AB2A25',
                   marginBottom: '15px',
+                  lineHeight: '1.1',
                 }}>
                   {stat.number}
                 </div>
                 <div style={{
                   fontSize: '18px',
-                  fontWeight: '600',
+                  fontWeight: '700',
                   color: '#333',
                   marginBottom: '10px',
+                  lineHeight: '1.3',
                 }}>
                   {stat.label}
                 </div>
                 <div style={{
                   fontSize: '14px',
                   color: '#666',
+                  fontWeight: '500',
+                  lineHeight: '1.4',
                 }}>
                   {stat.description}
                 </div>
@@ -403,21 +461,126 @@ export default function MyTeam() {
             ))}
           </div>
 
-          {/* Uniform Image */}
+          {/* Team Collage */}
           <div style={{
             marginTop: '60px',
             textAlign: 'center',
           }}>
-            <img
-              src={uniformImage}
-              alt="Our Team"
-              style={{
-                maxWidth: '800px',
-                height: 'auto',
-                borderRadius: '20px',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-              }}
-            />
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '20px',
+              maxWidth: '900px',
+              margin: '0 auto',
+            }}>
+              {/* Main Center Image */}
+              <div style={{
+                gridColumn: '2',
+                gridRow: '1 / 3',
+              }}>
+                <img
+                  src={uniformImage}
+                  alt="Our Team"
+                  style={{
+                    width: '100%',
+                    height: '300px',
+                    objectFit: 'cover',
+                    borderRadius: '20px',
+                    boxShadow: '0 15px 40px rgba(171, 42, 37, 0.2), 0 8px 25px rgba(0, 0, 0, 0.15)',
+                    border: '3px solid rgba(255, 255, 255, 0.8)',
+                  }}
+                />
+              </div>
+              
+              {/* Top Left Image */}
+              <div style={{
+                gridColumn: '1',
+                gridRow: '1',
+              }}>
+                <img
+                  src={uniformImage}
+                  alt="Team Member 1"
+                  style={{
+                    width: '100%',
+                    height: '140px',
+                    objectFit: 'cover',
+                    borderRadius: '16px',
+                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1)',
+                    border: '2px solid rgba(255, 255, 255, 0.8)',
+                  }}
+                />
+              </div>
+              
+              {/* Top Right Image */}
+              <div style={{
+                gridColumn: '3',
+                gridRow: '1',
+              }}>
+                <img
+                  src={uniformImage}
+                  alt="Team Member 2"
+                  style={{
+                    width: '100%',
+                    height: '140px',
+                    objectFit: 'cover',
+                    borderRadius: '16px',
+                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1)',
+                    border: '2px solid rgba(255, 255, 255, 0.8)',
+                  }}
+                />
+              </div>
+              
+              {/* Bottom Left Image */}
+              <div style={{
+                gridColumn: '1',
+                gridRow: '2',
+              }}>
+                <img
+                  src={uniformImage}
+                  alt="Team Member 3"
+                  style={{
+                    width: '100%',
+                    height: '140px',
+                    objectFit: 'cover',
+                    borderRadius: '16px',
+                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1)',
+                    border: '2px solid rgba(255, 255, 255, 0.8)',
+                  }}
+                />
+              </div>
+              
+              {/* Bottom Right Image */}
+              <div style={{
+                gridColumn: '3',
+                gridRow: '2',
+              }}>
+                <img
+                  src={uniformImage}
+                  alt="Team Member 4"
+                  style={{
+                    width: '100%',
+                    height: '140px',
+                    objectFit: 'cover',
+                    borderRadius: '16px',
+                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1)',
+                    border: '2px solid rgba(255, 255, 255, 0.8)',
+                  }}
+                />
+              </div>
+            </div>
+            
+            {/* Collage Description */}
+            <div style={{
+              marginTop: '30px',
+              fontSize: '16px',
+              color: '#666',
+              fontStyle: 'italic',
+              maxWidth: '600px',
+              margin: '30px auto 0 auto',
+              lineHeight: '1.5',
+            }}>
+              Our diverse team of professionals working together to deliver exceptional results
+            </div>
           </div>
         </div>
       </section>
@@ -428,7 +591,7 @@ export default function MyTeam() {
 
       {/* Join Our Team Section */}
       <section style={{
-        background: '#9E2B10',
+                        background: '#AB2A25',
         padding: '80px 60px',
         color: '#fff',
         textAlign: 'center',
@@ -455,8 +618,8 @@ export default function MyTeam() {
           <Link
             to="/my-contact"
             style={{
-              background: '#FEEBE7',
-              color: '#9E2B10',
+              background: '#ffffff',
+              color: '#AB2A25',
               padding: '20px 40px',
               borderRadius: '12px',
               textDecoration: 'none',

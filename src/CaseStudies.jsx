@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './index.css';
 import Header from "./Header.jsx";
 import instagramLogo from "./assets/instagram.png";
@@ -9,153 +9,8 @@ export default function CaseStudies() {
   const [videoContentOpen, setVideoContentOpen] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
-
-  // Add responsive styles
-  const responsiveStyles = `
-    /* Mobile Responsive Styles for Case Studies */
-    @media (max-width: 768px) {
-      .case-studies-hero {
-        padding-top: 60px !important;
-        padding-bottom: 30px !important;
-      }
-      
-      .case-studies-title {
-        font-size: 36px !important;
-        margin-left: 20px !important;
-        margin-top: 10px !important;
-      }
-      
-      .filter-section {
-        padding: 20px 15px !important;
-      }
-      
-      .filter-navigation {
-        flex-direction: column !important;
-        gap: 15px !important;
-        align-items: stretch !important;
-      }
-      
-      .filter-button {
-        text-align: center !important;
-        width: 100% !important;
-        max-width: 200px !important;
-        margin: 0 auto !important;
-      }
-      
-      .dropdown-container {
-        width: 100% !important;
-        max-width: 200px !important;
-        margin: 0 auto !important;
-      }
-      
-      .dropdown-menu {
-        width: 100% !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-      }
-      
-      .other-filters {
-        flex-direction: column !important;
-        gap: 15px !important;
-        align-items: center !important;
-      }
-      
-      .case-studies-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
-        padding: 0 15px !important;
-      }
-      
-      .case-study-card {
-        min-height: 400px !important;
-        padding: 15px !important;
-      }
-      
-      .case-study-title {
-        font-size: 12px !important;
-        padding: 3px 0 !important;
-      }
-      
-      .case-study-category {
-        font-size: 12px !important;
-        padding: 4px 8px !important;
-      }
-      
-      .case-studies-footer {
-        padding: 40px 20px 20px 20px !important;
-      }
-      
-      .footer-grid {
-        grid-template-columns: 1fr !important;
-        gap: 40px !important;
-      }
-      
-      .footer-grid > div {
-        text-align: center !important;
-      }
-      
-      .social-media-icons {
-        justify-content: center !important;
-      }
-      
-      /* Mobile iframe optimizations */
-      .case-study-card iframe {
-        width: 100% !important;
-        height: auto !important;
-        min-height: 300px !important;
-        max-height: 400px !important;
-      }
-      
-      /* Mobile content preview optimizations */
-      .content-preview-container {
-        min-height: 150px !important;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .case-studies-title {
-        font-size: 28px !important;
-        margin-left: 15px !important;
-      }
-      
-      .filter-section {
-        padding: 15px 10px !important;
-      }
-      
-      .case-studies-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-        padding: 0 10px !important;
-      }
-      
-      .case-study-card {
-        min-height: 350px !important;
-        padding: 12px !important;
-      }
-      
-      .case-studies-footer {
-        padding: 30px 15px 20px 15px !important;
-      }
-      
-      /* Mobile modal optimizations */
-      .content-modal {
-        padding: 10px !important;
-      }
-      
-      .modal-content {
-        width: 95% !important;
-        max-height: 80% !important;
-      }
-      
-      /* Mobile iframe optimizations for modal */
-      .modal-content iframe {
-        width: 100% !important;
-        height: auto !important;
-        max-height: 400px !important;
-      }
-    }
-  `;
+  const [hiddenPosts, setHiddenPosts] = useState(new Set());
+  const [isLoading, setIsLoading] = useState(true);
 
   // Function to get Facebook video embed URL
   const getFacebookVideoEmbed = (url) => {
@@ -191,6 +46,365 @@ export default function CaseStudies() {
     setSelectedContent(null);
   };
 
+  // Function to detect Facebook post errors by checking iframe content
+  const detectFacebookError = (postTitle) => {
+    console.log(`Checking for errors in post: ${postTitle}`);
+    
+    // Since CORS prevents direct iframe access, we'll use a different approach
+    // We'll check if the iframe has loaded any content and look for visual indicators
+    
+    const iframes = document.querySelectorAll('iframe');
+    let errorFound = false;
+    
+    iframes.forEach((iframe, index) => {
+      try {
+        // Try to access iframe content
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        
+        if (iframeDoc && iframeDoc.body) {
+          const iframeText = iframeDoc.body.textContent || '';
+          console.log(`Iframe ${index} content preview:`, iframeText.substring(0, 200));
+          
+          // Check for the specific Facebook error message
+          if (iframeText.includes('This Facebook post is no longer available') ||
+              iframeText.includes('This content is no longer available') ||
+              iframeText.includes('This post is unavailable') ||
+              iframeText.includes('Content not found') ||
+              iframeText.includes('may have been removed') ||
+              iframeText.includes('privacy settings') ||
+              iframeText.includes('no longer available')) {
+            
+            console.log(`🚨 ERROR FOUND in iframe for: ${postTitle}`);
+            console.log('Error text found:', iframeText);
+            
+            // Hide this post
+            setHiddenPosts(prev => new Set([...prev, postTitle]));
+            errorFound = true;
+          }
+        }
+      } catch (error) {
+        // CORS restriction - can't access iframe content directly
+        console.log(`CORS restriction for iframe ${index} - ${postTitle}`);
+        console.log('CORS error:', error.message);
+        
+        // Alternative approach: check if iframe has loaded content
+        if (iframe.contentWindow && iframe.contentWindow.location.href !== 'about:blank') {
+          // Iframe has loaded something, check if it's an error page
+          setTimeout(() => {
+            try {
+              const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+              if (iframeDoc && iframeDoc.body) {
+                const text = iframeDoc.body.textContent || '';
+                if (text.includes('This Facebook post is no longer available')) {
+                  console.log(`🚨 ERROR DETECTED via alternative method: ${postTitle}`);
+                  setHiddenPosts(prev => new Set([...prev, postTitle]));
+                }
+              }
+            } catch (e) {
+              // Still can't access, use manual detection
+              console.log(`Manual detection needed for: ${postTitle}`);
+            }
+          }, 2000);
+        }
+      }
+    });
+    
+    if (!errorFound) {
+      console.log(`✅ No errors found for: ${postTitle}`);
+    }
+    
+    return errorFound;
+  };
+
+  // Function to handle iframe load and error detection
+  const handleIframeLoad = (postTitle) => {
+    console.log(`🔄 Iframe loaded for: ${postTitle}`);
+    
+    // Set a timeout to check for errors after iframe loads
+    setTimeout(() => {
+      console.log(`⏰ Checking for errors in: ${postTitle}`);
+      detectFacebookError(postTitle);
+    }, 3000); // Wait 3 seconds for content to load
+  };
+
+  // Function to manually check for Facebook errors
+  const checkForFacebookErrors = () => {
+    const errorMessages = [
+      'This Facebook post is no longer available',
+      'This content is no longer available',
+      'This post is unavailable',
+      'Content not found',
+      'This post may have been removed',
+      'The privacy settings of the post may have changed'
+    ];
+
+    // Check all iframes for errors
+    const iframes = document.querySelectorAll('iframe');
+    let errorCount = 0;
+
+    iframes.forEach((iframe, index) => {
+      try {
+        // Try to access iframe content
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        if (iframeDoc && iframeDoc.body) {
+          const iframeText = iframeDoc.body.textContent || '';
+          
+          // Check for any error messages
+          const hasError = errorMessages.some(errorMsg => 
+            iframeText.includes(errorMsg)
+          );
+          
+          if (hasError) {
+            errorCount++;
+            // Find the corresponding video title and hide it
+            const videoCard = iframe.closest('[style*="background: #ffffff"]');
+            if (videoCard) {
+              const titleElement = videoCard.querySelector('[style*="color: #2c3e50"]');
+              if (titleElement) {
+                const title = titleElement.textContent.trim();
+                setHiddenPosts(prev => new Set([...prev, title]));
+              }
+            }
+          }
+        }
+      } catch (error) {
+        // CORS restriction - can't access iframe content
+        console.log(`CORS restriction for iframe ${index}`);
+      }
+    });
+
+    if (errorCount > 0) {
+      console.log(`Found ${errorCount} posts with errors`);
+    } else {
+      console.log('No errors found in Facebook posts');
+    }
+  };
+
+  // Function to check for broken iframes and hide them
+  const checkForBrokenIframes = () => {
+    console.log('🔍 Checking for broken iframes...');
+    
+    const iframes = document.querySelectorAll('iframe');
+    let brokenCount = 0;
+    
+    iframes.forEach((iframe, index) => {
+      // Check if iframe has loaded content
+      if (iframe.contentWindow) {
+        try {
+          // Try to access iframe content
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          
+          if (iframeDoc && iframeDoc.body) {
+            const bodyText = iframeDoc.body.textContent || '';
+            const bodyHTML = iframeDoc.body.innerHTML || '';
+            
+            // Check for error messages or broken content indicators
+            if (bodyText.includes('This Facebook post is no longer available') ||
+                bodyText.includes('This content is no longer available') ||
+                bodyText.includes('This post is unavailable') ||
+                bodyText.includes('Content not found') ||
+                bodyText.includes('may have been removed') ||
+                bodyText.includes('privacy settings') ||
+                bodyText.includes('no longer available') ||
+                bodyHTML.includes('broken') ||
+                bodyHTML.includes('error') ||
+                bodyHTML.includes('unavailable') ||
+                bodyHTML.includes('not available')) {
+              
+              console.log(`🚨 Broken iframe detected at index ${index}`);
+              
+              // Find the parent card and hide it
+              const card = iframe.closest('[style*="background: #ffffff"]');
+              if (card) {
+                const titleElement = card.querySelector('[style*="color: #2c3e50"]');
+                if (titleElement) {
+                  const title = titleElement.textContent.trim();
+                  console.log(`Hiding broken post: ${title}`);
+                  setHiddenPosts(prev => new Set([...prev, title]));
+                  brokenCount++;
+                }
+              }
+            }
+          }
+        } catch (error) {
+          console.log(`Iframe ${index} CORS error:`, error.message);
+          
+          // Alternative: check if iframe src is accessible
+          if (iframe.src && iframe.src.includes('facebook.com')) {
+            // This might be a broken Facebook embed
+            console.log(`Potential broken Facebook embed at index ${index}`);
+            
+            // Try to hide posts that might be broken due to CORS
+            const card = iframe.closest('[style*="background: #ffffff"]');
+            if (card) {
+              const titleElement = card.querySelector('[style*="color: #2c3e50"]');
+              if (titleElement) {
+                const title = titleElement.textContent.trim();
+                // Only hide if it's not already hidden
+                if (!hiddenPosts.has(title)) {
+                  console.log(`Hiding potentially broken post due to CORS: ${title}`);
+                  setHiddenPosts(prev => new Set([...prev, title]));
+                  brokenCount++;
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+    
+    console.log(`Found and hidden ${brokenCount} broken iframes`);
+    return brokenCount;
+  };
+
+  // Function to hide posts with broken Facebook embeds
+  const hideBrokenFacebookPosts = () => {
+    console.log('🚫 Hiding posts with broken Facebook embeds...');
+    
+    // Get all the posts that are likely broken
+    const postsToHide = [
+      // Already hidden posts
+      'DUNLOPILLO',
+      'TCL', 
+      'SAMSUNG GALAXY S25',
+      'ASAS DUNIA BERHAD - HIJAUAN JERNIH',
+      'Vivo - Deepavali campaign',
+      'TBM - Warehouse Sale (Photo)',
+      'Focus Point - KLCC Roadshow',
+      'Super Ceramic',
+      
+      // Additional broken posts
+      'Gintell Roadshow',
+      'LTL Global',
+      'Air Asia',
+      'iTWorld',
+      'I Bath',
+      'Kutchenhauss',
+      'Vivo X200 Fe',
+      'MKA Cabinet Concept',
+      'EZVIZ DL50FVS',
+      'GD Travel Fair',
+      'Homedec',
+      'KLPJ Wedding Fair',
+      'Smart Holiday Travel Fair',
+      'Modern Living',
+      'Toshiba',
+      'Shoppers Hub',
+      'HP Day',
+      'SIMPANG AMPAT - Villa Home',
+      'Bacfree - Just Tap Series (Photo)',
+      'Giant Tampoi',
+      'Lady Americana (Photo)',
+      'ECO Optometry',
+      'LSH Segar',
+      'Fotile Dish Washer',
+      'PMG Pharmacy',
+      'Dunlopillo'  ,
+      'Samsung Galaxy S25',
+      'Asas Dunia Berhad - Hijauan Jernih',
+    ];
+    
+    let hiddenCount = 0;
+    postsToHide.forEach(postTitle => {
+      if (!hiddenPosts.has(postTitle)) {
+        console.log(`Hiding broken post: ${postTitle}`);
+        setHiddenPosts(prev => new Set([...prev, postTitle]));
+        hiddenCount++;
+      }
+    });
+    
+    console.log(`Hidden ${hiddenCount} broken posts`);
+    return hiddenCount;
+  };
+
+  // Function to aggressively hide all potentially broken posts
+  const hideAllBrokenPosts = () => {
+    console.log('🚫 Aggressively hiding all potentially broken posts...');
+    
+    // Get all visible posts and check if they have iframes
+    const allCards = document.querySelectorAll('[style*="background: #ffffff"]');
+    let hiddenCount = 0;
+    
+    allCards.forEach(card => {
+      const titleElement = card.querySelector('[style*="color: #2c3e50"]');
+      if (titleElement) {
+        const title = titleElement.textContent.trim();
+        
+        // Check if this post has an iframe (Facebook embed)
+        const iframe = card.querySelector('iframe');
+        if (iframe && !hiddenPosts.has(title)) {
+          // This is a Facebook post, check if it's broken
+          try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            if (iframeDoc && iframeDoc.body) {
+              const bodyText = iframeDoc.body.textContent || '';
+              const bodyHTML = iframeDoc.body.innerHTML || '';
+              
+              // If it contains error messages or appears broken, hide it
+              if (bodyText.includes('This Facebook post is no longer available') ||
+                  bodyText.includes('This content is no longer available') ||
+                  bodyText.includes('This post is unavailable') ||
+                  bodyText.includes('Content not found') ||
+                  bodyText.includes('may have been removed') ||
+                  bodyText.includes('privacy settings') ||
+                  bodyText.includes('no longer available') ||
+                  bodyHTML.includes('broken') ||
+                  bodyHTML.includes('error') ||
+                  bodyHTML.includes('unavailable') ||
+                  bodyHTML.includes('not available')) {
+                
+                console.log(`Hiding broken post: ${title}`);
+                setHiddenPosts(prev => new Set([...prev, title]));
+                hiddenCount++;
+              }
+            }
+          } catch (error) {
+            // CORS restriction - this might be a broken Facebook embed
+            console.log(`Potential broken Facebook embed for: ${title}`);
+            
+            // Hide posts that we can't access due to CORS (likely broken)
+            if (!hiddenPosts.has(title)) {
+              console.log(`Hiding potentially broken post due to CORS: ${title}`);
+              setHiddenPosts(prev => new Set([...prev, title]));
+              hiddenCount++;
+            }
+          }
+        }
+      }
+    });
+    
+    console.log(`Aggressively hidden ${hiddenCount} potentially broken posts`);
+    return hiddenCount;
+  };
+
+  // Function to hide ALL Facebook posts (nuclear option)
+  const hideAllFacebookPosts = () => {
+    console.log('🚫 Hiding ALL Facebook posts (nuclear option)...');
+    
+    // Get all visible posts and hide any that have Facebook iframes
+    const allCards = document.querySelectorAll('[style*="background: #ffffff"]');
+    let hiddenCount = 0;
+    
+    allCards.forEach(card => {
+      const titleElement = card.querySelector('[style*="color: #2c3e50"]');
+      if (titleElement) {
+        const title = titleElement.textContent.trim();
+        
+        // Check if this post has an iframe (Facebook embed)
+        const iframe = card.querySelector('iframe');
+        if (iframe && !hiddenPosts.has(title)) {
+          // This is a Facebook post, hide it immediately
+          console.log(`Hiding Facebook post: ${title}`);
+          setHiddenPosts(prev => new Set([...prev, title]));
+          hiddenCount++;
+        }
+      }
+    });
+    
+    console.log(`Hidden ALL ${hiddenCount} Facebook posts`);
+    return hiddenCount;
+  };
+
 
   // Video data organized by categories
   const videoData = {
@@ -205,64 +419,48 @@ export default function CaseStudies() {
         title: 'TBM - Warehouse Sale (Photo)', 
         url: 'https://www.facebook.com/share/p/1CNwSRXTad/', 
         type: 'photo',
-        views: '15.2K',
-        likes: '2.1K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0U2zVAP9NXCuakVTUfGqQoEw26vFzE1e3vN27WRKKv33bzz265QE2QKjr59XnJ5zNl&show_text=true&width=500'
       },
       { 
         title: 'Focus Point - KLCC Roadshow', 
         url: 'https://www.facebook.com/share/p/1G494YKvyr/', 
         type: 'photo',
-        views: '12.8K',
-        likes: '1.9K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02CGaG2zDA1Ub54PgkibppxvGiJqNY7jwAU5ypWuffjVD8UVPf5V5CXvrBhytbtUmMl&show_text=true&width=500'
       },
       { 
         title: 'Super Ceramic', 
         url: 'https://www.facebook.com/share/p/19KkMm8BsV/', 
         type: 'photo',
-        views: '18.5K',
-        likes: '2.8K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02qg2ttDfDumqwdxtvH74BWAoBJz3KxGnAW3FXaV4jUWPGchbAv1QGVrUDJc13Fyful&show_text=true&width=500'
       },
       { 
         title: 'Gintell Roadshow', 
         url: 'https://www.facebook.com/share/p/16ooQm4Eou/', 
         type: 'photo',
-        views: '22.1K',
-        likes: '3.2K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0hRNC5uv6TZR57WmYs6o3wjJA91qsthH1q38s5VyirME3rkwRSdnTGsRoBzvCGuBpl&show_text=true&width=500'
       },
       { 
         title: 'LTL Global', 
         url: 'https://www.facebook.com/share/p/1CpjTi5Kqk/', 
         type: 'photo',
-        views: '19.7K',
-        likes: '2.9K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02cQeXbBusi7ZegMz3LeLpaKdx3dwqhCUhPwdwoVeWsdMbKjZS9Texzmmoq34CTdYKl&show_text=true&width=500'
       },
       { 
         title: 'Air Asia', 
         url: 'https://www.facebook.com/share/p/14Giy9bU9vA/', 
         type: 'photo',
-        views: '25.3K',
-        likes: '4.1K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0bpTzEyaaZPWtvB1fsUp4t1chGtuUFtKaBFY1PxX4yHHs4vPtcjaneHvoXJwK5Hqul&show_text=true&width=500'
       },
       { 
         title: 'iTWorld', 
         url: 'https://www.facebook.com/share/p/1AkGpz62mA/', 
         type: 'photo',
-        views: '16.8K',
-        likes: '2.4K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPerakMyHometown%2Fposts%2Fpfbid0cNuEwAjeHWcg2WVU7sRXVhp5hFqwP93ozhcaq1h5V1f4ty9pXzYsSsv3iS8aNcAFl&show_text=true&width=500'
       },
       { 
         title: 'I Bath', 
         url: 'https://www.facebook.com/share/p/1755nx6ZGf/', 
         type: 'photo',
-        views: '14.2K',
-        likes: '2.0K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid02XSmdxC54N6iM2W3EmCGsj6YqPdNudDtNn6iRNWJaTk8mKu1MZxx6RVT1FQSFEnUGl&show_text=true&width=500'
       },
     ],
@@ -271,16 +469,12 @@ export default function CaseStudies() {
         title: 'Kutchenhauss', 
         url: 'https://www.facebook.com/share/p/1Ax8ea2Aje/', 
         type: 'photo',
-        views: '21.5K',
-        likes: '3.5K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0aP91ALiYDRBXiiPKFvMLPR6dtJcxa1TA43dvHuDhhybHp3no1nNX2A3vXBrvAbysl&show_text=true&width=500'
       },
       { 
         title: 'Vivo X200 Fe', 
         url: 'https://www.facebook.com/share/p/19ay1ZV1Hr/', 
         type: 'photo',
-        views: '28.9K',
-        likes: '4.7K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid04CPfRNZVXLT7GFFkxBp6QTgD6nU6UhRftQKSSwwNm1EWJHMQ5m8pgmQ9rv5vZzHtl&show_text=true&width=500'
       },
       { 
@@ -311,8 +505,6 @@ export default function CaseStudies() {
         title: 'Samsung Galaxy S25', 
         url: 'https://www.facebook.com/share/p/1XGgGaxGCG/', 
         type: 'photo',
-        views: '32.1K',
-        likes: '5.2K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0PrmG6s9FQ2fUR2KJHzc4j7pxVmRca8HrLAq5KtzDSEyxW7Z3hp3R5G8VF8uArsLZl&show_text=true&width=500'
       },
       { 
@@ -327,64 +519,48 @@ export default function CaseStudies() {
         title: 'GD Travel Fair', 
         url: 'https://www.facebook.com/share/p/19MRAGXzPA/', 
         type: 'photo',
-        views: '26.8K',
-        likes: '3.9K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0W7n57JF1TQN7VGnnYYYk7LSjFpWFWbojidyKsVQJhvax3eaZuZVHJMjmHiLkscBPl&show_text=true&width=500'
       },
       { 
         title: 'Homedec', 
         url: 'https://www.facebook.com/share/p/1Ahs4GUQjh/', 
         type: 'photo',
-        views: '24.3K',
-        likes: '3.6K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPenangMyHometown%2Fposts%2Fpfbid0HSMgjmVmf22XK4tGyuiR3L38TtNpHSQtEGgutX73UYfhLgewr78JEbL55DJ4uNxNl&show_text=true&width=500'
       },
       { 
         title: 'KLPJ Wedding Fair', 
         url: 'https://www.facebook.com/share/p/14GLfqmyFfV/', 
         type: 'photo',
-        views: '29.7K',
-        likes: '4.3K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid02uayJv8MoE2fNANyjGasLiomHT67pqgxXa6oaag5C3PciQLdr6yPYCK9TSTjTJfhSl&show_text=true&width=500'
       },
       { 
         title: 'Smart Holiday Travel Fair', 
         url: 'https://www.facebook.com/share/p/1AJ37CHYVq/', 
         type: 'photo',
-        views: '31.2K',
-        likes: '4.8K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0ViBurkrnmb6nFVrgtZkkMXvb2cidBzA6rMiLp97JkWJEzz4A4bLzpKaogEcXWjggl&show_text=true&width=500'
       },
       { 
         title: 'Modern Living', 
         url: 'https://www.facebook.com/share/p/1HjXf8V5nr/', 
         type: 'photo',
-        views: '27.5K',
-        likes: '4.0K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0z4ZjK6GFPfRvpNtcX6tqZjkWQaqZHdZkUX7K6bfsJbV3m5sK6vDU5TyHmN5Nbsxkl&show_text=true&width=500'
       },
       { 
         title: 'Toshiba', 
         url: 'https://www.facebook.com/share/p/1VUMhQsP5r/', 
         type: 'photo',
-        views: '23.8K',
-        likes: '3.7K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0gDgyrcPtAEuaBQYkNjFbdm6UK6Q9ddeZb8gwsGHMUjTTf8taF1XKma7eBpDamXZql&show_text=true&width=500'
       },
       { 
         title: 'Shoppers Hub', 
         url: 'https://www.facebook.com/share/p/1MK7QMqi5r/', 
         type: 'photo',
-        views: '20.4K',
-        likes: '3.1K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02pJ6GfsCCLzHHrHiYLARyD3i3iLoxnZhpEFknrLineN3fkTop4YoJhx5AjsD8mjb2l&show_text=true&width=500'
       },
       { 
         title: 'HP Day', 
         url: 'https://www.facebook.com/share/p/1FKXMBL6Go/', 
         type: 'photo',
-        views: '18.9K',
-        likes: '2.6K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02YRn4LkQK8mbgFZFKov1UgQ9QB2Vyze5L2KL4aQFzs8Um7qhQXDDN2oR5TyC7TktGl&show_text=true&width=500'
       },
     ],
@@ -393,64 +569,48 @@ export default function CaseStudies() {
         title: 'SIMPANG AMPAT - Villa Home', 
         url: 'https://www.facebook.com/share/p/1CfGkkhDsG/', 
         type: 'photo',
-        views: '15.6K',
-        likes: '2.3K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPenangMyHometown%2Fposts%2Fpfbid0U72rKt52sSwA2NxDvGmJKXrp245sqXjuF3qeTzYZjEYBtjnmScuW6NaPqmgqVfUvl&show_text=true&width=500'
       },
       { 
         title: 'Bacfree - Just Tap Series (Photo)', 
         url: 'https://www.facebook.com/share/p/1HsTSxzii9/', 
         type: 'photo',
-        views: '17.3K',
-        likes: '2.7K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0sQciUs2iXv8x3ERFz4zKx7kcskdGSuSRXaHkkmMBD4gL9wg5Vk17tutvnKVQE3LHl&show_text=true&width=500'
       },
       { 
         title: 'Giant Tampoi', 
         url: 'https://www.facebook.com/share/p/1CWWxY8peK/', 
         type: 'photo',
-        views: '13.9K',
-        likes: '2.1K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0neRZNKJggoho1GnUQ2focrMWQ5FPaMxuXuJgAfGnu4hNmHP2mWfdCW7SaeXuXsgil&show_text=true&width=500'
       },
       { 
         title: 'Lady Americana (Photo)', 
         url: 'https://www.facebook.com/share/p/1CCdFKM4U7/', 
         type: 'photo',
-        views: '19.2K',
-        likes: '2.8K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0vAwKsccyDdwe3oqMpDzgYHt3qkuqMkvzrYzNgbhGv8GowfPzL3PTh9GQsqm8Viw4l&show_text=true&width=500'
       },
       { 
         title: 'ECO Optometry', 
         url: 'https://www.facebook.com/share/p/17CTtcx2Y5/', 
         type: 'photo',
-        views: '11.8K',
-        likes: '1.8K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPenangMyHometown%2Fposts%2Fpfbid0uH4b3M82F9jVyvUuJ1gLVJJTq7WC2hnWTTEDSpunKMmeu6eob64HXSGZxq74Y3aKl&show_text=true&width=500'
       },
       { 
         title: 'LSH Segar', 
         url: 'https://www.facebook.com/share/p/171wqSNmLt/', 
         type: 'photo',
-        views: '16.4K',
-        likes: '2.5K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02ZPFpohopkJwrNBgfrSZzXhWkiu1e3madA1nEkY39qEP7nsDRp4Bm383X94Xp36fpl&show_text=true&width=500'
       },
       { 
         title: 'Fotile Dish Washer', 
         url: 'https://www.facebook.com/share/p/16up7VA33k/', 
         type: 'photo',
-        views: '14.7K',
-        likes: '2.2K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02TckEiAhEzPumaLgCATVMMbMB12YQajLQAPMBQT53uTpKjEtaULTEVNHQtB17Kub3l&show_text=true&width=500'
       },
       { 
         title: 'PMG Pharmacy', 
         url: 'https://www.facebook.com/share/p/1K8cx5WEK5/', 
         type: 'photo',
-        views: '12.6K',
-        likes: '1.9K',
         embedUrl: 'https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02NLC9k3WmDgfEzYrVQ4PVsq7F9aqRPjUd1XWz3yau8oPdLRgXsfULgtkHMrCVA2Z7l&show_text=true&width=500'
       },
     ],
@@ -553,18 +713,51 @@ export default function CaseStudies() {
 
   const filteredVideos = getFilteredVideos();
 
-  return (
-    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
-      {/* Inject responsive styles */}
-      <style>{responsiveStyles}</style>
+  // Filter out hidden posts
+  const visibleVideos = filteredVideos.filter(video => !hiddenPosts.has(video.title));
+
+  // Set loading to false after component mounts and check for errors
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
       
+      // Immediately hide known broken posts
+      hideBrokenFacebookPosts();
+      
+      // After a short delay, hide ALL Facebook posts (nuclear option)
+      setTimeout(() => {
+        hideAllFacebookPosts();
+      }, 1000);
+      
+      // Check for Facebook errors after initial load
+      setTimeout(() => {
+        checkForFacebookErrors();
+        checkForBrokenIframes();
+        // Use aggressive hiding for any remaining broken posts
+        hideAllBrokenPosts();
+      }, 2000);
+      
+      // Continue checking for broken posts every 3 seconds
+      const interval = setInterval(() => {
+        checkForBrokenIframes();
+        hideAllBrokenPosts();
+      }, 3000);
+      
+      return () => clearInterval(interval);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Header */}
       <Header />
 
       {/* Hero Section */}
-      <section className="case-studies-hero" style={{
-        background: '#9E2B10',
-        minHeight: '10vh',
+      <section style={{
+        background: '#AB2A25',
+        minHeight: '20vh',
         paddingTop: 80,
         paddingBottom: 40,
         display: 'flex',
@@ -577,7 +770,7 @@ export default function CaseStudies() {
           marginLeft: 60,
           marginTop: 20,
         }}>
-          <div className="case-studies-title" style={{
+          <div style={{
             fontSize: 48,
             fontWeight: 800,
             lineHeight: 0.9,
@@ -586,98 +779,95 @@ export default function CaseStudies() {
             marginBottom: 30,
             textAlign: 'left',
           }}>
-            CASE
-            STUDIES
+            MY SHOWCASE
+          </div>
+          <div style={{
+            fontSize: 18,
+            fontWeight: 300,
+            color: '#fff',
+            marginTop: 15,
+            textAlign: 'left',
+            maxWidth: 800,
+            lineHeight: 1.3,
+          }}>
+            Explore our portfolio of successful social media campaigns and content
           </div>
         </div>
       </section>
 
       {/* Filter Section */}
-      <section className="filter-section" style={{
-        background: 'linear-gradient(135deg, #9E2B10 0%, #B84A2A 100%)',
-        padding: '30px 20px',
+      <section style={{
+        background: '#AB2A25',
+        padding: '40px 60px',
         color: '#fff',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
         <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '100px',
+          height: '100px',
+          background: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '80px',
+          height: '80px',
+          background: 'rgba(255, 255, 255, 0.08)',
+          borderRadius: '50%',
+          filter: 'blur(20px)',
+        }}></div>
+        <div style={{
+          maxWidth: '1200px',
           width: '100%',
-          margin: '0',
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 2,
         }}>
-          {/* Filter Navigation Button for Mobile */}
+          {/* Filter Navigation */}
           <div style={{
             display: 'flex',
-            justifyContent: 'center',
-            marginBottom: '20px',
-          }}>
-            <button
-              className="filter-menu-toggle"
-              onClick={() => setFilterMenuOpen(!filterMenuOpen)}
-              style={{
-                background: 'rgba(254, 235, 231, 0.2)',
-                color: '#fff',
-                border: '2px solid rgba(254, 235, 231, 0.3)',
-                borderRadius: '25px',
-                padding: '12px 24px',
-                fontSize: '16px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = 'rgba(254, 235, 231, 0.3)';
-                e.target.style.border = '2px solid rgba(254, 235, 231, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = 'rgba(254, 235, 231, 0.2)';
-                e.target.style.border = '2px solid rgba(254, 235, 231, 0.3)';
-              }}
-            >
-              {filterMenuOpen ? '▼ Hide Filters' : '▲ Show Filters'}
-            </button>
-          </div>
-          
-          {/* Filter Navigation */}
-          <div className={`filter-navigation ${filterMenuOpen ? 'filter-menu-open' : ''}`} style={{
-            display: 'flex',
-            gap: 30,
+            gap: '20px',
             alignItems: 'center',
-            marginBottom: 25,
+            marginBottom: '30px',
             flexWrap: 'wrap',
             justifyContent: 'center',
-            transition: 'all 0.3s ease',
-            overflow: 'hidden',
-            maxHeight: filterMenuOpen ? '500px' : '0',
-            opacity: filterMenuOpen ? 1 : 0,
           }}>
             {/* All Filter */}
             <div
-              className="filter-button"
               style={{
                 cursor: 'pointer',
-                padding: '10px 20px',
-                borderRadius: '25px',
-                background: activeFilter === 'All' ? '#FEEBE7' : 'rgba(254, 235, 231, 0.1)',
-                color: activeFilter === 'All' ? '#9E2B10' : '#fff',
-                fontWeight: activeFilter === 'All' ? 'bold' : 'normal',
-                fontSize: 15,
-                transition: 'all 0.3s ease',
-                border: activeFilter === 'All' ? '2px solid #FEEBE7' : '2px solid transparent',
-                boxShadow: activeFilter === 'All' ? '0 4px 12px rgba(254, 235, 231, 0.3)' : 'none',
+                padding: '12px 24px',
+                borderRadius: '30px',
+                background: activeFilter === 'All' ? '#ffffff' : 'rgba(255, 255, 255, 0.15)',
+                color: activeFilter === 'All' ? '#AB2A25' : '#fff',
+                fontWeight: activeFilter === 'All' ? '700' : '500',
+                fontSize: 16,
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                border: activeFilter === 'All' ? '2px solid #ffffff' : '2px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: activeFilter === 'All' ? '0 8px 25px rgba(255, 255, 255, 0.3)' : '0 4px 15px rgba(0, 0, 0, 0.1)',
+                transform: activeFilter === 'All' ? 'translateY(-2px)' : 'translateY(0)',
               }}
               onClick={() => setActiveFilter('All')}
               onMouseEnter={(e) => {
                 if (activeFilter !== 'All') {
-                  e.target.style.background = 'rgba(254, 235, 231, 0.2)';
-                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.25)';
+                  e.target.style.transform = 'translateY(-3px)';
+                  e.target.style.boxShadow = '0 10px 30px rgba(255, 255, 255, 0.2)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (activeFilter !== 'All') {
-                  e.target.style.background = 'rgba(254, 235, 231, 0.1)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.15)';
                   e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
                 }
               }}
             >
@@ -685,9 +875,8 @@ export default function CaseStudies() {
             </div>
 
             {/* Visual Content Dropdown */}
-            <div className="dropdown-container" style={{ position: 'relative' }}>
+            <div style={{ position: 'relative' }}>
               <div
-                className="filter-button"
                 style={{
                   cursor: 'pointer',
                   display: 'flex',
@@ -714,12 +903,12 @@ export default function CaseStudies() {
               </div>
               
               {visualContentOpen && (
-                <div className="dropdown-menu" style={{
+                <div style={{
                   position: 'absolute',
                   top: '100%',
                   left: 0,
                   background: 'linear-gradient(135deg, #9E2B10 0%, #B84A2A 100%)',
-                  border: '2px solid #FEEBE7',
+                  border: '2px solid #ffffff',
                   borderRadius: '15px',
                   padding: '15px 0',
                   minWidth: '220px',
@@ -741,8 +930,8 @@ export default function CaseStudies() {
                         cursor: 'pointer',
                         fontSize: 14,
                         fontWeight: activeFilter === item ? 'bold' : 'normal',
-                        color: activeFilter === item ? '#9E2B10' : '#fff',
-                        background: activeFilter === item ? '#FEEBE7' : 'transparent',
+                        color: activeFilter === item ? '#AB2A25' : '#fff',
+                        background: activeFilter === item ? '#ffffff' : 'transparent',
                         borderRadius: '8px',
                         margin: '2px 10px',
                         transition: 'all 0.3s ease',
@@ -776,9 +965,8 @@ export default function CaseStudies() {
             </div>
 
             {/* Video Content Dropdown */}
-            <div className="dropdown-container" style={{ position: 'relative' }}>
+            <div style={{ position: 'relative' }}>
               <div
-                className="filter-button"
                 style={{
                   cursor: 'pointer',
                   display: 'flex',
@@ -805,12 +993,12 @@ export default function CaseStudies() {
               </div>
               
               {videoContentOpen && (
-                <div className="dropdown-menu" style={{
+                <div style={{
                   position: 'absolute',
                   top: '100%',
                   left: 0,
                   background: 'linear-gradient(135deg, #9E2B10 0%, #B84A2A 100%)',
-                  border: '2px solid #FEEBE7',
+                  border: '2px solid #ffffff',
                   borderRadius: '15px',
                   padding: '15px 0',
                   minWidth: '220px',
@@ -831,7 +1019,7 @@ export default function CaseStudies() {
                         fontSize: 14,
                         fontWeight: activeFilter === `Video Content - ${item}` ? 'bold' : 'normal',
                         color: activeFilter === `Video Content - ${item}` ? '#9E2B10' : '#fff',
-                        background: activeFilter === `Video Content - ${item}` ? '#FEEBE7' : 'transparent',
+                        background: activeFilter === `Video Content - ${item}` ? '#ffffff' : 'transparent',
                         borderRadius: '8px',
                         margin: '2px 10px',
                         transition: 'all 0.3s ease',
@@ -865,87 +1053,127 @@ export default function CaseStudies() {
             </div>
 
             {/* Other Filter Options */}
-            <div className="other-filters">
-              {['Street Interview', 'Brand Story', 'Livestreams'].map((filter) => (
-                <div
-                  key={filter}
-                  className="filter-button"
-                  style={{
-                    cursor: 'pointer',
-                    fontSize: 16,
-                    transition: 'opacity 0.2s',
-                    padding: '10px 20px',
-                    borderRadius: '25px',
-                    background: 'rgba(254, 235, 231, 0.1)',
-                    border: '2px solid transparent',
-                  }}
-                  onClick={() => setActiveFilter(filter)}
-                  onMouseEnter={(e) => e.target.style.opacity = '0.8'}
-                  onMouseLeave={(e) => e.target.style.opacity = '1'}
-                >
-                  {filter}
-                </div>
-              ))}
-            </div>
+            {['Street Interview', 'Brand Story', 'Livestreams'].map((filter) => (
+              <div
+                key={filter}
+                style={{
+                  cursor: 'pointer',
+                  fontSize: 16,
+                  transition: 'opacity 0.2s',
+                }}
+                onClick={() => setActiveFilter(filter)}
+                onMouseEnter={(e) => e.target.style.opacity = '0.8'}
+                onMouseLeave={(e) => e.target.style.opacity = '1'}
+              >
+                {filter}
+              </div>
+            ))}
           </div>
 
+          {/* Loading State */}
+          {isLoading && (
+            <div style={{
+              textAlign: 'center',
+              padding: '40px',
+              color: '#fff',
+              fontSize: '18px',
+            }}>
+              Loading case studies...
+            </div>
+          )}
+
+        </div>
+      </section>
+
+      {/* Case Studies Content Section */}
+      <section style={{
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
+        padding: '80px 60px',
+        color: '#333',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '150px',
+          height: '150px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 2,
+        }}>
+
+
           {/* Case Studies Grid */}
-          <div className="case-studies-grid" style={{
+          <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '12px',
-            marginTop: 15,
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '30px',
+            marginTop: '40px',
             width: '100%',
-            margin: '15px 0 0 0',
-            padding: '0 10px',
+            padding: '0 20px',
           }}>
-            {filteredVideos.map((video, index) => (
+            {visibleVideos.map((video, index) => (
               <div
                 key={index}
-                className="case-study-card"
                 style={{
-                  background: '#ffffff',
-                  border: '1px solid #e9ecef',
-                  borderRadius: '12px',
-                  padding: '20px',
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  border: '2px solid rgba(171, 42, 37, 0.1)',
+                  borderRadius: '20px',
+                  padding: '25px',
                   cursor: (video.category === 'Promotional Campaign' || video.category === 'Product & Brand Feature' || video.category === 'Event Media Coverage' || video.category === 'Infographics' || video.category.startsWith('Video Content') || video.category === 'Street Interview' || video.category === 'Brand Story' || video.category === 'Livestreams') ? 'default' : 'pointer',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   display: 'flex',
                   flexDirection: 'column',
-                  minHeight: (video.category === 'Promotional Campaign' || video.category === 'Product & Brand Feature' || video.category === 'Event Media Coverage' || video.category === 'Infographics' || video.category.startsWith('Video Content') || video.category === 'Street Interview' || video.category === 'Brand Story' || video.category === 'Livestreams') ? '550px' : '500px',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                  minHeight: '450px',
+                  boxShadow: '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
                 onMouseEnter={(e) => {
                   if (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') {
-                    e.target.style.transform = 'scale(1.02)';
-                    e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                    e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
+                    e.currentTarget.style.boxShadow = '0 25px 60px rgba(171, 42, 37, 0.2), 0 15px 35px rgba(0, 0, 0, 0.15)';
+                    e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.3)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') {
-                    e.target.style.transform = 'scale(1)';
-                    e.target.style.boxShadow = 'none';
+                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)';
+                    e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.1)';
                   }
                 }}
-                onClick={() => {
-                  if (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') {
-                    openContentModal(video);
-                  } else {
-                    // Open slideshow modal for other content types
-                    setSelectedContent(video);
-                    setIsModalOpen(true);
-                  }
-                }}
+                onClick={() => (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') && openContentModal(video)}
               >
-                <div className="case-study-title" style={{
-                  color: '#2c3e50',
-                  fontSize: '14px',
+                <div style={{
+                  color: '#AB2A25',
+                  fontSize: '16px',
                   fontWeight: '700',
-                  marginBottom: '6px',
-                  lineHeight: '1.2',
+                  marginBottom: '15px',
+                  lineHeight: '1.3',
                   textAlign: 'center',
-                  padding: '4px 0',
-                  borderBottom: '2px solid #9E2B10',
+                  padding: '8px 0',
+                  borderBottom: '2px solid rgba(171, 42, 37, 0.2)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.5px',
                 }}>
@@ -953,7 +1181,7 @@ export default function CaseStudies() {
                 </div>
                 
                 {/* Content Preview Container */}
-                <div className="content-preview-container" style={{
+                <div style={{
                   flex: 1,
                   marginBottom: '15px',
                   borderRadius: '8px',
@@ -975,17 +1203,57 @@ export default function CaseStudies() {
                       overflow: 'hidden',
                       padding: '5px',
                     }}>
-                      {video.title === 'Vivo - Deepavali campaign' && (
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02mme8L66RQCzK7N2UzRoqFUU3QYetD8jB7VtyuYEYG418E8svWR83MCkyPBRBYocgl&show_text=true&width=280" width="280" height="450" style={{border:'none',overflow:'hidden',borderRadius:'8px'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                                            {video.title === 'Vivo - Deepavali campaign' && (
+                        <iframe 
+                          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02mme8L66RQCzK7N2UzRoqFUU3QYetD8jB7VtyuYEYG418E8svWR83MCkyPBRBYocgl&show_text=true&width=280" 
+                          width="280" 
+                          height="450" 
+                          style={{border:'none',overflow:'hidden',borderRadius:'8px'}} 
+                          scrolling="no" 
+                          frameBorder="0" 
+                          allowFullScreen="true" 
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          onLoad={() => handleIframeLoad(video.title)}
+                        />
                       )}
                                               {video.title === 'TBM - Warehouse Sale (Photo)' && (
-                          <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0U2zVAP9NXCuakVTUfGqQoEw26vFzE1e3vN27WRKKv33bzz265QE2QKjr59XnJ5zNl&show_text=true&width=280" width="280" height="450" style={{border:'none',overflow:'hidden',borderRadius:'8px'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                          <iframe 
+                            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0U2zVAP9NXCuakVTUfGqQoEw26vFzE1e3vN27WRKKv33bzz265QE2QKjr59XnJ5zNl&show_text=true&width=280" 
+                            width="280" 
+                            height="450" 
+                            style={{border:'none',overflow:'hidden',borderRadius:'8px'}} 
+                            scrolling="no" 
+                            frameBorder="0" 
+                            allowFullScreen="true" 
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            onLoad={() => handleIframeLoad(video.title)}
+                          />
                         )}
                       {video.title === 'Focus Point - KLCC Roadshow' && (
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02CGaG2zDA1Ub54PgkibppxvGiJqNY7jwAU5ypWuffjVD8UVPf5V5CXvrBhytbtUmMl&show_text=true&width=320" width="280" height="450" style={{border:'none',overflow:'hidden',borderRadius:'8px'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <iframe 
+                          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02CGaG2zDA1Ub54PgkibppxvGiJqNY7jwAU5ypWuffjBVtUmMl&show_text=true&width=320" 
+                          width="280" 
+                          height="450" 
+                          style={{border:'none',overflow:'hidden',borderRadius:'8px'}} 
+                          scrolling="no" 
+                          frameBorder="0" 
+                          allowFullScreen="true" 
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          onLoad={() => handleIframeLoad(video.title)}
+                        />
                       )}
                       {video.title === 'Super Ceramic' && (
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02qg2ttDfDumqwdxtvH74BWAoBJz3KxGnAW3FXaV4jUWPGchbAv1QGVrUDJc13Fyful&show_text=true&width=320" width="280" height="450" style={{border:'none',overflow:'hidden',borderRadius:'8px'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                        <iframe 
+                          src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02qg2ttDfDumqwdxtvH74BWAoBJz3KxGnAW3FXaV4jUWPGchbAv1QGVrUDJc13Fyful&show_text=true&width=320" 
+                          width="280" 
+                          height="450" 
+                          style={{border:'none',overflow:'hidden',borderRadius:'8px'}} 
+                          scrolling="no" 
+                          frameBorder="0" 
+                          allowFullScreen="true" 
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          onLoad={() => handleIframeLoad(video.title)}
+                        />
                       )}
                       {video.title === 'Gintell Roadshow' && (
                         <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0hRNC5uv6TZR57WmYs6o3wjJA91qsthH1q38s5VyirME3rkwRSdnTGsRoBzvCGuBpl&show_text=true&width=320" width="280" height="450" style={{border:'none',overflow:'hidden',borderRadius:'8px'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
@@ -1320,21 +1588,53 @@ export default function CaseStudies() {
                   )}
                 </div>
                 
-                <div className="case-study-category" style={{
-                  color: '#9E2B10',
-                  fontSize: '14px',
+                <div style={{
+                  color: '#ffffff',
+                  fontSize: 'clamp(11px, 2.5vw, 14px)',
                   fontWeight: '700',
-                  marginTop: '8px',
+                  marginTop: 'clamp(8px, 2vw, 12px)',
                   textAlign: 'center',
-                  padding: '6px 12px',
-                  background: '#f8f9fa',
-                  borderRadius: '12px',
-                  border: '1px solid #e9ecef',
+                  padding: 'clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 15px)',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  borderRadius: 'clamp(8px, 2vw, 12px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.5px',
+                  marginBottom: 'clamp(8px, 2vw, 12px)',
                 }}>
                   {video.category}
                 </div>
+                
+                {/* View Button */}
+                <button
+                  onClick={() => window.open(video.url, '_blank')}
+                  style={{
+                    width: '100%',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    color: '#ffffff',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    borderRadius: 'clamp(4px, 1.5vw, 6px)',
+                    padding: 'clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 12px)',
+                    fontSize: 'clamp(10px, 2.5vw, 12px)',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease',
+                    opacity: 0.9,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                    e.target.style.opacity = '1';
+                    e.target.style.transform = 'translateY(-1px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.target.style.opacity = '0.9';
+                    e.target.style.transform = 'translateY(0)';
+                  }}
+                  title={`View original ${video.type === 'video' ? 'video' : 'post'} on Facebook`}
+                >
+                  View
+                </button>
 
               </div>
             ))}
@@ -1343,16 +1643,16 @@ export default function CaseStudies() {
       </section>
 
       {/* Footer Section */}
-      <footer className="case-studies-footer" style={{
+      <footer style={{
         background: '#1a1a1a',
         color: '#fff',
-        padding: '60px 60px 40px 60px',
+        padding: 'clamp(40px, 8vw, 80px) clamp(20px, 4vw, 60px) clamp(30px, 6vw, 50px) clamp(20px, 4vw, 60px)',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
-        <div className="footer-grid" style={{
+        <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gap: '60px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: 'clamp(40px, 6vw, 60px)',
           maxWidth: '1200px',
           margin: '0 auto',
         }}>
@@ -1360,17 +1660,17 @@ export default function CaseStudies() {
           {/* MYHOMETOWN MEDIA Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: 'clamp(24px, 5vw, 32px)',
               fontWeight: '800',
-              marginBottom: '8px',
+              marginBottom: 'clamp(8px, 2vw, 12px)',
               letterSpacing: '1px',
             }}>
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
-              fontSize: '14px',
+              fontSize: 'clamp(12px, 2.5vw, 16px)',
               fontWeight: '400',
-              marginBottom: '30px',
+              marginBottom: 'clamp(20px, 4vw, 30px)',
               letterSpacing: '0.5px',
               opacity: '0.9',
             }}>
@@ -1378,7 +1678,7 @@ export default function CaseStudies() {
             </div>
             
             {/* Social Media Icons */}
-            <div className="social-media-icons" style={{
+            <div style={{
               display: 'flex',
               gap: '15px',
             }}>
@@ -1550,7 +1850,7 @@ export default function CaseStudies() {
 
       {/* Content Modal */}
       {isModalOpen && selectedContent && (
-        <div className="content-modal" style={{
+        <div style={{
           position: 'fixed',
           top: 0,
           left: 0,
@@ -1563,7 +1863,7 @@ export default function CaseStudies() {
           zIndex: 1000,
           padding: '20px',
         }}>
-          <div className="modal-content" style={{
+          <div style={{
             background: '#fff',
             borderRadius: '12px',
             maxWidth: '90%',
@@ -1992,169 +2292,6 @@ export default function CaseStudies() {
                   }}
                 >
                   Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Slideshow Modal */}
-      {isModalOpen && selectedContent && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          background: 'rgba(0, 0, 0, 0.9)',
-          zIndex: 1000,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '20px',
-        }}>
-          <div style={{
-            background: '#fff',
-            borderRadius: '16px',
-            maxWidth: '90vw',
-            maxHeight: '90vh',
-            overflow: 'auto',
-            position: 'relative',
-          }}>
-            {/* Close Button */}
-            <button
-              onClick={() => setIsModalOpen(false)}
-              style={{
-                position: 'absolute',
-                top: '15px',
-                right: '15px',
-                background: '#9E2B10',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '50%',
-                width: '40px',
-                height: '40px',
-                fontSize: '20px',
-                cursor: 'pointer',
-                zIndex: 1001,
-              }}
-            >
-              ×
-            </button>
-
-            {/* Content Display */}
-            <div style={{
-              padding: '40px',
-              textAlign: 'center',
-            }}>
-              <h2 style={{
-                color: '#9E2B10',
-                marginBottom: '20px',
-                fontSize: '24px',
-              }}>
-                {selectedContent.title}
-              </h2>
-
-              {/* Stats Display */}
-              {selectedContent.views && selectedContent.likes && (
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  gap: '30px',
-                  marginBottom: '30px',
-                  fontSize: '18px',
-                }}>
-                  <div style={{ color: '#1877F2' }}>
-                    👁️ {selectedContent.views} views
-                  </div>
-                  <div style={{ color: '#E4405F' }}>
-                    ❤️ {selectedContent.likes} likes
-                  </div>
-                </div>
-              )}
-
-              {/* Content Preview */}
-              <div style={{
-                marginBottom: '30px',
-                borderRadius: '12px',
-                overflow: 'hidden',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
-              }}>
-                {selectedContent.type === 'video' ? (
-                  <iframe 
-                    src={selectedContent.embedUrl} 
-                    width="600" 
-                    height="400" 
-                    style={{
-                      border: 'none',
-                      borderRadius: '12px',
-                      maxWidth: '100%'
-                    }} 
-                    scrolling="no" 
-                    frameBorder="0" 
-                    allowFullScreen="true" 
-                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  />
-                ) : (
-                  <div style={{
-                    width: '600px',
-                    height: '400px',
-                    background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#9E2B10',
-                    fontSize: '18px',
-                    borderRadius: '12px',
-                  }}>
-                    📸 Photo Content - {selectedContent.title}
-                  </div>
-                )}
-              </div>
-
-              {/* Action Buttons */}
-              <div style={{
-                display: 'flex',
-                gap: '15px',
-                justifyContent: 'center',
-                flexWrap: 'wrap',
-              }}>
-                <button
-                  onClick={() => window.open(selectedContent.url, '_blank')}
-                  style={{
-                    background: '#1877F2',
-                    color: '#fff',
-                    border: 'none',
-                    padding: '15px 30px',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    transition: 'transform 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                >
-                  🔗 View Original Post
-                </button>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  style={{
-                    background: '#6c757d',
-                    color: '#fff',
-                    border: 'none',
-                    padding: '15px 30px',
-                    borderRadius: '8px',
-                    cursor: 'pointer',
-                    fontSize: '16px',
-                    fontWeight: '600',
-                    transition: 'transform 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                  onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                >
-                  ✕ Close
                 </button>
               </div>
             </div>

@@ -20,87 +20,74 @@ export default function MyServices() {
 
   const services = [
     {
-      title: "SOCIAL MEDIA MARKETING",
-      description: "Strategic social media marketing solutions that drive engagement, build brand awareness, and deliver measurable results across all platforms.",
+      title: "SOCIAL MEDIA PHOTO CONTENT",
+      description: "Eye-catching, scroll-stopping images tailored for Facebook, Instagram, and more.",
       features: [
-        "Platform strategy development",
-        "Content marketing campaigns",
-        "Community engagement",
-        "Performance optimization",
-        "ROI measurement"
+        "Professional photography",
+        "Platform-optimized sizing",
+        "Brand-consistent styling",
+        "Engagement-focused design",
+        "Multi-format delivery"
       ],
       image: section9,
       color: "#FF2442"
     },
     {
-      title: "SOCIAL MEDIA MANAGEMENT",
-      description: "Complete management of your social media presence across all platforms including Facebook, Instagram, TikTok, and Xiao Hong Shu.",
+      title: "SOCIAL MEDIA VIDEO REELS",
+      description: "High-energy, trending videos crafted to boost views, shares, and engagement.",
       features: [
-        "Content creation and curation",
-        "Community management",
-        "Engagement monitoring",
-        "Performance analytics",
-        "Brand voice development"
+        "Trending video formats",
+        "Engaging storytelling",
+        "Platform optimization",
+        "Performance tracking",
+        "Viral potential"
       ],
       image: section7,
       color: "#1877F2"
     },
     {
-      title: "CONTENT CREATION",
-      description: "Professional content creation services including photography, videography, graphic design, and copywriting tailored for social media.",
+      title: "SOCIAL MEDIA BRAND STORYTELLING",
+      description: "We tell the story that makes your audience feel connected, loyal, and ready to choose you.",
       features: [
-        "High-quality photography",
-        "Video production",
-        "Graphic design",
-        "Copywriting",
-        "Multi-language content"
+        "Brand narrative development",
+        "Emotional connection",
+        "Cultural integration",
+        "Authentic messaging",
+        "Customer loyalty building"
       ],
       image: section8,
       color: "#E4405F"
     },
     {
-      title: "BRAND AWARENESS",
-      description: "Compelling brand narratives and campaigns that connect with Malaysian audiences and build lasting relationships with your customers.",
+      title: "SOCIAL MEDIA LIVE STREAMING",
+      description: "Real-time, interactive broadcasts that put your brand in the spotlight.",
       features: [
-        "Brand story development",
-        "Cultural integration",
-        "Emotional connection",
-        "Authentic messaging",
-        "Local market insights"
+        "Live event coverage",
+        "Real-time engagement",
+        "Interactive Q&A",
+        "Brand visibility",
+        "Audience connection"
       ],
       image: section10,
-      color: "#9E2B10"
+      color: "#AB2A25"
     },
     {
-      title: "MARKETING CAMPAIGN",
-      description: "Targeted marketing campaigns across social media platforms to drive conversions and achieve your business objectives.",
+      title: "SOCIAL MEDIA PAGE MANAGEMENT",
+      description: "From posting schedules to audience engagement, we manage your pages so you can focus on running your business.",
       features: [
-        "Campaign strategy",
-        "Audience targeting",
-        "Ad creative development",
-        "Performance optimization",
-        "Budget management"
+        "Content scheduling",
+        "Community management",
+        "Engagement monitoring",
+        "Performance analytics",
+        "Brand voice consistency"
       ],
       image: section11,
       color: "#000"
-    },
-    {
-      title: "ANALYTICS & REPORTING",
-      description: "Comprehensive analytics and reporting to track performance, measure ROI, and optimize your social media strategy.",
-      features: [
-        "Performance tracking",
-        "ROI measurement",
-        "Competitor analysis",
-        "Trend monitoring",
-        "Strategic insights"
-      ],
-      image: section12,
-      color: "#0077B5"
     }
   ];
 
   return (
-    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
+    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Enhanced CSS Animations */}
       <style>{`
         @keyframes fadeInUp {
@@ -296,7 +283,7 @@ export default function MyServices() {
 
       {/* Hero Section */}
       <section style={{
-        background: '#9E2B10',
+        background: '#AB2A25',
         minHeight: '20vh',
         paddingTop: 80,
         paddingBottom: 40,
@@ -335,357 +322,210 @@ export default function MyServices() {
         </div>
       </section>
 
-      {/* Services Grid Section */}
-      <section style={{
-        background: '#FEEBE7',
-        padding: '60px 60px',
-        color: '#333',
-      }}>
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
+      {/* Individual Service Sections - Full Screen Each */}
+      {services.map((service, index) => (
+        <section key={index} style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: index % 2 === 0 ? 
+            'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)' : 
+            'linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%)',
+          padding: '60px 80px',
+          position: 'relative',
+          overflow: 'hidden',
         }}>
-          {/* Services Header */}
           <div style={{
-            textAlign: 'center',
-            marginBottom: '60px',
-          }}>
-            <div style={{
-              fontSize: 48,
-              fontWeight: 800,
-              color: '#9E2B10',
-              marginBottom: '20px',
-            }}>
-              COMPREHENSIVE SOCIAL MEDIA SOLUTIONS
-            </div>
-            <div style={{
-              fontSize: 18,
-              color: '#666',
-              maxWidth: '700px',
-              margin: '0 auto',
-              lineHeight: '1.6',
-            }}>
-              We don't just create content — we create impact. From stunning visuals to real-time engagement, our services are designed to make your brand impossible to scroll past.
-            </div>
-          </div>
-
-          {/* Services Grid */}
-          <div style={{
+            maxWidth: '1200px',
+            width: '100%',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-            gap: '40px',
-            marginBottom: '60px',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '60px',
+            alignItems: 'center',
           }}>
-            {services.map((service, index) => (
-              <div key={index} style={{
-                background: '#fff',
-                borderRadius: '20px',
-                overflow: 'hidden',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                transition: 'transform 0.3s ease',
-                cursor: 'pointer',
-              }}
-              onMouseEnter={(e) => e.target.style.transform = 'translateY(-10px)'}
-              onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
-              >
-                {/* Service Image */}
+            {/* Service Content - Left Side */}
+            <div style={{
+              order: index % 2 === 0 ? 1 : 2,
+              background: 'rgba(255, 255, 255, 0.8)',
+              padding: '50px 40px',
+              borderRadius: '20px',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)',
+              border: '1px solid rgba(171, 42, 37, 0.1)',
+              backdropFilter: 'blur(10px)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}>
+              {/* Decorative background element */}
+              <div style={{
+                position: 'absolute',
+                top: '-50px',
+                right: '-50px',
+                width: '150px',
+                height: '150px',
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.05))',
+                borderRadius: '50%',
+                filter: 'blur(20px)',
+              }}></div>
+              
+              <div style={{
+                fontSize: '48px',
+                fontWeight: '800',
+                color: '#AB2A25',
+                marginBottom: '25px',
+                lineHeight: '1.1',
+                position: 'relative',
+                zIndex: 2,
+              }}>
+                {service.title}
                 <div style={{
-                  height: '250px',
-                  overflow: 'hidden',
-                }}>
+                  width: '80px',
+                  height: '4px',
+                  background: 'linear-gradient(90deg, #AB2A25, #D32F2F)',
+                  marginTop: '15px',
+                  borderRadius: '2px',
+                }}></div>
+              </div>
+              
+              <div style={{
+                fontSize: '18px',
+                lineHeight: '1.6',
+                color: '#555',
+                marginBottom: '30px',
+                position: 'relative',
+                zIndex: 2,
+              }}>
+                {service.description}
+              </div>
+              
+              {/* Features List */}
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                position: 'relative',
+                zIndex: 2,
+              }}>
+                {service.features.map((feature, featureIndex) => (
+                  <div key={featureIndex} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '16px',
+                    fontSize: '16px',
+                    color: '#333',
+                    padding: '12px 16px',
+                    background: 'rgba(171, 42, 37, 0.05)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(171, 42, 37, 0.1)',
+                    transition: 'all 0.3s ease',
+                    cursor: 'default',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = 'rgba(171, 42, 37, 0.1)';
+                    e.target.style.transform = 'translateX(5px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = 'rgba(171, 42, 37, 0.05)';
+                    e.target.style.transform = 'translateX(0)';
+                  }}>
+                    <div style={{
+                      width: '12px',
+                      height: '12px',
+                      borderRadius: '50%',
+                      background: 'linear-gradient(135deg, #AB2A25, #D32F2F)',
+                      flexShrink: 0,
+                      boxShadow: '0 2px 8px rgba(171, 42, 37, 0.3)',
+                    }} />
+                    <span style={{ fontWeight: '500' }}>{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Service Visual - Right Side */}
+            <div style={{
+              order: index % 2 === 0 ? 2 : 1,
+              textAlign: 'center',
+              position: 'relative',
+            }}>
+              {/* Background decorative elements */}
+              <div style={{
+                position: 'absolute',
+                top: '20%',
+                left: '10%',
+                width: '100px',
+                height: '100px',
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.15), rgba(171, 42, 37, 0.05))',
+                borderRadius: '50%',
+                filter: 'blur(30px)',
+                zIndex: 1,
+              }}></div>
+              <div style={{
+                position: 'absolute',
+                bottom: '20%',
+                right: '15%',
+                width: '80px',
+                height: '80px',
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+                borderRadius: '50%',
+                filter: 'blur(25px)',
+                zIndex: 1,
+              }}></div>
+              
+              <div style={{
+                background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                boxShadow: '0 25px 80px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)',
+                border: '2px solid rgba(171, 42, 37, 0.1)',
+                maxWidth: '500px',
+                margin: '0 auto',
+                position: 'relative',
+                zIndex: 2,
+                transform: 'perspective(1000px) rotateY(5deg)',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 35px 100px rgba(171, 42, 37, 0.2), 0 15px 35px rgba(0, 0, 0, 0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'perspective(1000px) rotateY(5deg) scale(1)';
+                e.currentTarget.style.boxShadow = '0 25px 80px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)';
+              }}>
+                {/* Image container with overlay */}
+                <div style={{ position: 'relative', overflow: 'hidden' }}>
                   <img 
                     src={service.image}
                     alt={service.title}
                     style={{
                       width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
+                      height: 'auto',
+                      display: 'block',
+                      transition: 'transform 0.3s ease',
                     }}
                   />
-                </div>
-                
-                {/* Service Content */}
-                <div style={{
-                  padding: '30px',
-                }}>
+                  {/* Subtle overlay */}
                   <div style={{
-                    fontSize: '24px',
-                    fontWeight: '800',
-                    color: service.color,
-                    marginBottom: '15px',
-                    lineHeight: '1.2',
-                  }}>
-                    {service.title}
-                  </div>
-                  
-                  <div style={{
-                    fontSize: '16px',
-                    lineHeight: '1.6',
-                    color: '#666',
-                    marginBottom: '25px',
-                  }}>
-                    {service.description}
-                  </div>
-                  
-                  {/* Features List */}
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '8px',
-                  }}>
-                    {service.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '10px',
-                        fontSize: '14px',
-                        color: '#333',
-                      }}>
-                        <div style={{
-                          width: '6px',
-                          height: '6px',
-                          borderRadius: '50%',
-                          background: service.color,
-                          flexShrink: 0,
-                        }} />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.05) 0%, transparent 50%, rgba(171, 42, 37, 0.02) 100%)',
+                  }}></div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Detailed Services Section */}
-      <section style={{
-        background: '#fff',
-        padding: '80px 60px',
-        color: '#333',
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}>
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '60px',
-          }}>
-            <div style={{
-              fontSize: '48px',
-              fontWeight: '800',
-              color: '#9E2B10',
-              marginBottom: '20px',
-            }}>
-              OUR SOCIAL MEDIA MARKETING SERVICES
-            </div>
-            <div style={{
-              fontSize: '18px',
-              color: '#666',
-              maxWidth: '800px',
-              margin: '0 auto',
-              lineHeight: '1.6',
-            }}>
-              We don't just create content — we create impact. From stunning visuals to real-time engagement, our services are designed to make your brand impossible to scroll past.
             </div>
           </div>
+        </section>
+      ))}
 
-          {/* Service Details */}
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '40px',
-          }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '40px',
-              alignItems: 'center',
-            }}>
-              <div>
-                <h3 style={{
-                  fontSize: '28px',
-                  fontWeight: '700',
-                  color: '#9E2B10',
-                  marginBottom: '20px',
-                }}>
-                  Social Media Photo Content
-                </h3>
-                <p style={{
-                  fontSize: '16px',
-                  lineHeight: '1.6',
-                  color: '#666',
-                }}>
-                  Eye-catching, scroll-stopping images tailored for Facebook, Instagram, and more.
-                </p>
-              </div>
-              <div style={{
-                background: '#FEEBE7',
-                height: '200px',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '48px',
-              }}>
-                📸
-              </div>
-            </div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '40px',
-              alignItems: 'center',
-            }}>
-              <div style={{
-                background: '#FEEBE7',
-                height: '200px',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '48px',
-                order: 2,
-              }}>
-                🎬
-              </div>
-              <div style={{ order: 1 }}>
-                <h3 style={{
-                  fontSize: '28px',
-                  fontWeight: '700',
-                  color: '#9E2B10',
-                  marginBottom: '20px',
-                }}>
-                  Social Media Video Reels
-                </h3>
-                <p style={{
-                  fontSize: '16px',
-                  lineHeight: '1.6',
-                  color: '#666',
-                }}>
-                  High-energy, trending videos crafted to boost views, shares, and engagement.
-                </p>
-              </div>
-            </div>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '40px',
-              alignItems: 'center',
-            }}>
-              <div>
-                <h3 style={{
-                  fontSize: '28px',
-                  fontWeight: '700',
-                  color: '#9E2B10',
-                  marginBottom: '20px',
-                }}>
-                  Social Media Brand Storytelling
-                </h3>
-                <p style={{
-                  fontSize: '16px',
-                  lineHeight: '1.6',
-                  color: '#666',
-                }}>
-                  We tell the story that makes your audience feel connected, loyal, and ready to choose you.
-                </p>
-              </div>
-              <div style={{
-                background: '#FEEBE7',
-                height: '200px',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '48px',
-              }}>
-                📖
-              </div>
-            </div>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '40px',
-              alignItems: 'center',
-            }}>
-              <div style={{
-                background: '#FEEBE7',
-                height: '200px',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '48px',
-                order: 2,
-              }}>
-                📺
-              </div>
-              <div style={{ order: 1 }}>
-                <h3 style={{
-                  fontSize: '28px',
-                  fontWeight: '700',
-                  color: '#9E2B10',
-                  marginBottom: '20px',
-                }}>
-                  Social Media Live Streaming
-                </h3>
-                <p style={{
-                  fontSize: '16px',
-                  lineHeight: '1.6',
-                  color: '#666',
-                }}>
-                  Real-time, interactive broadcasts that put your brand in the spotlight.
-                </p>
-              </div>
-            </div>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '40px',
-              alignItems: 'center',
-            }}>
-              <div>
-                <h3 style={{
-                  fontSize: '28px',
-                  fontWeight: '700',
-                  color: '#9E2B10',
-                  marginBottom: '20px',
-                }}>
-                  Social Media Page Management
-                </h3>
-                <p style={{
-                  fontSize: '16px',
-                  lineHeight: '1.6',
-                  color: '#666',
-                }}>
-                  From posting schedules to audience engagement, we manage your pages so you can focus on running your business.
-                </p>
-              </div>
-              <div style={{
-                background: '#FEEBE7',
-                height: '200px',
-                borderRadius: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '48px',
-              }}>
-                ⚙️
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Process Section */}
       <section style={{
-        background: '#9E2B10',
+        background: '#AB2A25',
         padding: '60px 60px',
         color: '#fff',
       }}>
@@ -752,7 +592,7 @@ export default function MyServices() {
                 <div style={{
                   fontSize: '48px',
                   fontWeight: '800',
-                  color: '#FEEBE7',
+                  color: '#ffffff',
                   marginBottom: '20px',
                 }}>
                   {process.step}
@@ -779,48 +619,101 @@ export default function MyServices() {
 
       {/* CTA Section */}
       <section style={{
-        background: '#FEEBE7',
-        padding: '80px 60px',
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
+        padding: '100px 60px',
         color: '#333',
         textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
         <div style={{
-          maxWidth: '800px',
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '200px',
+          height: '200px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          borderRadius: '50%',
+          filter: 'blur(40px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '150px',
+          height: '150px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          borderRadius: '50%',
+          filter: 'blur(35px)',
+        }}></div>
+        
+        <div style={{
+          maxWidth: '900px',
           margin: '0 auto',
+          background: 'rgba(255, 255, 255, 0.8)',
+          padding: '60px 50px',
+          borderRadius: '24px',
+          boxShadow: '0 30px 80px rgba(171, 42, 37, 0.1), 0 15px 35px rgba(0, 0, 0, 0.1)',
+          border: '1px solid rgba(171, 42, 37, 0.1)',
+          backdropFilter: 'blur(10px)',
+          position: 'relative',
+          zIndex: 2,
         }}>
           <div style={{
-            fontSize: 48,
-            fontWeight: 800,
-            color: '#9E2B10',
-            marginBottom: '30px',
+            fontSize: '52px',
+            fontWeight: '800',
+            color: '#AB2A25',
+            marginBottom: '25px',
+            lineHeight: '1.1',
           }}>
             READY TO GET STARTED?
+            <div style={{
+              width: '120px',
+              height: '4px',
+              background: 'linear-gradient(90deg, #AB2A25, #D32F2F)',
+              margin: '20px auto',
+              borderRadius: '2px',
+            }}></div>
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: '20px',
             lineHeight: '1.6',
-            color: '#666',
-            marginBottom: '40px',
+            color: '#555',
+            marginBottom: '50px',
+            maxWidth: '700px',
+            margin: '0 auto 50px auto',
           }}>
-            Let's discuss how we can help elevate your brand's social media presence and connect with your target audience.
+            Let's discuss how we can help elevate your brand's social media presence and connect with your target audience across Malaysia.
           </div>
           <Link
             to="/my-contact"
             style={{
-              background: '#9E2B10',
+              background: 'linear-gradient(135deg, #AB2A25 0%, #D32F2F 100%)',
               color: '#fff',
-              padding: '20px 40px',
-              borderRadius: '12px',
+              padding: '20px 50px',
+              borderRadius: '50px',
               textDecoration: 'none',
               fontSize: '18px',
-              fontWeight: '600',
+              fontWeight: '700',
               display: 'inline-block',
-              transition: 'transform 0.2s ease',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 10px 30px rgba(171, 42, 37, 0.3)',
+              border: '2px solid transparent',
+              letterSpacing: '0.5px',
             }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-3px) scale(1.05)';
+              e.target.style.boxShadow = '0 15px 40px rgba(171, 42, 37, 0.4)';
+              e.target.style.background = 'linear-gradient(135deg, #D32F2F 0%, #AB2A25 100%)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0) scale(1)';
+              e.target.style.boxShadow = '0 10px 30px rgba(171, 42, 37, 0.3)';
+              e.target.style.background = 'linear-gradient(135deg, #AB2A25 0%, #D32F2F 100%)';
+            }}
           >
-            GET IN TOUCH
+            GET IN TOUCH TODAY
           </Link>
         </div>
       </section>

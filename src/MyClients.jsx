@@ -4,156 +4,18 @@ import './index.css';
 import Header from "./Header.jsx";
 import instagramLogo from "./assets/instagram.png";
 
-import section13 from "./assets/section13.png";
-import section14 from "./assets/section14.png";
-import section15 from "./assets/section15.png";
+import section13 from "./assets/section9.png";
+import section14 from "./assets/section10.png";
 
 export default function MyClients() {
-  // Add responsive styles
-  const responsiveStyles = `
-    /* Mobile Responsive Styles for MyClients */
-    @media (max-width: 768px) {
-      .case-studies-hero {
-        padding-top: 60px !important;
-        padding-bottom: 30px !important;
-      }
-      
-      .case-studies-title {
-        font-size: 36px !important;
-        margin-left: 20px !important;
-        margin-top: 10px !important;
-      }
-      
-      .case-studies-subtitle {
-        font-size: 16px !important;
-        margin-left: 20px !important;
-      }
-      
-      .case-studies-subtitle {
-        font-size: 18px !important;
-        margin-left: 20px !important;
-      }
-      
-      .client-testimonials-section {
-        padding: 40px 20px !important;
-      }
-      
-      .testimonials-grid {
-        grid-template-columns: 1fr !important;
-        gap: 30px !important;
-      }
-      
-      .testimonial-card {
-        padding: 30px 20px !important;
-      }
-      
-      .industries-section {
-        padding: 40px 20px !important;
-      }
-      
-      .industries-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 20px !important;
-      }
-      
-      .why-choose-section {
-        padding: 40px 20px !important;
-      }
-      
-      .benefits-grid {
-        grid-template-columns: 1fr !important;
-        gap: 30px !important;
-      }
-      
-      .cta-section {
-        padding: 60px 20px !important;
-      }
-      
-      .cta-title {
-        font-size: 36px !important;
-      }
-      
-      .case-studies-footer {
-        padding: 40px 20px 20px 20px !important;
-      }
-      
-      .footer-grid {
-        grid-template-columns: 1fr !important;
-        gap: 40px !important;
-      }
-      
-      .footer-grid > div {
-        text-align: center !important;
-      }
-      
-      .social-media-icons {
-        justify-content: center !important;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .case-studies-title {
-        font-size: 28px !important;
-        margin-left: 15px !important;
-      }
-      
-      .case-studies-subtitle {
-        font-size: 16px !important;
-        margin-left: 15px !important;
-      }
-      
-      .client-testimonials-section {
-        padding: 30px 15px !important;
-      }
-      
-      .industries-grid {
-        grid-template-columns: 1fr !important;
-        gap: 15px !important;
-      }
-      
-      .case-studies-footer {
-        padding: 30px 15px 20px 15px !important;
-      }
-    }
-  `;
-
-  const clients = [
-    {
-      name: "Mr Wayne Khaw",
-      position: "Head of Growth",
-      company: "R1WYYC",
-      testimonial: "One of my favourite community social partner to work together, the collaboration has been going on for 4 years. Our company brand has been strengthen throughout all their distribution channels.",
-      image: section13
-    },
-    {
-      name: "Mr Wayne Khaw",
-      position: "Head of Growth", 
-      company: "Uniform Copy",
-      testimonial: "My Hometown Media has been instrumental in helping us reach our target audience across Malaysia. Their expertise in social media marketing and their extensive network of platforms has delivered exceptional results for our brand.",
-      image: section14
-    },
-    {
-      name: "Various Clients",
-      position: "Multiple Industries",
-      company: "Diverse Portfolio",
-      testimonial: "From F&B to retail, technology to healthcare, we've helped businesses across all industries achieve their marketing goals and connect with Malaysian audiences.",
-      image: section15
-    }
-  ];
-
-
-
   return (
-    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#9E2B10' }}>
-      {/* Inject responsive styles */}
-      <style>{responsiveStyles}</style>
-      
+    <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Header */}
       <Header />
 
       {/* Hero Section */}
-      <section className="case-studies-hero" style={{
-        background: '#9E2B10',
+      <section style={{
+        background: '#AB2A25',
         minHeight: '20vh',
         paddingTop: 80,
         paddingBottom: 40,
@@ -167,7 +29,7 @@ export default function MyClients() {
           marginLeft: 60,
           marginTop: 20,
         }}>
-          <div className="case-studies-title" style={{
+          <div style={{
             fontSize: 48,
             fontWeight: 800,
             lineHeight: 0.9,
@@ -178,7 +40,7 @@ export default function MyClients() {
           }}>
             MY CLIENTS
           </div>
-          <div className="case-studies-subtitle" style={{
+          <div style={{
             fontSize: 18,
             fontWeight: 300,
             color: '#fff',
@@ -192,243 +54,268 @@ export default function MyClients() {
         </div>
       </section>
 
-      {/* Client Testimonials Section */}
-      <section className="client-testimonials-section" style={{
-        background: '#FEEBE7',
-        padding: '60px 60px',
+      {/* Main Client Showcase Section */}
+      <section style={{
+        background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
+        padding: '100px 60px',
         color: '#333',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '150px',
+          height: '150px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
         <div style={{
           maxWidth: '1400px',
           margin: '0 auto',
+          position: 'relative',
+          zIndex: 2,
         }}>
-          {/* Testimonials Header */}
+          {/* Section Header */}
           <div style={{
             textAlign: 'center',
-            marginBottom: '60px',
+            marginBottom: '80px',
+            background: 'rgba(255, 255, 255, 0.8)',
+            padding: '50px 40px',
+            borderRadius: '24px',
+            boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
+            border: '1px solid rgba(171, 42, 37, 0.1)',
+            backdropFilter: 'blur(10px)',
           }}>
             <div style={{
-              fontSize: 48,
-              fontWeight: 800,
-              color: '#9E2B10',
-              marginBottom: '20px',
+              fontSize: '42px',
+              fontWeight: '800',
+              color: '#AB2A25',
+              marginBottom: '25px',
+              lineHeight: '1.2',
             }}>
-              CLIENT TESTIMONIALS
+              Trusted by Leading Brands
+              <div style={{
+                width: '100px',
+                height: '4px',
+                background: 'linear-gradient(90deg, #AB2A25, #D32F2F)',
+                margin: '20px auto',
+                borderRadius: '2px',
+              }}></div>
             </div>
             <div style={{
-              fontSize: 18,
-              color: '#666',
+              fontSize: '18px',
+              color: '#555',
               maxWidth: '700px',
               margin: '0 auto',
               lineHeight: '1.6',
             }}>
-              Hear from our satisfied clients about their experience working with My Hometown Media
+              Our proven track record speaks for itself. Here are some of the remarkable results we've delivered for our valued clients.
             </div>
           </div>
 
-          {/* Testimonials Grid */}
-          <div className="testimonials-grid" style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-            gap: '40px',
-            marginBottom: '60px',
-          }}>
-            {clients.map((client, index) => (
-              <div key={index} className="testimonial-card" style={{
-                background: '#fff',
-                borderRadius: '20px',
-                padding: '40px',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                transition: 'transform 0.3s ease',
-                cursor: 'pointer',
-              }}
-              onMouseEnter={(e) => e.target.style.transform = 'translateY(-10px)'}
-              onMouseLeave={(e) => e.target.style.transform = 'translateY(0)'}
-              >
-                {/* Client Image */}
-                <div style={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                  marginBottom: '25px',
-                }}>
-                  <img 
-                    src={client.image}
-                    alt={client.name}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                  />
-                </div>
-                
-                {/* Testimonial Quote */}
-                <div style={{
-                  fontSize: '18px',
-                  lineHeight: '1.6',
-                  color: '#333',
-                  marginBottom: '30px',
-                  fontStyle: 'italic',
-                }}>
-                  "{client.testimonial}"
-                </div>
-                
-                {/* Client Info */}
-                <div>
-                  <div style={{
-                    fontSize: '20px',
-                    fontWeight: '700',
-                    color: '#9E2B10',
-                    marginBottom: '5px',
-                  }}>
-                    {client.name}
-                  </div>
-                  <div style={{
-                    fontSize: '16px',
-                    color: '#666',
-                    marginBottom: '5px',
-                  }}>
-                    {client.position}
-                  </div>
-                  <div style={{
-                    fontSize: '14px',
-                    color: '#999',
-                    fontWeight: '500',
-                  }}>
-                    {client.company}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* Why Choose Us Section */}
-      <section className="why-choose-section" style={{
-        background: '#FEEBE7',
-        padding: '60px 60px',
-        color: '#333',
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}>
+          {/* Main Client Showcase */}
           <div style={{
-            textAlign: 'center',
-            marginBottom: '60px',
-          }}>
-            <div style={{
-              fontSize: 48,
-              fontWeight: 800,
-              color: '#9E2B10',
-              marginBottom: '20px',
-            }}>
-              WHY CLIENTS CHOOSE US
-            </div>
-            <div style={{
-              fontSize: 18,
-              color: '#666',
-              maxWidth: '700px',
-              margin: '0 auto',
-            }}>
-              Our unique approach and proven track record make us the preferred choice for social media marketing in Malaysia
-            </div>
-          </div>
-
-          {/* Benefits Grid */}
-          <div className="benefits-grid" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '40px',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '80px',
+            alignItems: 'center',
+            marginBottom: '80px',
           }}>
-            {[
-              {
-                title: "EXTENSIVE REACH",
-                description: "Access to over 8 million followers across our network of 30+ Facebook pages covering all Malaysian states and territories."
-              },
-              {
-                title: "PROVEN RESULTS",
-                description: "10+ years of experience with 10,000+ successful campaigns delivering measurable ROI for our clients."
-              },
-              {
-                title: "LOCAL EXPERTISE",
-                description: "Deep understanding of Malaysian culture, market trends, and audience behavior across different regions."
-              }
-            ].map((benefit, index) => (
-              <div key={index} style={{
-                background: '#fff',
-                padding: '40px 30px',
-                borderRadius: '16px',
-                textAlign: 'center',
-                boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
-              }}>
-                <div style={{
-                  fontSize: '24px',
-                  fontWeight: '800',
-                  color: '#9E2B10',
-                  marginBottom: '20px',
-                }}>
-                  {benefit.title}
-                </div>
-                <div style={{
-                  fontSize: '16px',
-                  lineHeight: '1.6',
-                  color: '#666',
-                }}>
-                  {benefit.description}
-                </div>
-              </div>
-            ))}
+            {/* First Client Image */}
+            <div style={{
+              borderRadius: '24px',
+              overflow: 'hidden',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              boxShadow: '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)',
+              border: '2px solid rgba(171, 42, 37, 0.1)',
+              position: 'relative',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-10px) scale(1.03)';
+              e.currentTarget.style.boxShadow = '0 30px 80px rgba(171, 42, 37, 0.25), 0 15px 35px rgba(0, 0, 0, 0.15)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)';
+            }}
+            >
+              {/* Decorative overlay */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.05) 0%, transparent 50%, rgba(171, 42, 37, 0.02) 100%)',
+                zIndex: 1,
+                opacity: 0,
+                transition: 'opacity 0.3s ease',
+              }}></div>
+              <img 
+                src={section13}
+                alt="Client Success Story"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  transition: 'transform 0.3s ease',
+                }}
+              />
+            </div>
+
+            {/* Second Client Image */}
+            <div style={{
+              borderRadius: '24px',
+              overflow: 'hidden',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              boxShadow: '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)',
+              border: '2px solid rgba(171, 42, 37, 0.1)',
+              position: 'relative',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-10px) scale(1.03)';
+              e.currentTarget.style.boxShadow = '0 30px 80px rgba(171, 42, 37, 0.25), 0 15px 35px rgba(0, 0, 0, 0.15)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0) scale(1)';
+              e.currentTarget.style.boxShadow = '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)';
+            }}
+            >
+              {/* Decorative overlay */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.05) 0%, transparent 50%, rgba(171, 42, 37, 0.02) 100%)',
+                zIndex: 1,
+                opacity: 0,
+                transition: 'opacity 0.3s ease',
+              }}></div>
+              <img 
+                src={section14}
+                alt="Client Success Story"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  transition: 'transform 0.3s ease',
+                }}
+              />
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section style={{
-        background: '#9E2B10',
-        padding: '80px 60px',
+        background: 'linear-gradient(135deg, #AB2A25 0%, #8B1A1A 100%)',
+        padding: '100px 60px',
         color: '#fff',
         textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Background decorative elements */}
         <div style={{
-          maxWidth: '800px',
+          position: 'absolute',
+          top: '10%',
+          left: '10%',
+          width: '120px',
+          height: '120px',
+          background: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: '50%',
+          filter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '20%',
+          right: '15%',
+          width: '100px',
+          height: '100px',
+          background: 'rgba(255, 255, 255, 0.08)',
+          borderRadius: '50%',
+          filter: 'blur(25px)',
+        }}></div>
+        
+        <div style={{
+          maxWidth: '900px',
           margin: '0 auto',
+          background: 'rgba(255, 255, 255, 0.1)',
+          padding: '60px 50px',
+          borderRadius: '24px',
+          border: '2px solid rgba(255, 255, 255, 0.2)',
+          backdropFilter: 'blur(10px)',
+          position: 'relative',
+          zIndex: 2,
         }}>
           <div style={{
-            fontSize: 48,
-            fontWeight: 800,
-            marginBottom: '30px',
+            fontSize: '42px',
+            fontWeight: '800',
+            marginBottom: '25px',
+            lineHeight: '1.2',
           }}>
-            READY TO JOIN OUR SUCCESS STORIES?
+            Ready to Join Our Success Stories?
+            <div style={{
+              width: '120px',
+              height: '4px',
+              background: 'linear-gradient(90deg, #ffffff, rgba(255, 255, 255, 0.7))',
+              margin: '20px auto',
+              borderRadius: '2px',
+            }}></div>
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: '20px',
             lineHeight: '1.6',
-            opacity: '0.9',
-            marginBottom: '40px',
+            opacity: '0.95',
+            marginBottom: '50px',
+            maxWidth: '700px',
+            margin: '0 auto 50px auto',
           }}>
             Let's discuss how we can help your business achieve similar results and grow your brand presence across Malaysia.
           </div>
           <Link
             to="/my-contact"
             style={{
-              background: '#FEEBE7',
-              color: '#9E2B10',
-              padding: '20px 40px',
-              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+              color: '#AB2A25',
+              padding: '20px 50px',
+              borderRadius: '50px',
               textDecoration: 'none',
               fontSize: '18px',
-              fontWeight: '600',
+              fontWeight: '700',
               display: 'inline-block',
-              transition: 'transform 0.2s ease',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+              border: '2px solid transparent',
+              letterSpacing: '0.5px',
             }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-3px) scale(1.05)';
+              e.target.style.boxShadow = '0 15px 40px rgba(0, 0, 0, 0.3)';
+              e.target.style.background = 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0) scale(1)';
+              e.target.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+              e.target.style.background = 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)';
+            }}
           >
             START YOUR JOURNEY
           </Link>
@@ -436,13 +323,13 @@ export default function MyClients() {
       </section>
 
       {/* Footer Section */}
-      <footer className="case-studies-footer" style={{
+      <footer style={{
         background: '#1a1a1a',
         color: '#fff',
         padding: '60px 60px 40px 60px',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
-        <div className="footer-grid" style={{
+        <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
           gap: '60px',
@@ -471,7 +358,7 @@ export default function MyClients() {
             </div>
             
             {/* Social Media Icons */}
-            <div className="social-media-icons" style={{
+            <div style={{
               display: 'flex',
               gap: '15px',
             }}>
