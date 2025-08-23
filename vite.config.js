@@ -27,6 +27,6 @@ export default defineConfig({
       }
     }
   },
-  base: './',
+  // Remove the base: './' line - this is the key fix
   assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg']
 })
