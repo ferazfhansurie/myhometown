@@ -338,26 +338,27 @@ export default function MyReviews() {
       }}>
         <div style={{
           maxWidth: 900,
-          marginLeft: 60,
+          marginLeft: window.innerWidth <= 768 ? '20px' : '60px',
+          marginRight: window.innerWidth <= 768 ? '20px' : '60px',
           marginTop: 20,
         }}>
-          <div style={{
-            fontSize: 48,
+        <div style={{
+            fontSize: '64px',
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
             letterSpacing: -2,
             marginBottom: 30,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
           }}>
-            MY REVIEWS
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>REVIEWS
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
             maxWidth: 800,
             lineHeight: 1.3,
           }}>
@@ -366,12 +367,10 @@ export default function MyReviews() {
         </div>
       </section>
 
-
-
       {/* Reviews Grid Section */}
       <section style={{
         background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
-        padding: '80px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '60px 40px' : '80px 60px',
         color: '#333',
         position: 'relative',
         overflow: 'hidden',
@@ -409,14 +408,14 @@ export default function MyReviews() {
             textAlign: 'center',
             marginBottom: '60px',
             background: 'rgba(255, 255, 255, 0.8)',
-            padding: '40px 30px',
+            padding: window.innerWidth <= 480 ? '30px 20px' : window.innerWidth <= 768 ? '35px 25px' : '40px 30px',
             borderRadius: '24px',
             boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
             border: '1px solid rgba(171, 42, 37, 0.1)',
             backdropFilter: 'blur(10px)',
           }}>
             <div style={{
-              fontSize: '36px',
+              fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
               fontWeight: '800',
               color: '#AB2A25',
               marginBottom: '20px',
@@ -432,7 +431,7 @@ export default function MyReviews() {
               }}></div>
             </div>
             <div style={{
-              fontSize: '18px',
+              fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
               color: '#555',
               maxWidth: '700px',
               margin: '0 auto',
@@ -445,15 +444,15 @@ export default function MyReviews() {
           {/* Reviews Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-            gap: '40px',
+            gridTemplateColumns: window.innerWidth <= 480 ? '1fr' : window.innerWidth <= 768 ? 'repeat(auto-fit, minmax(300px, 1fr))' : 'repeat(auto-fit, minmax(400px, 1fr))',
+            gap: window.innerWidth <= 480 ? '30px' : window.innerWidth <= 768 ? '35px' : '40px',
             marginBottom: '60px',
           }}>
             {filteredReviews.map((review, index) => (
               <div key={index} style={{
                 background: '#fff',
                 borderRadius: '20px',
-                padding: '40px',
+                padding: window.innerWidth <= 480 ? '25px 20px' : window.innerWidth <= 768 ? '30px 25px' : '40px',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
                 transition: 'transform 0.3s ease',
                 cursor: 'pointer',
@@ -486,7 +485,7 @@ export default function MyReviews() {
                 
                 {/* Testimonial Quote */}
                 <div style={{
-                  fontSize: '18px',
+                  fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
                   lineHeight: '1.6',
                   color: '#333',
                   marginBottom: '30px',
@@ -501,7 +500,7 @@ export default function MyReviews() {
                   paddingTop: '25px',
                 }}>
                   <div style={{
-                    fontSize: '20px',
+                    fontSize: window.innerWidth <= 480 ? '18px' : window.innerWidth <= 768 ? '19px' : '20px',
                     fontWeight: '700',
                     color: '#9E2B10',
                     marginBottom: '5px',
@@ -509,14 +508,14 @@ export default function MyReviews() {
                     {review.name}
                   </div>
                   <div style={{
-                    fontSize: '16px',
+                    fontSize: window.innerWidth <= 480 ? '15px' : window.innerWidth <= 768 ? '15px' : '16px',
                     color: '#666',
                     marginBottom: '5px',
                   }}>
                     {review.position}
                   </div>
                   <div style={{
-                    fontSize: '14px',
+                    fontSize: window.innerWidth <= 480 ? '13px' : window.innerWidth <= 768 ? '13px' : '14px',
                     color: '#999',
                     fontWeight: '500',
                     marginBottom: '10px',
@@ -539,7 +538,7 @@ export default function MyReviews() {
       {/* Why Clients Choose Us Section */}
       <section style={{
         background: '#ffffff',
-        padding: '80px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '60px 40px' : '80px 60px',
         color: '#333',
       }}>
         <div style={{
@@ -551,15 +550,15 @@ export default function MyReviews() {
             marginBottom: '60px',
           }}>
             <div style={{
-              fontSize: 48,
-              fontWeight: 800,
+              fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+              fontWeight: '800',
               color: '#9E2B10',
               marginBottom: '20px',
             }}>
               WHY CLIENTS CHOOSE US
             </div>
             <div style={{
-              fontSize: 18,
+              fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
               color: '#666',
               maxWidth: '700px',
               margin: '0 auto',
@@ -571,8 +570,8 @@ export default function MyReviews() {
           {/* Benefits Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '40px',
+            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(3, 1fr)',
+            gap: window.innerWidth <= 768 ? '30px' : '40px',
           }}>
             {[
               {
@@ -590,13 +589,13 @@ export default function MyReviews() {
             ].map((benefit, index) => (
               <div key={index} style={{
                 background: '#fff',
-                padding: '40px 30px',
+                padding: window.innerWidth <= 480 ? '30px 20px' : window.innerWidth <= 768 ? '35px 25px' : '40px 30px',
                 borderRadius: '16px',
                 textAlign: 'center',
                 boxShadow: '0 5px 20px rgba(0,0,0,0.1)',
               }}>
                 <div style={{
-                  fontSize: '24px',
+                  fontSize: window.innerWidth <= 480 ? '20px' : window.innerWidth <= 768 ? '22px' : '24px',
                   fontWeight: '800',
                   color: '#9E2B10',
                   marginBottom: '20px',
@@ -604,7 +603,7 @@ export default function MyReviews() {
                   {benefit.title}
                 </div>
                 <div style={{
-                  fontSize: '16px',
+                  fontSize: window.innerWidth <= 480 ? '14px' : window.innerWidth <= 768 ? '15px' : '16px',
                   lineHeight: '1.6',
                   color: '#666',
                 }}>
@@ -619,7 +618,7 @@ export default function MyReviews() {
       {/* CTA Section */}
       <section style={{
         background: '#ffffff',
-        padding: '80px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '60px 40px' : '80px 60px',
         color: '#333',
         textAlign: 'center',
       }}>
@@ -628,15 +627,15 @@ export default function MyReviews() {
           margin: '0 auto',
         }}>
           <div style={{
-            fontSize: 48,
-            fontWeight: 800,
+            fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+            fontWeight: '800',
             color: '#9E2B10',
             marginBottom: '30px',
           }}>
             READY TO JOIN OUR HAPPY CLIENTS?
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
             lineHeight: '1.6',
             color: '#666',
             marginBottom: '40px',
@@ -646,12 +645,12 @@ export default function MyReviews() {
           <Link
             to="/my-contact"
             style={{
-                              background: '#AB2A25',
+              background: '#AB2A25',
               color: '#fff',
-              padding: '20px 40px',
+              padding: window.innerWidth <= 480 ? '16px 32px' : window.innerWidth <= 768 ? '18px 36px' : '20px 40px',
               borderRadius: '12px',
               textDecoration: 'none',
-              fontSize: '18px',
+              fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
               fontWeight: '600',
               display: 'inline-block',
               transition: 'transform 0.2s ease',
@@ -668,13 +667,13 @@ export default function MyReviews() {
       <footer style={{
         background: '#1a1a1a',
         color: '#fff',
-        padding: '60px 60px 40px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px 30px 20px' : window.innerWidth <= 768 ? '50px 40px 30px 40px' : '60px 60px 40px 60px',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gap: '60px',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr 1fr',
+          gap: window.innerWidth <= 768 ? '40px' : '60px',
           maxWidth: '1200px',
           margin: '0 auto',
         }}>
@@ -682,7 +681,7 @@ export default function MyReviews() {
           {/* MYHOMETOWN MEDIA Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '8px',
               letterSpacing: '1px',
@@ -763,7 +762,7 @@ export default function MyReviews() {
           {/* EXPLORE Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '30px',
               letterSpacing: '1px',
@@ -808,7 +807,7 @@ export default function MyReviews() {
           {/* OFFICE Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '30px',
               letterSpacing: '1px',

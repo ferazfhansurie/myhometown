@@ -57,8 +57,6 @@ export default function MyTeam() {
     }
   ];
 
-
-
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Enhanced CSS Animations */}
@@ -301,26 +299,27 @@ export default function MyTeam() {
       }}>
         <div style={{
           maxWidth: 900,
-          marginLeft: 60,
+          marginLeft: window.innerWidth <= 768 ? '20px' : '60px',
+          marginRight: window.innerWidth <= 768 ? '20px' : '60px',
           marginTop: 20,
         }}>
-          <div style={{
-            fontSize: 48,
+              <div style={{
+            fontSize: '64px',
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
             letterSpacing: -2,
             marginBottom: 30,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
           }}>
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>TEAM
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
             maxWidth: 800,
             lineHeight: 1.3,
           }}>
@@ -332,7 +331,7 @@ export default function MyTeam() {
       {/* Team Stats Section */}
       <section style={{
         background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
-        padding: '80px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '60px 40px' : '80px 60px',
         color: '#333',
         position: 'relative',
         overflow: 'hidden',
@@ -368,15 +367,16 @@ export default function MyTeam() {
           <div style={{
             textAlign: 'center',
             marginBottom: '80px',
-            background: 'rgba(255, 255, 255, 0.8)',
-            padding: '50px 40px',
+            background: 'rgba(255, 255, 255, 0.7)',
+            padding: window.innerWidth <= 480 ? '30px 20px' : window.innerWidth <= 768 ? '40px 30px' : '50px 40px',
             borderRadius: '24px',
-            boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(171, 42, 37, 0.1)',
-            backdropFilter: 'blur(10px)',
+            boxShadow: '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+            border: '1px solid rgba(255, 255, 255, 0.3)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
           }}>
             <div style={{
-              fontSize: '42px',
+              fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '42px',
               fontWeight: '800',
               color: '#AB2A25',
               marginBottom: '25px',
@@ -392,7 +392,7 @@ export default function MyTeam() {
               }}></div>
             </div>
             <div style={{
-              fontSize: '18px',
+              fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
               color: '#555',
               maxWidth: '700px',
               margin: '0 auto',
@@ -405,34 +405,36 @@ export default function MyTeam() {
           {/* Stats Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '40px',
+            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(3, 1fr)',
+            gap: window.innerWidth <= 768 ? '30px' : '40px',
             marginBottom: '60px',
             maxWidth: '900px',
             margin: '0 auto 60px auto',
           }}>
             {teamStats.map((stat, index) => (
               <div key={index} style={{
-                background: 'rgba(255, 255, 255, 0.9)',
-                padding: '40px 30px',
+                background: 'rgba(255, 255, 255, 0.8)',
+                padding: window.innerWidth <= 480 ? '30px 20px' : window.innerWidth <= 768 ? '35px 25px' : '40px 30px',
                 borderRadius: '20px',
                 textAlign: 'center',
-                boxShadow: '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)',
-                border: '2px solid rgba(171, 42, 37, 0.1)',
+                boxShadow: '0 15px 40px rgba(171, 42, 37, 0.15), 0 8px 25px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                border: '2px solid rgba(255, 255, 255, 0.4)',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 position: 'relative',
                 overflow: 'hidden',
+                backdropFilter: 'blur(15px)',
+                WebkitBackdropFilter: 'blur(15px)',
               }} onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-8px)';
-                e.currentTarget.style.boxShadow = '0 25px 60px rgba(171, 42, 37, 0.2), 0 15px 35px rgba(0, 0, 0, 0.15)';
-                e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.3)';
+                e.currentTarget.style.boxShadow = '0 25px 60px rgba(171, 42, 37, 0.25), 0 15px 35px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+                e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.4)';
               }} onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)';
-                e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.1)';
+                e.currentTarget.style.boxShadow = '0 15px 40px rgba(171, 42, 37, 0.15), 0 8px 25px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                e.currentTarget.style.border = '2px solid rgba(255, 255, 255, 0.4)';
               }}>
                 <div style={{
-                  fontSize: '48px',
+                  fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '42px' : '48px',
                   fontWeight: '800',
                   color: '#AB2A25',
                   marginBottom: '15px',
@@ -441,7 +443,7 @@ export default function MyTeam() {
                   {stat.number}
                 </div>
                 <div style={{
-                  fontSize: '18px',
+                  fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
                   fontWeight: '700',
                   color: '#333',
                   marginBottom: '10px',
@@ -450,7 +452,7 @@ export default function MyTeam() {
                   {stat.label}
                 </div>
                 <div style={{
-                  fontSize: '14px',
+                  fontSize: window.innerWidth <= 480 ? '13px' : window.innerWidth <= 768 ? '13px' : '14px',
                   color: '#666',
                   fontWeight: '500',
                   lineHeight: '1.4',
@@ -468,111 +470,119 @@ export default function MyTeam() {
           }}>
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: '20px',
+              gridTemplateColumns: window.innerWidth <= 480 ? '1fr' : window.innerWidth <= 768 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+              gap: window.innerWidth <= 480 ? '15px' : window.innerWidth <= 768 ? '20px' : '20px',
               maxWidth: '900px',
               margin: '0 auto',
             }}>
-              {/* Main Center Image */}
-              <div style={{
-                gridColumn: '2',
-                gridRow: '1 / 3',
-              }}>
-                <img
-                  src={uniformImage}
-                  alt="Our Team"
-                  style={{
-                    width: '100%',
-                    height: '300px',
-                    objectFit: 'cover',
-                    borderRadius: '20px',
-                    boxShadow: '0 15px 40px rgba(171, 42, 37, 0.2), 0 8px 25px rgba(0, 0, 0, 0.15)',
-                    border: '3px solid rgba(255, 255, 255, 0.8)',
-                  }}
-                />
-              </div>
+              {/* Main Center Image - Hidden on mobile, shown on tablet/desktop */}
+              {window.innerWidth > 480 && (
+                <div style={{
+                  gridColumn: window.innerWidth <= 768 ? '1 / 3' : '2',
+                  gridRow: window.innerWidth <= 768 ? '1 / 3' : '1 / 3',
+                }}>
+                  <img
+                    src={uniformImage}
+                    alt="Our Team"
+                    style={{
+                      width: '100%',
+                      height: window.innerWidth <= 768 ? '200px' : '300px',
+                      objectFit: 'cover',
+                      borderRadius: '20px',
+                      boxShadow: '0 15px 40px rgba(171, 42, 37, 0.2), 0 8px 25px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                      border: '3px solid rgba(255, 255, 255, 0.8)',
+                    }}
+                  />
+                </div>
+              )}
               
               {/* Top Left Image */}
               <div style={{
-                gridColumn: '1',
-                gridRow: '1',
+                gridColumn: window.innerWidth <= 480 ? '1' : window.innerWidth <= 768 ? '1' : '1',
+                gridRow: window.innerWidth <= 480 ? '1' : window.innerWidth <= 768 ? '1' : '1',
               }}>
                 <img
                   src={uniformImage}
                   alt="Team Member 1"
                   style={{
                     width: '100%',
-                    height: '140px',
+                    height: window.innerWidth <= 480 ? '120px' : window.innerWidth <= 768 ? '140px' : '140px',
                     objectFit: 'cover',
                     borderRadius: '16px',
-                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1)',
+                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
                     border: '2px solid rgba(255, 255, 255, 0.8)',
                   }}
                 />
               </div>
               
-              {/* Top Right Image */}
-              <div style={{
-                gridColumn: '3',
-                gridRow: '1',
-              }}>
-                <img
-                  src={uniformImage}
-                  alt="Team Member 2"
-                  style={{
-                    width: '100%',
-                    height: '140px',
-                    objectFit: 'cover',
-                    borderRadius: '16px',
-                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1)',
-                    border: '2px solid rgba(255, 255, 255, 0.8)',
-                  }}
-                />
-              </div>
+              {/* Top Right Image - Hidden on mobile */}
+              {window.innerWidth > 480 && (
+                <div style={{
+                  gridColumn: window.innerWidth <= 768 ? '2' : '3',
+                  gridRow: window.innerWidth <= 768 ? '1' : '1',
+                }}>
+                  <img
+                    src={uniformImage}
+                    alt="Team Member 2"
+                    style={{
+                      width: '100%',
+                      height: window.innerWidth <= 768 ? '140px' : '140px',
+                      objectFit: 'cover',
+                      borderRadius: '16px',
+                      boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      border: '2px solid rgba(255, 255, 255, 0.8)',
+                    }}
+                  />
+                </div>
+              )}
               
-              {/* Bottom Left Image */}
-              <div style={{
-                gridColumn: '1',
-                gridRow: '2',
-              }}>
-                <img
-                  src={uniformImage}
-                  alt="Team Member 3"
-                  style={{
-                    width: '100%',
-                    height: '140px',
-                    objectFit: 'cover',
-                    borderRadius: '16px',
-                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1)',
-                    border: '2px solid rgba(255, 255, 255, 0.8)',
-                  }}
-                />
-              </div>
+              {/* Bottom Left Image - Hidden on mobile */}
+              {window.innerWidth > 480 && (
+                <div style={{
+                  gridColumn: window.innerWidth <= 768 ? '1' : '1',
+                  gridRow: window.innerWidth <= 768 ? '2' : '2',
+                }}>
+                  <img
+                    src={uniformImage}
+                    alt="Team Member 3"
+                    style={{
+                      width: '100%',
+                      height: window.innerWidth <= 768 ? '140px' : '140px',
+                      objectFit: 'cover',
+                      borderRadius: '16px',
+                      boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      border: '2px solid rgba(255, 255, 255, 0.8)',
+                    }}
+                  />
+                </div>
+              )}
               
-              {/* Bottom Right Image */}
-              <div style={{
-                gridColumn: '3',
-                gridRow: '2',
-              }}>
-                <img
-                  src={uniformImage}
-                  alt="Team Member 4"
-                  style={{
-                    width: '100%',
-                    height: '140px',
-                    objectFit: 'cover',
-                    borderRadius: '16px',
-                    boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1)',
-                    border: '2px solid rgba(255, 255, 255, 0.8)',
-                  }}
-                />
-              </div>
+              {/* Bottom Right Image - Hidden on mobile */}
+              {window.innerWidth > 480 && (
+                <div style={{
+                  gridColumn: window.innerWidth <= 768 ? '2' : '3',
+                  gridRow: window.innerWidth <= 768 ? '2' : '2',
+                }}>
+                  <img
+                    src={uniformImage}
+                    alt="Team Member 4"
+                    style={{
+                      width: '100%',
+                      height: window.innerWidth <= 768 ? '140px' : '140px',
+                      objectFit: 'cover',
+                      borderRadius: '16px',
+                      boxShadow: '0 10px 30px rgba(171, 42, 37, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      border: '2px solid rgba(255, 255, 255, 0.8)',
+                    }}
+                  />
+                </div>
+              )}
             </div>
             
             {/* Collage Description */}
             <div style={{
               marginTop: '30px',
-              fontSize: '16px',
+              fontSize: window.innerWidth <= 480 ? '14px' : window.innerWidth <= 768 ? '15px' : '16px',
               color: '#666',
               fontStyle: 'italic',
               maxWidth: '600px',
@@ -585,14 +595,10 @@ export default function MyTeam() {
         </div>
       </section>
 
-
-
-
-
       {/* Join Our Team Section */}
       <section style={{
-                        background: '#AB2A25',
-        padding: '80px 60px',
+        background: '#AB2A25',
+        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '60px 40px' : '80px 60px',
         color: '#fff',
         textAlign: 'center',
       }}>
@@ -601,14 +607,14 @@ export default function MyTeam() {
           margin: '0 auto',
         }}>
           <div style={{
-            fontSize: 48,
-            fontWeight: 800,
+            fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+            fontWeight: '800',
             marginBottom: '30px',
           }}>
             JOIN OUR TEAM
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
             lineHeight: '1.6',
             opacity: '0.9',
             marginBottom: '40px',
@@ -618,18 +624,30 @@ export default function MyTeam() {
           <Link
             to="/my-contact"
             style={{
-              background: '#ffffff',
+              background: 'rgba(255, 255, 255, 0.9)',
               color: '#AB2A25',
-              padding: '20px 40px',
+              padding: window.innerWidth <= 480 ? '16px 32px' : window.innerWidth <= 768 ? '18px 36px' : '20px 40px',
               borderRadius: '12px',
               textDecoration: 'none',
-              fontSize: '18px',
+              fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
               fontWeight: '600',
               display: 'inline-block',
-              transition: 'transform 0.2s ease',
+              transition: 'all 0.3s ease',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)',
             }}
-            onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'scale(1.05) translateY(-2px)';
+              e.target.style.background = 'rgba(255, 255, 255, 1)';
+              e.target.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'scale(1) translateY(0)';
+              e.target.style.background = 'rgba(255, 255, 255, 0.9)';
+              e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+            }}
           >
             CONTACT US
           </Link>
@@ -640,13 +658,13 @@ export default function MyTeam() {
       <footer style={{
         background: '#1a1a1a',
         color: '#fff',
-        padding: '60px 60px 40px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px 30px 20px' : window.innerWidth <= 768 ? '50px 40px 30px 40px' : '60px 60px 40px 60px',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gap: '60px',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr 1fr',
+          gap: window.innerWidth <= 768 ? '40px' : '60px',
           maxWidth: '1200px',
           margin: '0 auto',
         }}>
@@ -654,7 +672,7 @@ export default function MyTeam() {
           {/* MYHOMETOWN MEDIA Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '8px',
               letterSpacing: '1px',
@@ -681,13 +699,25 @@ export default function MyTeam() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                background: '#fff',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textDecoration: 'none',
-                transition: 'transform 0.2s ease',
-              }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+              }} onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.1) translateY(-2px)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1) translateY(0)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              }}>
                 <span style={{ color: '#1877F2', fontSize: '18px', fontWeight: 'bold' }}>f</span>
               </a>
               
@@ -696,14 +726,26 @@ export default function MyTeam() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                background: '#fff',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textDecoration: 'none',
-                transition: 'transform 0.2s ease',
+                transition: 'all 0.3s ease',
                 overflow: 'hidden',
-              }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+              }} onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.1) translateY(-2px)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1) translateY(0)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              }}>
                 <img 
                   src={instagramLogo} 
                   alt="Instagram" 
@@ -720,13 +762,25 @@ export default function MyTeam() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                background: '#fff',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textDecoration: 'none',
-                transition: 'transform 0.2s ease',
-              }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+              }} onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.1) translateY(-2px)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1) translateY(0)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              }}>
                 <span style={{ color: '#0077B5', fontSize: '14px', fontWeight: 'bold' }}>in</span>
               </a>
             </div>
@@ -735,7 +789,7 @@ export default function MyTeam() {
           {/* EXPLORE Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '30px',
               letterSpacing: '1px',
@@ -780,7 +834,7 @@ export default function MyTeam() {
           {/* OFFICE Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '30px',
               letterSpacing: '1px',

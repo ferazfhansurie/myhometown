@@ -725,26 +725,27 @@ export default function CaseStudies() {
       }}>
         <div style={{
           maxWidth: 900,
-          marginLeft: 60,
+          marginLeft: window.innerWidth <= 768 ? '20px' : '60px',
+          marginRight: window.innerWidth <= 768 ? '20px' : '60px',
           marginTop: 20,
         }}>
           <div style={{
-            fontSize: 48,
+            fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '42px' : '48px',
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
             letterSpacing: -2,
             marginBottom: 30,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
           }}>
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>SHOWCASE
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
             maxWidth: 800,
             lineHeight: 1.3,
           }}>
@@ -785,29 +786,32 @@ export default function CaseStudies() {
         <div style={{
           maxWidth: '1200px',
           width: '100%',
-          marginLeft: 60,
+          marginLeft: window.innerWidth <= 768 ? '20px' : '60px',
+          marginRight: window.innerWidth <= 768 ? '20px' : '60px',
           position: 'relative',
           zIndex: 2,
         }}>
+
+
           {/* Filter Navigation */}
           <div style={{
             display: 'flex',
-            gap: '20px',
+            gap: window.innerWidth <= 480 ? '15px' : '20px',
             alignItems: 'center',
             marginBottom: '30px',
             flexWrap: 'wrap',
-            justifyContent: 'flex-start',
+            justifyContent: window.innerWidth <= 768 ? 'center' : 'flex-start',
           }}>
             {/* All Filter */}
             <div
               style={{
                 cursor: 'pointer',
-                padding: '12px 24px',
+                padding: window.innerWidth <= 480 ? '10px 20px' : '12px 24px',
                 borderRadius: '30px',
                 background: activeFilter === 'All' ? '#ffffff' : 'rgba(255, 255, 255, 0.15)',
                 color: activeFilter === 'All' ? '#AB2A25' : '#fff',
                 fontWeight: activeFilter === 'All' ? '700' : '500',
-                fontSize: 16,
+                fontSize: window.innerWidth <= 480 ? '14px' : '16px',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 border: activeFilter === 'All' ? '2px solid #ffffff' : '2px solid rgba(255, 255, 255, 0.2)',
                 boxShadow: activeFilter === 'All' ? '0 8px 25px rgba(255, 255, 255, 0.3)' : '0 4px 15px rgba(0, 0, 0, 0.1)',
@@ -840,8 +844,8 @@ export default function CaseStudies() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
-                  fontSize: 15,
-                  padding: '10px 20px',
+                  fontSize: window.innerWidth <= 480 ? '14px' : '15px',
+                  padding: window.innerWidth <= 480 ? '8px 16px' : '10px 20px',
                   borderRadius: '25px',
                   background: 'rgba(254, 235, 231, 0.1)',
                   border: '2px solid transparent',
@@ -884,9 +888,9 @@ export default function CaseStudies() {
                     <div
                       key={item}
                       style={{
-                        padding: '12px 20px',
+                        padding: window.innerWidth <= 480 ? '10px 16px' : '12px 20px',
                         cursor: 'pointer',
-                        fontSize: 14,
+                        fontSize: window.innerWidth <= 480 ? '13px' : '14px',
                         fontWeight: activeFilter === item ? 'bold' : 'normal',
                         color: activeFilter === item ? '#AB2A25' : '#fff',
                         background: activeFilter === item ? '#ffffff' : 'transparent',
@@ -930,8 +934,8 @@ export default function CaseStudies() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
-                  fontSize: 15,
-                  padding: '10px 20px',
+                  fontSize: window.innerWidth <= 480 ? '14px' : '15px',
+                  padding: window.innerWidth <= 480 ? '8px 16px' : '10px 20px',
                   borderRadius: '25px',
                   background: 'rgba(254, 235, 231, 0.1)',
                   border: '2px solid transparent',
@@ -972,9 +976,9 @@ export default function CaseStudies() {
                     <div
                       key={item}
                       style={{
-                        padding: '12px 20px',
+                        padding: window.innerWidth <= 480 ? '10px 16px' : '12px 20px',
                         cursor: 'pointer',
-                        fontSize: 14,
+                        fontSize: window.innerWidth <= 480 ? '13px' : '14px',
                         fontWeight: activeFilter === `Video Content - ${item}` ? 'bold' : 'normal',
                         color: activeFilter === `Video Content - ${item}` ? '#9E2B10' : '#fff',
                         background: activeFilter === `Video Content - ${item}` ? '#ffffff' : 'transparent',
@@ -1016,7 +1020,7 @@ export default function CaseStudies() {
                 key={filter}
                 style={{
                   cursor: 'pointer',
-                  fontSize: 16,
+                  fontSize: window.innerWidth <= 480 ? '14px' : '16px',
                   transition: 'opacity 0.2s',
                 }}
                 onClick={() => setActiveFilter(filter)}
@@ -1084,94 +1088,103 @@ export default function CaseStudies() {
           {/* Case Studies Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
-            gap: '25px',
+            gridTemplateColumns: window.innerWidth <= 480 ? '1fr' : window.innerWidth <= 768 ? 'repeat(auto-fit, minmax(300px, 1fr))' : 'repeat(auto-fit, minmax(380px, 1fr))',
+            gap: window.innerWidth <= 480 ? '20px' : window.innerWidth <= 768 ? '22px' : '25px',
             marginTop: '40px',
             width: '100%',
-            padding: '0 20px',
+            padding: window.innerWidth <= 480 ? '0 15px' : '0 20px',
           }}>
             {visibleVideos.map((video, index) => (
               <div
                 key={index}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '12px',
-                  padding: '0',
+                  background: 'rgba(255, 255, 255, 0.7)',
+                  borderRadius: '20px',
+                  padding: '25px',
                   cursor: 'pointer',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                   display: 'flex',
                   flexDirection: 'column',
                   minHeight: 'auto',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.4)',
                   position: 'relative',
                   overflow: 'hidden',
-                  backdropFilter: 'blur(20px)',
+                  backdropFilter: 'blur(30px)',
+                  WebkitBackdropFilter: 'blur(30px)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
                 }}
+              
+                onClick={() => navigate(`/content/${encodeURIComponent(video.title)}`)}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1)';
+                  e.target.style.transform = 'translateY(-8px) scale(1.02)';
+                  e.target.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.8)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08)';
+                  e.target.style.transform = 'translateY(0) scale(1)';
+                  e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.7)';
                 }}
-                onClick={() => navigate(`/content/${encodeURIComponent(video.title)}`)}
               >
-                {/* Facebook Post Header */}
+                {/* Enhanced Content Title with Glassmorphism */}
                 <div style={{
-                  padding: '16px',
-                  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
+                  fontSize: window.innerWidth <= 480 ? '16px' : '18px',
+                  fontWeight: 700,
+                  color: '#AB2A25',
+                  marginBottom: '20px',
+                  textAlign: 'center',
+                  padding: '15px 20px',
+                  background: 'rgba(255, 255, 255, 0.9)',
+                  borderRadius: '15px',
+                  border: '2px solid rgba(171, 42, 37, 0.2)',
+                  boxShadow: '0 4px 20px rgba(171, 42, 37, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8)',
+                  backdropFilter: 'blur(20px)',
+                  WebkitBackdropFilter: 'blur(20px)',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}>
-                  {/* Profile Picture */}
+                  {/* Subtle background pattern */}
                   <div style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
-                    background: 'linear-gradient(135deg, #1877F2, #42A5F5)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#fff',
-                    fontWeight: 'bold',
-                    fontSize: '18px',
-                  }}>
-                    I
-                  </div>
-                  
-                  {/* Profile Info */}
-                  <div style={{ flex: 1 }}>
-                    <div style={{
-                      color: '#050505',
-                      fontSize: '15px',
-                      fontWeight: '600',
-                      lineHeight: '1.2',
-                    }}>
-                      I'm Malaysian 我是马来西亚人
-                    </div>
-                    <div style={{
-                      color: '#65676B',
-                      fontSize: '13px',
-                      marginTop: '2px',
-                    }}>
-                      about 2 months ago
-                    </div>
-                  </div>
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '2px',
+                    background: 'linear-gradient(90deg, transparent, rgba(171, 42, 37, 0.3), transparent)',
+                  }}></div>
+                  {video.title}
                 </div>
                 
-                {/* Post Content Text */}
-            
+                {/* Category Indicator */}
+                <div style={{
+                  fontSize: window.innerWidth <= 480 ? '12px' : '14px',
+                  fontWeight: 500,
+                  color: '#666',
+                  textAlign: 'center',
+                  marginBottom: '15px',
+                  padding: '8px 16px',
+                  background: 'rgba(171, 42, 37, 0.08)',
+                  borderRadius: '20px',
+                  border: '1px solid rgba(171, 42, 37, 0.15)',
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
+                  alignSelf: 'center',
+                  maxWidth: 'fit-content',
+                }}>
+                  {video.category}
+                </div>
                 
-                {/* Content Preview Container */}
+                {/* Content Preview Container with Glassmorphism */}
                 <div style={{
                   width: '100%',
                   overflow: 'hidden',
-                  background: '#fff',
                   position: 'relative',
                   cursor: 'pointer',
+                  borderRadius: '15px',
+                  background: 'rgba(255, 255, 255, 0.3)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  backdropFilter: 'blur(15px)',
+                  WebkitBackdropFilter: 'blur(15px)',
                 }}>
                   {/* Embedded Content for Promotional Campaign, Product & Brand Feature, Event Media Coverage, Infographics, and Video Categories */}
                   {(video.category === 'Promotional Campaign' || video.category === 'Product & Brand Feature' || video.category === 'Event Media Coverage' || video.category === 'Infographics' || video.category.startsWith('Video Content') || video.category === 'Street Interview' || video.category === 'Brand Story' || video.category === 'Livestreams') ? (
@@ -1180,7 +1193,7 @@ export default function CaseStudies() {
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      background: '#fff',
+                     
                       overflow: 'hidden',
                     }}>
                                             {video.title === 'Vivo - Deepavali campaign' && (
@@ -1486,95 +1499,21 @@ export default function CaseStudies() {
                     <div style={{
                       width: '100%',
                       height: '100%',
-                      background: video.type === 'video' 
-                        ? 'linear-gradient(135deg, #1a1a1a 0%, #333333 100%)'
-                        : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+                   
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       position: 'relative',
                     }}>
-                      {/* Play Button Overlay - Only for videos */}
-                      {video.type === 'video' && (
-                        <div style={{
-                          position: 'absolute',
-                          top: '50%',
-                          left: '50%',
-                          transform: 'translate(-50%, -50%)',
-                          width: '60px',
-                          height: '60px',
-                          background: 'rgba(158, 43, 16, 0.9)',
-                          borderRadius: '50%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          zIndex: 2,
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                        }}>
-                          <div style={{
-                            width: 0,
-                            height: 0,
-                            borderLeft: '15px solid #fff',
-                            borderTop: '10px solid transparent',
-                            borderBottom: '10px solid transparent',
-                            marginLeft: '3px',
-                          }} />
-                        </div>
-                      )}
+                    
+                    
                       
-                      {/* Facebook Logo */}
-                      <div style={{
-                        position: 'absolute',
-                        top: '10px',
-                        right: '10px',
-                        background: '#1877F2',
-                        color: '#fff',
-                        padding: '4px 8px',
-                        borderRadius: '4px',
-                        fontSize: '10px',
-                        fontWeight: 'bold',
-                        zIndex: 2,
-                      }}>
-                        f
-                      </div>
+                
                       
-                      {/* Content Icon and Text */}
-                      <div style={{
-                        textAlign: 'center',
-                        color: video.type === 'video' ? '#fff' : '#9E2B10',
-                        opacity: 0.9,
-                      }}>
-                        <div style={{
-                          fontSize: '32px',
-                          marginBottom: '12px',
-                        }}>
-                          {video.type === 'video' ? '📹' : '📷'}
-                        </div>
-                        <div style={{
-                          fontSize: '14px',
-                          fontWeight: '600',
-                          marginBottom: '8px',
-                        }}>
-                          {video.type === 'video' ? 'Facebook Video' : 'Facebook Photo'}
-                        </div>
-                        <div style={{
-                          fontSize: '11px',
-                          opacity: 0.7,
-                        }}>
-                          Click to view content
-                        </div>
-                      </div>
                     </div>
                   )}
                 </div>
-                
-                {/* Facebook Post Footer - Empty for cleaner look */}
-                <div style={{
-                  padding: '8px 16px',
-                  borderTop: '1px solid rgba(0, 0, 0, 0.1)',
-                  height: '20px',
-                }}>
-                </div>
+            
 
               </div>
             ))}
@@ -1586,13 +1525,13 @@ export default function CaseStudies() {
       <footer style={{
         background: '#1a1a1a',
         color: '#fff',
-        padding: 'clamp(40px, 8vw, 80px) clamp(20px, 4vw, 60px) clamp(30px, 6vw, 50px) clamp(20px, 4vw, 60px)',
+        padding: window.innerWidth <= 480 ? '40px 20px 30px 20px' : window.innerWidth <= 768 ? '50px 40px 30px 40px' : '60px 60px 40px 60px',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: 'clamp(40px, 6vw, 60px)',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: window.innerWidth <= 768 ? '40px' : '60px',
           maxWidth: '1200px',
           margin: '0 auto',
         }}>
@@ -1600,17 +1539,17 @@ export default function CaseStudies() {
           {/* MYHOMETOWN MEDIA Section */}
           <div>
             <div style={{
-              fontSize: 'clamp(24px, 5vw, 32px)',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
-              marginBottom: 'clamp(8px, 2vw, 12px)',
+              marginBottom: '8px',
               letterSpacing: '1px',
             }}>
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY</span><span style={{ fontFamily: 'Times New Roman, serif' }}>HOMETOWN MEDIA</span>
             </div>
             <div style={{
-              fontSize: 'clamp(12px, 2.5vw, 16px)',
+              fontSize: '14px',
               fontWeight: '400',
-              marginBottom: 'clamp(20px, 4vw, 30px)',
+              marginBottom: '30px',
               letterSpacing: '0.5px',
               opacity: '0.9',
             }}>

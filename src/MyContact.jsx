@@ -75,26 +75,27 @@ export default function MyContact() {
       }}>
         <div style={{
           maxWidth: 900,
-          marginLeft: 60,
+          marginLeft: window.innerWidth <= 768 ? '20px' : '60px',
+          marginRight: window.innerWidth <= 768 ? '20px' : '60px',
           marginTop: 20,
         }}>
           <div style={{
-            fontSize: 48,
+            fontSize: window.innerWidth <= 480 ? '36px' : window.innerWidth <= 768 ? '42px' : '48px',
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
             letterSpacing: -2,
             marginBottom: 30,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
           }}>
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>CONTACT
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
             maxWidth: 800,
             lineHeight: 1.3,
           }}>
@@ -106,7 +107,7 @@ export default function MyContact() {
       {/* Contact Content Section */}
       <section style={{
         background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
-        padding: '80px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '60px 40px' : '80px 60px',
         color: '#333',
         position: 'relative',
         overflow: 'hidden',
@@ -141,21 +142,22 @@ export default function MyContact() {
         }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '80px',
+            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr',
+            gap: window.innerWidth <= 768 ? '40px' : '80px',
             alignItems: 'start',
           }}>
             {/* Contact Form */}
             <div style={{
-              background: 'rgba(255, 255, 255, 0.8)',
-              padding: '40px 30px',
+              background: 'rgba(255, 255, 255, 0.7)',
+              padding: window.innerWidth <= 480 ? '30px 20px' : window.innerWidth <= 768 ? '35px 25px' : '40px 30px',
               borderRadius: '24px',
-              boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
-              border: '1px solid rgba(171, 42, 37, 0.1)',
-              backdropFilter: 'blur(10px)',
+              boxShadow: '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+              border: '1px solid rgba(171, 42, 37, 0.15)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
             }}>
               <div style={{
-                fontSize: '36px',
+                fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
                 fontWeight: '800',
                 color: '#AB2A25',
                 marginBottom: '20px',
@@ -171,7 +173,7 @@ export default function MyContact() {
                 }}></div>
               </div>
               <div style={{
-                fontSize: 18,
+                fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
                 color: '#666',
                 marginBottom: '40px',
                 lineHeight: '1.6',
@@ -212,7 +214,7 @@ export default function MyContact() {
                   <div>
                     <label style={{
                       display: 'block',
-                      fontSize: '16px',
+                      fontSize: window.innerWidth <= 480 ? '15px' : '16px',
                       fontWeight: '600',
                       color: '#333',
                       marginBottom: '8px',
@@ -227,14 +229,26 @@ export default function MyContact() {
                       required
                       style={{
                         width: '100%',
-                        padding: '15px',
-                        border: '2px solid #ddd',
-                        borderRadius: '8px',
-                        fontSize: '16px',
-                        transition: 'border-color 0.3s ease',
+                        padding: window.innerWidth <= 480 ? '12px' : '15px',
+                        border: '2px solid rgba(171, 42, 37, 0.2)',
+                        borderRadius: '12px',
+                        fontSize: window.innerWidth <= 480 ? '15px' : '16px',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        background: 'rgba(255, 255, 255, 0.8)',
+                        backdropFilter: 'blur(10px)',
+                        WebkitBackdropFilter: 'blur(10px)',
+                        boxShadow: '0 4px 16px rgba(171, 42, 37, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
                       }}
-                      onFocus={(e) => e.target.style.borderColor = '#9E2B10'}
-                      onBlur={(e) => e.target.style.borderColor = '#ddd'}
+                      onFocus={(e) => {
+                        e.target.style.borderColor = '#AB2A25';
+                        e.target.style.boxShadow = '0 6px 20px rgba(171, 42, 37, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4)';
+                        e.target.style.transform = 'translateY(-2px)';
+                      }}
+                      onBlur={(e) => {
+                        e.target.style.borderColor = 'rgba(171, 42, 37, 0.2)';
+                        e.target.style.boxShadow = '0 4px 16px rgba(171, 42, 37, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                        e.target.style.transform = 'translateY(0)';
+                      }}
                     />
                   </div>
 
@@ -329,19 +343,28 @@ export default function MyContact() {
                   <button
                     type="submit"
                     style={{
-                      background: '#AB2A25',
+                      background: 'linear-gradient(135deg, #AB2A25, #9E2B10)',
                       color: '#fff',
-                      padding: '18px 40px',
+                      padding: window.innerWidth <= 480 ? '16px 32px' : window.innerWidth <= 768 ? '17px 36px' : '18px 40px',
                       border: 'none',
-                      borderRadius: '12px',
-                      fontSize: '18px',
+                      borderRadius: '16px',
+                      fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
                       fontWeight: '600',
                       cursor: 'pointer',
-                      transition: 'transform 0.2s ease',
+                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                       alignSelf: 'flex-start',
+                      boxShadow: '0 8px 25px rgba(171, 42, 37, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                      backdropFilter: 'blur(10px)',
+                      WebkitBackdropFilter: 'blur(10px)',
                     }}
-                    onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
-                    onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = 'translateY(-3px) scale(1.02)';
+                      e.target.style.boxShadow = '0 12px 35px rgba(171, 42, 37, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = 'translateY(0) scale(1)';
+                      e.target.style.boxShadow = '0 8px 25px rgba(171, 42, 37, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                    }}
                   >
                     SEND MESSAGE
                   </button>
@@ -352,18 +375,20 @@ export default function MyContact() {
             {/* Contact Information */}
             <div>
               <div style={{
-                fontSize: 48,
-                fontWeight: 800,
+                fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '40px' : '48px',
+                fontWeight: '800',
                 color: '#AB2A25',
                 marginBottom: '30px',
+                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
               }}>
                 CONTACT INFO
               </div>
               <div style={{
-                fontSize: 18,
+                fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
                 color: '#666',
                 marginBottom: '40px',
                 lineHeight: '1.6',
+                textAlign: window.innerWidth <= 768 ? 'center' : 'left',
               }}>
                 Reach out to us through any of these channels. We're here to help you succeed.
               </div>
@@ -474,7 +499,7 @@ export default function MyContact() {
       {/* Business Hours Section */}
       <section style={{
         background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
-        padding: '80px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '60px 40px' : '80px 60px',
         color: '#333',
         position: 'relative',
         overflow: 'hidden',
@@ -546,8 +571,8 @@ export default function MyContact() {
           
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '40px',
+            gridTemplateColumns: window.innerWidth <= 480 ? '1fr' : window.innerWidth <= 768 ? 'repeat(auto-fit, minmax(250px, 1fr))' : 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: window.innerWidth <= 480 ? '30px' : window.innerWidth <= 768 ? '35px' : '40px',
           }}>
             {[
               {
@@ -741,13 +766,13 @@ export default function MyContact() {
       <footer style={{
         background: '#1a1a1a',
         color: '#fff',
-        padding: '60px 60px 40px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px 30px 20px' : window.innerWidth <= 768 ? '50px 40px 30px 40px' : '60px 60px 40px 60px',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gap: '60px',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr 1fr',
+          gap: window.innerWidth <= 768 ? '40px' : '60px',
           maxWidth: '1200px',
           margin: '0 auto',
         }}>

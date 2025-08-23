@@ -26,6 +26,350 @@ import img17 from "./assets/Facebook/I_m Malaysian.jpg";
 import tiktok3 from "./assets/Facebook/tiktok3.jpg";
 
 export default function MyPlatforms() {
+  // Add mobile responsive styles
+  React.useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      @media (max-width: 768px) {
+        .platforms-grid {
+          grid-template-columns: 1fr !important;
+          gap: 30px !important;
+          padding: 0 20px !important;
+        }
+        
+        .platform-card {
+          padding: 40px 30px !important;
+          margin: 0 10px !important;
+        }
+        
+        .platform-header {
+          font-size: 24px !important;
+          margin-bottom: 25px !important;
+          gap: 15px !important;
+        }
+        
+        .platform-icon {
+          width: 35px !important;
+          height: 35px !important;
+        }
+        
+        .account-item {
+          padding: 18px 16px !important;
+        }
+        
+        .account-name {
+          font-size: 16px !important;
+        }
+        
+        .arrow-icon {
+          font-size: 18px !important;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .platforms-grid {
+          gap: 25px !important;
+          padding: 0 15px !important;
+        }
+        
+        .platform-card {
+          padding: 30px 20px !important;
+          margin: 0 5px !important;
+        }
+        
+        .platform-header {
+          font-size: 22px !important;
+          margin-bottom: 20px !important;
+          gap: 12px !important;
+        }
+        
+        .platform-icon {
+          width: 30px !important;
+          height: 30px !important;
+        }
+        
+        .account-item {
+          padding: 16px 14px !important;
+        }
+        
+        .account-name {
+          font-size: 15px !important;
+        }
+        
+        .arrow-icon {
+          font-size: 16px !important;
+        }
+      }
+      
+      @media (max-width: 360px) {
+        .platforms-grid {
+          gap: 20px !important;
+          padding: 0 10px !important;
+        }
+        
+        .platform-card {
+          padding: 25px 15px !important;
+          margin: 0 !important;
+        }
+        
+        .platform-header {
+          font-size: 20px !important;
+          margin-bottom: 18px !important;
+          gap: 10px !important;
+        }
+        
+        .platform-icon {
+          width: 28px !important;
+          height: 28px !important;
+        }
+        
+        .account-item {
+          padding: 14px 12px !important;
+        }
+        
+        .account-name {
+          font-size: 14px !important;
+        }
+        
+        .arrow-icon {
+          font-size: 15px !important;
+        }
+        
+        .facebook-section {
+          padding: 60px 30px !important;
+        }
+        
+        .facebook-header {
+          padding: 40px 30px !important;
+          margin-bottom: 60px !important;
+        }
+        
+        .facebook-header-title {
+          font-size: 28px !important;
+          gap: 12px !important;
+        }
+        
+        .facebook-header-icon {
+          width: 40px !important;
+          height: 40px !important;
+          font-size: 18px !important;
+        }
+        
+        .facebook-header-subtitle {
+          font-size: 14px !important;
+        }
+        
+        .facebook-grid {
+          grid-template-columns: 1fr !important;
+          gap: 25px !important;
+          margin-bottom: 40px !important;
+        }
+        
+        .facebook-card {
+          padding: 25px 20px !important;
+          gap: 20px !important;
+        }
+        
+        .facebook-card-image {
+          width: 70px !important;
+          height: 70px !important;
+        }
+        
+        .facebook-card-title {
+          font-size: 16px !important;
+        }
+        
+        .facebook-card-subtitle {
+          font-size: 13px !important;
+        }
+        
+        .facebook-card-arrow {
+          width: 35px !important;
+          height: 35px !important;
+          font-size: 20px !important;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .platforms-grid {
+          gap: 25px !important;
+          padding: 0 15px !important;
+        }
+        
+        .platform-card {
+          padding: 30px 20px !important;
+          margin: 0 5px !important;
+        }
+        
+        .platform-header {
+          font-size: 22px !important;
+          margin-bottom: 20px !important;
+          gap: 12px !important;
+        }
+        
+        .platform-icon {
+          width: 30px !important;
+          height: 30px !important;
+        }
+        
+        .account-item {
+          padding: 16px 14px !important;
+        }
+        
+        .account-name {
+          font-size: 15px !important;
+        }
+        
+        .arrow-icon {
+          font-size: 16px !important;
+        }
+        
+        .facebook-section {
+          padding: 50px 20px !important;
+        }
+        
+        .facebook-header {
+          padding: 30px 20px !important;
+          margin-bottom: 50px !important;
+        }
+        
+        .facebook-header-title {
+          font-size: 24px !important;
+          gap: 10px !important;
+        }
+        
+        .facebook-header-icon {
+          width: 35px !important;
+          height: 35px !important;
+          font-size: 16px !important;
+        }
+        
+        .facebook-header-subtitle {
+          font-size: 13px !important;
+        }
+        
+        .facebook-grid {
+          gap: 20px !important;
+        }
+        
+        .facebook-card {
+          padding: 20px 15px !important;
+          gap: 15px !important;
+        }
+        
+        .facebook-card-image {
+          width: 60px !important;
+          height: 60px !important;
+        }
+        
+        .facebook-card-title {
+          font-size: 15px !important;
+        }
+        
+        .facebook-card-subtitle {
+          font-size: 12px !important;
+        }
+        
+        .facebook-card-arrow {
+          width: 30px !important;
+          height: 30px !important;
+          font-size: 18px !important;
+        }
+      }
+      
+      @media (max-width: 360px) {
+        .platforms-grid {
+          gap: 20px !important;
+          padding: 0 10px !important;
+        }
+        
+        .platform-card {
+          padding: 25px 15px !important;
+          margin: 0 !important;
+        }
+        
+        .platform-header {
+          font-size: 20px !important;
+          margin-bottom: 18px !important;
+          gap: 10px !important;
+        }
+        
+        .platform-icon {
+          width: 28px !important;
+          height: 28px !important;
+        }
+        
+        .account-item {
+          padding: 14px 12px !important;
+        }
+        
+        .account-name {
+          font-size: 14px !important;
+        }
+        
+        .arrow-icon {
+          font-size: 15px !important;
+        }
+        
+        .facebook-section {
+          padding: 40px 15px !important;
+        }
+        
+        .facebook-header {
+          padding: 25px 15px !important;
+          margin-bottom: 40px !important;
+        }
+        
+        .facebook-header-title {
+          font-size: 22px !important;
+          gap: 8px !important;
+        }
+        
+        .facebook-header-icon {
+          width: 32px !important;
+          height: 32px !important;
+          font-size: 14px !important;
+        }
+        
+        .facebook-header-subtitle {
+          font-size: 12px !important;
+        }
+        
+        .facebook-grid {
+          gap: 18px !important;
+        }
+        
+        .facebook-card {
+          padding: 18px 12px !important;
+          gap: 12px !important;
+        }
+        
+        .facebook-card-image {
+          width: 55px !important;
+          height: 55px !important;
+        }
+        
+        .facebook-card-title {
+          font-size: 14px !important;
+        }
+        
+        .facebook-card-subtitle {
+          font-size: 11px !important;
+        }
+        
+        .facebook-card-arrow {
+          width: 28px !important;
+          height: 28px !important;
+          font-size: 16px !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
   const facebookPlatforms = [
     {
       name: "I'm Malaysian 我是马来西亚人",
@@ -246,7 +590,7 @@ export default function MyPlatforms() {
       </section>
 
       {/* Facebook Platforms Section */}
-      <section style={{
+      <section className="facebook-section" style={{
         background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
         padding: '80px 60px',
         color: '#333',
@@ -282,25 +626,37 @@ export default function MyPlatforms() {
           zIndex: 2,
         }}>
           {/* Facebook Header */}
-          <div style={{
+          <div className="facebook-header" style={{
             textAlign: 'center',
             marginBottom: '80px',
-            background: 'rgba(255, 255, 255, 0.8)',
+            background: 'rgba(255, 255, 255, 0.7)',
             padding: '50px 40px',
             borderRadius: '24px',
-            boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(171, 42, 37, 0.1)',
-
-            backdropFilter: 'blur(10px)',
+            boxShadow: '0 25px 80px rgba(171, 42, 37, 0.08), 0 15px 35px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.2)',
+            border: '1px solid rgba(171, 42, 37, 0.08)',
+            backdropFilter: 'blur(20px)',
+            position: 'relative',
+            overflow: 'hidden',
           }}>
+            {/* Decorative background element */}
             <div style={{
+              position: 'absolute',
+              top: '-50px',
+              right: '-50px',
+              width: '150px',
+              height: '150px',
+              background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+              borderRadius: '50%',
+              filter: 'blur(30px)',
+            }}></div>
+            <div className="facebook-header-title" style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '15px',
               marginBottom: '20px',
             }}>
-              <div style={{
+              <div className="facebook-header-icon" style={{
                 width: '45px',
                 height: '45px',
                 background: 'linear-gradient(135deg, #1877F2, #0D6EFD)',
@@ -311,7 +667,8 @@ export default function MyPlatforms() {
                 color: 'white',
                 fontSize: '20px',
                 fontWeight: 'bold',
-                boxShadow: '0 4px 15px rgba(24, 119, 242, 0.2)',
+                boxShadow: '0 8px 25px rgba(24, 119, 242, 0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
+                border: '1px solid rgba(255,255,255,0.1)',
               }}>
                 f
               </div>
@@ -324,7 +681,7 @@ export default function MyPlatforms() {
                 Facebook Network
               </div>
             </div>
-            <div style={{
+            <div className="facebook-header-subtitle" style={{
               fontSize: '16px',
               color: '#666',
               maxWidth: '500px',
@@ -336,7 +693,7 @@ export default function MyPlatforms() {
           </div>
 
           {/* Facebook Platforms Grid */}
-          <div style={{
+          <div className="facebook-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
             gap: '30px',
@@ -353,19 +710,20 @@ export default function MyPlatforms() {
                   color: 'inherit',
                 }}
               >
-                <div style={{
-                  background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+                <div className="facebook-card" style={{
+                  background: 'rgba(255, 255, 255, 0.8)',
                   borderRadius: '20px',
                   padding: '30px',
-                  boxShadow: '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: '0 20px 60px rgba(171, 42, 37, 0.08), 0 10px 30px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.2)',
+                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '25px',
-                  border: '2px solid rgba(171, 42, 37, 0.08)',
+                  border: '1px solid rgba(171, 42, 37, 0.08)',
                   position: 'relative',
                   overflow: 'hidden',
+                  backdropFilter: 'blur(15px)',
                 }}
                 onMouseEnter={(e) => {
                   e.target.style.transform = 'translateY(-8px) scale(1.02)';
@@ -393,19 +751,20 @@ export default function MyPlatforms() {
                   <img 
                     src={platform.image}
                     alt={platform.name}
+                    className="facebook-card-image"
                     style={{
                       width: '90px',
                       height: '90px',
                       borderRadius: '20px',
                       objectFit: 'cover',
                       flexShrink: 0,
-                      boxShadow: '0 8px 25px rgba(0, 0, 0, 0.15)',
-                      border: '3px solid rgba(171, 42, 37, 0.1)',
-                      transition: 'all 0.3s ease',
+                      boxShadow: '0 12px 35px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255,255,255,0.1)',
+                      border: '2px solid rgba(171, 42, 37, 0.08)',
+                      transition: 'all 0.4s ease',
                     }}
                   />
                   <div style={{ flex: 1 }}>
-                    <div style={{
+                    <div className="facebook-card-title" style={{
                       fontSize: '18px',
                       fontWeight: '700',
                       color: '#333',
@@ -414,7 +773,7 @@ export default function MyPlatforms() {
                     }}>
                       {platform.name}
                     </div>
-                    <div style={{
+                    <div className="facebook-card-subtitle" style={{
                       fontSize: '14px',
                       color: '#666',
                       lineHeight: '1.4',
@@ -422,18 +781,20 @@ export default function MyPlatforms() {
                       Click to visit page
                     </div>
                   </div>
-                  <div style={{
+                  <div className="facebook-card-arrow" style={{
                     color: '#AB2A25',
                     fontSize: '24px',
                     fontWeight: 'bold',
-                    background: 'rgba(171, 42, 37, 0.1)',
+                    background: 'rgba(171, 42, 37, 0.08)',
                     width: '40px',
                     height: '40px',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    transition: 'all 0.3s ease',
+                    transition: 'all 0.4s ease',
+                    boxShadow: '0 4px 15px rgba(171, 42, 37, 0.1), inset 0 1px 0 rgba(255,255,255,0.1)',
+                    border: '1px solid rgba(171, 42, 37, 0.05)',
                   }}>
                     →
                   </div>
@@ -504,20 +865,20 @@ export default function MyPlatforms() {
           </div>
 
           {/* Other Platforms Grid */}
-          <div style={{
+          <div className="platforms-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
             gap: '40px',
           }}>
             {otherPlatforms.map((platformGroup, index) => (
-              <div key={index} style={{
-                background: 'rgba(255,255,255,0.15)',
+              <div key={index} className="platform-card" style={{
+                background: 'rgba(255,255,255,0.08)',
                 borderRadius: '24px',
                 padding: '50px 40px',
-                border: '2px solid rgba(255,255,255,0.2)',
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)',
-                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255,255,255,0.15)',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 25px 80px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255,255,255,0.1)',
+                transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                 position: 'relative',
                 overflow: 'hidden',
               }}
@@ -542,7 +903,7 @@ export default function MyPlatforms() {
                   borderRadius: '50%',
                   filter: 'blur(20px)',
                 }}></div>
-                <div style={{
+                <div className="platform-header" style={{
                   fontSize: '28px',
                   fontWeight: '700',
                   marginBottom: '35px',
@@ -553,15 +914,17 @@ export default function MyPlatforms() {
                   zIndex: 2,
                 }}>
                   {platformGroup.platform === 'Instagram' && (
-                    <div style={{
+                    <div className="platform-icon" style={{
                       width: '40px',
                       height: '40px',
                       background: 'linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)',
-                      borderRadius: '10px',
+                      borderRadius: '12px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       overflow: 'hidden',
+                      boxShadow: '0 8px 25px rgba(220, 39, 67, 0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
+                      border: '1px solid rgba(255,255,255,0.1)',
                     }}>
                       <img 
                         src={instagramLogo} 
@@ -575,15 +938,17 @@ export default function MyPlatforms() {
                     </div>
                   )}
                   {platformGroup.platform === 'Xiao Hong Shu' && (
-                    <div style={{
+                    <div className="platform-icon" style={{
                       width: '40px',
                       height: '40px',
-                      background: '#FF2442',
-                      borderRadius: '10px',
+                      background: 'linear-gradient(135deg, #FF2442 0%, #FF6B8A 100%)',
+                      borderRadius: '12px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       overflow: 'hidden',
+                      boxShadow: '0 8px 25px rgba(255, 36, 66, 0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
+                      border: '1px solid rgba(255,255,255,0.1)',
                     }}>
                       <img 
                         src={xiaohongshuLogo} 
@@ -598,15 +963,17 @@ export default function MyPlatforms() {
                     </div>
                   )}
                   {platformGroup.platform === 'TikTok' && (
-                    <div style={{
+                    <div className="platform-icon" style={{
                       width: '40px',
                       height: '40px',
-                      background: '#000',
-                      borderRadius: '10px',
+                      background: 'linear-gradient(135deg, #000000 0%, #333333 50%, #000000 100%)',
+                      borderRadius: '12px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       overflow: 'hidden',
+                      boxShadow: '0 8px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.1)',
+                      border: '1px solid rgba(255,255,255,0.1)',
                     }}>
                       <img 
                         src={tiktokLogo} 
@@ -639,18 +1006,20 @@ export default function MyPlatforms() {
                         color: 'inherit',
                       }}
                     >
-                      <div style={{
-                        background: 'rgba(255,255,255,0.12)',
+                      <div className="account-item" style={{
+                        background: 'rgba(255,255,255,0.06)',
                         borderRadius: '16px',
                         padding: '22px 20px',
-                        transition: 'all 0.3s ease',
+                        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                         cursor: 'pointer',
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        border: '1px solid rgba(255,255,255,0.15)',
+                        border: '1px solid rgba(255,255,255,0.1)',
                         position: 'relative',
                         overflow: 'hidden',
+                        backdropFilter: 'blur(10px)',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255,255,255,0.05)',
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.background = 'rgba(255,255,255,0.2)';
@@ -675,7 +1044,7 @@ export default function MyPlatforms() {
                           transition: 'transform 0.6s ease',
                         }}></div>
                         <div>
-                          <div style={{
+                          <div className="account-name" style={{
                             fontSize: '18px',
                             fontWeight: '600',
                             marginBottom: '5px',
@@ -684,9 +1053,11 @@ export default function MyPlatforms() {
                           </div>
                        
                         </div>
-                        <div style={{
+                        <div className="arrow-icon" style={{
                           fontSize: '20px',
                           fontWeight: 'bold',
+                          color: 'rgba(255,255,255,0.8)',
+                          transition: 'all 0.3s ease',
                         }}>
                           →
                         </div>

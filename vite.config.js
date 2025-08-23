@@ -17,10 +17,16 @@ export default defineConfig({
           if (/mp4|webm|ogg|mp3|wav|flac|aac/i.test(ext)) {
             return `assets/videos/[name]-[hash].[ext]`
           }
+          if (/css/i.test(ext)) {
+            return `assets/css/[name]-[hash].[ext]`
+          }
           return `assets/[name]-[hash].[ext]`
-        }
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js'
       }
     }
   },
-  base: './'
+  base: './',
+  assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg']
 })

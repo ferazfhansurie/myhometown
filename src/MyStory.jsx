@@ -4,8 +4,6 @@ import './index.css';
 import Header from "./Header.jsx";
 import instagramLogo from "./assets/instagram.png";
 
-
-
 export default function MyStory() {
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
@@ -77,28 +75,40 @@ export default function MyStory() {
             <div style={{
               textAlign: window.innerWidth <= 768 ? 'center' : 'left',
               padding: '40px 30px',
-              background: 'rgba(255, 255, 255, 0.7)',
+              background: 'rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
               borderRadius: '20px',
-              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.1)',
-              border: '1px solid rgba(171, 42, 37, 0.1)',
+              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
               position: 'relative',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-5px)';
+              e.target.style.boxShadow = '0 12px 40px rgba(171, 42, 37, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 32px rgba(171, 42, 37, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
             }}>
-                          <div style={{
-              fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
-              fontWeight: 800,
-              color: '#AB2A25',
-              marginBottom: 30,
-              lineHeight: 1.1,
-              position: 'relative',
-            }}>
-              THE BEGINNING
               <div style={{
-                width: '60px',
-                height: '4px',
-                background: '#AB2A25',
-                marginTop: '15px',
-                borderRadius: '2px',
-                }}></div>
+                fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
+                fontWeight: 800,
+                color: '#AB2A25',
+                marginBottom: 30,
+                lineHeight: 1.1,
+                position: 'relative',
+              }}>
+                THE BEGINNING
+                <div style={{
+                  width: '60px',
+                  height: '4px',
+                  background: 'linear-gradient(90deg, #AB2A25, #d64a45)',
+                  marginTop: '15px',
+                  borderRadius: '2px',
+                  boxShadow: '0 2px 8px rgba(171, 42, 37, 0.3)',
+                  }}></div>
               </div>
               <div style={{
                 fontSize: window.innerWidth <= 480 ? '14px' : window.innerWidth <= 768 ? '15px' : '16px',
@@ -127,6 +137,7 @@ export default function MyStory() {
                 width: '2px',
                 background: 'linear-gradient(to bottom, transparent, #AB2A25, transparent)',
                 transform: 'translateX(-50%)',
+                boxShadow: '0 0 10px rgba(171, 42, 37, 0.3)',
               }}></div>
             )}
 
@@ -134,11 +145,22 @@ export default function MyStory() {
             <div style={{
               textAlign: window.innerWidth <= 768 ? 'center' : 'left',
               padding: '40px 30px',
-              background: 'rgba(255, 255, 255, 0.7)',
+              background: 'rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
               borderRadius: '20px',
-              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.1)',
-              border: '1px solid rgba(171, 42, 37, 0.1)',
+              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
               position: 'relative',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-5px)';
+              e.target.style.boxShadow = '0 12px 40px rgba(171, 42, 37, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 32px rgba(171, 42, 37, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
             }}>
               <div style={{
                 fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
@@ -152,9 +174,10 @@ export default function MyStory() {
                 <div style={{
                   width: '60px',
                   height: '4px',
-                  background: '#AB2A25',
+                  background: 'linear-gradient(90deg, #AB2A25, #d64a45)',
                   marginTop: '15px',
                   borderRadius: '2px',
+                  boxShadow: '0 2px 8px rgba(171, 42, 37, 0.3)',
                 }}></div>
               </div>
               <div style={{
@@ -184,6 +207,7 @@ export default function MyStory() {
                 width: '2px',
                 background: 'linear-gradient(to bottom, transparent, #AB2A25, transparent)',
                 transform: 'translateX(-50%)',
+                boxShadow: '0 0 10px rgba(171, 42, 37, 0.3)',
               }}></div>
             )}
 
@@ -191,11 +215,22 @@ export default function MyStory() {
             <div style={{
               textAlign: window.innerWidth <= 768 ? 'center' : 'left',
               padding: '40px 30px',
-              background: 'rgba(255, 255, 255, 0.7)',
+              background: 'rgba(255, 255, 255, 0.15)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
               borderRadius: '20px',
-              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.1)',
-              border: '1px solid rgba(171, 42, 37, 0.1)',
+              boxShadow: '0 8px 32px rgba(171, 42, 37, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
               position: 'relative',
+              transition: 'all 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.transform = 'translateY(-5px)';
+              e.target.style.boxShadow = '0 12px 40px rgba(171, 42, 37, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 32px rgba(171, 42, 37, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
             }}>
               <div style={{
                 fontSize: window.innerWidth <= 480 ? '28px' : window.innerWidth <= 768 ? '32px' : '36px',
@@ -209,9 +244,10 @@ export default function MyStory() {
                 <div style={{
                   width: '60px',
                   height: '4px',
-                  background: '#AB2A25',
+                  background: 'linear-gradient(90deg, #AB2A25, #d64a45)',
                   marginTop: '15px',
                   borderRadius: '2px',
+                  boxShadow: '0 2px 8px rgba(171, 42, 37, 0.3)',
                 }}></div>
               </div>
               <div style={{
@@ -237,8 +273,12 @@ export default function MyStory() {
             textAlign: 'center',
             marginTop: '60px',
             padding: window.innerWidth <= 768 ? '40px 20px' : '60px 40px',
-            background: 'rgba(171, 42, 37, 0.1)',
+            background: 'rgba(171, 42, 37, 0.08)',
+            backdropFilter: 'blur(15px)',
+            WebkitBackdropFilter: 'blur(15px)',
             borderRadius: '20px',
+            border: '1px solid rgba(171, 42, 37, 0.1)',
+            boxShadow: '0 8px 32px rgba(171, 42, 37, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
           }}>
             <div style={{
               fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '32px' : '40px',
@@ -262,24 +302,31 @@ export default function MyStory() {
               style={{
                 display: 'inline-block',
                 padding: window.innerWidth <= 480 ? '14px 28px' : '16px 32px',
-                background: '#AB2A25',
+                background: 'rgba(171, 42, 37, 0.9)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 color: '#fff',
                 textDecoration: 'none',
                 borderRadius: '30px',
                 fontSize: window.innerWidth <= 480 ? '16px' : '18px',
                 fontWeight: '600',
                 transition: 'all 0.3s ease',
-                border: '2px solid #AB2A25',
+                border: '2px solid rgba(171, 42, 37, 0.3)',
+                boxShadow: '0 4px 20px rgba(171, 42, 37, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
               }}
               onMouseEnter={(e) => {
-                e.target.style.background = '#fff';
+                e.target.style.background = 'rgba(255, 255, 255, 0.9)';
                 e.target.style.color = '#AB2A25';
-                e.target.style.border = '2px solid #AB2A25';
+                e.target.style.border = '2px solid rgba(171, 42, 37, 0.5)';
+                e.target.style.boxShadow = '0 6px 25px rgba(171, 42, 37, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3)';
+                e.target.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.background = '#AB2A25';
+                e.target.style.background = 'rgba(171, 42, 37, 0.9)';
                 e.target.style.color = '#fff';
-                e.target.style.border = '2px solid #AB2A25';
+                e.target.style.border = '2px solid rgba(171, 42, 37, 0.3)';
+                e.target.style.boxShadow = '0 4px 20px rgba(171, 42, 37, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2)';
+                e.target.style.transform = 'translateY(0)';
               }}
             >
               GET STARTED TODAY
@@ -334,13 +381,25 @@ export default function MyStory() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                background: '#fff',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textDecoration: 'none',
-                transition: 'transform 0.2s ease',
-              }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+              }} onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.1) translateY(-2px)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1) translateY(0)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              }}>
                 <span style={{ color: '#1877F2', fontSize: '18px', fontWeight: 'bold' }}>f</span>
               </a>
               
@@ -349,14 +408,26 @@ export default function MyStory() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                background: '#fff',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textDecoration: 'none',
-                transition: 'transform 0.2s ease',
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
                 overflow: 'hidden',
-              }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
+              }} onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.1) translateY(-2px)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1) translateY(0)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              }}>
                 <img 
                   src={instagramLogo} 
                   alt="Instagram" 
@@ -373,13 +444,25 @@ export default function MyStory() {
                 width: '40px',
                 height: '40px',
                 borderRadius: '50%',
-                background: '#fff',
+                background: 'rgba(255, 255, 255, 0.1)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 textDecoration: 'none',
-                transition: 'transform 0.2s ease',
-              }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
+                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+              }} onMouseEnter={(e) => {
+                e.target.style.transform = 'scale(1.1) translateY(-2px)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+                e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+              }} onMouseLeave={(e) => {
+                e.target.style.transform = 'scale(1) translateY(0)';
+                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+              }}>
                 <span style={{ color: '#0077B5', fontSize: '14px', fontWeight: 'bold' }}>in</span>
               </a>
             </div>
@@ -418,11 +501,25 @@ export default function MyStory() {
                     textDecoration: 'none',
                     letterSpacing: '0.5px',
                     opacity: '0.9',
-                    transition: 'opacity 0.2s ease',
+                    transition: 'all 0.3s ease',
                     cursor: 'pointer',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    backdropFilter: 'blur(5px)',
+                    WebkitBackdropFilter: 'blur(5px)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}
-                  onMouseEnter={(e) => e.target.style.opacity = '1'}
-                  onMouseLeave={(e) => e.target.style.opacity = '0.9'}
+                  onMouseEnter={(e) => {
+                    e.target.style.opacity = '1';
+                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                    e.target.style.transform = 'translateX(5px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.opacity = '0.9';
+                    e.target.style.background = 'rgba(255, 255, 255, 0.05)';
+                    e.target.style.transform = 'translateX(0)';
+                  }}
                 >
                   {item.name.startsWith('MY') ? (
                     <>

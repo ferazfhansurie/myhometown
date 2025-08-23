@@ -377,7 +377,7 @@ export default function ContentPage() {
       {/* Header */}
       <Header />
 
-      {/* Full Screen Content */}
+      {/* Full Screen Content with Glassmorphism Background */}
       <div style={{
         paddingTop: '180px',
         minHeight: 'calc(100vh - 200px)',
@@ -386,28 +386,55 @@ export default function ContentPage() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '100px 90px 90px 90px',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
+        {/* Glassmorphism Background Elements */}
+        <div style={{
+          position: 'absolute',
+          top: '10%',
+          left: '5%',
+          width: '200px',
+          height: '200px',
+          background: 'rgba(255, 255, 255, 0.08)',
+          borderRadius: '50%',
+          filter: 'blur(40px)',
+          backdropFilter: 'blur(30px)',
+        }}></div>
+        <div style={{
+          position: 'absolute',
+          bottom: '15%',
+          right: '10%',
+          width: '150px',
+          height: '150px',
+          background: 'rgba(255, 255, 255, 0.06)',
+          borderRadius: '50%',
+          filter: 'blur(35px)',
+          backdropFilter: 'blur(25px)',
+        }}></div>
         
-        {/* Content Display */}
+        {/* Content Display with Enhanced Glassmorphism */}
         <div style={{
           width: '100%',
           maxWidth: '800px',
-     
-          borderRadius: '16px',
+          borderRadius: '20px',
           overflow: 'hidden',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2)',
-          backdropFilter: 'blur(20px)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
+          boxShadow: '0 25px 80px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+          backdropFilter: 'blur(30px)',
+          WebkitBackdropFilter: 'blur(30px)',
+          border: '2px solid rgba(255, 255, 255, 0.3)',
           margin: '0 auto',
           maxHeight: '95vh',
+          background: 'rgba(255, 255, 255, 0.1)',
+          position: 'relative',
         }}>
           
     
 
-          {/* Post Content */}
+          {/* Post Content with Glassmorphism */}
           <div style={{
-            padding: '0',
-            background: '#fff',
+            padding: '20px',
+            background: 'rgba(255, 255, 255, 0.9)',
             flex: 1,
             display: 'flex',
             flexDirection: 'column',
@@ -415,6 +442,11 @@ export default function ContentPage() {
             justifyContent: 'center',
             textAlign: 'center',
             overflow: 'hidden',
+            borderRadius: '18px',
+            margin: '10px',
+            border: '1px solid rgba(255, 255, 255, 0.4)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
           }}>
             
             {/* Content based on type */}
@@ -422,11 +454,13 @@ export default function ContentPage() {
               // Video Content - Show actual Facebook video embeds
               <div style={{
                 width: '100%',
+                height: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                background: '#fff',
+                background: 'transparent',
                 overflow: 'hidden',
+                padding: '20px',
               }}>
                 {/* Specific Facebook video embeds for known videos */}
                 {currentContent.title === 'Soliq - Big Homexpo' && (
@@ -970,11 +1004,13 @@ export default function ContentPage() {
               // Photo/Post Content - Show actual Facebook embed
               <div style={{
                 width: '100%',
+                height: '100%',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                background: '#fff',
+                background: 'transparent',
                 overflow: 'hidden',
+                padding: '20px',
               }}>
                 {/* Specific Facebook embeds for known posts */}
                 {currentContent.title === 'Vivo - Deepavali campaign' && (
@@ -1381,10 +1417,14 @@ export default function ContentPage() {
                   <div style={{
                     width: '100%',
                     maxWidth: '600px',
-                    background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
-                    borderRadius: '12px',
+                    background: 'rgba(248, 249, 250, 0.9)',
+                    borderRadius: '16px',
                     padding: '60px 40px',
                     color: '#050505',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    backdropFilter: 'blur(15px)',
+                    WebkitBackdropFilter: 'blur(15px)',
+                    boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
                   }}>
                     <div style={{ fontSize: '64px', marginBottom: '20px' }}>📱</div>
                     <div style={{ fontSize: '24px', fontWeight: '600', marginBottom: '15px' }}>
@@ -1396,23 +1436,28 @@ export default function ContentPage() {
                     <button
                       onClick={() => window.open(currentContent.url, '_blank')}
                       style={{
-                        background: '#1877F2',
+                        background: 'rgba(24, 119, 242, 0.9)',
                         color: '#fff',
-                        border: 'none',
+                        border: '2px solid rgba(24, 119, 242, 0.3)',
                         padding: '15px 30px',
-                        borderRadius: '8px',
+                        borderRadius: '12px',
                         cursor: 'pointer',
                         fontSize: '16px',
-                        fontWeight: '500',
-                        transition: 'all 0.3s ease',
+                        fontWeight: '600',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        backdropFilter: 'blur(15px)',
+                        WebkitBackdropFilter: 'blur(15px)',
+                        boxShadow: '0 8px 25px rgba(24, 119, 242, 0.3)',
                       }}
                       onMouseEnter={(e) => {
-                        e.target.style.background = '#0d6efd';
-                        e.target.style.transform = 'translateY(-2px)';
+                        e.target.style.background = 'rgba(13, 110, 253, 0.95)';
+                        e.target.style.transform = 'translateY(-3px)';
+                        e.target.style.boxShadow = '0 12px 35px rgba(24, 119, 242, 0.4)';
                       }}
                       onMouseLeave={(e) => {
-                        e.target.style.background = '#1877F2';
+                        e.target.style.background = 'rgba(24, 119, 242, 0.9)';
                         e.target.style.transform = 'translateY(0)';
+                        e.target.style.boxShadow = '0 8px 25px rgba(24, 119, 242, 0.3)';
                       }}
                     >
                       View on Facebook
@@ -1426,6 +1471,123 @@ export default function ContentPage() {
  
         </div>
 
+        {/* Navigation Controls with Glassmorphism */}
+        <div style={{
+          display: 'flex',
+          gap: '20px',
+          marginTop: '30px',
+          position: 'relative',
+          zIndex: 2,
+        }}>
+          {/* Back to Portfolio Button */}
+          <button
+            onClick={() => navigate('/case-studies')}
+            style={{
+              padding: '15px 30px',
+              background: 'rgba(255, 255, 255, 0.15)',
+              color: '#fff',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              borderRadius: '25px',
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.25)';
+              e.target.style.transform = 'translateY(-3px)';
+              e.target.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
+            }}
+          >
+            ← Back to Portfolio
+          </button>
+
+          {/* Previous Button */}
+          <button
+            onClick={goToPrevious}
+            style={{
+              padding: '15px 25px',
+              background: 'rgba(255, 255, 255, 0.15)',
+              color: '#fff',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              borderRadius: '25px',
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.25)';
+              e.target.style.transform = 'translateY(-3px)';
+              e.target.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
+            }}
+          >
+            ← Previous
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={goToNext}
+            style={{
+              padding: '15px 25px',
+              background: 'rgba(255, 255, 255, 0.15)',
+              color: '#fff',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              backdropFilter: 'blur(20px)',
+              WebkitBackdropFilter: 'blur(20px)',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
+              borderRadius: '25px',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.25)';
+              e.target.style.transform = 'translateY(-3px)';
+              e.target.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.1)';
+            }}
+          >
+            Next →
+          </button>
+        </div>
+
+        {/* Content Counter with Glassmorphism */}
+        <div style={{
+          marginTop: '20px',
+          padding: '12px 24px',
+          background: 'rgba(255, 255, 255, 0.1)',
+          color: '#fff',
+          borderRadius: '20px',
+          fontSize: '14px',
+          fontWeight: '500',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
+          backdropFilter: 'blur(15px)',
+          WebkitBackdropFilter: 'blur(15px)',
+        }}>
+          {currentIndex + 1} of {allContent.length}
+        </div>
 
       </div>
     </div>

@@ -994,7 +994,7 @@ export default function App() {
           }
           
           .marquee-track {
-            animation-duration: 40s;
+            animation-duration: 80s;
           }
           
           .marquee-circle {
@@ -1038,12 +1038,32 @@ export default function App() {
             flex-direction: column !important;
             margin: 0 20px !important;
             margin-top: 10px !important;
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
           }
           
           .hero-text {
             margin-right: 0 !important;
             margin-bottom: 30px !important;
-            text-align: center !important;
+            text-align: left !important;
+            padding-bottom: 100px !important;
+            width: 100% !important;
+            max-width: 100% !important;
+          }
+          
+          .hero-title-animated {
+            font-size: 56px !important;
+            line-height: 1.1 !important;
+            text-align: left !important;
+            margin-bottom: 20px !important;
+          }
+          
+          .hero-subtitle {
+            font-size: 18px !important;
+            line-height: 1.4 !important;
+            text-align: left !important;
+            max-width: 100% !important;
+            margin: 15px 0 0 0 !important;
           }
           
           .hero-image {
@@ -1072,6 +1092,7 @@ export default function App() {
             flex-wrap: nowrap !important;
             justify-content: flex-start !important;
             overflow-x: auto !important;
+            padding-bottom: 10px !important;
           }
           
           .platform-logos > div {
@@ -1115,13 +1136,21 @@ export default function App() {
             padding: 40px 20px !important;
           }
           
-          .who-we-are-title {
+          .who-we-are-title-bounce {
             font-size: 48px !important;
+            line-height: 1.1 !important;
+            margin-bottom: 20px !important;
           }
           
-          .who-we-are-content {
+          .who-we-are-content-bounce {
             font-size: 18px !important;
             max-width: 100% !important;
+            text-align: center !important;
+            margin: 0 auto 30px auto !important;
+          }
+          
+          .who-we-are-content-bounce p {
+            margin-bottom: 10px !important;
           }
           
           .stats-grid {
@@ -1174,6 +1203,7 @@ export default function App() {
           .audience-reach-title {
             font-size: 48px !important;
             margin-bottom: 40px !important;
+            line-height: 1.1 !important;
           }
           
           .audience-stats {
@@ -1187,11 +1217,34 @@ export default function App() {
           }
           
           .audience-number {
-            font-size: 56px !important;
+            font-size: 48px !important;
           }
           
           .audience-label {
-            font-size: 20px !important;
+            font-size: 18px !important;
+          }
+          
+          .malaysia-map-container {
+            max-width: 100% !important;
+            padding: 0 20px !important;
+            margin-top: 30px !important;
+          }
+          
+          .malaysia-map-container img {
+            width: 100% !important;
+            height: auto !important;
+            max-height: 400px !important;
+            object-fit: contain !important;
+          }
+          
+          .audience-stats {
+            margin-bottom: 20px !important;
+          }
+          
+          .audience-reach-title {
+            margin-bottom: 30px !important;
+            font-size: 28px !important;
+            line-height: 1.2 !important;
           }
           
           .footer {
@@ -1241,6 +1294,31 @@ export default function App() {
             max-width: 100% !important;
             padding: 0 20px !important;
           }
+          
+          /* Additional mobile improvements */
+          .hero-bg-transition {
+            margin-top: -2vh !important;
+            border-top-left-radius: 20px !important;
+            border-top-right-radius: 20px !important;
+          }
+          
+          .platform-logos {
+            scrollbar-width: thin !important;
+            scrollbar-color: rgba(255,255,255,0.3) transparent !important;
+          }
+          
+          .platform-logos::-webkit-scrollbar {
+            height: 4px !important;
+          }
+          
+          .platform-logos::-webkit-scrollbar-track {
+            background: transparent !important;
+          }
+          
+          .platform-logos::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.3) !important;
+            border-radius: 2px !important;
+          }
         }
         
         @media (max-width: 480px) {
@@ -1254,12 +1332,28 @@ export default function App() {
             font-size: 48px !important;
           }
           
+          .hero-title-animated {
+            font-size: 48px !important;
+            line-height: 1.2 !important;
+          }
+          
           .hero-subtitle {
             font-size: 16px !important;
+            line-height: 1.5 !important;
           }
           
           .platforms-title {
             font-size: 48px !important;
+          }
+          
+          .who-we-are-title-bounce {
+            font-size: 42px !important;
+            line-height: 1.2 !important;
+          }
+          
+          .who-we-are-content-bounce {
+            font-size: 16px !important;
+            line-height: 1.5 !important;
           }
           
           .three-column-big-text {
@@ -1275,6 +1369,38 @@ export default function App() {
           
           .audience-number {
             font-size: 48px !important;
+          }
+          
+          .audience-reach-title {
+            font-size: 36px !important;
+            line-height: 1.2 !important;
+          }
+          
+          .audience-stats {
+            gap: 30px !important;
+            padding: 20px 15px !important;
+          }
+          
+          .audience-number {
+            font-size: 38px !important;
+          }
+          
+          .audience-label {
+            font-size: 16px !important;
+          }
+          
+          .malaysia-map-container img {
+            max-height: 350px !important;
+          }
+          
+          .audience-stats {
+            gap: 25px !important;
+            padding: 15px 10px !important;
+          }
+          
+          .audience-reach-title {
+            font-size: 28px !important;
+            line-height: 1.3 !important;
           }
           
           .hero-content {
@@ -1302,7 +1428,7 @@ export default function App() {
           }
           
           .marquee-track {
-            animation-duration: 15s;
+            animation-duration: 60s;
           }
           
           .platform-logos .platform-selector {
@@ -1317,6 +1443,118 @@ export default function App() {
           .animated-bounce,
           .animated-slide-top {
             animation-duration: 0.8s !important;
+          }
+          
+          .hero-text {
+            padding-bottom: 80px !important;
+          }
+          
+          .platform-logos {
+            gap: 15px !important;
+          }
+          
+          .platform-logos > div {
+            font-size: 12px !important;
+          }
+          
+          .platform-logos > div > div {
+            width: 20px !important;
+            height: 20px !important;
+          }
+          
+          .platform-logos > div > div > span,
+          .platform-logos > div > div > img {
+            font-size: 10px !important;
+          }
+        }
+        
+        @media (max-width: 360px) {
+          .floating-title {
+            font-size: 42px !important;
+          }
+          
+          .hero-title-animated {
+            font-size: 42px !important;
+            line-height: 1.3 !important;
+          }
+          
+          .hero-subtitle {
+            font-size: 15px !important;
+            line-height: 1.6 !important;
+          }
+          
+          .who-we-are-title-bounce {
+            font-size: 38px !important;
+            line-height: 1.3 !important;
+          }
+          
+          .who-we-are-content-bounce {
+            font-size: 15px !important;
+            line-height: 1.6 !important;
+          }
+          
+          .audience-reach-title {
+            font-size: 32px !important;
+            line-height: 1.3 !important;
+          }
+          
+          .audience-stats {
+            gap: 20px !important;
+            padding: 10px 5px !important;
+          }
+          
+          .audience-number {
+            font-size: 32px !important;
+          }
+          
+          .audience-label {
+            font-size: 14px !important;
+          }
+          
+          .malaysia-map-container img {
+            max-height: 300px !important;
+          }
+          
+          .platforms-title {
+            font-size: 42px !important;
+          }
+          
+          .three-column-big-text {
+            font-size: 42px !important;
+          }
+          
+          .hero-content {
+            margin: 0 10px !important;
+          }
+          
+          .platforms-section {
+            margin-left: 10px !important;
+          }
+          
+          .three-column-section {
+            padding: 25px 10px !important;
+          }
+          
+          .who-we-are-section {
+            padding: 25px 10px !important;
+          }
+          
+          .audience-reach-section {
+            padding: 25px 10px !important;
+          }
+          
+          .footer {
+            padding: 25px 10px 20px 10px !important;
+          }
+          
+          .marquee-circle {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+          }
+          
+          .platform-logos {
+            gap: 12px !important;
           }
         }
       `}</style>

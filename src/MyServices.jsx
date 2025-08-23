@@ -88,7 +88,7 @@ export default function MyServices() {
 
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
-      {/* Enhanced CSS Animations */}
+      {/* Enhanced CSS Animations with Mobile Responsiveness */}
       <style>{`
         @keyframes fadeInUp {
           from {
@@ -276,6 +276,131 @@ export default function MyServices() {
           padding-left: 25px;
           color: #333;
         }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+          .hero-section {
+            padding: 40px 20px !important;
+            min-height: 30vh !important;
+          }
+          
+          .hero-title {
+            font-size: 32px !important;
+            margin-left: 20px !important;
+            margin-top: 10px !important;
+          }
+          
+          .hero-description {
+            font-size: 16px !important;
+            margin-left: 20px !important;
+            margin-right: 20px !important;
+            max-width: 100% !important;
+          }
+          
+          .service-section {
+            padding: 40px 20px !important;
+            min-height: auto !important;
+          }
+          
+          .service-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          
+          .service-content {
+            order: 1 !important;
+            padding: 30px 25px !important;
+          }
+          
+          .service-visual {
+            order: 2 !important;
+          }
+          
+          .service-title {
+            font-size: 28px !important;
+          }
+          
+          .process-grid {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+          }
+          
+          .process-step {
+            padding: 30px 25px !important;
+          }
+          
+          .process-title {
+            font-size: 36px !important;
+          }
+          
+          .cta-section {
+            padding: 60px 20px !important;
+          }
+          
+          .cta-content {
+            padding: 40px 30px !important;
+          }
+          
+          .cta-title {
+            font-size: 36px !important;
+          }
+          
+          .cta-description {
+            font-size: 18px !important;
+          }
+          
+          .cta-button {
+            padding: 18px 40px !important;
+            font-size: 16px !important;
+          }
+          
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          
+          .footer-section {
+            padding: 40px 20px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .hero-title div {
+            font-size: 28px !important;
+          }
+          
+          .service-title {
+            font-size: 24px !important;
+          }
+          
+          .cta-title {
+            font-size: 28px !important;
+          }
+          
+          .process-title {
+            font-size: 36px !important;
+          }
+          
+          .hero-description {
+            font-size: 14px !important;
+          }
+          
+          .service-section {
+            padding: 30px 15px !important;
+          }
+          
+          .service-content {
+            padding: 25px 20px !important;
+          }
+          
+          .cta-section {
+            padding: 40px 15px !important;
+          }
+          
+          .cta-content {
+            padding: 30px 20px !important;
+          }
+        }
       `}</style>
 
       {/* Header */}
@@ -294,26 +419,27 @@ export default function MyServices() {
       }}>
         <div style={{
           maxWidth: 900,
-          marginLeft: 60,
+          marginLeft: window.innerWidth <= 768 ? '20px' : '60px',
+          marginRight: window.innerWidth <= 768 ? '20px' : '60px',
           marginTop: 20,
         }}>
           <div style={{
-            fontSize: 48,
+            fontSize: '64px',
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
             letterSpacing: -2,
             marginBottom: 30,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
           }}>
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>SERVICES
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '22px',
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
             maxWidth: 800,
             lineHeight: 1.3,
           }}>
@@ -324,7 +450,7 @@ export default function MyServices() {
 
       {/* Individual Service Sections - Full Screen Each */}
       {services.map((service, index) => (
-        <section key={index} style={{
+        <section key={index} className="service-section" style={{
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
@@ -336,7 +462,7 @@ export default function MyServices() {
           position: 'relative',
           overflow: 'hidden',
         }}>
-          <div style={{
+          <div className="service-grid" style={{
             maxWidth: '1200px',
             width: '100%',
             display: 'grid',
@@ -345,30 +471,32 @@ export default function MyServices() {
             alignItems: 'center',
           }}>
             {/* Service Content - Left Side */}
-            <div style={{
+            <div className="service-content" style={{
               order: index % 2 === 0 ? 1 : 2,
-              background: 'rgba(255, 255, 255, 0.8)',
+              background: 'rgba(255, 255, 255, 0.6)',
               padding: '50px 40px',
               borderRadius: '20px',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)',
-              border: '1px solid rgba(171, 42, 37, 0.1)',
-              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(171, 42, 37, 0.15)',
+              backdropFilter: 'blur(25px)',
+              WebkitBackdropFilter: 'blur(25px)',
               position: 'relative',
               overflow: 'hidden',
             }}>
-              {/* Decorative background element */}
+              {/* Enhanced glassmorphism background element */}
               <div style={{
                 position: 'absolute',
                 top: '-50px',
                 right: '-50px',
                 width: '150px',
                 height: '150px',
-                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.05))',
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.15), rgba(171, 42, 37, 0.05))',
                 borderRadius: '50%',
-                filter: 'blur(20px)',
+                filter: 'blur(30px)',
+                backdropFilter: 'blur(10px)',
               }}></div>
               
-              <div style={{
+              <div className="service-title" style={{
                 fontSize: '48px',
                 fontWeight: '800',
                 color: '#AB2A25',
@@ -414,11 +542,13 @@ export default function MyServices() {
                     fontSize: '16px',
                     color: '#333',
                     padding: '12px 16px',
-                    background: 'rgba(171, 42, 37, 0.05)',
+                    background: 'rgba(171, 42, 37, 0.08)',
                     borderRadius: '12px',
-                    border: '1px solid rgba(171, 42, 37, 0.1)',
+                    border: '1px solid rgba(171, 42, 37, 0.15)',
                     transition: 'all 0.3s ease',
                     cursor: 'default',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.background = 'rgba(171, 42, 37, 0.1)';
@@ -443,21 +573,22 @@ export default function MyServices() {
             </div>
             
             {/* Service Visual - Right Side */}
-            <div style={{
+            <div className="service-visual" style={{
               order: index % 2 === 0 ? 2 : 1,
               textAlign: 'center',
               position: 'relative',
             }}>
-              {/* Background decorative elements */}
+              {/* Enhanced glassmorphism background decorative elements */}
               <div style={{
                 position: 'absolute',
                 top: '20%',
                 left: '10%',
                 width: '100px',
                 height: '100px',
-                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.15), rgba(171, 42, 37, 0.05))',
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.2), rgba(171, 42, 37, 0.08))',
                 borderRadius: '50%',
-                filter: 'blur(30px)',
+                filter: 'blur(40px)',
+                backdropFilter: 'blur(15px)',
                 zIndex: 1,
               }}></div>
               <div style={{
@@ -466,24 +597,27 @@ export default function MyServices() {
                 right: '15%',
                 width: '80px',
                 height: '80px',
-                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.15), rgba(171, 42, 37, 0.05))',
                 borderRadius: '50%',
-                filter: 'blur(25px)',
+                filter: 'blur(35px)',
+                backdropFilter: 'blur(12px)',
                 zIndex: 1,
               }}></div>
               
               <div style={{
-                background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
+                background: 'rgba(255, 255, 255, 0.7)',
                 borderRadius: '24px',
                 overflow: 'hidden',
                 boxShadow: '0 25px 80px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)',
-                border: '2px solid rgba(171, 42, 37, 0.1)',
+                border: '2px solid rgba(171, 42, 37, 0.15)',
                 maxWidth: '500px',
                 margin: '0 auto',
                 position: 'relative',
                 zIndex: 2,
                 transform: 'perspective(1000px) rotateY(5deg)',
                 transition: 'all 0.3s ease',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'perspective(1000px) rotateY(0deg) scale(1.02)';
@@ -505,14 +639,15 @@ export default function MyServices() {
                       transition: 'transform 0.3s ease',
                     }}
                   />
-                  {/* Subtle overlay */}
+                  {/* Enhanced glassmorphism overlay */}
                   <div style={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.05) 0%, transparent 50%, rgba(171, 42, 37, 0.02) 100%)',
+                    background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08) 0%, transparent 50%, rgba(171, 42, 37, 0.03) 100%)',
+                    backdropFilter: 'blur(2px)',
                   }}></div>
                 </div>
               </div>
@@ -520,8 +655,6 @@ export default function MyServices() {
           </div>
         </section>
       ))}
-
-
 
       {/* Process Section */}
       <section style={{
@@ -537,7 +670,7 @@ export default function MyServices() {
             textAlign: 'center',
             marginBottom: '60px',
           }}>
-            <div style={{
+            <div className="process-title" style={{
               fontSize: 48,
               fontWeight: 800,
               marginBottom: '20px',
@@ -555,7 +688,7 @@ export default function MyServices() {
           </div>
 
           {/* Process Steps */}
-          <div style={{
+          <div className="process-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
             gap: '40px',
@@ -582,12 +715,14 @@ export default function MyServices() {
                 description: "Monitor performance, analyze data, and continuously optimize for better results."
               }
             ].map((process, index) => (
-              <div key={index} style={{
+              <div key={index} className="process-step" style={{
                 textAlign: 'center',
-                background: 'rgba(255,255,255,0.1)',
+                background: 'rgba(255,255,255,0.08)',
                 padding: '40px 30px',
                 borderRadius: '16px',
-                border: '1px solid rgba(255,255,255,0.2)',
+                border: '1px solid rgba(255,255,255,0.25)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
               }}>
                 <div style={{
                   fontSize: '48px',
@@ -618,7 +753,7 @@ export default function MyServices() {
       </section>
 
       {/* CTA Section */}
-      <section style={{
+      <section className="cta-section" style={{
         background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
         padding: '100px 60px',
         color: '#333',
@@ -626,16 +761,17 @@ export default function MyServices() {
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Background decorative elements */}
+        {/* Enhanced glassmorphism background decorative elements */}
         <div style={{
           position: 'absolute',
           top: '10%',
           left: '5%',
           width: '200px',
           height: '200px',
-          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.15), rgba(171, 42, 37, 0.05))',
           borderRadius: '50%',
-          filter: 'blur(40px)',
+          filter: 'blur(50px)',
+          backdropFilter: 'blur(20px)',
         }}></div>
         <div style={{
           position: 'absolute',
@@ -643,24 +779,26 @@ export default function MyServices() {
           right: '10%',
           width: '150px',
           height: '150px',
-          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.12), rgba(171, 42, 37, 0.03))',
           borderRadius: '50%',
-          filter: 'blur(35px)',
+          filter: 'blur(45px)',
+          backdropFilter: 'blur(18px)',
         }}></div>
         
-        <div style={{
+        <div className="cta-content" style={{
           maxWidth: '900px',
           margin: '0 auto',
-          background: 'rgba(255, 255, 255, 0.8)',
+          background: 'rgba(255, 255, 255, 0.6)',
           padding: '60px 50px',
           borderRadius: '24px',
           boxShadow: '0 30px 80px rgba(171, 42, 37, 0.1), 0 15px 35px rgba(0, 0, 0, 0.1)',
-          border: '1px solid rgba(171, 42, 37, 0.1)',
-          backdropFilter: 'blur(10px)',
+          border: '1px solid rgba(171, 42, 37, 0.15)',
+          backdropFilter: 'blur(30px)',
+          WebkitBackdropFilter: 'blur(30px)',
           position: 'relative',
           zIndex: 2,
         }}>
-          <div style={{
+          <div className="cta-title" style={{
             fontSize: '52px',
             fontWeight: '800',
             color: '#AB2A25',
@@ -676,7 +814,7 @@ export default function MyServices() {
               borderRadius: '2px',
             }}></div>
           </div>
-          <div style={{
+          <div className="cta-description" style={{
             fontSize: '20px',
             lineHeight: '1.6',
             color: '#555',
@@ -688,6 +826,7 @@ export default function MyServices() {
           </div>
           <Link
             to="/my-contact"
+            className="cta-button"
             style={{
               background: 'linear-gradient(135deg, #AB2A25 0%, #D32F2F 100%)',
               color: '#fff',
@@ -719,13 +858,13 @@ export default function MyServices() {
       </section>
 
       {/* Footer Section */}
-      <footer style={{
+      <footer className="footer-section" style={{
         background: '#1a1a1a',
         color: '#fff',
         padding: '60px 60px 40px 60px',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
-        <div style={{
+        <div className="footer-grid" style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr 1fr',
           gap: '60px',

@@ -17,35 +17,36 @@ export default function MyClients() {
       <section style={{
         background: '#AB2A25',
         minHeight: '20vh',
-        paddingTop: 80,
+        paddingTop: window.innerWidth <= 768 ? 100 : 120,
         paddingBottom: 40,
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
+        alignItems: window.innerWidth <= 768 ? 'center' : 'flex-start',
         justifyContent: 'flex-start',
       }}>
         <div style={{
           maxWidth: 900,
-          marginLeft: 60,
+          marginLeft: window.innerWidth <= 768 ? '20px' : '60px',
+          marginRight: window.innerWidth <= 768 ? '20px' : '60px',
           marginTop: 20,
         }}>
-          <div style={{
-            fontSize: 48,
+     <div style={{
+            fontSize: '64px',
             fontWeight: 800,
             lineHeight: 0.9,
             color: '#fff',
             letterSpacing: -2,
             marginBottom: 30,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
           }}>
 <span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>CLIENTS
           </div>
           <div style={{
-            fontSize: 18,
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '22px',
             fontWeight: 300,
             color: '#fff',
             marginTop: 15,
-            textAlign: 'left',
+            textAlign: window.innerWidth <= 768 ? 'center' : 'left',
             maxWidth: 800,
             lineHeight: 1.3,
           }}>
@@ -57,21 +58,22 @@ export default function MyClients() {
       {/* Main Client Showcase Section */}
       <section style={{
         background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
-        padding: '100px 60px',
+        padding: window.innerWidth <= 480 ? '60px 20px' : window.innerWidth <= 768 ? '80px 40px' : '100px 60px',
         color: '#333',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Background decorative elements */}
+        {/* Enhanced glassmorphism background decorative elements */}
         <div style={{
           position: 'absolute',
           top: '10%',
           left: '5%',
           width: '150px',
           height: '150px',
-          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.1), rgba(171, 42, 37, 0.03))',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.15), rgba(171, 42, 37, 0.05))',
           borderRadius: '50%',
-          filter: 'blur(30px)',
+          filter: 'blur(40px)',
+          backdropFilter: 'blur(20px)',
         }}></div>
         <div style={{
           position: 'absolute',
@@ -79,9 +81,10 @@ export default function MyClients() {
           right: '10%',
           width: '120px',
           height: '120px',
-          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08), rgba(171, 42, 37, 0.02))',
+          background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.12), rgba(171, 42, 37, 0.03))',
           borderRadius: '50%',
-          filter: 'blur(25px)',
+          filter: 'blur(35px)',
+          backdropFilter: 'blur(18px)',
         }}></div>
         
         <div style={{
@@ -94,15 +97,16 @@ export default function MyClients() {
           <div style={{
             textAlign: 'center',
             marginBottom: '80px',
-            background: 'rgba(255, 255, 255, 0.8)',
-            padding: '50px 40px',
+            background: 'rgba(255, 255, 255, 0.6)',
+            padding: window.innerWidth <= 480 ? '30px 20px' : window.innerWidth <= 768 ? '40px 30px' : '50px 40px',
             borderRadius: '24px',
             boxShadow: '0 20px 60px rgba(171, 42, 37, 0.1), 0 10px 25px rgba(0, 0, 0, 0.1)',
-            border: '1px solid rgba(171, 42, 37, 0.1)',
-            backdropFilter: 'blur(10px)',
+            border: '1px solid rgba(171, 42, 37, 0.15)',
+            backdropFilter: 'blur(25px)',
+            WebkitBackdropFilter: 'blur(25px)',
           }}>
             <div style={{
-              fontSize: '42px',
+              fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '36px' : '42px',
               fontWeight: '800',
               color: '#AB2A25',
               marginBottom: '25px',
@@ -118,7 +122,7 @@ export default function MyClients() {
               }}></div>
             </div>
             <div style={{
-              fontSize: '18px',
+              fontSize: window.innerWidth <= 480 ? '14px' : window.innerWidth <= 768 ? '16px' : '18px',
               color: '#555',
               maxWidth: '700px',
               margin: '0 auto',
@@ -131,8 +135,8 @@ export default function MyClients() {
           {/* Main Client Showcase */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '80px',
+            gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr',
+            gap: window.innerWidth <= 768 ? '40px' : '80px',
             alignItems: 'center',
             marginBottom: '80px',
           }}>
@@ -142,8 +146,14 @@ export default function MyClients() {
               overflow: 'hidden',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               boxShadow: '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)',
-              border: '2px solid rgba(171, 42, 37, 0.1)',
+              border: '2px solid rgba(171, 42, 37, 0.15)',
               position: 'relative',
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              width: window.innerWidth <= 480 ? '105%' : window.innerWidth <= 768 ? '110%' : '100%',
+              maxWidth: window.innerWidth <= 480 ? '450px' : window.innerWidth <= 768 ? '500px' : '600px',
+              marginLeft: window.innerWidth <= 480 ? '-2.5%' : window.innerWidth <= 768 ? '-5%' : '0',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-10px) scale(1.03)';
@@ -154,17 +164,18 @@ export default function MyClients() {
               e.currentTarget.style.boxShadow = '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)';
             }}
             >
-              {/* Decorative overlay */}
+              {/* Enhanced glassmorphism overlay */}
               <div style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.05) 0%, transparent 50%, rgba(171, 42, 37, 0.02) 100%)',
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08) 0%, transparent 50%, rgba(171, 42, 37, 0.03) 100%)',
                 zIndex: 1,
                 opacity: 0,
                 transition: 'opacity 0.3s ease',
+                backdropFilter: 'blur(2px)',
               }}></div>
               <img 
                 src={section13}
@@ -184,8 +195,14 @@ export default function MyClients() {
               overflow: 'hidden',
               transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               boxShadow: '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)',
-              border: '2px solid rgba(171, 42, 37, 0.1)',
+              border: '2px solid rgba(171, 42, 37, 0.15)',
               position: 'relative',
+              background: 'rgba(255, 255, 255, 0.1)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
+              width: window.innerWidth <= 480 ? '105%' : window.innerWidth <= 768 ? '110%' : '100%',
+              maxWidth: window.innerWidth <= 480 ? '450px' : window.innerWidth <= 768 ? '500px' : '600px',
+              marginLeft: window.innerWidth <= 480 ? '-2.5%' : window.innerWidth <= 768 ? '-5%' : '0',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-10px) scale(1.03)';
@@ -196,17 +213,18 @@ export default function MyClients() {
               e.currentTarget.style.boxShadow = '0 20px 60px rgba(171, 42, 37, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1)';
             }}
             >
-              {/* Decorative overlay */}
+              {/* Enhanced glassmorphism overlay */}
               <div style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.05) 0%, transparent 50%, rgba(171, 42, 37, 0.02) 100%)',
+                background: 'linear-gradient(135deg, rgba(171, 42, 37, 0.08) 0%, transparent 50%, rgba(171, 42, 37, 0.03) 100%)',
                 zIndex: 1,
                 opacity: 0,
                 transition: 'opacity 0.3s ease',
+                backdropFilter: 'blur(2px)',
               }}></div>
               <img 
                 src={section14}
@@ -226,22 +244,23 @@ export default function MyClients() {
       {/* CTA Section */}
       <section style={{
         background: 'linear-gradient(135deg, #AB2A25 0%, #8B1A1A 100%)',
-        padding: '100px 60px',
+        padding: window.innerWidth <= 480 ? '60px 20px' : window.innerWidth <= 768 ? '80px 40px' : '100px 60px',
         color: '#fff',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Background decorative elements */}
+        {/* Enhanced glassmorphism background decorative elements */}
         <div style={{
           position: 'absolute',
           top: '10%',
           left: '10%',
           width: '120px',
           height: '120px',
-          background: 'rgba(255, 255, 255, 0.1)',
+          background: 'rgba(255, 255, 255, 0.12)',
           borderRadius: '50%',
-          filter: 'blur(30px)',
+          filter: 'blur(40px)',
+          backdropFilter: 'blur(20px)',
         }}></div>
         <div style={{
           position: 'absolute',
@@ -251,22 +270,24 @@ export default function MyClients() {
           height: '100px',
           background: 'rgba(255, 255, 255, 0.08)',
           borderRadius: '50%',
-          filter: 'blur(25px)',
+          filter: 'blur(35px)',
+          backdropFilter: 'blur(18px)',
         }}></div>
         
         <div style={{
           maxWidth: '900px',
           margin: '0 auto',
-          background: 'rgba(255, 255, 255, 0.1)',
-          padding: '60px 50px',
+          background: 'rgba(255, 255, 255, 0.08)',
+          padding: window.innerWidth <= 480 ? '40px 30px' : window.innerWidth <= 768 ? '50px 40px' : '60px 50px',
           borderRadius: '24px',
-          border: '2px solid rgba(255, 255, 255, 0.2)',
-          backdropFilter: 'blur(10px)',
+          border: '2px solid rgba(255, 255, 255, 0.25)',
+          backdropFilter: 'blur(25px)',
+          WebkitBackdropFilter: 'blur(25px)',
           position: 'relative',
           zIndex: 2,
         }}>
           <div style={{
-            fontSize: '42px',
+            fontSize: window.innerWidth <= 480 ? '32px' : window.innerWidth <= 768 ? '36px' : '42px',
             fontWeight: '800',
             marginBottom: '25px',
             lineHeight: '1.2',
@@ -281,7 +302,7 @@ export default function MyClients() {
             }}></div>
           </div>
           <div style={{
-            fontSize: '20px',
+            fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '18px' : '20px',
             lineHeight: '1.6',
             opacity: '0.95',
             marginBottom: '50px',
@@ -295,10 +316,10 @@ export default function MyClients() {
             style={{
               background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
               color: '#AB2A25',
-              padding: '20px 50px',
+              padding: window.innerWidth <= 480 ? '16px 35px' : window.innerWidth <= 768 ? '18px 40px' : '20px 50px',
               borderRadius: '50px',
               textDecoration: 'none',
-              fontSize: '18px',
+              fontSize: window.innerWidth <= 480 ? '16px' : window.innerWidth <= 768 ? '17px' : '18px',
               fontWeight: '700',
               display: 'inline-block',
               transition: 'all 0.3s ease',
@@ -326,13 +347,13 @@ export default function MyClients() {
       <footer style={{
         background: '#1a1a1a',
         color: '#fff',
-        padding: '60px 60px 40px 60px',
+        padding: window.innerWidth <= 480 ? '40px 20px' : window.innerWidth <= 768 ? '50px 40px' : '60px 60px',
         fontFamily: 'Montserrat, Arial, sans-serif',
       }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
-          gap: '60px',
+          gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : '1fr 1fr 1fr',
+          gap: window.innerWidth <= 768 ? '40px' : '60px',
           maxWidth: '1200px',
           margin: '0 auto',
         }}>
@@ -340,7 +361,7 @@ export default function MyClients() {
           {/* MYHOMETOWN MEDIA Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '8px',
               letterSpacing: '1px',
@@ -374,7 +395,7 @@ export default function MyClients() {
                 textDecoration: 'none',
                 transition: 'transform 0.2s ease',
               }} onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'} onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}>
-                <span style={{ color: '#1877F2', fontSize: '18px', fontWeight: 'bold' }}>f</span>
+                <span style={{ color: '#AB2A25', fontSize: '18px', fontWeight: 'bold' }}>f</span>
               </a>
               
               {/* Instagram */}
@@ -421,7 +442,7 @@ export default function MyClients() {
           {/* EXPLORE Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '30px',
               letterSpacing: '1px',
@@ -466,7 +487,7 @@ export default function MyClients() {
           {/* OFFICE Section */}
           <div>
             <div style={{
-              fontSize: '28px',
+              fontSize: window.innerWidth <= 480 ? '24px' : window.innerWidth <= 768 ? '26px' : '28px',
               fontWeight: '800',
               marginBottom: '30px',
               letterSpacing: '1px',
