@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import './index.css';
 import Header from "./Header.jsx";
-import instagramLogo from "./assets/instagram.png";
+import instagramLogo from "./src/assets/instagram.png";
 
 export default function MyReviews() {
   const [isVisible, setIsVisible] = useState(false);

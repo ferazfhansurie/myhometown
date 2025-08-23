@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './index.css';
 import Header from "./Header.jsx";
-import instagramLogo from "./assets/instagram.png";
-import uniformImage from "./assets/uniform copy.jpg";
+import instagramLogo from "./src/assets/instagram.png";
+import uniformImage from "./src/assets/uniform copy.jpg";
 
 export default function MyTeam() {
   const [isVisible, setIsVisible] = useState(false);

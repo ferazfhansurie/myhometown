@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import mhtLogo from "./assets/mht logo gold 1 copy.png";
+import mhtLogo from "./src/assets/mht logo gold 1 copy.png";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,7 +39,7 @@ export default function Header() {
         }}
       >
         <img 
-          src="/src/assets/logo.png" 
+          src="/src/src/assets/logo.png" 
           alt="My Hometown Media Logo"
           style={{
             height: window.innerWidth <= 768 ? '40px' : '50px',

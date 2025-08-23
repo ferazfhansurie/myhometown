@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import './index.css';
 import Header from "./Header.jsx";
-import instagramLogo from "./assets/instagram.png";
+import instagramLogo from "./src/assets/instagram.png";
 
-import section7 from "./assets/section7.png";
-import section8 from "./assets/section8.png";
-import section9 from "./assets/section9.png";
-import section10 from "./assets/section10.png";
-import section11 from "./assets/section11.png";
-import section12 from "./assets/section12.png";
+import section7 from "./src/assets/section7.png";
+import section8 from "./src/assets/section8.png";
+import section9 from "./src/assets/section9.png";
+import section10 from "./src/assets/section10.png";
+import section11 from "./src/assets/section11.png";
+import section12 from "./src/assets/section12.png";
 
 export default function MyServices() {
   const [isVisible, setIsVisible] = useState(false);
