@@ -1334,6 +1334,12 @@ export default function App() {
           playsInline
           title="Intro Video"
           style={{ border: 'none', objectFit: 'cover' }}
+          onError={(e) => {
+            console.error('Video loading error:', e);
+            console.log('Video URL:', introVideoUrl);
+          }}
+          onLoadStart={() => console.log('Video loading started:', introVideoUrl)}
+          onCanPlay={() => console.log('Video can play:', introVideoUrl)}
         />
       </div>
 
