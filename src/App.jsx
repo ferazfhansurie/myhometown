@@ -33,7 +33,7 @@ import uniformImage from "./assets/uniform copy.jpg";
 import tiktokLogo from "./assets/tiktoklogo.png";
 import xiaohongshuLogo from "./assets/xiaohongshu.png";
 import instagramLogo from "./assets/instagram.png";
-import introVideo from "./assets/Videos/MLBS INTRODUCTION VIDEO.mp4";
+// import introVideo from "./assets/Videos/MLBS INTRODUCTION VIDEO.mp4";
 import CaseStudies from "./CaseStudies.jsx";
 import MyClients from "./MyClients.jsx";
 import MyPlatforms from "./MyPlatforms.jsx";
@@ -134,7 +134,7 @@ const platformData = {
   }
 };
 
-const introVideoUrl = introVideo;
+const introVideoUrl = "/MLBS INTRODUCTION VIDEO.mp4";
 
 export default function App() {
   const videoRef = useRef(null);
