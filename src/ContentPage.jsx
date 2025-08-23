@@ -385,8 +385,7 @@ export default function ContentPage() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '90px',
-        paddingTop: '100px',
+        padding: '100px 90px 90px 90px',
       }}>
         
         {/* Content Display */}

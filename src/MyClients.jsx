@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './index.css';
 import Header from "./Header.jsx";
-import instagramLogo from "./src/assets/instagram.png";
+import instagramLogo from "./assets/instagram.png";
 
-import section13 from "./src/assets/section9.png";
-import section14 from "./src/assets/section10.png";
+import section13 from "./assets/section9.png";
+import section14 from "./assets/section10.png";
 
 export default function MyClients() {
   return (

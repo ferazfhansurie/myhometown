@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import './index.css';
 import Header from "./Header.jsx";
-import instagramLogo from "./src/assets/instagram.png";
+import instagramLogo from "./assets/instagram.png";
 
 export default function CaseStudies() {
   const navigate = useNavigate();

@@ -24,3 +24,12 @@ dist-ssr
 *.sw?
 
 # Public assets that are copied from src
+
+# Large media files - exclude from Git tracking
+*.mp4
+*.mov
+*.avi
+*.webm
+*.mkv
+public/assets/Videos/
+src/assets/Videos/
