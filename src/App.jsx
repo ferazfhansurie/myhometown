@@ -35,6 +35,7 @@ import xiaohongshuLogo from "./assets/xiaohongshu.png";
 import instagramLogo from "./assets/instagram.png";
 // import introVideo from "./assets/Videos/MLBS INTRODUCTION VIDEO.mp4";
 import CaseStudies from "./CaseStudies.jsx";
+import ContentPage from "./ContentPage.jsx";
 import MyClients from "./MyClients.jsx";
 import MyPlatforms from "./MyPlatforms.jsx";
 import MyServices from "./MyServices.jsx";
@@ -134,10 +135,9 @@ const platformData = {
   }
 };
 
-const introVideoUrl = "/MLBS INTRODUCTION VIDEO.mp4";
+const introVideoUrl = "https://www.youtube.com/embed/0JIXG3falZA?autoplay=1&mute=1&loop=1&playlist=0JIXG3falZA&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&vq=hd1080";
 
 export default function App() {
-  const videoRef = useRef(null);
   const redBannerRef = useRef(null);
   const whoWeAreRef = useRef(null);
   const [counts, setCounts] = useState({
@@ -428,6 +428,8 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/my-case-studies" element={<CaseStudies />} />
+        <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/content/:contentId" element={<ContentPage />} />
         <Route path="/my-clients" element={<MyClients />} />
         <Route path="/my-story" element={<MyStory />} />
         <Route path="/my-platforms" element={<MyPlatforms />} />
@@ -1324,22 +1326,19 @@ export default function App() {
 
       {/* Video Hero Section - Always there, positioned above red banner */}
       <div className="video-hero">
-        <video
+        <iframe
           src={introVideoUrl}
           width="100%"
           height="100%"
-          autoPlay
-          muted
-          loop
-          playsInline
           title="Intro Video"
-          style={{ border: 'none', objectFit: 'cover' }}
-          onError={(e) => {
-            console.error('Video loading error:', e);
-            console.log('Video URL:', introVideoUrl);
+          style={{ 
+            border: 'none',
+            pointerEvents: 'none',
+            filter: 'brightness(1.1) contrast(1.1)'
           }}
-          onLoadStart={() => console.log('Video loading started:', introVideoUrl)}
-          onCanPlay={() => console.log('Video can play:', introVideoUrl)}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
         />
       </div>
 

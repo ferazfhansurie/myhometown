@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import './index.css';
 import Header from "./Header.jsx";
 import instagramLogo from "./assets/instagram.png";
 
 export default function CaseStudies() {
+  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState('All');
   const [visualContentOpen, setVisualContentOpen] = useState(false);
   const [videoContentOpen, setVideoContentOpen] = useState(false);
-  const [selectedContent, setSelectedContent] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [hiddenPosts, setHiddenPosts] = useState(new Set());
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,18 +34,13 @@ export default function CaseStudies() {
     return `https://www.facebook.com/plugins/post.php?href=${encodeURIComponent(url)}&width=100%&show_text=true&height=500`;
   };
 
-  // Function to open modal with content
-  const openContentModal = (content) => {
-    console.log('Opening modal for:', content.title);
-    setSelectedContent(content);
-    setIsModalOpen(true);
-  };
 
-  // Function to close modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedContent(null);
-  };
+
+
+
+
+
+
 
   // Function to detect Facebook post errors by checking iframe content
   const detectFacebookError = (postTitle) => {
@@ -262,47 +258,7 @@ export default function CaseStudies() {
     console.log('🚫 Hiding posts with broken Facebook embeds...');
     
     // Get all the posts that are likely broken
-    const postsToHide = [
-      // Already hidden posts
-      'DUNLOPILLO',
-      'TCL', 
-      'SAMSUNG GALAXY S25',
-      'ASAS DUNIA BERHAD - HIJAUAN JERNIH',
-      'Vivo - Deepavali campaign',
-      'TBM - Warehouse Sale (Photo)',
-      'Focus Point - KLCC Roadshow',
-      'Super Ceramic',
-      
-      // Additional broken posts
-      'Gintell Roadshow',
-      'LTL Global',
-      'Air Asia',
-      'iTWorld',
-      'I Bath',
-      'Kutchenhauss',
-      'Vivo X200 Fe',
-      'MKA Cabinet Concept',
-      'EZVIZ DL50FVS',
-      'GD Travel Fair',
-      'Homedec',
-      'KLPJ Wedding Fair',
-      'Smart Holiday Travel Fair',
-      'Modern Living',
-      'Toshiba',
-      'Shoppers Hub',
-      'HP Day',
-      'SIMPANG AMPAT - Villa Home',
-      'Bacfree - Just Tap Series (Photo)',
-      'Giant Tampoi',
-      'Lady Americana (Photo)',
-      'ECO Optometry',
-      'LSH Segar',
-      'Fotile Dish Washer',
-      'PMG Pharmacy',
-      'Dunlopillo'  ,
-      'Samsung Galaxy S25',
-      'Asas Dunia Berhad - Hijauan Jernih',
-    ];
+    const postsToHide = []
     
     let hiddenCount = 0;
     postsToHide.forEach(postTitle => {
@@ -749,6 +705,8 @@ export default function CaseStudies() {
     return () => clearTimeout(timer);
   }, []);
 
+
+
   return (
     <div style={{ minHeight: '100vh', fontFamily: 'Montserrat, Arial, sans-serif', background: '#AB2A25' }}>
       {/* Header */}
@@ -779,7 +737,7 @@ export default function CaseStudies() {
             marginBottom: 30,
             textAlign: 'left',
           }}>
-            MY SHOWCASE
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>SHOWCASE
           </div>
           <div style={{
             fontSize: 18,
@@ -798,7 +756,7 @@ export default function CaseStudies() {
       {/* Filter Section */}
       <section style={{
         background: '#AB2A25',
-        padding: '40px 60px',
+        padding: '20px 20px 20px 0',
         color: '#fff',
         position: 'relative',
         overflow: 'hidden',
@@ -827,7 +785,7 @@ export default function CaseStudies() {
         <div style={{
           maxWidth: '1200px',
           width: '100%',
-          margin: '0 auto',
+          marginLeft: 60,
           position: 'relative',
           zIndex: 2,
         }}>
@@ -838,7 +796,7 @@ export default function CaseStudies() {
             alignItems: 'center',
             marginBottom: '30px',
             flexWrap: 'wrap',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
           }}>
             {/* All Filter */}
             <div
@@ -1088,7 +1046,7 @@ export default function CaseStudies() {
       {/* Case Studies Content Section */}
       <section style={{
         background: 'linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f3f4 100%)',
-        padding: '80px 60px',
+        padding: '20px 20px',
         color: '#333',
         position: 'relative',
         overflow: 'hidden',
@@ -1126,8 +1084,8 @@ export default function CaseStudies() {
           {/* Case Studies Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '30px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))',
+            gap: '25px',
             marginTop: '40px',
             width: '100%',
             padding: '0 20px',
@@ -1136,58 +1094,82 @@ export default function CaseStudies() {
               <div
                 key={index}
                 style={{
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  border: '2px solid rgba(171, 42, 37, 0.1)',
-                  borderRadius: '20px',
-                  padding: '25px',
-                  cursor: (video.category === 'Promotional Campaign' || video.category === 'Product & Brand Feature' || video.category === 'Event Media Coverage' || video.category === 'Infographics' || video.category.startsWith('Video Content') || video.category === 'Street Interview' || video.category === 'Brand Story' || video.category === 'Livestreams') ? 'default' : 'pointer',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '12px',
+                  padding: '0',
+                  cursor: 'pointer',
                   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                   display: 'flex',
                   flexDirection: 'column',
-                  minHeight: '450px',
-                  boxShadow: '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)',
+                  minHeight: 'auto',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08)',
                   position: 'relative',
                   overflow: 'hidden',
+                  backdropFilter: 'blur(20px)',
                 }}
                 onMouseEnter={(e) => {
-                  if (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') {
-                    e.currentTarget.style.transform = 'translateY(-8px) scale(1.02)';
-                    e.currentTarget.style.boxShadow = '0 25px 60px rgba(171, 42, 37, 0.2), 0 15px 35px rgba(0, 0, 0, 0.15)';
-                    e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.3)';
-                  }
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.15), 0 6px 20px rgba(0, 0, 0, 0.1)';
                 }}
                 onMouseLeave={(e) => {
-                  if (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') {
-                    e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                    e.currentTarget.style.boxShadow = '0 15px 40px rgba(171, 42, 37, 0.1), 0 8px 25px rgba(0, 0, 0, 0.1)';
-                    e.currentTarget.style.border = '2px solid rgba(171, 42, 37, 0.1)';
-                  }
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08)';
                 }}
-                onClick={() => (video.category !== 'Promotional Campaign' && video.category !== 'Product & Brand Feature' && video.category !== 'Event Media Coverage' && video.category !== 'Infographics' && !video.category.startsWith('Video Content') && video.category !== 'Street Interview' && video.category !== 'Brand Story' && video.category !== 'Livestreams') && openContentModal(video)}
+                onClick={() => navigate(`/content/${encodeURIComponent(video.title)}`)}
               >
+                {/* Facebook Post Header */}
                 <div style={{
-                  color: '#AB2A25',
-                  fontSize: '16px',
-                  fontWeight: '700',
-                  marginBottom: '15px',
-                  lineHeight: '1.3',
-                  textAlign: 'center',
-                  padding: '8px 0',
-                  borderBottom: '2px solid rgba(171, 42, 37, 0.2)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
+                  padding: '16px',
+                  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
                 }}>
-                  {video.title}
+                  {/* Profile Picture */}
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg, #1877F2, #42A5F5)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#fff',
+                    fontWeight: 'bold',
+                    fontSize: '18px',
+                  }}>
+                    I
+                  </div>
+                  
+                  {/* Profile Info */}
+                  <div style={{ flex: 1 }}>
+                    <div style={{
+                      color: '#050505',
+                      fontSize: '15px',
+                      fontWeight: '600',
+                      lineHeight: '1.2',
+                    }}>
+                      I'm Malaysian 我是马来西亚人
+                    </div>
+                    <div style={{
+                      color: '#65676B',
+                      fontSize: '13px',
+                      marginTop: '2px',
+                    }}>
+                      about 2 months ago
+                    </div>
+                  </div>
                 </div>
+                
+                {/* Post Content Text */}
+            
                 
                 {/* Content Preview Container */}
                 <div style={{
-                  flex: 1,
-                  marginBottom: '15px',
-                  borderRadius: '8px',
+                  width: '100%',
                   overflow: 'hidden',
                   background: '#fff',
-                  minHeight: '200px',
                   position: 'relative',
                   cursor: 'pointer',
                 }}>
@@ -1195,13 +1177,11 @@ export default function CaseStudies() {
                   {(video.category === 'Promotional Campaign' || video.category === 'Product & Brand Feature' || video.category === 'Event Media Coverage' || video.category === 'Infographics' || video.category.startsWith('Video Content') || video.category === 'Street Interview' || video.category === 'Brand Story' || video.category === 'Livestreams') ? (
                     <div style={{
                       width: '100%',
-                      height: '500px',
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
-                      background: '#f8f9fa',
+                      background: '#fff',
                       overflow: 'hidden',
-                      padding: '5px',
                     }}>
                                             {video.title === 'Vivo - Deepavali campaign' && (
                         <iframe 
@@ -1588,53 +1568,13 @@ export default function CaseStudies() {
                   )}
                 </div>
                 
+                {/* Facebook Post Footer - Empty for cleaner look */}
                 <div style={{
-                  color: '#ffffff',
-                  fontSize: 'clamp(11px, 2.5vw, 14px)',
-                  fontWeight: '700',
-                  marginTop: 'clamp(8px, 2vw, 12px)',
-                  textAlign: 'center',
-                  padding: 'clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 15px)',
-                  background: 'rgba(255, 255, 255, 0.1)',
-                  borderRadius: 'clamp(8px, 2vw, 12px)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.5px',
-                  marginBottom: 'clamp(8px, 2vw, 12px)',
+                  padding: '8px 16px',
+                  borderTop: '1px solid rgba(0, 0, 0, 0.1)',
+                  height: '20px',
                 }}>
-                  {video.category}
                 </div>
-                
-                {/* View Button */}
-                <button
-                  onClick={() => window.open(video.url, '_blank')}
-                  style={{
-                    width: '100%',
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    color: '#ffffff',
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
-                    borderRadius: 'clamp(4px, 1.5vw, 6px)',
-                    padding: 'clamp(6px, 1.5vw, 10px) clamp(8px, 2vw, 12px)',
-                    fontSize: 'clamp(10px, 2.5vw, 12px)',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                    opacity: 0.9,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.target.style.background = 'rgba(255, 255, 255, 0.2)';
-                    e.target.style.opacity = '1';
-                    e.target.style.transform = 'translateY(-1px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                    e.target.style.opacity = '0.9';
-                    e.target.style.transform = 'translateY(0)';
-                  }}
-                  title={`View original ${video.type === 'video' ? 'video' : 'post'} on Facebook`}
-                >
-                  View
-                </button>
 
               </div>
             ))}
@@ -1848,456 +1788,7 @@ export default function CaseStudies() {
         </div>
       </footer>
 
-      {/* Content Modal */}
-      {isModalOpen && selectedContent && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'rgba(0, 0, 0, 0.8)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1000,
-          padding: '20px',
-        }}>
-          <div style={{
-            background: '#fff',
-            borderRadius: '12px',
-            maxWidth: '90%',
-            maxHeight: '90%',
-            width: selectedContent.type === 'video' ? '600px' : '600px',
-            position: 'relative',
-            overflow: 'hidden',
-          }}>
-            {/* Modal Header */}
-            <div style={{
-              padding: '20px 20px 0 20px',
-              borderBottom: '1px solid #eee',
-            }}>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
-                <div>
-                  <h3 style={{
-                    margin: 0,
-                    fontSize: '18px',
-                    fontWeight: '600',
-                    color: '#9E2B10',
-                  }}>
-                    {selectedContent.title}
-                  </h3>
-                  <p style={{
-                    margin: '5px 0 0 0',
-                    fontSize: '14px',
-                    color: '#666',
-                  }}>
-                    {selectedContent.category}
-                  </p>
-                </div>
-                <button
-                  onClick={closeModal}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    fontSize: '24px',
-                    cursor: 'pointer',
-                    color: '#666',
-                    padding: '5px',
-                  }}
-                >
-                  ×
-                </button>
-              </div>
-            </div>
-
-            {/* Modal Content */}
-            <div style={{
-              padding: '20px',
-              maxHeight: '70vh',
-              overflow: 'auto',
-            }}>
-              {/* Debug Info */}
-              <div style={{
-                background: '#ffeb3b',
-                padding: '10px',
-                marginBottom: '20px',
-                borderRadius: '4px',
-                fontSize: '14px',
-              }}>
-                Debug: Modal is open. Selected content: {selectedContent.title}
-              </div>
-              {/* Content Preview */}
-              <div style={{
-                width: '100%',
-                marginBottom: '20px',
-              }}>
-                {selectedContent.type === 'video' ? (
-                  // Video Preview
-                  <div style={{
-                    width: '100%',
-                    aspectRatio: '16/9',
-                    background: '#000',
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    position: 'relative',
-                  }}>
-                    <div style={{
-                      width: '100%',
-                      height: '100%',
-                      background: 'linear-gradient(135deg, #1a1a1a 0%, #333333 100%)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#fff',
-                      fontSize: '16px',
-                    }}>
-                      Video content preview
-                    </div>
-                    {/* Play Button Overlay */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: '80px',
-                      height: '80px',
-                      background: 'rgba(158, 43, 16, 0.9)',
-                      borderRadius: '50%',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      cursor: 'pointer',
-                      boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-                    }}
-                    onClick={() => window.open(selectedContent.url, '_blank')}
-                    >
-                      <div style={{
-                        width: 0,
-                        height: 0,
-                        borderLeft: '20px solid #fff',
-                        borderTop: '12px solid transparent',
-                        borderBottom: '12px solid transparent',
-                        marginLeft: '4px',
-                      }} />
-                    </div>
-                    {/* Facebook Logo */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '10px',
-                      right: '10px',
-                      background: '#1877F2',
-                      color: '#fff',
-                      padding: '6px 10px',
-                      borderRadius: '4px',
-                      fontSize: '12px',
-                      fontWeight: 'bold',
-                    }}>
-                      f
-                    </div>
-                  </div>
-                ) : (
-                  // Photo/Post Embed
-                  <div style={{
-                    width: '100%',
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    position: 'relative',
-                    background: '#f8f9fa',
-                    display: 'flex',
-                    justifyContent: 'center',
-                  }}>
-                    {console.log('Rendering modal content for:', selectedContent.title)}
-                    {selectedContent.title === 'Vivo - Deepavali campaign' && (
-                      <div style={{border: '2px solid red', padding: '10px'}}>
-                        <p>Loading Vivo iframe...</p>
-                        <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02mme8L66RQCzK7N2UzRoqFUU3QYetD8jB7VtyuYEYG418E8svWR83MCkyPBRBYocgl&show_text=true&width=500" width="500" height="646" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                      </div>
-                    )}
-                    {selectedContent.title === 'TBM - Warehouse Sale' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0U2zVAP9NXCuakVTUfGqQoEw26vFzE1e3vN27WRKKv33bzz265QE2QKjr59XnJ5zNl&show_text=true&width=500" width="500" height="646" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Focus Point - KLCC Roadshow' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02CGaG2zDA1Ub54PgkibppxvGiJqNY7jwAU5ypWuffjVD8UVPf5V5CXvrBhytbtUmMl&show_text=true&width=500" width="500" height="646" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Super Ceramic' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02qg2ttDfDumqwdxtvH74BWAoBJz3KxGnAW3FXaV4jUWPGchbAv1QGVrUDJc13Fyful&show_text=true&width=500" width="500" height="250" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Gintell Roadshow' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0hRNC5uv6TZR57WmYs6o3wjJA91qsthH1q38s5VyirME3rkwRSdnTGsRoBzvCGuBpl&show_text=true&width=500" width="500" height="250" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'LTL Global' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid02cQeXbBusi7ZegMz3LeLpaKdx3dwqhCUhPwdwoVeWsdMbKjZS9Texzmmoq34CTdYKl&show_text=true&width=500" width="500" height="626" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Air Asia' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0bpTzEyaaZPWtvB1fsUp4t1chGtuUFtKaBFY1PxX4yHHs4vPtcjaneHvoXJwK5Hqul&show_text=true&width=500" width="500" height="665" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'iTWorld' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPerakMyHometown%2Fposts%2Fpfbid0cNuEwAjeHWcg2WVU7sRXVhp5hFqwP93ozhcaq1h5V1f4ty9pXzYsSsv3iS8aNcAFl&show_text=true&width=500" width="500" height="690" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'I Bath' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid02XSmdxC54N6iM2W3EmCGsj6YqPdNudDtNn6iRNWJaTk8mKu1MZxx6RVT1FQSFEnUGl&show_text=true&width=500" width="500" height="626" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Bacfree - Just Tap Series (Photo)' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0sQciUs2iXv8x3ERFz4zKx7kcskdGSuSRXaHkkmMBD4gL9wg5Vk17tutvnKVQE3LHl&show_text=true&width=500" width="500" height="480" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'TBM - Warehouse Sale (Photo)' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FImMalaysianOnline%2Fposts%2Fpfbid0U2zVAP9NXCuakVTUfGqQoEw26vFzE1e3vN27WRKKv33bzz265QE2QKjr59XnJ5zNl&show_text=true&width=500" width="500" height="450" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Lady Americana (Photo)' && (
-                      <iframe src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FJohorMyHometown%2Fposts%2Fpfbid0vAwKsccyDdwe3oqMpDzgYHt3qkuqMkvzrYzNgbhGv8GowfPzL3PTh9GQsqm8Viw4l&show_text=true&width=500" width="500" height="480" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    
-                    {/* Video Content Modal iframes */}
-
-                    {selectedContent.title === 'Soliq - Big Homexpo' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/525900220548932&show_text=false&width=600&height=700" width="600" height="700" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'TBC - Grand Opening' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/share/r/1CU8k1AWgr/&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Super Ceramic - Gudang Sale' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1388466972367145&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'AireGrad - Archidex' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/710399338422553&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'VOX Residence' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/733953715691771&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Joven Amazing Bonanza' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1712373599668317&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    
-                    {/* Video Content - Promotional Campaign Modal iframes */}
-
-                    {selectedContent.title === 'Super Ceramic - Gudang Sale (Video)' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1388466972367145&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    
-                    {/* Video Content - Product & Brand Feature Modal iframes */}
-
-                    {selectedContent.title === 'Natural Signature - Pet Series' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1420875845504243&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Natural Signature - House Tour' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1898336390951108&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Kuchemate - Product' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/746895787776180&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Vivo - New model launch' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1413459083141063&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Bacfree - Just Tap Series (Video)' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1098750792273933&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Acerpure' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/629528356672264&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Rheem' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/951178483741727&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    
-                    {/* Video Content - Event Media Coverage Modal iframes */}
-                    {selectedContent.title === 'Gintell - Disney series launching' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/735990585602239&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Jomoo - Archidex roadshow' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1500831281333056&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Vivo X200 FE' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/3184747938346859&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Roystar Travel Fair' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/2036735583515323&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Flash Z - Grand Opening' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1471698713795904&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Ekspo Sofa & Tilam - Grand Opening' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/618300797786538&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Gatti Sports' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/644370234809490&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Happifood Market' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1360005005377624&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    
-                    {/* Street Interview Modal iframes */}
-                    {selectedContent.title === 'Fotile' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1272897217539689&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Vivo V50' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/992203496316145&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'PMG' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/516172681537516&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-
-                    {selectedContent.title === 'Gintell' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/PenangMyHometown/videos/818772219225840&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Dahua' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/ImMalaysianOnline/videos/362339793352625&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Lunox Mattress' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/744623014825308&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Stone Taly' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/724070103603303&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    
-                    {/* Brand Story Modal iframes */}
-                    {selectedContent.title === 'Bacfree' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/4486250418276699&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Starry Dreamworks' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/2220931318931256&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Homie' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/9528351523917537&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'LSH' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1603454690339124&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'LSK' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/595309256643522&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'AireGard' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1194975995588941&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Lady Americana' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/9609597532422302&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Innocrea' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/713458858234240&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Unicraft' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/1305260154310334&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Lady Americana (Video)' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/reel/9609597532422302&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    
-                    {/* Livestreams Modal iframes */}
-                    {selectedContent.title === 'Senheng - Clearance Sale' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/ImMalaysianOnline/videos/743457354727159/&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Toshiba - Christmas campaign' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/ImMalaysianOnline/videos/597921109261890/&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Archidex' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/ImMalaysianOnline/videos/2857160937818041&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'Super Ceramic - Gudang Sale' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/ImMalaysianOnline/videos/1261869718789317&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'TBM - Warehouse Sale' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/ImMalaysianOnline/videos/707594732189021&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {selectedContent.title === 'TBC - Grand Opening' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100064414673385/videos/1611948596380990&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-
-                    {selectedContent.title === 'Scientex' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100064414673385/videos/1297202214634804&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-
-                    {selectedContent.title === 'TBC - Grand Opening (Livestream)' && (
-                      <iframe src="https://www.facebook.com/plugins/video.php?href=https://www.facebook.com/100064414673385/videos/1611948596380990&show_text=false&width=500&height=500" width="500" height="500" style={{border:'none',overflow:'hidden',borderRadius:'8px',maxWidth:'100%'}} scrolling="no" frameBorder="0" allowFullScreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-                    )}
-                    {!['Vivo - Deepavali campaign', 'TBM - Warehouse Sale (Photo)', 'Focus Point - KLCC Roadshow', 'Super Ceramic', 'Gintell Roadshow', 'LTL Global', 'Air Asia', 'iTWorld', 'I Bath', 'Bacfree - Just Tap Series (Photo)', 'Soliq - Big Homexpo', 'Super Ceramic - Gudang Sale (Video)', 'AireGrad - Archidex', 'VOX Residence', 'Joven Amazing Bonanza', 'Natural Signature - Pet Series', 'Natural Signature - House Tour', 'Kuchemate - Product', 'Vivo - New model launch', 'Bacfree - Just Tap Series (Video)', 'Acerpure', 'Rheem', 'Gintell - Disney series launching', 'Jomoo - Archidex roadshow', 'Vivo X200 FE', 'Roystar Travel Fair', 'Flash Z - Grand Opening', 'Ekspo Sofa & Tilam - Grand Opening', 'Gatti Sports', 'Happifood Market', 'Fotile', 'Vivo V50', 'PMG', 'Gintell', 'Dahua', 'Lunox Mattress', 'Stone Taly', 'Bacfree', 'Starry Dreamworks', 'Homie', 'LSH', 'LSK', 'AireGard', 'Lady Americana (Photo)', 'Lady Americana (Video)', 'Innocrea', 'Unicraft', 'Senheng - Clearance Sale', 'Toshiba - Christmas campaign', 'Archidex', 'TBC - Grand Opening (Livestream)', 'Scientex'].includes(selectedContent.title) && (
-                      <div style={{
-                        width: '100%',
-                        height: '400px',
-                        background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: '#9E2B10',
-                        fontSize: '16px',
-                      }}>
-                        Content preview not available
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              {/* Content Details */}
-              <div style={{
-                background: '#f8f9fa',
-                borderRadius: '8px',
-                padding: '20px',
-                marginBottom: '20px',
-              }}>
-                <h4 style={{
-                  margin: '0 0 10px 0',
-                  color: '#9E2B10',
-                  fontSize: '16px',
-                }}>
-                  Case Study Details
-                </h4>
-                <div style={{
-                  fontSize: '14px',
-                  color: '#666',
-                  lineHeight: '1.5',
-                }}>
-                  <p><strong>Title:</strong> {selectedContent.title}</p>
-                  <p><strong>Category:</strong> {selectedContent.category}</p>
-                  <p><strong>Type:</strong> {selectedContent.type === 'video' ? 'Video Content' : 'Photo Content'}</p>
-                  <p><strong>Platform:</strong> Facebook</p>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div style={{
-                display: 'flex',
-                gap: '10px',
-                justifyContent: 'center',
-                marginTop: '20px',
-              }}>
-                <button
-                  onClick={() => window.open(selectedContent.url, '_blank')}
-                  style={{
-                    background: '#1877F2',
-                    color: '#fff',
-                    border: 'none',
-                    padding: '12px 24px',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                  }}
-                >
-                  Open on Facebook
-                </button>
-                <button
-                  onClick={closeModal}
-                  style={{
-                    background: '#6c757d',
-                    color: '#fff',
-                    border: 'none',
-                    padding: '12px 24px',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                  }}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+ 
     </div>
   );
 } 

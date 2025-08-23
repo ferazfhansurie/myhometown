@@ -38,7 +38,7 @@ export default function MyClients() {
             marginBottom: 30,
             textAlign: 'left',
           }}>
-            MY CLIENTS
+<span style={{ fontFamily: 'Times New Roman, serif' }}>MY </span>CLIENTS
           </div>
           <div style={{
             fontSize: 18,
