@@ -24,3 +24,14 @@ dist-ssr
 *.sw?
 
 # Public assets that are copied from src
+
+# Large media files that cause Vercel deployment issues
+src/assets/Videos/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wmv
+
+# Large image files (only if they exceed reasonable size)
+# Keep regular images but avoid extremely large ones
